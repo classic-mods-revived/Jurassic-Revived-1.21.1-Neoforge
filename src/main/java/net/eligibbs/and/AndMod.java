@@ -1,5 +1,6 @@
 package net.eligibbs.and;
 
+import net.eligibbs.and.item.ModCreativeModeTabs;
 import net.eligibbs.and.item.ModItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -34,6 +35,8 @@ public class AndMod {
         modEventBus.addListener(this::commonSetup);
 
         ModItems.register(modEventBus);
+
+        ModCreativeModeTabs.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
