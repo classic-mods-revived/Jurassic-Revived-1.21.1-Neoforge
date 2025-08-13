@@ -1,6 +1,7 @@
 package net.eligibbs.and.item;
 
 import net.eligibbs.and.AndMod;
+import net.eligibbs.and.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -17,9 +18,10 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> AND_ITEMS_TAB =
             CREATIVE_MODE_TABS.register("and_items_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.and.and_items_tab"))
-                    .icon(() -> new ItemStack(ModItems.FIELD_GUIDE.get()))
+                    .icon(() -> new ItemStack(ModBlocks.COLOR_CUBE.get()))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.FIELD_GUIDE);
+                        pOutput.accept(ModBlocks.LOW_QUALITY_FOSSIL_ORE);
+                        pOutput.accept(ModBlocks.COLOR_CUBE);
                     }).build());
 
     public static void register(IEventBus eventBus) {

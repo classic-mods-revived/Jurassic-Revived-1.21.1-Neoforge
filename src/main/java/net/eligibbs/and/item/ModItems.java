@@ -9,8 +9,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(AndMod.MOD_ID);
 
-    public static final DeferredItem<Item> FIELD_GUIDE = ITEMS.registerSimpleItem("field_guide");
-
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

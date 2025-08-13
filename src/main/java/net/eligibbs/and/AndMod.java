@@ -1,5 +1,6 @@
 package net.eligibbs.and;
 
+import net.eligibbs.and.block.ModBlocks;
 import net.eligibbs.and.item.ModCreativeModeTabs;
 import net.eligibbs.and.item.ModItems;
 import net.minecraft.world.item.CreativeModeTab;
@@ -38,6 +39,8 @@ public class AndMod {
 
         ModCreativeModeTabs.register(modEventBus);
 
+        ModBlocks.register(modEventBus);
+
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
@@ -66,7 +69,6 @@ public class AndMod {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(ModItems.FIELD_GUIDE);
         }
     }
 
