@@ -2,9 +2,11 @@ package net.eligibbs.and.datagen;
 
 import net.eligibbs.and.AndMod;
 import net.eligibbs.and.block.ModBlocks;
+import net.eligibbs.and.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -16,7 +18,12 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        //basicItem(ModItems..get());
+        buttonItem(ModBlocks.FOSSIL_BLOCK_BUTTON, ModBlocks.FOSSIL_BLOCK);
+        fenceItem(ModBlocks.FOSSIL_BLOCK_FENCE, ModBlocks.FOSSIL_BLOCK);
+        wallItem(ModBlocks.FOSSIL_BLOCK_WALL, ModBlocks.FOSSIL_BLOCK);
+
+        basicItem(ModBlocks.FOSSIL_BLOCK_DOOR.asItem());
+        basicItem(ModItems.FOSSIL.get());
     }
 
     public void buttonItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock) {

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_top_left_open",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "and:block/fossil_block_door_bottom",
+    "top": "and:block/fossil_block_door_top"
+  }
+}

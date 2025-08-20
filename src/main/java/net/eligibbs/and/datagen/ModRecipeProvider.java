@@ -2,6 +2,7 @@ package net.eligibbs.and.datagen;
 
 import net.eligibbs.and.AndMod;
 import net.eligibbs.and.block.ModBlocks;
+import net.eligibbs.and.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -24,8 +25,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected void buildRecipes(RecipeOutput pRecipeOutput) {
         List<ItemLike> FOSSIL_SMELTABLES = List.of(ModBlocks.LOW_QUALITY_FOSSIL_ORE);
 
-        oreSmelting(pRecipeOutput, FOSSIL_SMELTABLES, RecipeCategory.MISC, Blocks.BONE_BLOCK, 0.25f, 200, "and_fossil");
-        oreBlasting(pRecipeOutput, FOSSIL_SMELTABLES, RecipeCategory.MISC, Blocks.BONE_BLOCK, 0.25f, 100, "and_fossil");
+        oreSmelting(pRecipeOutput, FOSSIL_SMELTABLES, RecipeCategory.MISC, ModItems.FOSSIL, 0.25f, 200, "and_fossil");
+        oreBlasting(pRecipeOutput, FOSSIL_SMELTABLES, RecipeCategory.MISC, ModItems.FOSSIL, 0.25f, 100, "and_fossil");
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.COLOR_CUBE.get())
@@ -38,6 +39,30 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('D', Items.RED_DYE)
                 .define('E', Items.YELLOW_DYE)
                 .unlockedBy("has_dyes", has(Tags.Items.DYES)).save(pRecipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FOSSIL_BLOCK.get())
+                .pattern("AA")
+                .pattern("AA")
+                .define('A', ModItems.FOSSIL.get())
+                .unlockedBy("has_fossil", has(ModItems.FOSSIL)).save(pRecipeOutput);
+
+        stairBuilder(ModBlocks.FOSSIL_BLOCK_STAIRS.get(), Ingredient.of(ModBlocks.FOSSIL_BLOCK.get())).group("fossil_block")
+                .unlockedBy("has_fossil_block", has(ModBlocks.FOSSIL_BLOCK.get())).save(pRecipeOutput);
+        slab(pRecipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.FOSSIL_BLOCK_SLAB.get(), ModBlocks.FOSSIL_BLOCK.get());
+
+        pressurePlate(pRecipeOutput, ModBlocks.FOSSIL_BLOCK_PRESSURE_PLATE.get(), ModBlocks.FOSSIL_BLOCK.get());
+        buttonBuilder(ModBlocks.FOSSIL_BLOCK_BUTTON.get(), Ingredient.of(ModBlocks.FOSSIL_BLOCK.get())).group("fossil_block")
+                .unlockedBy("has_fossil_block", has(ModBlocks.FOSSIL_BLOCK.get())).save(pRecipeOutput);
+
+        fenceBuilder(ModBlocks.FOSSIL_BLOCK_FENCE.get(), Ingredient.of(ModBlocks.FOSSIL_BLOCK.get())).group("fossil_block")
+                .unlockedBy("has_fossil_block", has(ModBlocks.FOSSIL_BLOCK.get())).save(pRecipeOutput);
+        fenceGateBuilder(ModBlocks.FOSSIL_BLOCK_FENCE_GATE.get(), Ingredient.of(ModBlocks.FOSSIL_BLOCK.get())).group("fossil_block")
+                .unlockedBy("has_fossil_block", has(ModBlocks.FOSSIL_BLOCK.get())).save(pRecipeOutput);
+        wall(pRecipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.FOSSIL_BLOCK_WALL.get(), ModBlocks.FOSSIL_BLOCK.get());
+
+        doorBuilder(ModBlocks.FOSSIL_BLOCK_DOOR.get(), Ingredient.of(ModBlocks.FOSSIL_BLOCK.get())).group("fossil_block")
+                .unlockedBy("has_fossil_block", has(ModBlocks.FOSSIL_BLOCK.get())).save(pRecipeOutput);
+        trapdoorBuilder(ModBlocks.FOSSIL_BLOCK_TRAPDOOR.get(), Ingredient.of(ModBlocks.FOSSIL_BLOCK.get())).group("fossil_block")
+                .unlockedBy("has_fossil_block", has(ModBlocks.FOSSIL_BLOCK.get())).save(pRecipeOutput);
     }
 
     protected static void oreSmelting(RecipeOutput pRecipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,

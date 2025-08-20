@@ -20,9 +20,24 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.LOW_QUALITY_FOSSIL_ORE.get())
-                .add(ModBlocks.COLOR_CUBE.get());
+                .add(ModBlocks.COLOR_CUBE.get())
+                .add(ModBlocks.FOSSIL_BLOCK.get())
+                .add(ModBlocks.FOSSIL_BLOCK_STAIRS.get())
+                .add(ModBlocks.FOSSIL_BLOCK_SLAB.get())
+                .add(ModBlocks.FOSSIL_BLOCK_PRESSURE_PLATE.get())
+                .add(ModBlocks.FOSSIL_BLOCK_BUTTON.get())
+                .add(ModBlocks.FOSSIL_BLOCK_STAIRS.get())
+                .add(ModBlocks.FOSSIL_BLOCK_SLAB.get())
+                .add(ModBlocks.FOSSIL_BLOCK_FENCE.get())
+                .add(ModBlocks.FOSSIL_BLOCK_FENCE_GATE.get())
+                .add(ModBlocks.FOSSIL_BLOCK_DOOR.get())
+                .add(ModBlocks.FOSSIL_BLOCK_TRAPDOOR.get());
 
         this.tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.LOW_QUALITY_FOSSIL_ORE.get());
+
+        tag(BlockTags.FENCES).add(ModBlocks.FOSSIL_BLOCK_FENCE.get());
+        tag(BlockTags.FENCE_GATES).add(ModBlocks.FOSSIL_BLOCK_FENCE_GATE.get());
+        tag(BlockTags.WALLS).add(ModBlocks.FOSSIL_BLOCK_WALL.get());
     }
 }

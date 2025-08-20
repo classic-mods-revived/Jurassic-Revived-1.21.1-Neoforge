@@ -1,24 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "pattern": [
-    "AB",
-    "CD"
-  ],
-  "key": {
-    "A": [
-      "minecraft:book"
-    ],
-    "B": [
-      "minecraft:feather"
-    ],
-    "C": [
-      "minecraft:leather"
-    ],
-    "D": [
-      "minecraft:bone"
-    ]
-  },
   "ingredients": [
     {
       "item": "minecraft:book"

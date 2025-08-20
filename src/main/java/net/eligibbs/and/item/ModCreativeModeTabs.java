@@ -18,10 +18,21 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> AND_ITEMS_TAB =
             CREATIVE_MODE_TABS.register("and_items_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.and.and_items_tab"))
-                    .icon(() -> new ItemStack(ModBlocks.COLOR_CUBE.get()))
+                    .icon(() -> new ItemStack(ModItems.FOSSIL.get()))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModBlocks.LOW_QUALITY_FOSSIL_ORE);
+                        pOutput.accept(ModItems.FOSSIL);
                         pOutput.accept(ModBlocks.COLOR_CUBE);
+                        pOutput.accept(ModBlocks.FOSSIL_BLOCK);
+                        pOutput.accept(ModBlocks.FOSSIL_BLOCK_STAIRS);
+                        pOutput.accept(ModBlocks.FOSSIL_BLOCK_SLAB);
+                        pOutput.accept(ModBlocks.FOSSIL_BLOCK_PRESSURE_PLATE);
+                        pOutput.accept(ModBlocks.FOSSIL_BLOCK_BUTTON);
+                        pOutput.accept(ModBlocks.FOSSIL_BLOCK_WALL);
+                        pOutput.accept(ModBlocks.FOSSIL_BLOCK_FENCE);
+                        pOutput.accept(ModBlocks.FOSSIL_BLOCK_FENCE_GATE);
+                        pOutput.accept(ModBlocks.FOSSIL_BLOCK_DOOR);
+                        pOutput.accept(ModBlocks.FOSSIL_BLOCK_TRAPDOOR);
                     }).build());
 
     public static void register(IEventBus eventBus) {

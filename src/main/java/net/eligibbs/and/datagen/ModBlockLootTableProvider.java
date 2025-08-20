@@ -1,6 +1,7 @@
 package net.eligibbs.and.datagen;
 
 import net.eligibbs.and.block.ModBlocks;
+import net.eligibbs.and.item.ModItems;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -31,7 +32,23 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.COLOR_CUBE.get());
 
         this.add(ModBlocks.LOW_QUALITY_FOSSIL_ORE.get(),
-                block -> createMultipleOreDrops(ModBlocks.LOW_QUALITY_FOSSIL_ORE.get(), Items.BONE,2, 5));
+                block -> createMultipleOreDrops(ModBlocks.LOW_QUALITY_FOSSIL_ORE.get(), ModItems.FOSSIL.get(),2, 5));
+
+        dropSelf(ModBlocks.FOSSIL_BLOCK.get());
+        dropSelf(ModBlocks.FOSSIL_BLOCK_STAIRS.get());
+        this.add(ModBlocks.FOSSIL_BLOCK_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.FOSSIL_BLOCK_SLAB.get()));
+
+        dropSelf(ModBlocks.FOSSIL_BLOCK_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.FOSSIL_BLOCK_BUTTON.get());
+
+        dropSelf(ModBlocks.FOSSIL_BLOCK_FENCE.get());
+        dropSelf(ModBlocks.FOSSIL_BLOCK_FENCE_GATE.get());
+        dropSelf(ModBlocks.FOSSIL_BLOCK_WALL.get());
+
+        dropSelf(ModBlocks.FOSSIL_BLOCK_TRAPDOOR.get());
+        this.add(ModBlocks.FOSSIL_BLOCK_DOOR.get(),
+                block -> createDoorTable(ModBlocks.FOSSIL_BLOCK_DOOR.get()));
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {

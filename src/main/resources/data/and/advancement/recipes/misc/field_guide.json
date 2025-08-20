@@ -1,0 +1,19 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "stick": {
+      "trigger": "minecraft:tick",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "stick"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "and:field_guide"
+    ]
+  }
+}

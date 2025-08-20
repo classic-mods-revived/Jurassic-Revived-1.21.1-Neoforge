@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_low_quality_fossil_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "and:low_quality_fossil_ore"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "and:fossil_from_blasting_low_quality_fossil_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_low_quality_fossil_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "and:fossil_from_blasting_low_quality_fossil_ore"
+    ]
+  }
+}
