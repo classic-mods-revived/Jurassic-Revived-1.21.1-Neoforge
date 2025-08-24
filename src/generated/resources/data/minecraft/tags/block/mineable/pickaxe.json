@@ -1,6 +1,7 @@
 {
   "values": [
     "and:low_quality_fossil_ore",
+    "and:medium_quality_fossil_ore",
     "and:color_cube",
     "and:fossil_block",
     "and:fossil_block_stairs",

@@ -9,7 +9,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(AndMod.MOD_ID);
 
-    public static final DeferredItem<Item> FOSSIL = ITEMS.registerSimpleItem("fossil");
+    public static final DeferredItem<Item> LOW_QUALITY_FOSSIL = ITEMS.registerSimpleItem("low_quality_fossil");
+    public static final DeferredItem<Item> MEDIUM_QUALITY_FOSSIL = ITEMS.registerSimpleItem("medium_quality_fossil");
+    public static final DeferredItem<Item> HIGH_QUALITY_FOSSIL = ITEMS.registerSimpleItem("high_quality_fossil");
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -1,6 +1,8 @@
 package net.eligibbs.and.datagen;
 
 import net.eligibbs.and.AndMod;
+import net.eligibbs.and.item.ModItems;
+import net.eligibbs.and.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -18,7 +20,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        //tag(ModTags.Items.)
-        //.add(ModItems..get());
+        tag(ModTags.Items.FOSSIL_ITEMS)
+        .add(ModItems.LOW_QUALITY_FOSSIL.get())
+        .add(ModItems.MEDIUM_QUALITY_FOSSIL.get())
+        .add(ModItems.HIGH_QUALITY_FOSSIL.get());
     }
 }

@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "and:low_quality_fossil_ore"
+              "name": "and:high_quality_fossil_ore"
             },
             {
               "type": "minecraft:item",
@@ -35,8 +35,8 @@
                   "add": false,
                   "count": {
                     "type": "minecraft:uniform",
-                    "max": 5.0,
-                    "min": 3.0
+                    "max": 3.0,
+                    "min": 1.0
                   },
                   "function": "minecraft:set_count"
                 },
@@ -49,7 +49,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "and:low_quality_fossil"
+              "name": "and:high_quality_fossil"
             }
           ]
         }
@@ -57,5 +57,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "and:blocks/low_quality_fossil_ore"
+  "random_sequence": "and:blocks/high_quality_fossil_ore"
 }

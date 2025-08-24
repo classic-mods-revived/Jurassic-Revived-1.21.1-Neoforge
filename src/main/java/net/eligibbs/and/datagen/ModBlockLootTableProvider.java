@@ -32,7 +32,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.COLOR_CUBE.get());
 
         this.add(ModBlocks.LOW_QUALITY_FOSSIL_ORE.get(),
-                block -> createMultipleOreDrops(ModBlocks.LOW_QUALITY_FOSSIL_ORE.get(), ModItems.FOSSIL.get(),2, 5));
+                block -> createMultipleOreDrops(ModBlocks.LOW_QUALITY_FOSSIL_ORE.get(), ModItems.LOW_QUALITY_FOSSIL.get(),3, 5));
+        this.add(ModBlocks.MEDIUM_QUALITY_FOSSIL_ORE.get(),
+                block -> createMultipleOreDrops(ModBlocks.MEDIUM_QUALITY_FOSSIL_ORE.get(), ModItems.MEDIUM_QUALITY_FOSSIL.get(),2, 4));
+        this.add(ModBlocks.HIGH_QUALITY_FOSSIL_ORE.get(),
+                block -> createMultipleOreDrops(ModBlocks.HIGH_QUALITY_FOSSIL_ORE.get(), ModItems.HIGH_QUALITY_FOSSIL.get(),1, 3));
 
         dropSelf(ModBlocks.FOSSIL_BLOCK.get());
         dropSelf(ModBlocks.FOSSIL_BLOCK_STAIRS.get());

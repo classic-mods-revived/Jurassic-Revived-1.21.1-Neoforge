@@ -3,6 +3,7 @@ package net.eligibbs.and.datagen;
 import net.eligibbs.and.AndMod;
 import net.eligibbs.and.block.ModBlocks;
 import net.eligibbs.and.item.ModItems;
+import net.eligibbs.and.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -23,10 +24,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput pRecipeOutput) {
-        List<ItemLike> FOSSIL_SMELTABLES = List.of(ModBlocks.LOW_QUALITY_FOSSIL_ORE);
+        List<ItemLike> LOW_QUALITY_FOSSIL_SMELTABLES = List.of(ModBlocks.LOW_QUALITY_FOSSIL_ORE);
+        List<ItemLike> MEDIUM_QUALITY_FOSSIL_SMELTABLES = List.of(ModBlocks.MEDIUM_QUALITY_FOSSIL_ORE);
+        List<ItemLike> HIGH_QUALITY_FOSSIL_SMELTABLES = List.of(ModBlocks.HIGH_QUALITY_FOSSIL_ORE);
 
-        oreSmelting(pRecipeOutput, FOSSIL_SMELTABLES, RecipeCategory.MISC, ModItems.FOSSIL, 0.25f, 200, "and_fossil");
-        oreBlasting(pRecipeOutput, FOSSIL_SMELTABLES, RecipeCategory.MISC, ModItems.FOSSIL, 0.25f, 100, "and_fossil");
+        oreSmelting(pRecipeOutput, LOW_QUALITY_FOSSIL_SMELTABLES, RecipeCategory.MISC, ModItems.LOW_QUALITY_FOSSIL, 0.25f, 200, "and_low_quality_fossil");
+        oreBlasting(pRecipeOutput, LOW_QUALITY_FOSSIL_SMELTABLES, RecipeCategory.MISC, ModItems.LOW_QUALITY_FOSSIL, 0.25f, 100, "and_low_quality_fossil");
+        oreSmelting(pRecipeOutput, MEDIUM_QUALITY_FOSSIL_SMELTABLES, RecipeCategory.MISC, ModItems.MEDIUM_QUALITY_FOSSIL, 0.25f, 200, "and_medium_quality_fossil");
+        oreBlasting(pRecipeOutput, MEDIUM_QUALITY_FOSSIL_SMELTABLES, RecipeCategory.MISC, ModItems.MEDIUM_QUALITY_FOSSIL, 0.25f, 100, "and_medium_quality_fossil");
+        oreSmelting(pRecipeOutput, HIGH_QUALITY_FOSSIL_SMELTABLES, RecipeCategory.MISC, ModItems.HIGH_QUALITY_FOSSIL, 0.25f, 200, "and_high_quality_fossil");
+        oreBlasting(pRecipeOutput, HIGH_QUALITY_FOSSIL_SMELTABLES, RecipeCategory.MISC, ModItems.HIGH_QUALITY_FOSSIL, 0.25f, 100, "and_high_quality_fossil");
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.COLOR_CUBE.get())
@@ -42,8 +49,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FOSSIL_BLOCK.get())
                 .pattern("AA")
                 .pattern("AA")
-                .define('A', ModItems.FOSSIL.get())
-                .unlockedBy("has_fossil", has(ModItems.FOSSIL)).save(pRecipeOutput);
+                .define('A', ModTags.Items.FOSSIL_ITEMS)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSIL_ITEMS)).save(pRecipeOutput);
 
         stairBuilder(ModBlocks.FOSSIL_BLOCK_STAIRS.get(), Ingredient.of(ModBlocks.FOSSIL_BLOCK.get())).group("fossil_block")
                 .unlockedBy("has_fossil_block", has(ModBlocks.FOSSIL_BLOCK.get())).save(pRecipeOutput);

@@ -23,7 +23,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         wallItem(ModBlocks.FOSSIL_BLOCK_WALL, ModBlocks.FOSSIL_BLOCK);
 
         basicItem(ModBlocks.FOSSIL_BLOCK_DOOR.asItem());
-        basicItem(ModItems.FOSSIL.get());
+        basicItem(ModItems.LOW_QUALITY_FOSSIL.get());
+        basicItem(ModItems.MEDIUM_QUALITY_FOSSIL.get());
+        basicItem(ModItems.HIGH_QUALITY_FOSSIL.get());
     }
 
     public void buttonItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock) {

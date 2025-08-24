@@ -3,12 +3,12 @@
   "category": "misc",
   "cookingtime": 100,
   "experience": 0.25,
-  "group": "and_fossil",
+  "group": "and_high_quality_fossil",
   "ingredient": {
-    "item": "and:low_quality_fossil_ore"
+    "item": "and:high_quality_fossil_ore"
   },
   "result": {
     "count": 1,
-    "id": "and:fossil"
+    "id": "and:high_quality_fossil"
   }
 }

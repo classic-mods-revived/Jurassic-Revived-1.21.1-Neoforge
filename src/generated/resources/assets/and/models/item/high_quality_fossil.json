@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "and:item/fossil"
+    "layer0": "and:item/high_quality_fossil"
   }
 }

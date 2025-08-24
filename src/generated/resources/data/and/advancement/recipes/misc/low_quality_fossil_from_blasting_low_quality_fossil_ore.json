@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "and:fossil_from_smelting_low_quality_fossil_ore"
+        "recipe": "and:low_quality_fossil_from_blasting_low_quality_fossil_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "and:fossil_from_smelting_low_quality_fossil_ore"
+      "and:low_quality_fossil_from_blasting_low_quality_fossil_ore"
     ]
   }
 }

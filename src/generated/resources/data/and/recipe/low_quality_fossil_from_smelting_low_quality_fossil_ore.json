@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "and_low_quality_fossil",
+  "ingredient": {
+    "item": "and:low_quality_fossil_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "and:low_quality_fossil"
+  }
+}

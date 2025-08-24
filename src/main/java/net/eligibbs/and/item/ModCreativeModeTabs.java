@@ -18,10 +18,14 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> AND_ITEMS_TAB =
             CREATIVE_MODE_TABS.register("and_items_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.and.and_items_tab"))
-                    .icon(() -> new ItemStack(ModItems.FOSSIL.get()))
+                    .icon(() -> new ItemStack(ModItems.LOW_QUALITY_FOSSIL.get()))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModBlocks.LOW_QUALITY_FOSSIL_ORE);
-                        pOutput.accept(ModItems.FOSSIL);
+                        pOutput.accept(ModBlocks.MEDIUM_QUALITY_FOSSIL_ORE);
+                        pOutput.accept(ModBlocks.HIGH_QUALITY_FOSSIL_ORE);
+                        pOutput.accept(ModItems.LOW_QUALITY_FOSSIL);
+                        pOutput.accept(ModItems.MEDIUM_QUALITY_FOSSIL);
+                        pOutput.accept(ModItems.HIGH_QUALITY_FOSSIL);
                         pOutput.accept(ModBlocks.COLOR_CUBE);
                         pOutput.accept(ModBlocks.FOSSIL_BLOCK);
                         pOutput.accept(ModBlocks.FOSSIL_BLOCK_STAIRS);

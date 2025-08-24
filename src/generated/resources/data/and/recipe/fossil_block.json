@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "and:fossil"
+      "tag": "and:fossil_items"
     }
   },
   "pattern": [

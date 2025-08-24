@@ -26,6 +26,12 @@ public class ModBlocks {
     public static final DeferredBlock<Block> LOW_QUALITY_FOSSIL_ORE = registerBlock("low_quality_fossil_ore",
             () -> new DropExperienceBlock(UniformInt.of(2,5),
                     BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> MEDIUM_QUALITY_FOSSIL_ORE = registerBlock("medium_quality_fossil_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2,5),
+                    BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> HIGH_QUALITY_FOSSIL_ORE = registerBlock("high_quality_fossil_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2,5),
+                    BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> FOSSIL_BLOCK = registerBlock("fossil_block",
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
@@ -36,9 +42,9 @@ public class ModBlocks {
             () -> new SlabBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> FOSSIL_BLOCK_PRESSURE_PLATE = registerBlock("fossil_block_pressure_plate",
-            () -> new PressurePlateBlock(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+            () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> FOSSIL_BLOCK_BUTTON = registerBlock("fossil_block_button",
-            () -> new ButtonBlock(BlockSetType.IRON, 10, BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops().noCollission()));
+            () -> new ButtonBlock(BlockSetType.OAK, 10, BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops().noCollission()));
 
     public static final DeferredBlock<Block> FOSSIL_BLOCK_FENCE = registerBlock("fossil_block_fence",
             () -> new FenceBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
@@ -48,9 +54,9 @@ public class ModBlocks {
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> FOSSIL_BLOCK_DOOR = registerBlock("fossil_block_door",
-            () -> new DoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops().noOcclusion()));
+            () -> new DoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops().noOcclusion()));
     public static final DeferredBlock<Block> FOSSIL_BLOCK_TRAPDOOR = registerBlock("fossil_block_trapdoor",
-            () -> new TrapDoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops().noOcclusion()));
+            () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops().noOcclusion()));
 
     public static <T extends Block>DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

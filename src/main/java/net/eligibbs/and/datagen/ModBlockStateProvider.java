@@ -17,6 +17,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.LOW_QUALITY_FOSSIL_ORE);
+        blockWithItem(ModBlocks.MEDIUM_QUALITY_FOSSIL_ORE);
+        blockWithItem(ModBlocks.HIGH_QUALITY_FOSSIL_ORE);
         blockWithItem(ModBlocks.FOSSIL_BLOCK);
 
         stairsBlock(((StairBlock) ModBlocks.FOSSIL_BLOCK_STAIRS.get()), blockTexture(ModBlocks.FOSSIL_BLOCK.get()));

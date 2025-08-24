@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_fossil": {
+    "has_medium_quality_fossil_ore": {
       "conditions": {
         "items": [
           {
-            "items": "#and:fossil_items"
+            "items": "and:medium_quality_fossil_ore"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "and:fossil_block"
+        "recipe": "and:medium_quality_fossil_from_blasting_medium_quality_fossil_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_fossil"
+      "has_medium_quality_fossil_ore"
     ]
   ],
   "rewards": {
     "recipes": [
-      "and:fossil_block"
+      "and:medium_quality_fossil_from_blasting_medium_quality_fossil_ore"
     ]
   }
 }
