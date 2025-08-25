@@ -26,6 +26,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.LOW_QUALITY_FOSSIL);
                         pOutput.accept(ModItems.MEDIUM_QUALITY_FOSSIL);
                         pOutput.accept(ModItems.HIGH_QUALITY_FOSSIL);
+                        pOutput.accept(ModItems.PENGUIN_SPAWN_EGG);
                         pOutput.accept(ModBlocks.COLOR_CUBE);
                         pOutput.accept(ModBlocks.FOSSIL_BLOCK);
                         pOutput.accept(ModBlocks.FOSSIL_BLOCK_STAIRS);

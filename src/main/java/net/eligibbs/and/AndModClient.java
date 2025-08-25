@@ -1,6 +1,9 @@
 package net.eligibbs.and;
 
+import net.eligibbs.and.entity.ModEntities;
+import net.eligibbs.and.entity.client.PenguinRenderer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -14,8 +17,8 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 @Mod(value = AndMod.MOD_ID, dist = Dist.CLIENT)
 // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
 @EventBusSubscriber(modid = AndMod.MOD_ID, value = Dist.CLIENT)
-public class ExampleModClient {
-    public ExampleModClient(ModContainer container) {
+public class AndModClient {
+    public AndModClient(ModContainer container) {
         // Allows NeoForge to create a config screen for this mod's configs.
         // The config screen is accessed by going to the Mods screen > clicking on your mod > clicking on config.
         // Do not forget to add translations for your config options to the en_us.json file.
@@ -27,5 +30,6 @@ public class ExampleModClient {
         // Some client setup code
         AndMod.LOGGER.info("HELLO FROM CLIENT SETUP");
         AndMod.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        EntityRenderers.register(ModEntities.PENGUIN.get(), PenguinRenderer::new);
     }
 }

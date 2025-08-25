@@ -1,9 +1,9 @@
 package net.eligibbs.and;
 
 import net.eligibbs.and.block.ModBlocks;
+import net.eligibbs.and.entity.ModEntities;
 import net.eligibbs.and.item.ModCreativeModeTabs;
 import net.eligibbs.and.item.ModItems;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
 
@@ -40,6 +40,8 @@ public class AndMod {
         ModCreativeModeTabs.register(modEventBus);
 
         ModBlocks.register(modEventBus);
+
+        ModEntities.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.

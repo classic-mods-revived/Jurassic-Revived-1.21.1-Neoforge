@@ -26,6 +26,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.LOW_QUALITY_FOSSIL.get());
         basicItem(ModItems.MEDIUM_QUALITY_FOSSIL.get());
         basicItem(ModItems.HIGH_QUALITY_FOSSIL.get());
+
+        withExistingParent(ModItems.PENGUIN_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
     }
 
     public void buttonItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock) {

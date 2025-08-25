@@ -1,12 +1,15 @@
 package net.eligibbs.and.block;
 
+import com.mojang.serialization.MapCodec;
 import net.eligibbs.and.AndMod;
+import net.eligibbs.and.block.custom.RotatableBlock;
 import net.eligibbs.and.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 
+import net.minecraft.world.level.block.piston.PistonHeadBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -21,7 +24,7 @@ public class ModBlocks {
             DeferredRegister.createBlocks(AndMod.MOD_ID);
 
     public static final DeferredBlock<Block> COLOR_CUBE = registerBlock("color_cube",
-            () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+            () -> new RotatableBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> LOW_QUALITY_FOSSIL_ORE = registerBlock("low_quality_fossil_ore",
             () -> new DropExperienceBlock(UniformInt.of(2,5),
