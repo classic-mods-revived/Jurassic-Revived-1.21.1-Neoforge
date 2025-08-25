@@ -17,5 +17,6 @@
   "block.and.fossil_block_wall": "Fossil Block Wall",
   "block.and.fossil_block_door": "Fossil Block Door",
   "block.and.fossil_block_trapdoor": "Fossil Block Trapdoor",
-  "itemGroup.and.and_items_tab": "AND"
+  "itemGroup.and.and_items_tab": "AND",
+  "entity.and.penguin": "Penguin"
 }
