@@ -22,6 +22,10 @@ import net.minecraft.util.Mth;
 
 public class AchillobatorEntity extends Animal implements GeoEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    // Procedural tail sway state (client-side use for rendering)
+    private float tailSwayOffset;   // Smoothed offset in range roughly [-1, 1]
+    private float tailSwayVelocity; // Internal velocity for spring-damper
+    private float tailSwayPrev;     // Previous frame value for interpolation
 
     public AchillobatorEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -65,36 +69,75 @@ public class AchillobatorEntity extends Animal implements GeoEntity {
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
+    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> state) {
+        // Keep regular locomotion/idle; tail sway is procedural in the model
+        /*if (state.isMoving()) {
+            state.getController().setAnimation(
+                    RawAnimation.begin().then("anim.achillobator.walk", Animation.LoopType.LOOP)
+            );
+            return PlayState.CONTINUE;
+        }
+        state.getController().setAnimation(
+                RawAnimation.begin().then("anim.achillobator.idle", Animation.LoopType.LOOP)
+        );*/
+        return PlayState.CONTINUE;
+    }
+
     private float getSignedTurnDelta() {
         float bodyDelta = Mth.wrapDegrees(this.yBodyRot - this.yBodyRotO);
         float headDelta = Mth.wrapDegrees(this.yHeadRot - this.yHeadRotO);
         return Math.abs(bodyDelta) >= Math.abs(headDelta) ? bodyDelta : headDelta;
     }
 
-    private boolean isTurning() {
-        float delta = getSignedTurnDelta();
-        return Math.abs(delta) > 1.0F;
+    @Override
+    public void tick() {
+        super.tick();
+        if (level().isClientSide) {
+            // Capture previous for smooth interpolation between ticks
+            this.tailSwayPrev = this.tailSwayOffset;
+            updateProceduralTailSway();
+        }
     }
 
-    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
-        if (isTurning()) {
-            float delta = getSignedTurnDelta();
-            String turnAnim = (delta > 0.0F)
-                    ? "anim.achillobator.tailrightforwards"
-                    : "anim.achillobator.tailleftforwards";
+    private void updateProceduralTailSway() {
+        // Turn input derived from rotation deltas; works even when standing still and turning
+        float turnDegrees = getSignedTurnDelta();
 
-            tAnimationState.getController().setAnimation(
-                    RawAnimation.begin().then(turnAnim, Animation.LoopType.HOLD_ON_LAST_FRAME)
-            );
-            return PlayState.CONTINUE;
-        }
-        if (tAnimationState.isMoving()) {
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("anim.achillobator.walk", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
+        // Deadzone to ignore tiny jitter so the tail can return to center cleanly
+        float deadzoneDeg = 0.6f; // smaller deadzone for more responsiveness
+        float turnInput = 0.0f;
+        if (Math.abs(turnDegrees) >= deadzoneDeg) {
+            // Higher sensitivity so small in-place turns still affect the model
+            turnInput = Mth.clamp(turnDegrees / 15.0f, -1.0f, 1.0f);
         }
 
-        tAnimationState.getController().setAnimation(RawAnimation.begin().then("anim.achillobator.idle", Animation.LoopType.LOOP));
-        return PlayState.CONTINUE;
+        // Target offset: keep intuitive sign (positive input -> positive sway)
+        float target = turnInput;
+
+        // One-pole low-pass (no bounce). Larger alpha => snappier and less "stiff".
+        float alpha = 0.24f; // try 0.20–0.30 to taste
+
+        tailSwayOffset += (target - tailSwayOffset) * alpha;
+
+        // Snap tiny residuals to zero so it visibly settles
+        if (Math.abs(tailSwayOffset) < 0.003f) {
+            tailSwayOffset = 0.0f;
+        }
+
+        // No oscillation velocity retained
+        tailSwayVelocity = 0.0f;
+
+        tailSwayOffset = Mth.clamp(tailSwayOffset, -1.5f, 1.5f);
+    }
+
+    // Expose to the model for bone rotation
+    public float getTailSwayOffset() {
+        return tailSwayOffset;
+    }
+
+    // Interpolated sway for smooth rendering between ticks
+    public float getTailSwayOffset(float partialTick) {
+        return Mth.lerp(Mth.clamp(partialTick, 0.0f, 1.0f), tailSwayPrev, tailSwayOffset);
     }
 
     @Override
