@@ -71,7 +71,8 @@ public class AchillobatorEntity extends Animal implements GeoEntity {
 
     private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> state) {
         // Keep regular locomotion/idle; tail sway is procedural in the model
-        /*if (state.isMoving()) {
+
+        if (state.isMoving()) {
             state.getController().setAnimation(
                     RawAnimation.begin().then("anim.achillobator.walk", Animation.LoopType.LOOP)
             );
@@ -79,14 +80,14 @@ public class AchillobatorEntity extends Animal implements GeoEntity {
         }
         state.getController().setAnimation(
                 RawAnimation.begin().then("anim.achillobator.idle", Animation.LoopType.LOOP)
-        );*/
+        );
+
         return PlayState.CONTINUE;
     }
 
     private float getSignedTurnDelta() {
-        float bodyDelta = Mth.wrapDegrees(this.yBodyRot - this.yBodyRotO);
-        float headDelta = Mth.wrapDegrees(this.yHeadRot - this.yHeadRotO);
-        return Math.abs(bodyDelta) >= Math.abs(headDelta) ? bodyDelta : headDelta;
+        // Only consider the body (torso) rotation so head look does not affect tail sway
+        return Mth.wrapDegrees(this.yBodyRot - this.yBodyRotO);
     }
 
     @Override

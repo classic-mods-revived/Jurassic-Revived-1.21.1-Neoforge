@@ -54,12 +54,14 @@ public class AchillobatorModel extends GeoModel<AchillobatorEntity> {
         float sway = entity.getTailSwayOffset(state.getPartialTick()); // [-1, 1]
 
         // Tuning
-        float maxYawDeg = 16.0f;    // adjust to taste
-        float rollFraction = 0.35f;
+        float maxYawDeg    = 22.0f;  // increased max sweep
+        float swayGain     = 1.35f;  // amplifies overall power
+        float rollFraction = 0.40f;  // slightly stronger roll for heft
 
         float deg2rad = (float)Math.PI / 180f;
 
         // Direction: positive sway (left turn) -> tail swings right (negative yaw)
+        // Flip the sign here if the sway feels inverted
         float baseYaw = sway * maxYawDeg * deg2rad;
         float baseRoll = -baseYaw * rollFraction;
 
@@ -70,14 +72,16 @@ public class AchillobatorModel extends GeoModel<AchillobatorEntity> {
             if (bone == null) continue;
 
             float w = weights[i];
-            float newYaw = baseYaw * w;
-            float newRoll = baseRoll * w;
+            float yaw  = baseYaw  * w;
+            float roll = baseRoll * w;
 
-            bone.setRotY(bone.getRotY() + newYaw);
-            bone.setRotZ(bone.getRotZ() + newRoll);
+            // OVERRIDE animations on Y/Z only: keep the model's predefined X bend intact
+            // Do NOT reset rotX here, so the upward bend stays
+            bone.setRotY(yaw);
+            bone.setRotZ(roll);
 
-            appliedYaw[i] = newYaw;
-            appliedRoll[i] = newRoll;
+            appliedYaw[i] = yaw;
+            appliedRoll[i] = roll;
         }
     }
 }
