@@ -2,6 +2,7 @@ package net.jurassicrevived.jurassicrevived;
 
 import net.jurassicrevived.jurassicrevived.entity.ModEntities;
 import net.jurassicrevived.jurassicrevived.entity.client.AchillobatorRenderer;
+import net.jurassicrevived.jurassicrevived.entity.client.CeratosaurusRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.api.distmarker.Dist;
@@ -31,5 +32,6 @@ public class JRModClient {
         JRMod.LOGGER.info("HELLO FROM CLIENT SETUP");
         JRMod.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         EntityRenderers.register(ModEntities.ACHILLOBATOR.get(), AchillobatorRenderer::new);
+        EntityRenderers.register(ModEntities.CERATOSAURUS.get(), CeratosaurusRenderer::new);
     }
 }

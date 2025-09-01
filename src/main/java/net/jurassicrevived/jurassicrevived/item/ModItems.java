@@ -11,7 +11,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(JRMod.MOD_ID);
     public static final DeferredItem<Item> ACHILLOBATOR_SPAWN_EGG = ITEMS.register("achillobator_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntities.ACHILLOBATOR, 0xDEDB47, 0xCCBFBE, new Item.Properties()));
+            () -> new DeferredSpawnEggItem(ModEntities.ACHILLOBATOR, 0xA6957D, 0x4D3425, new Item.Properties()));
+    public static final DeferredItem<Item> CERATOSAURUS_SPAWN_EGG = ITEMS.register("ceratosaurus_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.CERATOSAURUS, 0x37302E, 0xB05453, new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -20,6 +20,7 @@ public class ModCreativeModeTabs {
                     .icon(() -> new ItemStack(ModItems.ACHILLOBATOR_SPAWN_EGG.get()))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.ACHILLOBATOR_SPAWN_EGG);
+                        pOutput.accept(ModItems.CERATOSAURUS_SPAWN_EGG);
                     }).build());
 
     public static void register(IEventBus eventBus) {

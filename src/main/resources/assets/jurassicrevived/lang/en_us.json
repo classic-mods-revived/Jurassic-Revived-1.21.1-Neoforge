@@ -1,5 +1,7 @@
 {
   "itemGroup.jurassicrevived.jurassicrevived_items_tab": "Jurassic Revived",
   "item.jurassicrevived.achillobator_spawn_egg": "Achillobator Spawn Egg",
-  "entity.jurassicrevived.penguin": "Achillobator"
+  "item.jurassicrevived.ceratosaurus_spawn_egg": "Ceratosaurus Spawn Egg",
+  "entity.jurassicrevived.penguin": "Achillobator",
+  "entity.jurassicrevived.ceratosaurus": "Ceratosaurus"
 }
