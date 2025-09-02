@@ -6,6 +6,8 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.model.GeoModel;
+import net.minecraft.util.Mth;
+import software.bernie.geckolib.constant.DataTickets;
 
 public class AchillobatorModel extends GeoModel<AchillobatorEntity> {
     // Model-local "currently applied" offsets; cleared before each entity render
@@ -82,6 +84,14 @@ public class AchillobatorModel extends GeoModel<AchillobatorEntity> {
 
             appliedYaw[i] = yaw;
             appliedRoll[i] = roll;
+        }
+        
+        GeoBone head = getAnimationProcessor().getBone("Neck");
+
+        if (head != null) {
+            var entityData = state.getData(DataTickets.ENTITY_MODEL_DATA);
+            float clampedYawDeg = Mth.clamp(entityData.netHeadYaw(), -30.0f, 30.0f);
+            head.setRotY(clampedYawDeg * Mth.DEG_TO_RAD);
         }
     }
 }

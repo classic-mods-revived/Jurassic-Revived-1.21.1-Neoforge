@@ -4,8 +4,10 @@ import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.entity.custom.AchillobatorEntity;
 import net.jurassicrevived.jurassicrevived.entity.custom.CeratosaurusEntity;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
 
 public class CeratosaurusModel extends GeoModel<CeratosaurusEntity> {
@@ -83,6 +85,14 @@ public class CeratosaurusModel extends GeoModel<CeratosaurusEntity> {
 
             appliedYaw[i] = yaw;
             appliedRoll[i] = roll;
+        }
+
+        GeoBone head = getAnimationProcessor().getBone("Neck1");
+
+        if (head != null) {
+            var entityData = state.getData(DataTickets.ENTITY_MODEL_DATA);
+            float clampedYawDeg = Mth.clamp(entityData.netHeadYaw(), -30.0f, 30.0f);
+            head.setRotY(clampedYawDeg * Mth.DEG_TO_RAD);
         }
     }
 }
