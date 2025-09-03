@@ -1,10 +1,20 @@
 package net.jurassicrevived.jurassicrevived.entity.custom;
 
 import net.jurassicrevived.jurassicrevived.entity.ModEntities;
+import net.jurassicrevived.jurassicrevived.entity.client.AchillobatorVariant;
+import net.jurassicrevived.jurassicrevived.entity.client.CeratosaurusVariant;
+import net.minecraft.Util;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -13,6 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -22,6 +33,10 @@ import software.bernie.geckolib.animation.*;
 
 public class CeratosaurusEntity extends Animal implements GeoEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+
+    private static final EntityDataAccessor<Integer> VARIANT =
+            SynchedEntityData.defineId(CeratosaurusEntity.class, EntityDataSerializers.INT);
+
     // Procedural tail sway state (client-side use for rendering)
     private float tailSwayOffset;   // Smoothed offset in range roughly [-1, 1]
     private float tailSwayVelocity; // Internal velocity for spring-damper
@@ -138,6 +153,48 @@ public class CeratosaurusEntity extends Animal implements GeoEntity {
     // Interpolated sway for smooth rendering between ticks
     public float getTailSwayOffset(float partialTick) {
         return Mth.lerp(Mth.clamp(partialTick, 0.0f, 1.0f), tailSwayPrev, tailSwayOffset);
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder pBuilder) {
+        super.defineSynchedData(pBuilder);
+        pBuilder.define(VARIANT, 0);
+    }
+    public int getTypeVariant() {
+        return this.entityData.get(VARIANT);
+    }
+
+    public CeratosaurusVariant getVariant() {
+        return CeratosaurusVariant.byId(this.getTypeVariant() & 255);
+    }
+
+    private void setVariant(CeratosaurusVariant variant) {
+        this.entityData.set(VARIANT, variant.getId() & 255);
+    }
+
+    @Override
+    public boolean canMate(Animal other) {
+        if (!super.canMate(other)) return false;
+        if (!(other instanceof CeratosaurusEntity that)) return false;
+        return this.getVariant() != that.getVariant();
+    }
+    @Override
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+        pCompound.putInt("Variant", this.getTypeVariant());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        this.entityData.set(VARIANT, pCompound.getInt("Variant"));
+    }
+
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
+        CeratosaurusVariant variant = Util.getRandom(CeratosaurusVariant.values(), this.random);
+        this.setVariant(variant);
+        return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
     @Override

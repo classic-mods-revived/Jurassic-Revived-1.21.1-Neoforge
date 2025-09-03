@@ -1,7 +1,9 @@
 package net.jurassicrevived.jurassicrevived.entity.client;
 
+import com.google.common.collect.Maps;
 import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.entity.custom.AchillobatorEntity;
+import net.minecraft.Util;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
@@ -9,7 +11,16 @@ import software.bernie.geckolib.model.GeoModel;
 import net.minecraft.util.Mth;
 import software.bernie.geckolib.constant.DataTickets;
 
+import java.util.Map;
+
 public class AchillobatorModel extends GeoModel<AchillobatorEntity> {
+
+    private static final Map<AchillobatorVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(AchillobatorVariant.class), map -> {
+                map.put(AchillobatorVariant.MALE, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/entity/achillobator.png"));
+                map.put(AchillobatorVariant.FEMALE, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/entity/achillobator_female.png"));
+            });
+
     // Model-local "currently applied" offsets; cleared before each entity render
     private float[] appliedYaw = null;
     private float[] appliedRoll = null;
@@ -21,7 +32,7 @@ public class AchillobatorModel extends GeoModel<AchillobatorEntity> {
 
     @Override
     public ResourceLocation getTextureResource(AchillobatorEntity animatable) {
-        return ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/entity/achillobator.png");
+        return LOCATION_BY_VARIANT.get(animatable.getVariant());
     }
 
     @Override
