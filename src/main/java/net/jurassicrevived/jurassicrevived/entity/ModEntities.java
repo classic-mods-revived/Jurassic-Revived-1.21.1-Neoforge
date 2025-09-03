@@ -2,7 +2,9 @@ package net.jurassicrevived.jurassicrevived.entity;
 
 import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.entity.custom.AchillobatorEntity;
+import net.jurassicrevived.jurassicrevived.entity.custom.BrachiosaurusEntity;
 import net.jurassicrevived.jurassicrevived.entity.custom.CeratosaurusEntity;
+import net.jurassicrevived.jurassicrevived.entity.custom.DilophosaurusEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -22,6 +24,14 @@ public class ModEntities {
     public static final Supplier<EntityType<CeratosaurusEntity>> CERATOSAURUS =
             ENTITY_TYPES.register("ceratosaurus", () -> EntityType.Builder.of(CeratosaurusEntity::new, MobCategory.CREATURE)
                     .sized(1.875f, 2.375f).build("ceratosaurus"));
+
+    public static final Supplier<EntityType<BrachiosaurusEntity>> BRACHIOSAURUS =
+            ENTITY_TYPES.register("brachiosaurus", () -> EntityType.Builder.of(BrachiosaurusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("brachiosaurus"));
+
+    public static final Supplier<EntityType<DilophosaurusEntity>> DILOPHOSAURUS =
+            ENTITY_TYPES.register("dilophosaurus", () -> EntityType.Builder.of(DilophosaurusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("dilophosaurus"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

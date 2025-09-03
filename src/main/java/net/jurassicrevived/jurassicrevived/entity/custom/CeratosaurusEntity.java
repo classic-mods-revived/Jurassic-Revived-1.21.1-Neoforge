@@ -69,7 +69,7 @@ public class CeratosaurusEntity extends Animal implements GeoEntity {
 
     @Override
     public boolean isFood(ItemStack pStack) {
-        return pStack.is(Items.APPLE);
+        return pStack.is(Items.BEEF);
     }
 
     @Nullable

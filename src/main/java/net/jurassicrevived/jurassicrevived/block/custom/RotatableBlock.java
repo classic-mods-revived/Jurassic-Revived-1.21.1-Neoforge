@@ -34,13 +34,6 @@ public class RotatableBlock extends DirectionalBlock {
         return state.rotate(mirror.getRotation((Direction)state.getValue(FACING)));
     }
 
-    protected void updateNeighborsInFront(Level level, BlockPos pos, BlockState state) {
-        Direction direction = (Direction)state.getValue(FACING);
-        BlockPos blockpos = pos.relative(direction.getOpposite());
-        level.neighborChanged(blockpos, this, pos);
-        level.updateNeighborsAtExceptFromFacing(blockpos, this, direction);
-    }
-
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return (BlockState)this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite().getOpposite());
     }
