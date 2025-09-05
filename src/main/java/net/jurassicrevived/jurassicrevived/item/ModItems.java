@@ -11,7 +11,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(JRMod.MOD_ID);
 
-    public static final DeferredItem<Item> JR_ITEM_TAB_ICON = ITEMS.register("jr_item_tab_icon", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> JR_DINO_TAB_ICON = ITEMS.register("jr_dino_tab_icon", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> JR_DNA_TAB_ICON = ITEMS.register("jr_dna_tab_icon", () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> AMPOULE = ITEMS.register("ampoule", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SYRINGE = ITEMS.register("syringe", () -> new Item(new Item.Properties()));
@@ -41,6 +42,9 @@ public class ModItems {
     public static final DeferredItem<Item> COMPSOGNATHUSSYRINGE = ITEMS.register("compsognathus_syringe", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> CERATOSAURUSSYRINGE = ITEMS.register("ceratosaurus_syringe", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> BRACHIOSAURUSSYRINGE = ITEMS.register("brachiosaurus_syringe", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> MOSQUITOINAMBER = ITEMS.register("mosquito_in_amber", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TYRANNOSAURUSSKULLFOSSIL = ITEMS.register("tyrannosaurus_skull_fossil", () -> new Item(new Item.Properties()));
 
 
     public static final DeferredItem<Item> VELOCIRAPTOR_SPAWN_EGG = ITEMS.register("velociraptor_spawn_egg",

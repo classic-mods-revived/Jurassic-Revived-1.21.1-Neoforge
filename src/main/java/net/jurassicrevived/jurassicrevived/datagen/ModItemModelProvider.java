@@ -1,6 +1,7 @@
 package net.jurassicrevived.jurassicrevived.datagen;
 
 import net.jurassicrevived.jurassicrevived.JRMod;
+import net.jurassicrevived.jurassicrevived.block.ModBlocks;
 import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -21,6 +22,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModItems.BRACHIOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.DILOPHOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 
+        basicItem(ModItems.MOSQUITOINAMBER.get());
+        basicItem(ModItems.TYRANNOSAURUSSKULLFOSSIL.get());
         basicItem(ModItems.AMPOULE.get());
         basicItem(ModItems.SYRINGE.get());
         basicItem(ModItems.VELOCIRAPTORDNA.get());
@@ -49,6 +52,17 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.COMPSOGNATHUSSYRINGE.get());
         basicItem(ModItems.CERATOSAURUSSYRINGE.get());
         basicItem(ModItems.BRACHIOSAURUSSYRINGE.get());
+
+        basicItem(ModItems.BRACHIOSAURUSSYRINGE.get());
+        basicItem(ModItems.BRACHIOSAURUSSYRINGE.get());
+
+        flowerItem(ModBlocks.ROYALFERN);
+    }
+
+    public void flowerItem(DeferredBlock<Block> block) {
+        this.withExistingParent(block.getId().getPath(), mcLoc("item/generated"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID,
+                        "block/" + block.getId().getPath()));
     }
 
     public void buttonItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock) {
