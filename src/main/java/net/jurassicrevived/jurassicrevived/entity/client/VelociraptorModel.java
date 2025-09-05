@@ -2,7 +2,7 @@ package net.jurassicrevived.jurassicrevived.entity.client;
 
 import com.google.common.collect.Maps;
 import net.jurassicrevived.jurassicrevived.JRMod;
-import net.jurassicrevived.jurassicrevived.entity.custom.AchillobatorEntity;
+import net.jurassicrevived.jurassicrevived.entity.custom.VelociraptorEntity;
 import net.minecraft.Util;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.animation.AnimationState;
@@ -13,12 +13,12 @@ import software.bernie.geckolib.constant.DataTickets;
 
 import java.util.Map;
 
-public class AchillobatorModel extends GeoModel<AchillobatorEntity> {
+public class VelociraptorModel extends GeoModel<VelociraptorEntity> {
 
-    private static final Map<AchillobatorVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(AchillobatorVariant.class), map -> {
-                map.put(AchillobatorVariant.MALE, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/entity/achillobator.png"));
-                map.put(AchillobatorVariant.FEMALE, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/entity/achillobator_female.png"));
+    private static final Map<VelociraptorVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(VelociraptorVariant.class), map -> {
+                map.put(VelociraptorVariant.MALE, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/entity/velociraptor.png"));
+                map.put(VelociraptorVariant.FEMALE, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/entity/velociraptor_female.png"));
             });
 
     // Model-local "currently applied" offsets; cleared before each entity render
@@ -26,22 +26,22 @@ public class AchillobatorModel extends GeoModel<AchillobatorEntity> {
     private float[] appliedRoll = null;
 
     @Override
-    public ResourceLocation getModelResource(AchillobatorEntity animatable) {
-        return ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "geo/achillobator.geo.json");
+    public ResourceLocation getModelResource(VelociraptorEntity animatable) {
+        return ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "geo/velociraptor.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureResource(AchillobatorEntity animatable) {
+    public ResourceLocation getTextureResource(VelociraptorEntity animatable) {
         return LOCATION_BY_VARIANT.get(animatable.getVariant());
     }
 
     @Override
-    public ResourceLocation getAnimationResource(AchillobatorEntity animatable) {
-        return ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "animations/achillobator.animation.json");
+    public ResourceLocation getAnimationResource(VelociraptorEntity animatable) {
+        return ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "animations/velociraptor.animation.json");
     }
 
     @Override
-    public void setCustomAnimations(AchillobatorEntity entity, long id, AnimationState<AchillobatorEntity> state) {
+    public void setCustomAnimations(VelociraptorEntity entity, long id, AnimationState<VelociraptorEntity> state) {
         super.setCustomAnimations(entity, id, state);
 
         String[] tailBones = { "Tail1", "Tail2", "Tail3", "Tail4", "Tail5", "Tail6" };

@@ -1,7 +1,6 @@
 package net.jurassicrevived.jurassicrevived.entity.custom;
 
 import net.jurassicrevived.jurassicrevived.entity.ModEntities;
-import net.jurassicrevived.jurassicrevived.entity.client.AchillobatorVariant;
 import net.jurassicrevived.jurassicrevived.entity.client.CeratosaurusVariant;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;

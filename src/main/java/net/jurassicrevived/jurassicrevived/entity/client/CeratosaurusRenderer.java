@@ -1,7 +1,6 @@
 package net.jurassicrevived.jurassicrevived.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.jurassicrevived.jurassicrevived.entity.custom.AchillobatorEntity;
 import net.jurassicrevived.jurassicrevived.entity.custom.CeratosaurusEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

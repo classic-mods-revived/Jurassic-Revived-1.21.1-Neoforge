@@ -1,7 +1,7 @@
 package net.jurassicrevived.jurassicrevived.entity.custom;
 
 import net.jurassicrevived.jurassicrevived.entity.ModEntities;
-import net.jurassicrevived.jurassicrevived.entity.client.AchillobatorVariant;
+import net.jurassicrevived.jurassicrevived.entity.client.VelociraptorVariant;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -30,18 +30,18 @@ import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceC
 import software.bernie.geckolib.animation.*;
 import net.minecraft.util.Mth;
 
-public class AchillobatorEntity extends Animal implements GeoEntity {
+public class VelociraptorEntity extends Animal implements GeoEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     private static final EntityDataAccessor<Integer> VARIANT =
-            SynchedEntityData.defineId(AchillobatorEntity.class, EntityDataSerializers.INT);
+            SynchedEntityData.defineId(VelociraptorEntity.class, EntityDataSerializers.INT);
 
     // Procedural tail sway state (client-side use for rendering)
     private float tailSwayOffset;   // Smoothed offset in range roughly [-1, 1]
     private float tailSwayVelocity; // Internal velocity for spring-damper
     private float tailSwayPrev;     // Previous frame value for interpolation
 
-    public AchillobatorEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
+    public VelociraptorEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
@@ -74,7 +74,7 @@ public class AchillobatorEntity extends Animal implements GeoEntity {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        return ModEntities.ACHILLOBATOR.get().create(pLevel);
+        return ModEntities.VELOCIRAPTOR.get().create(pLevel);
     }
 
     @Override
@@ -87,12 +87,12 @@ public class AchillobatorEntity extends Animal implements GeoEntity {
 
         if (state.isMoving()) {
             state.getController().setAnimation(
-                    RawAnimation.begin().then("anim.achillobator.walk", Animation.LoopType.LOOP)
+                    RawAnimation.begin().then("anim.velociraptor.walk", Animation.LoopType.LOOP)
             );
             return PlayState.CONTINUE;
         }
         state.getController().setAnimation(
-                RawAnimation.begin().then("anim.achillobator.idle", Animation.LoopType.LOOP)
+                RawAnimation.begin().then("anim.velociraptor.idle", Animation.LoopType.LOOP)
         );
 
         return PlayState.CONTINUE;
@@ -163,18 +163,18 @@ public class AchillobatorEntity extends Animal implements GeoEntity {
         return this.entityData.get(VARIANT);
     }
 
-    public AchillobatorVariant getVariant() {
-        return AchillobatorVariant.byId(this.getTypeVariant() & 255);
+    public VelociraptorVariant getVariant() {
+        return VelociraptorVariant.byId(this.getTypeVariant() & 255);
     }
 
-    private void setVariant(AchillobatorVariant variant) {
+    private void setVariant(VelociraptorVariant variant) {
         this.entityData.set(VARIANT, variant.getId() & 255);
     }
 
     @Override
     public boolean canMate(Animal other) {
         if (!super.canMate(other)) return false;
-        if (!(other instanceof AchillobatorEntity that)) return false;
+        if (!(other instanceof VelociraptorEntity that)) return false;
         return this.getVariant() != that.getVariant();
     }
     @Override
@@ -191,7 +191,7 @@ public class AchillobatorEntity extends Animal implements GeoEntity {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        AchillobatorVariant variant = Util.getRandom(AchillobatorVariant.values(), this.random);
+        VelociraptorVariant variant = Util.getRandom(VelociraptorVariant.values(), this.random);
         this.setVariant(variant);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }

@@ -2,7 +2,6 @@ package net.jurassicrevived.jurassicrevived.entity.client;
 
 import com.google.common.collect.Maps;
 import net.jurassicrevived.jurassicrevived.JRMod;
-import net.jurassicrevived.jurassicrevived.entity.custom.AchillobatorEntity;
 import net.jurassicrevived.jurassicrevived.entity.custom.CeratosaurusEntity;
 import net.minecraft.Util;
 import net.minecraft.resources.ResourceLocation;
