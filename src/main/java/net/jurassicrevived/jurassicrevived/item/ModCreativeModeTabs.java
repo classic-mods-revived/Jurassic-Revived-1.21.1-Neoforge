@@ -59,7 +59,7 @@ public class ModCreativeModeTabs {
                     .icon(() -> new ItemStack(ModItems.JR_DNA_TAB_ICON.get()))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.VELOCIRAPTOR_DNA);
-                        pOutput.accept(ModItems.TYRANNOSAURUS_DNA);
+                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_DNA);
                         pOutput.accept(ModItems.TRICERATOPS_DNA);
                         pOutput.accept(ModItems.SPINOSAURUS_DNA);
                         pOutput.accept(ModItems.PTERANODON_DNA);
@@ -72,7 +72,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.CERATOSAURUS_DNA);
                         pOutput.accept(ModItems.BRACHIOSAURUS_DNA);
                         pOutput.accept(ModItems.VELOCIRAPTOR_SYRINGE);
-                        pOutput.accept(ModItems.TYRANNOSAURUS_SYRINGE);
+                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_SYRINGE);
                         pOutput.accept(ModItems.TRICERATOPS_SYRINGE);
                         pOutput.accept(ModItems.SPINOSAURUS_SYRINGE);
                         pOutput.accept(ModItems.PTERANODON_SYRINGE);

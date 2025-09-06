@@ -27,7 +27,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.AMPOULE.get());
         basicItem(ModItems.SYRINGE.get());
         basicItem(ModItems.VELOCIRAPTOR_DNA.get());
-        basicItem(ModItems.TYRANNOSAURUS_DNA.get());
+        basicItem(ModItems.TYRANNOSAURUS_REX_DNA.get());
         basicItem(ModItems.TRICERATOPS_DNA.get());
         basicItem(ModItems.SPINOSAURUS_DNA.get());
         basicItem(ModItems.PTERANODON_DNA.get());
@@ -40,7 +40,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.CERATOSAURUS_DNA.get());
         basicItem(ModItems.BRACHIOSAURUS_DNA.get());
         basicItem(ModItems.VELOCIRAPTOR_SYRINGE.get());
-        basicItem(ModItems.TYRANNOSAURUS_SYRINGE.get());
+        basicItem(ModItems.TYRANNOSAURUS_REX_SYRINGE.get());
         basicItem(ModItems.TRICERATOPS_SYRINGE.get());
         basicItem(ModItems.SPINOSAURUS_SYRINGE.get());
         basicItem(ModItems.PTERANODON_SYRINGE.get());

@@ -17,7 +17,7 @@ public class ModItems {
     public static final DeferredItem<Item> AMPOULE = ITEMS.register("ampoule", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SYRINGE = ITEMS.register("syringe", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> VELOCIRAPTOR_DNA = ITEMS.register("velociraptor_dna", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> TYRANNOSAURUS_DNA = ITEMS.register("tyrannosaurus_dna", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TYRANNOSAURUS_REX_DNA = ITEMS.register("tyrannosaurus_rex_dna", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TRICERATOPS_DNA = ITEMS.register("triceratops_dna", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SPINOSAURUS_DNA = ITEMS.register("spinosaurus_dna", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> PTERANODON_DNA = ITEMS.register("pteranodon_dna", () -> new Item(new Item.Properties()));
@@ -30,7 +30,7 @@ public class ModItems {
     public static final DeferredItem<Item> CERATOSAURUS_DNA = ITEMS.register("ceratosaurus_dna", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> BRACHIOSAURUS_DNA = ITEMS.register("brachiosaurus_dna", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> VELOCIRAPTOR_SYRINGE = ITEMS.register("velociraptor_syringe", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> TYRANNOSAURUS_SYRINGE = ITEMS.register("tyrannosaurus_syringe", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TYRANNOSAURUS_REX_SYRINGE = ITEMS.register("tyrannosaurus_rex_syringe", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TRICERATOPS_SYRINGE = ITEMS.register("triceratops_syringe", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SPINOSAURUS_SYRINGE = ITEMS.register("spinosaurus_syringe", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> PTERANODON_SYRINGE = ITEMS.register("pteranodon_syringe", () -> new Item(new Item.Properties()));
