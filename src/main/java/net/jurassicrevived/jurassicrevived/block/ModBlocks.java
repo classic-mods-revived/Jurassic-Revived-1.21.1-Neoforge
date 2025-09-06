@@ -19,12 +19,12 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(JRMod.MOD_ID);
 
-    public static final DeferredBlock<Block> ROYALFERN = registerBlock("royal_fern",
-            () -> new FlowerBlock(MobEffects.REGENERATION, 8, BlockBehaviour.Properties.ofFullCopy(Blocks.ALLIUM)));
-    public static final DeferredBlock<Block> POTTEDROYALFERN = BLOCKS.register("potted_royal_fern",
-            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ROYALFERN, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM)));
+    public static final DeferredBlock<Block> ROYAL_FERN = registerBlock("royal_fern",
+            () -> new FlowerBlock(MobEffects.UNLUCK, 0, BlockBehaviour.Properties.ofFullCopy(Blocks.ALLIUM)));
+    public static final DeferredBlock<Block> POTTED_ROYAL_FERN = BLOCKS.register("potted_royal_fern",
+            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ROYAL_FERN, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM)));
 
-    public static final DeferredBlock<Block> GYPSUMBRICKS = registerBlock("gypsum_bricks",
+    public static final DeferredBlock<Block> GYPSUM_BRICKS = registerBlock("gypsum_bricks",
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> CAT_PLUSHIE = registerBlock("cat_plushie",

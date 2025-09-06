@@ -22,41 +22,41 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModItems.BRACHIOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.DILOPHOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 
-        basicItem(ModItems.MOSQUITOINAMBER.get());
-        basicItem(ModItems.TYRANNOSAURUSSKULLFOSSIL.get());
+        basicItem(ModItems.MOSQUITO_IN_AMBER.get());
+        basicItem(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL.get());
         basicItem(ModItems.AMPOULE.get());
         basicItem(ModItems.SYRINGE.get());
-        basicItem(ModItems.VELOCIRAPTORDNA.get());
-        basicItem(ModItems.TYRANNOSAURUSDNA.get());
-        basicItem(ModItems.TRICERATOPSDNA.get());
-        basicItem(ModItems.SPINOSAURUSDNA.get());
-        basicItem(ModItems.PTERANODONDNA.get());
-        basicItem(ModItems.PARASAUROLOPHUSDNA.get());
-        basicItem(ModItems.INDOMINUSDNA.get());
-        basicItem(ModItems.GALLIMIMUSDNA.get());
-        basicItem(ModItems.DIPLODOCUSDNA.get());
-        basicItem(ModItems.DILOPHOSAURUSDNA.get());
-        basicItem(ModItems.COMPSOGNATHUSDNA.get());
-        basicItem(ModItems.CERATOSAURUSDNA.get());
-        basicItem(ModItems.BRACHIOSAURUSDNA.get());
-        basicItem(ModItems.VELOCIRAPTORSYRINGE.get());
-        basicItem(ModItems.TYRANNOSAURUSSYRINGE.get());
-        basicItem(ModItems.TRICERATOPSSYRINGE.get());
-        basicItem(ModItems.SPINOSAURUSSYRINGE.get());
-        basicItem(ModItems.PTERANODONSYRINGE.get());
-        basicItem(ModItems.PARASAUROLOPHUSSYRINGE.get());
-        basicItem(ModItems.INDOMINUSSYRINGE.get());
-        basicItem(ModItems.GALLIMIMUSSYRINGE.get());
-        basicItem(ModItems.DIPLODOCUSSYRINGE.get());
-        basicItem(ModItems.DILOPHOSAURUSSYRINGE.get());
-        basicItem(ModItems.COMPSOGNATHUSSYRINGE.get());
-        basicItem(ModItems.CERATOSAURUSSYRINGE.get());
-        basicItem(ModItems.BRACHIOSAURUSSYRINGE.get());
+        basicItem(ModItems.VELOCIRAPTOR_DNA.get());
+        basicItem(ModItems.TYRANNOSAURUS_DNA.get());
+        basicItem(ModItems.TRICERATOPS_DNA.get());
+        basicItem(ModItems.SPINOSAURUS_DNA.get());
+        basicItem(ModItems.PTERANODON_DNA.get());
+        basicItem(ModItems.PARASAUROLOPHUS_DNA.get());
+        basicItem(ModItems.INDOMINUS_DNA.get());
+        basicItem(ModItems.GALLIMIMUS_DNA.get());
+        basicItem(ModItems.DIPLODOCUS_DNA.get());
+        basicItem(ModItems.DILOPHOSAURUS_DNA.get());
+        basicItem(ModItems.COMPSOGNATHUS_DNA.get());
+        basicItem(ModItems.CERATOSAURUS_DNA.get());
+        basicItem(ModItems.BRACHIOSAURUS_DNA.get());
+        basicItem(ModItems.VELOCIRAPTOR_SYRINGE.get());
+        basicItem(ModItems.TYRANNOSAURUS_SYRINGE.get());
+        basicItem(ModItems.TRICERATOPS_SYRINGE.get());
+        basicItem(ModItems.SPINOSAURUS_SYRINGE.get());
+        basicItem(ModItems.PTERANODON_SYRINGE.get());
+        basicItem(ModItems.PARASAUROLOPHUS_SYRINGE.get());
+        basicItem(ModItems.INDOMINUS_SYRINGE.get());
+        basicItem(ModItems.GALLIMIMUS_SYRINGE.get());
+        basicItem(ModItems.DIPLODOCUS_SYRINGE.get());
+        basicItem(ModItems.DILOPHOSAURUS_SYRINGE.get());
+        basicItem(ModItems.COMPSOGNATHUS_SYRINGE.get());
+        basicItem(ModItems.CERATOSAURUS_SYRINGE.get());
+        basicItem(ModItems.BRACHIOSAURUS_SYRINGE.get());
 
-        basicItem(ModItems.BRACHIOSAURUSSYRINGE.get());
-        basicItem(ModItems.BRACHIOSAURUSSYRINGE.get());
+        basicItem(ModItems.BRACHIOSAURUS_SYRINGE.get());
+        basicItem(ModItems.BRACHIOSAURUS_SYRINGE.get());
 
-        flowerItem(ModBlocks.ROYALFERN);
+        flowerItem(ModBlocks.ROYAL_FERN);
     }
 
     public void flowerItem(DeferredBlock<Block> block) {

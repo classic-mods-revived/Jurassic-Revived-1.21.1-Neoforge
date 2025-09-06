@@ -18,25 +18,27 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> JR_FOSSIL_TAB =
             CREATIVE_MODE_TABS.register("jurassicrevived_fossil_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_fossil_tab"))
-                    .icon(() -> new ItemStack(ModItems.TYRANNOSAURUSSKULLFOSSIL.get()))
+                    .icon(() -> new ItemStack(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL.get()))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.TYRANNOSAURUSSKULLFOSSIL);
+                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL);
                     }).build());
 
     public static final Supplier<CreativeModeTab> JR_PLANT_TAB =
             CREATIVE_MODE_TABS.register("jurassicrevived_plant_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_plant_tab"))
-                    .icon(() -> new ItemStack(ModBlocks.ROYALFERN.get()))
+                    .icon(() -> new ItemStack(ModBlocks.ROYAL_FERN.get()))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModBlocks.ROYALFERN.get().asItem());
+                        pOutput.accept(ModBlocks.ROYAL_FERN.get().asItem());
                     }).build());
 
     public static final Supplier<CreativeModeTab> JR_ITEM_TAB =
             CREATIVE_MODE_TABS.register("jurassicrevived_item_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_item_tab"))
-                    .icon(() -> new ItemStack(ModItems.MOSQUITOINAMBER.get()))
+                    .icon(() -> new ItemStack(ModItems.MOSQUITO_IN_AMBER.get()))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.MOSQUITOINAMBER);
+                        pOutput.accept(ModItems.MOSQUITO_IN_AMBER);
+                        pOutput.accept(ModItems.AMPOULE);
+                        pOutput.accept(ModItems.SYRINGE);
                     }).build());
 
     public static final Supplier<CreativeModeTab> JR_DINO_TAB =
@@ -56,44 +58,42 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_dna_tab"))
                     .icon(() -> new ItemStack(ModItems.JR_DNA_TAB_ICON.get()))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.AMPOULE);
-                        pOutput.accept(ModItems.SYRINGE);
-                        pOutput.accept(ModItems.VELOCIRAPTORDNA);
-                        pOutput.accept(ModItems.TYRANNOSAURUSDNA);
-                        pOutput.accept(ModItems.TRICERATOPSDNA);
-                        pOutput.accept(ModItems.SPINOSAURUSDNA);
-                        pOutput.accept(ModItems.PTERANODONDNA);
-                        pOutput.accept(ModItems.PARASAUROLOPHUSDNA);
-                        pOutput.accept(ModItems.INDOMINUSDNA);
-                        pOutput.accept(ModItems.GALLIMIMUSDNA);
-                        pOutput.accept(ModItems.DIPLODOCUSDNA);
-                        pOutput.accept(ModItems.DILOPHOSAURUSDNA);
-                        pOutput.accept(ModItems.COMPSOGNATHUSDNA);
-                        pOutput.accept(ModItems.CERATOSAURUSDNA);
-                        pOutput.accept(ModItems.BRACHIOSAURUSDNA);
-                        pOutput.accept(ModItems.VELOCIRAPTORSYRINGE);
-                        pOutput.accept(ModItems.TYRANNOSAURUSSYRINGE);
-                        pOutput.accept(ModItems.TRICERATOPSSYRINGE);
-                        pOutput.accept(ModItems.SPINOSAURUSSYRINGE);
-                        pOutput.accept(ModItems.PTERANODONSYRINGE);
-                        pOutput.accept(ModItems.PARASAUROLOPHUSSYRINGE);
-                        pOutput.accept(ModItems.INDOMINUSSYRINGE);
-                        pOutput.accept(ModItems.GALLIMIMUSSYRINGE);
-                        pOutput.accept(ModItems.DIPLODOCUSSYRINGE);
-                        pOutput.accept(ModItems.DILOPHOSAURUSSYRINGE);
-                        pOutput.accept(ModItems.COMPSOGNATHUSSYRINGE);
-                        pOutput.accept(ModItems.CERATOSAURUSSYRINGE);
-                        pOutput.accept(ModItems.BRACHIOSAURUSSYRINGE);
+                        pOutput.accept(ModItems.VELOCIRAPTOR_DNA);
+                        pOutput.accept(ModItems.TYRANNOSAURUS_DNA);
+                        pOutput.accept(ModItems.TRICERATOPS_DNA);
+                        pOutput.accept(ModItems.SPINOSAURUS_DNA);
+                        pOutput.accept(ModItems.PTERANODON_DNA);
+                        pOutput.accept(ModItems.PARASAUROLOPHUS_DNA);
+                        pOutput.accept(ModItems.INDOMINUS_DNA);
+                        pOutput.accept(ModItems.GALLIMIMUS_DNA);
+                        pOutput.accept(ModItems.DIPLODOCUS_DNA);
+                        pOutput.accept(ModItems.DILOPHOSAURUS_DNA);
+                        pOutput.accept(ModItems.COMPSOGNATHUS_DNA);
+                        pOutput.accept(ModItems.CERATOSAURUS_DNA);
+                        pOutput.accept(ModItems.BRACHIOSAURUS_DNA);
+                        pOutput.accept(ModItems.VELOCIRAPTOR_SYRINGE);
+                        pOutput.accept(ModItems.TYRANNOSAURUS_SYRINGE);
+                        pOutput.accept(ModItems.TRICERATOPS_SYRINGE);
+                        pOutput.accept(ModItems.SPINOSAURUS_SYRINGE);
+                        pOutput.accept(ModItems.PTERANODON_SYRINGE);
+                        pOutput.accept(ModItems.PARASAUROLOPHUS_SYRINGE);
+                        pOutput.accept(ModItems.INDOMINUS_SYRINGE);
+                        pOutput.accept(ModItems.GALLIMIMUS_SYRINGE);
+                        pOutput.accept(ModItems.DIPLODOCUS_SYRINGE);
+                        pOutput.accept(ModItems.DILOPHOSAURUS_SYRINGE);
+                        pOutput.accept(ModItems.COMPSOGNATHUS_SYRINGE);
+                        pOutput.accept(ModItems.CERATOSAURUS_SYRINGE);
+                        pOutput.accept(ModItems.BRACHIOSAURUS_SYRINGE);
                     }).build());
 
 
     public static final Supplier<CreativeModeTab> JR_BLOCK_TAB =
             CREATIVE_MODE_TABS.register("jurassicrevived_block_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_block_tab"))
-                    .icon(() -> new ItemStack(ModBlocks.GYPSUMBRICKS.get().asItem()))
+                    .icon(() -> new ItemStack(ModBlocks.GYPSUM_BRICKS.get().asItem()))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModBlocks.CAT_PLUSHIE);
-                        pOutput.accept(ModBlocks.GYPSUMBRICKS);
+                        pOutput.accept(ModBlocks.GYPSUM_BRICKS);
                     }).build());
 
     public static void register(IEventBus eventBus) {

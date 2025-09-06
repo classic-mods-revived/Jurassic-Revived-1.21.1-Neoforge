@@ -17,12 +17,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        blockWithItem(ModBlocks.GYPSUMBRICKS);
+        blockWithItem(ModBlocks.GYPSUM_BRICKS);
 
-        simpleBlock(ModBlocks.ROYALFERN.get(),
-                models().cross(blockTexture(ModBlocks.ROYALFERN.get()).getPath(), blockTexture(ModBlocks.ROYALFERN.get())).renderType("cutout"));
-        simpleBlock(ModBlocks.POTTEDROYALFERN.get(), models().singleTexture("potted_royal_fern", ResourceLocation.parse("flower_pot_cross"), "plant",
-                blockTexture(ModBlocks.ROYALFERN.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.ROYAL_FERN.get(),
+                models().cross(blockTexture(ModBlocks.ROYAL_FERN.get()).getPath(), blockTexture(ModBlocks.ROYAL_FERN.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.POTTED_ROYAL_FERN.get(), models().singleTexture("potted_royal_fern", ResourceLocation.parse("flower_pot_cross"), "plant",
+                blockTexture(ModBlocks.ROYAL_FERN.get())).renderType("cutout"));
     }
 
     private void blockWithItem(DeferredBlock<Block> deferredBlock) {

@@ -26,10 +26,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.CAT_PLUSHIE.get());
-        dropSelf(ModBlocks.GYPSUMBRICKS.get());
+        dropSelf(ModBlocks.GYPSUM_BRICKS.get());
 
-        this.dropSelf(ModBlocks.ROYALFERN.get());
-        this.add(ModBlocks.POTTEDROYALFERN.get(), createPotFlowerItemTable(ModBlocks.ROYALFERN));
+        this.dropSelf(ModBlocks.ROYAL_FERN.get());
+        this.add(ModBlocks.POTTED_ROYAL_FERN.get(), createPotFlowerItemTable(ModBlocks.ROYAL_FERN));
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {
