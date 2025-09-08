@@ -67,6 +67,10 @@ public class CustomGenderedSpawnEggItem extends DeferredSpawnEggItem {
             return CustomData.of(tag);
         });
     }
+    private static void clearEntityData(ItemStack stack) {
+        // Ensure we don't persist a partial entity tag (which would lack an "id")
+        stack.remove(DataComponents.ENTITY_DATA);
+    }
 
     // --- Interactions ---
 
@@ -80,9 +84,9 @@ public class CustomGenderedSpawnEggItem extends DeferredSpawnEggItem {
                 cycleVariant(stack);
                 // Use coords + SoundEvent; UI_BUTTON_CLICK is a Holder in 1.21 -> .value()
                 level.playSound(
-                        player,
+                        null,
                         player.getX(), player.getY(), player.getZ(),
-                        SoundEvents.UI_BUTTON_CLICK.value(),
+                        SoundEvents.EXPERIENCE_ORB_PICKUP,
                         SoundSource.PLAYERS,
                         0.5f, 1.1f
                 );
@@ -97,10 +101,31 @@ public class CustomGenderedSpawnEggItem extends DeferredSpawnEggItem {
     public InteractionResult useOn(UseOnContext context) {
         Player player = context.getPlayer();
 
-        // If actually spawning (not holding secondary-use), inject the Variant
+        // If sneaking and using on a block, toggle gender and DO NOT spawn
+        if (player != null && player.isSecondaryUseActive()) {
+            Level level = context.getLevel();
+            if (!level.isClientSide) {
+                cycleVariant(context.getItemInHand());
+                level.playSound(
+                        null,
+                        context.getClickedPos(),
+                        SoundEvents.EXPERIENCE_ORB_PICKUP,
+                        SoundSource.PLAYERS,
+                        0.5f, 1.1f
+                );
+            }
+            return InteractionResult.sidedSuccess(context.getLevel().isClientSide());
+        }
+
+        // If actually spawning (not holding secondary-use), inject the Variant only for this call,
+        // then clear it to avoid persisting invalid entity data in inventories/saves.
         if (player == null || !player.isSecondaryUseActive()) {
             ensureEntityDataHasVariant(context.getItemInHand());
+            InteractionResult result = super.useOn(context);
+            clearEntityData(context.getItemInHand());
+            return result;
         }
+        // ... existing code ...
         return super.useOn(context);
     }
 
