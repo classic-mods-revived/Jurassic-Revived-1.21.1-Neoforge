@@ -15,12 +15,23 @@ public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, JRMod.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> JR_FOSSIL_TAB =
-            CREATIVE_MODE_TABS.register("jurassicrevived_fossil_tab", () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_fossil_tab"))
-                    .icon(() -> new ItemStack(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL.get()))
+    public static final Supplier<CreativeModeTab> JR_ITEM_TAB =
+            CREATIVE_MODE_TABS.register("jurassicrevived_item_tab", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_item_tab"))
+                    .icon(() -> new ItemStack(ModItems.MOSQUITO_IN_AMBER.get()))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL);
+                        pOutput.accept(ModItems.MOSQUITO_IN_AMBER);
+                        pOutput.accept(ModItems.AMPOULE);
+                        pOutput.accept(ModItems.SYRINGE);
+                    }).build());
+
+    public static final Supplier<CreativeModeTab> JR_BLOCK_TAB =
+            CREATIVE_MODE_TABS.register("jurassicrevived_block_tab", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_block_tab"))
+                    .icon(() -> new ItemStack(ModBlocks.GYPSUM_STONE_BRICKS.get().asItem()))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(ModBlocks.CAT_PLUSHIE);
+                        pOutput.accept(ModBlocks.GYPSUM_STONE_BRICKS);
                     }).build());
 
     public static final Supplier<CreativeModeTab> JR_PLANT_TAB =
@@ -33,27 +44,13 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.WESTERN_SWORD_FERN.get().asItem());
                     }).build());
 
-    public static final Supplier<CreativeModeTab> JR_ITEM_TAB =
-            CREATIVE_MODE_TABS.register("jurassicrevived_item_tab", () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_item_tab"))
-                    .icon(() -> new ItemStack(ModItems.MOSQUITO_IN_AMBER.get()))
+    public static final Supplier<CreativeModeTab> JR_FOSSIL_TAB =
+            CREATIVE_MODE_TABS.register("jurassicrevived_fossil_tab", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_fossil_tab"))
+                    .icon(() -> new ItemStack(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL.get()))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.MOSQUITO_IN_AMBER);
-                        pOutput.accept(ModItems.AMPOULE);
-                        pOutput.accept(ModItems.SYRINGE);
+                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL);
                     }).build());
-
-    public static final Supplier<CreativeModeTab> JR_DINO_TAB =
-            CREATIVE_MODE_TABS.register("jurassicrevived_dino_tab", () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_dino_tab"))
-                    .icon(() -> new ItemStack(ModItems.JR_DINO_TAB_ICON.get()))
-                    .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.VELOCIRAPTOR_SPAWN_EGG);
-                        pOutput.accept(ModItems.CERATOSAURUS_SPAWN_EGG);
-                        pOutput.accept(ModItems.BRACHIOSAURUS_SPAWN_EGG);
-                        pOutput.accept(ModItems.DILOPHOSAURUS_SPAWN_EGG);
-                    }).build());
-
 
     public static final Supplier<CreativeModeTab> JR_DNA_TAB =
             CREATIVE_MODE_TABS.register("jurassicrevived_dna_tab", () -> CreativeModeTab.builder()
@@ -73,6 +70,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.COMPSOGNATHUS_DNA);
                         pOutput.accept(ModItems.CERATOSAURUS_DNA);
                         pOutput.accept(ModItems.BRACHIOSAURUS_DNA);
+
                         pOutput.accept(ModItems.VELOCIRAPTOR_SYRINGE);
                         pOutput.accept(ModItems.TYRANNOSAURUS_REX_SYRINGE);
                         pOutput.accept(ModItems.TRICERATOPS_SYRINGE);
@@ -88,14 +86,15 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.BRACHIOSAURUS_SYRINGE);
                     }).build());
 
-
-    public static final Supplier<CreativeModeTab> JR_BLOCK_TAB =
-            CREATIVE_MODE_TABS.register("jurassicrevived_block_tab", () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_block_tab"))
-                    .icon(() -> new ItemStack(ModBlocks.GYPSUM_STONE_BRICKS.get().asItem()))
+    public static final Supplier<CreativeModeTab> JR_DINO_TAB =
+            CREATIVE_MODE_TABS.register("jurassicrevived_dino_tab", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_dino_tab"))
+                    .icon(() -> new ItemStack(ModItems.JR_DINO_TAB_ICON.get()))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModBlocks.CAT_PLUSHIE);
-                        pOutput.accept(ModBlocks.GYPSUM_STONE_BRICKS);
+                        pOutput.accept(ModItems.VELOCIRAPTOR_SPAWN_EGG);
+                        pOutput.accept(ModItems.CERATOSAURUS_SPAWN_EGG);
+                        pOutput.accept(ModItems.BRACHIOSAURUS_SPAWN_EGG);
+                        pOutput.accept(ModItems.DILOPHOSAURUS_SPAWN_EGG);
                     }).build());
 
     public static void register(IEventBus eventBus) {

@@ -1,10 +1,10 @@
 {
   "itemGroup.jurassicrevived.jurassicrevived_item_tab": "Items and Tools",
-  "itemGroup.jurassicrevived.jurassicrevived_dna_tab": "Genetic Material",
   "itemGroup.jurassicrevived.jurassicrevived_block_tab": "Blocks and Machines",
-  "itemGroup.jurassicrevived.jurassicrevived_dino_tab": "Dinosuar Spawn Eggs",
   "itemGroup.jurassicrevived.jurassicrevived_plant_tab": "Prehistoric Plants",
   "itemGroup.jurassicrevived.jurassicrevived_fossil_tab": "Fossils",
+  "itemGroup.jurassicrevived.jurassicrevived_dna_tab": "Genetic Material",
+  "itemGroup.jurassicrevived.jurassicrevived_dino_tab": "Dinosuar Spawn Eggs",
 
   "item.jurassicrevived.velociraptor_spawn_egg": "Velociraptor Spawn Egg",
   "item.jurassicrevived.ceratosaurus_spawn_egg": "Ceratosaurus Spawn Egg",

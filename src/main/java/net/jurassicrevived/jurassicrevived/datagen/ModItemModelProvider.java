@@ -23,9 +23,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModItems.DILOPHOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 
         basicItem(ModItems.MOSQUITO_IN_AMBER.get());
-        basicItem(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL.get());
         basicItem(ModItems.AMPOULE.get());
         basicItem(ModItems.SYRINGE.get());
+
+        basicItem(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL.get());
+
         basicItem(ModItems.VELOCIRAPTOR_DNA.get());
         basicItem(ModItems.TYRANNOSAURUS_REX_DNA.get());
         basicItem(ModItems.TRICERATOPS_DNA.get());
@@ -39,6 +41,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.COMPSOGNATHUS_DNA.get());
         basicItem(ModItems.CERATOSAURUS_DNA.get());
         basicItem(ModItems.BRACHIOSAURUS_DNA.get());
+
         basicItem(ModItems.VELOCIRAPTOR_SYRINGE.get());
         basicItem(ModItems.TYRANNOSAURUS_REX_SYRINGE.get());
         basicItem(ModItems.TRICERATOPS_SYRINGE.get());
