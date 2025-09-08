@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "jurassicrevived:item/diplodocus_dna"
+    "layer0": "jurassicrevived:block/western_sword_fern"
   }
 }

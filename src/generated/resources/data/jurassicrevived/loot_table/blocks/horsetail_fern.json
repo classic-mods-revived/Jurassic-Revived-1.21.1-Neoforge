@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "jurassicrevived:gypsum_bricks"
+          "name": "jurassicrevived:horsetail_fern"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "jurassicrevived:blocks/gypsum_bricks"
+  "random_sequence": "jurassicrevived:blocks/horsetail_fern"
 }

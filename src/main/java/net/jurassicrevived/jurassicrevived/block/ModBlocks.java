@@ -19,16 +19,26 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(JRMod.MOD_ID);
 
+    public static final DeferredBlock<Block> CAT_PLUSHIE = registerBlock("cat_plushie",
+            () -> new DecoBlock(BlockBehaviour.Properties.of().noOcclusion()));
+
     public static final DeferredBlock<Block> ROYAL_FERN = registerBlock("royal_fern",
             () -> new FlowerBlock(MobEffects.UNLUCK, 0, BlockBehaviour.Properties.ofFullCopy(Blocks.ALLIUM)));
     public static final DeferredBlock<Block> POTTED_ROYAL_FERN = BLOCKS.register("potted_royal_fern",
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ROYAL_FERN, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM)));
 
-    public static final DeferredBlock<Block> GYPSUM_BRICKS = registerBlock("gypsum_bricks",
-            () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> HORSETAIL_FERN = registerBlock("horsetail_fern",
+            () -> new FlowerBlock(MobEffects.UNLUCK, 0, BlockBehaviour.Properties.ofFullCopy(Blocks.ALLIUM)));
+    public static final DeferredBlock<Block> POTTED_HORSETAIL_FERN = BLOCKS.register("potted_horsetail_fern",
+            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), HORSETAIL_FERN, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM)));
 
-    public static final DeferredBlock<Block> CAT_PLUSHIE = registerBlock("cat_plushie",
-            () -> new DecoBlock(BlockBehaviour.Properties.of().noOcclusion()));
+    public static final DeferredBlock<Block> WESTERN_SWORD_FERN = registerBlock("western_sword_fern",
+            () -> new FlowerBlock(MobEffects.UNLUCK, 0, BlockBehaviour.Properties.ofFullCopy(Blocks.ALLIUM)));
+    public static final DeferredBlock<Block> POTTED_WESTERN_SWORD_FERN = BLOCKS.register("potted_western_sword_fern",
+            () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), WESTERN_SWORD_FERN, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM)));
+
+    public static final DeferredBlock<Block> GYPSUM_STONE_BRICKS = registerBlock("gypsum_stone_bricks",
+            () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
     public static <T extends Block>DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

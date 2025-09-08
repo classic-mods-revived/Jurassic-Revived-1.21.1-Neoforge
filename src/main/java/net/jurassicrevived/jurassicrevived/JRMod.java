@@ -58,6 +58,8 @@ public class JRMod {
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.ROYAL_FERN.getId(), ModBlocks.POTTED_ROYAL_FERN);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.HORSETAIL_FERN.getId(), ModBlocks.POTTED_HORSETAIL_FERN);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WESTERN_SWORD_FERN.getId(), ModBlocks.POTTED_WESTERN_SWORD_FERN);
         });
     }
 

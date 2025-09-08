@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "jurassicrevived:block/gypsum_bricks"
+    "all": "jurassicrevived:block/gypsum_stone_bricks"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "jurassicrevived:item/diplodocus_syringe"
+    "layer0": "jurassicrevived:block/horsetail_fern"
   }
 }

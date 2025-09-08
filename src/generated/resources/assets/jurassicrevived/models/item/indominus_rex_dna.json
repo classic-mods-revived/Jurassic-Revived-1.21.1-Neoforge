@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "jurassicrevived:item/field_guide"
+    "layer0": "jurassicrevived:item/indominus_rex_dna"
   }
 }
