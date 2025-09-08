@@ -60,5 +60,8 @@
   "item.jurassicrevived.dilophosaurus_syringe": "Dilophosaurus Syringe",
   "item.jurassicrevived.compsognathus_syringe": "Compsognathus Syringe",
   "item.jurassicrevived.ceratosaurus_syringe": "Ceratosaurus Syringe",
-  "item.jurassicrevived.brachiosaurus_syringe": "Brachiosaurus Syringe"
+  "item.jurassicrevived.brachiosaurus_syringe": "Brachiosaurus Syringe",
+
+  "tooltip.jurassicrevived.gender": "Gender: %s",
+  "tooltip.jurassicrevived.gender.hint": "Hint: %s to change"
 }
