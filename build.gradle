@@ -141,8 +141,6 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    compileOnly "vazkii.patchouli:Patchouli:${patchouli_version}:api"
-    runtimeOnly "vazkii.patchouli:Patchouli:${patchouli_version}"
     implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
 }
 
