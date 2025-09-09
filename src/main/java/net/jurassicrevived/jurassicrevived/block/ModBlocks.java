@@ -92,7 +92,7 @@ public class ModBlocks {
             Item.Properties props = new Item.Properties();
             if (block.get() instanceof EggBlock) {
                 // Use custom lime-green rarity and set stack size to 1
-                props = props.rarity(Rarity.RARA).stacksTo(1);
+                props = props.rarity(Rarity.RARE).stacksTo(1);
             }
             return new BlockItem(block.get(), props);
         });
