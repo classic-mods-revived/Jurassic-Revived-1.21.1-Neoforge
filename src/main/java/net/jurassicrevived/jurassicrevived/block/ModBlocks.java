@@ -4,6 +4,7 @@ import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.block.custom.DecoBlock;
 import net.jurassicrevived.jurassicrevived.block.custom.EggBlock;
 import net.jurassicrevived.jurassicrevived.item.ModItems;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -14,6 +15,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 import net.jurassicrevived.jurassicrevived.entity.ModEntities;
+import net.minecraft.world.item.Rarity;
 
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
@@ -39,7 +41,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> GYPSUM_STONE_BRICKS = registerBlock("gypsum_stone_bricks",
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
-    
+
     public static final DeferredBlock<Block> HATCHED_VELOCIRAPTOR_EGG = registerBlock("hatched_velociraptor_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.VELOCIRAPTOR));
 
@@ -86,7 +88,14 @@ public class ModBlocks {
     }
 
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        ModItems.ITEMS.register(name, () -> {
+            Item.Properties props = new Item.Properties();
+            if (block.get() instanceof EggBlock) {
+                // Use custom lime-green rarity and set stack size to 1
+                props = props.rarity(Rarity.RARA).stacksTo(1);
+            }
+            return new BlockItem(block.get(), props);
+        });
     }
 
     public static void register(IEventBus eventBus) {BLOCKS.register(eventBus);}
