@@ -1,11 +1,15 @@
 package net.jurassicrevived.jurassicrevived.datagen;
 
 import net.jurassicrevived.jurassicrevived.JRMod;
+import net.jurassicrevived.jurassicrevived.block.ModBlocks;
+import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.List;
@@ -18,6 +22,73 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput pRecipeOutput) {
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.AMPOULE.get(), 3)
+                .pattern("  A")
+                .pattern(" B ")
+                .pattern("B  ")
+                .define('A', Items.IRON_INGOT)
+                .define('B', Blocks.GLASS)
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .unlockedBy("has_glass_block", has(Blocks.GLASS)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SYRINGE.get(), 3)
+                .pattern("  A")
+                .pattern(" B ")
+                .pattern("C  ")
+                .define('A', Items.IRON_INGOT)
+                .define('B', Blocks.GLASS)
+                .define('C', Items.IRON_NUGGET)
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .unlockedBy("has_glass_block", has(Blocks.GLASS))
+                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.CABLE.get(), 4)
+                .pattern(" BA")
+                .pattern("BAB")
+                .pattern("AB ")
+                .define('A', Items.COPPER_INGOT)
+                .define('B', Items.IRON_NUGGET)
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SCREEN.get(), 2)
+                .pattern("ABA")
+                .pattern("ABA")
+                .pattern(" C ")
+                .define('A', Items.IRON_INGOT)
+                .define('B', Blocks.REDSTONE_LAMP)
+                .define('C', ModItems.CABLE.get())
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .unlockedBy("has_redstone_lamp", has(Blocks.REDSTONE_LAMP))
+                .unlockedBy("has_cable", has(ModItems.CABLE)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.PROCESSOR.get())
+                .pattern("ABA")
+                .pattern("BCB")
+                .pattern("ABA")
+                .define('A', Items.GOLD_NUGGET)
+                .define('B', Items.IRON_INGOT)
+                .define('C', Items.REDSTONE)
+                .unlockedBy("has_gold_nugget", has(Items.GOLD_NUGGET))
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .unlockedBy("has_redstone", has(Items.REDSTONE)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.TIRE.get())
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .define('A', Items.INK_SAC)
+                .define('B', Items.IRON_INGOT)
+                .unlockedBy("has_ink_sac", has(Items.INK_SAC))
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.CUTTING_BLADES.get(), 4)
+                .pattern("A A")
+                .pattern(" A ")
+                .pattern("A A")
+                .define('A', Items.IRON_INGOT)
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(pRecipeOutput);
 
     }
 

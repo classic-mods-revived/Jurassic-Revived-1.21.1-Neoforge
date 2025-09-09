@@ -12,6 +12,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
@@ -26,12 +27,14 @@ public class CustomGenderedSpawnEggItem extends DeferredSpawnEggItem {
     private static final String KEY_SELECTED_VARIANT = "SelectedVariant";
     private static final String KEY_VARIANT = "Variant";
     private static final int VARIANT_COUNT = 2; // 0=Male, 1=Female
+    private final Supplier<? extends EntityType<? extends Mob>> spawnTypeSupplier;
 
     public CustomGenderedSpawnEggItem(Supplier<? extends EntityType<? extends Mob>> type,
                                       int backgroundColor,
                                       int highlightColor,
                                       Properties properties) {
         super(type, backgroundColor, highlightColor, properties);
+        this.spawnTypeSupplier = type;
     }
 
     // --- Selection stored on the item via the CUSTOM_DATA component ---
@@ -82,7 +85,6 @@ public class CustomGenderedSpawnEggItem extends DeferredSpawnEggItem {
         if (player.isSecondaryUseActive()) {
             if (!level.isClientSide) {
                 cycleVariant(stack);
-                // Use coords + SoundEvent; UI_BUTTON_CLICK is a Holder in 1.21 -> .value()
                 level.playSound(
                         null,
                         player.getX(), player.getY(), player.getZ(),
@@ -127,6 +129,46 @@ public class CustomGenderedSpawnEggItem extends DeferredSpawnEggItem {
         }
         // ... existing code ...
         return super.useOn(context);
+    }
+
+    // Ensure baby matches the clicked parent's gender when using the egg on an entity
+    @Override
+    public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
+        // Only attempt matching if target is a Mob and same type as this egg
+        if (target instanceof Mob mob) {
+            EntityType<? extends Mob> eggType = this.spawnTypeSupplier.get();
+            if (mob.getType() == eggType) {
+                int parentVariant = readVariantFromEntity(mob);
+
+                int previous = getSelectedVariant(stack);
+                setSelectedVariant(stack, parentVariant);
+                ensureEntityDataHasVariant(stack);
+                try {
+                    return super.interactLivingEntity(stack, player, target, hand);
+                } finally {
+                    clearEntityData(stack);
+                    setSelectedVariant(stack, previous);
+                }
+            }
+        }
+
+        return super.interactLivingEntity(stack, player, target, hand);
+    }
+
+    // Best-effort extraction of the parent's gender/variant
+    private int readVariantFromEntity(Mob mob) {
+        CompoundTag nbt = new CompoundTag();
+        mob.saveWithoutId(nbt);
+        if (nbt.contains(KEY_VARIANT)) {
+            return Math.floorMod(nbt.getInt(KEY_VARIANT), VARIANT_COUNT);
+        }
+
+        CompoundTag pd = mob.getPersistentData();
+        if (pd != null && pd.contains(KEY_VARIANT)) {
+            return Math.floorMod(pd.getInt(KEY_VARIANT), VARIANT_COUNT);
+        }
+
+        return 0;
     }
 
     @Override

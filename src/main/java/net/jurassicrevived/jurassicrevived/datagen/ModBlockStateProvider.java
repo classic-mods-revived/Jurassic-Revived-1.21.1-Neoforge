@@ -33,6 +33,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 blockTexture(ModBlocks.WESTERN_SWORD_FERN.get())).renderType("cutout"));
 
         blockWithItem(ModBlocks.GYPSUM_STONE_BRICKS);
+
+        horizontalFacingWithItem(ModBlocks.CAT_PLUSHIE);
+
+        eggLike(ModBlocks.HATCHED_VELOCIRAPTOR_EGG);
+        eggLike(ModBlocks.HATCHED_DILOPHOSAURUS_EGG);
+        eggLike(ModBlocks.HATCHED_CERATOSAURUS_EGG);
+        eggLike(ModBlocks.HATCHED_BRACHIOSAURUS_EGG);
     }
 
     private void blockWithItem(DeferredBlock<Block> deferredBlock) {
@@ -46,4 +53,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void blockItem(DeferredBlock<Block> deferredBlock, String appendix) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("jurassicrevived:block/" + deferredBlock.getId().getPath() + appendix));
     }
+
+    private void horizontalFacingWithItem(DeferredBlock<Block> block) {
+        ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + block.getId().getPath()));
+        horizontalBlock(block.get(), model);
+        simpleBlockItem(block.get(), model);
+    }
+
+    private void eggLike(DeferredBlock<Block> block) {
+        ModelFile eggModel = new ModelFile.UncheckedModelFile(modLoc("block/egg"));
+        simpleBlock(block.get(), eggModel);
+    }
+
 }

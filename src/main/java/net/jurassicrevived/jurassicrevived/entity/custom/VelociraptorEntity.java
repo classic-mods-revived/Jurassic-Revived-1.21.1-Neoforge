@@ -1,6 +1,7 @@
 package net.jurassicrevived.jurassicrevived.entity.custom;
 
 import net.jurassicrevived.jurassicrevived.entity.ModEntities;
+import net.jurassicrevived.jurassicrevived.entity.client.CeratosaurusVariant;
 import net.jurassicrevived.jurassicrevived.entity.client.VelociraptorVariant;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
@@ -74,7 +75,12 @@ public class VelociraptorEntity extends Animal implements GeoEntity {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        return ModEntities.VELOCIRAPTOR.get().create(pLevel);
+        AgeableMob child = ModEntities.VELOCIRAPTOR.get().create(pLevel);
+        if (child instanceof VelociraptorEntity baby) {
+            VelociraptorVariant randomVariant = Util.getRandom(VelociraptorVariant.values(), this.random);
+            baby.setVariant(randomVariant);
+        }
+        return child;
     }
 
     @Override

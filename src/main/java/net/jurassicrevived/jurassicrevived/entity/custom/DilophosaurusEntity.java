@@ -1,6 +1,7 @@
 package net.jurassicrevived.jurassicrevived.entity.custom;
 
 import net.jurassicrevived.jurassicrevived.entity.ModEntities;
+import net.jurassicrevived.jurassicrevived.entity.client.CeratosaurusVariant;
 import net.jurassicrevived.jurassicrevived.entity.client.DilophosaurusVariant;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
@@ -74,7 +75,12 @@ public class DilophosaurusEntity extends Animal implements GeoEntity {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        return ModEntities.DILOPHOSAURUS.get().create(pLevel);
+        AgeableMob child = ModEntities.DILOPHOSAURUS.get().create(pLevel);
+        if (child instanceof DilophosaurusEntity baby) {
+            DilophosaurusVariant randomVariant = Util.getRandom(DilophosaurusVariant.values(), this.random);
+            baby.setVariant(randomVariant);
+        }
+        return child;
     }
 
     @Override

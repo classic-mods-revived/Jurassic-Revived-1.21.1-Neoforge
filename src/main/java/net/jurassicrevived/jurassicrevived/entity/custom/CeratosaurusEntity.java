@@ -74,7 +74,12 @@ public class CeratosaurusEntity extends Animal implements GeoEntity {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        return ModEntities.CERATOSAURUS.get().create(pLevel);
+        AgeableMob child = ModEntities.CERATOSAURUS.get().create(pLevel);
+        if (child instanceof CeratosaurusEntity baby) {
+            CeratosaurusVariant randomVariant = Util.getRandom(CeratosaurusVariant.values(), this.random);
+            baby.setVariant(randomVariant);
+        }
+        return child;
     }
 
     @Override

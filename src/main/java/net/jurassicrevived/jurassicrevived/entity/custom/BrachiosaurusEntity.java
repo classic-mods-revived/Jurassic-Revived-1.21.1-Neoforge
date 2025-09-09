@@ -2,6 +2,7 @@ package net.jurassicrevived.jurassicrevived.entity.custom;
 
 import net.jurassicrevived.jurassicrevived.entity.ModEntities;
 import net.jurassicrevived.jurassicrevived.entity.client.BrachiosaurusVariant;
+import net.jurassicrevived.jurassicrevived.entity.client.CeratosaurusVariant;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -74,7 +75,12 @@ public class BrachiosaurusEntity extends Animal implements GeoEntity {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        return ModEntities.BRACHIOSAURUS.get().create(pLevel);
+        AgeableMob child = ModEntities.BRACHIOSAURUS.get().create(pLevel);
+        if (child instanceof BrachiosaurusEntity baby) {
+            BrachiosaurusVariant randomVariant = Util.getRandom(BrachiosaurusVariant.values(), this.random);
+            baby.setVariant(randomVariant);
+        }
+        return child;
     }
 
     @Override
