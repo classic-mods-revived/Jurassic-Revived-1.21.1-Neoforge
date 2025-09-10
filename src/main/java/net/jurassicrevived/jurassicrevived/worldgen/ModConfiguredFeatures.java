@@ -51,7 +51,7 @@ public class ModConfiguredFeatures {
         //        OreConfiguration.target(oceanReplaceables, ModBlocks.hq_ORE.get().defaultBlockState())
         //);
 
-        register(context, OVERWORLD_GYPSUM_STONE_KEY, Feature.ORE, new OreConfiguration(overworldGypsumStoneOres, 6));
+        register(context, OVERWORLD_GYPSUM_STONE_KEY, Feature.ORE, new OreConfiguration(overworldGypsumStoneOres, 20));
         register(context, OVERWORLD_STONE_FOSSIL_KEY, Feature.ORE, new OreConfiguration(overworldStoneFossilOres, 6));
         register(context, OVERWORLD_DEEPSLATE_FOSSIL_KEY, Feature.ORE, new OreConfiguration(overworldDeepslateFossilOres, 6));
         register(context, OVERWORLD_AMBER_ORE_KEY, Feature.ORE, new OreConfiguration(overworldAmberOres, 3));
