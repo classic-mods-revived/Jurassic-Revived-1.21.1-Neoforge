@@ -45,7 +45,7 @@ public class ModConfiguredFeatures {
                 OreConfiguration.target(stoneReplaceables, ModBlocks.AMBER_ORE.get().defaultBlockState())
         );
         List<OreConfiguration.TargetBlockState> overworldDeepslateIceShardOres = List.of(
-                OreConfiguration.target(oceanReplaceables, ModBlocks.DEEPSLATE_ICE_SHARD_ORE.get().defaultBlockState())
+                OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_ICE_SHARD_ORE.get().defaultBlockState())
         );
         //List<OreConfiguration.TargetBlockState> overworldhqOres = List.of(
         //        OreConfiguration.target(oceanReplaceables, ModBlocks.hq_ORE.get().defaultBlockState())
