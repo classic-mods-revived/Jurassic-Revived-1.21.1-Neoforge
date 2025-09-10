@@ -10,7 +10,7 @@
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
-          "tag": "jurassicrevived:aquatic_placement_replaceables"
+          "tag": "minecraft:deepslate_ore_replaceables"
         }
       }
     ]
