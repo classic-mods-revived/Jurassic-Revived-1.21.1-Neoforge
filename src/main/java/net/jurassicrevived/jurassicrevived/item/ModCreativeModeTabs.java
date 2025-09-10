@@ -45,6 +45,9 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.REINFORCED_STONE);
                         pOutput.accept(ModBlocks.REINFORCED_STONE_BRICKS);
 
+                        pOutput.accept(ModBlocks.LOW_SECURITY_FENCE_POLE);
+                        pOutput.accept(ModBlocks.LOW_SECURITY_FENCE_WIRE);
+
                         pOutput.accept(ModBlocks.STONE_FOSSIL);
                         pOutput.accept(ModBlocks.DEEPSLATE_FOSSIL);
                         pOutput.accept(ModBlocks.AMBER_ORE);
