@@ -4,7 +4,6 @@ import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.block.custom.DecoBlock;
 import net.jurassicrevived.jurassicrevived.block.custom.EggBlock;
 import net.jurassicrevived.jurassicrevived.item.ModItems;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
