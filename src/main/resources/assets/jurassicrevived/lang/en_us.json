@@ -21,6 +21,15 @@
   "block.jurassicrevived.gypsum_cobblestone": "Gypsum Cobblestone",
   "block.jurassicrevived.gypsum_stone_bricks": "Gypsum Stone Bricks",
 
+  "block.jurassicrevived.reinforced_stone": "Reinforced Stone",
+  "block.jurassicrevived.reinforced_stone_bricks": "Reinforced Stone Bricks",
+
+  "block.jurassicrevived.stone_fossil": "Stone Fossil",
+  "block.jurassicrevived.deepslate_fossil": "Deepslate Fossil",
+  "block.jurassicrevived.amber_ore": "Amber Ore",
+  "block.jurassicrevived.deepslate_ice_shard_ore": "Deepslate Ice Shard Ore",
+
+
   "block.jurassicrevived.royal_fern": "Royal Fern",
   "block.jurassicrevived.potted_royal_fern": "Potted Royal Fern",
   "block.jurassicrevived.horsetail_fern": "Horsetail Fern",
