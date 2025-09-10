@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "blocks",
+  "cookingtime": 100,
+  "experience": 0.25,
+  "group": "and_gypsum_stone",
+  "ingredient": {
+    "item": "jurassicrevived:gypsum_cobblestone"
+  },
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:gypsum_stone"
+  }
+}

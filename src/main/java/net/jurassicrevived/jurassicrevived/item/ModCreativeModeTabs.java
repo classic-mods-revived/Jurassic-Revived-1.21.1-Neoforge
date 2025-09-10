@@ -38,7 +38,17 @@ public class ModCreativeModeTabs {
                     .icon(() -> new ItemStack(ModBlocks.GYPSUM_STONE_BRICKS.get().asItem()))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModBlocks.CAT_PLUSHIE);
+                        pOutput.accept(ModBlocks.GYPSUM_STONE);
+                        pOutput.accept(ModBlocks.GYPSUM_COBBLESTONE);
                         pOutput.accept(ModBlocks.GYPSUM_STONE_BRICKS);
+
+                        pOutput.accept(ModBlocks.REINFORCED_STONE);
+                        pOutput.accept(ModBlocks.REINFORCED_STONE_BRICKS);
+
+                        pOutput.accept(ModBlocks.STONE_FOSSIL);
+                        pOutput.accept(ModBlocks.DEEPSLATE_FOSSIL);
+                        pOutput.accept(ModBlocks.AMBER_ORE);
+                        pOutput.accept(ModBlocks.DEEPSLATE_ICE_SHARD_ORE);
                     }).build());
 
     public static final Supplier<CreativeModeTab> JR_PLANT_TAB =

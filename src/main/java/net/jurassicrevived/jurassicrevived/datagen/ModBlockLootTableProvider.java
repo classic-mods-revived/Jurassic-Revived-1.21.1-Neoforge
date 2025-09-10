@@ -1,6 +1,7 @@
 package net.jurassicrevived.jurassicrevived.datagen;
 
 import net.jurassicrevived.jurassicrevived.block.ModBlocks;
+import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -26,7 +27,20 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.CAT_PLUSHIE.get());
+        dropSelf(ModBlocks.GYPSUM_COBBLESTONE.get());
         dropSelf(ModBlocks.GYPSUM_STONE_BRICKS.get());
+        dropSelf(ModBlocks.STONE_FOSSIL.get());
+        dropSelf(ModBlocks.DEEPSLATE_FOSSIL.get());
+
+        this.add(ModBlocks.GYPSUM_STONE.get(),
+                block -> createMultipleOreDrops(ModBlocks.GYPSUM_STONE.get(), ModBlocks.GYPSUM_COBBLESTONE.get().asItem(),1, 1));
+        this.add(ModBlocks.AMBER_ORE.get(),
+                block -> createMultipleOreDrops(ModBlocks.AMBER_ORE.get(), ModItems.MOSQUITO_IN_AMBER.get(),1, 1));
+        this.add(ModBlocks.DEEPSLATE_ICE_SHARD_ORE.get(),
+                block -> createMultipleOreDrops(ModBlocks.DEEPSLATE_ICE_SHARD_ORE.get(), ModItems.FROZEN_LEECH.get(),1, 1));
+
+        dropSelf(ModBlocks.REINFORCED_STONE.get());
+        dropSelf(ModBlocks.REINFORCED_STONE_BRICKS.get());
 
         dropSelf(ModBlocks.HATCHED_VELOCIRAPTOR_EGG.get());
         //dropSelf(ModBlocks.HATCHED_TYRANNOSAURUS_REX_EGG.get());
