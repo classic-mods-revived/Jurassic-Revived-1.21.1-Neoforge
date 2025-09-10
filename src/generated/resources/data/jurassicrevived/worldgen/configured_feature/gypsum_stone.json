@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "jurassicrevived:stone_fossil"
+          "Name": "jurassicrevived:gypsum_stone"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
