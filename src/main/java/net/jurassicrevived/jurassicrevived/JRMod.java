@@ -2,6 +2,7 @@ package net.jurassicrevived.jurassicrevived;
 
 import net.jurassicrevived.jurassicrevived.block.ModBlocks;
 import net.jurassicrevived.jurassicrevived.entity.ModEntities;
+import net.jurassicrevived.jurassicrevived.event.FenceDiagonalUpdateHandler;
 import net.jurassicrevived.jurassicrevived.item.ModCreativeModeTabs;
 import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -53,6 +54,11 @@ public class JRMod {
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        NeoForge.EVENT_BUS.addListener(FenceDiagonalUpdateHandler::onNeighborNotify);
+        NeoForge.EVENT_BUS.addListener(FenceDiagonalUpdateHandler::onEntityPlace);
+        NeoForge.EVENT_BUS.addListener(FenceDiagonalUpdateHandler::onBreak);
+
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
