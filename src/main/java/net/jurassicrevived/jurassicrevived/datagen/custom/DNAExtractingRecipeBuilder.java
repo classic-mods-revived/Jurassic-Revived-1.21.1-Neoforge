@@ -47,18 +47,13 @@ public class DNAExtractingRecipeBuilder implements RecipeBuilder {
         return result;
     }
 
-    // Save now targets RecipeOutput in 1.21+
     @Override
     public void save(RecipeOutput output, ResourceLocation recipeId) {
-        // Optional: you can still add criteria locally if you want, but it's not required for saving
-        // this.advancement.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(recipeId))
-        //         .rewards(AdvancementRewards.Builder.recipe(recipeId));
 
         DNAExtractorRecipe recipe = new DNAExtractorRecipe(
                 this.ingredient, this.secondIngredient, new ItemStack(this.result, this.count)
         );
 
-        // Some 1.21.1 mappings expose the 3-arg overload
         output.accept(recipeId, recipe, null);
     }
 }
