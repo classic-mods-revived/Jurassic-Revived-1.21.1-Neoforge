@@ -1,6 +1,8 @@
 package net.jurassicrevived.jurassicrevived.datagen;
 
 import net.jurassicrevived.jurassicrevived.JRMod;
+import net.jurassicrevived.jurassicrevived.item.ModItems;
+import net.jurassicrevived.jurassicrevived.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -18,5 +20,19 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        this.tag(ModTags.Items.TISSUES)
+                .add(ModItems.VELOCIRAPTOR_TISSUE.get())
+                .add(ModItems.TYRANNOSAURUS_REX_TISSUE.get())
+                .add(ModItems.TRICERATOPS_TISSUE.get())
+                .add(ModItems.SPINOSAURUS_TISSUE.get())
+                .add(ModItems.PTERANODON_TISSUE.get())
+                .add(ModItems.PARASAUROLOPHUS_TISSUE.get())
+                .add(ModItems.INDOMINUS_REX_TISSUE.get())
+                .add(ModItems.GALLIMIMUS_TISSUE.get())
+                //.add(ModItems.DIPLODOCUS_TISSUE.get())
+                .add(ModItems.DILOPHOSAURUS_TISSUE.get())
+                .add(ModItems.COMPSOGNATHUS_TISSUE.get())
+                .add(ModItems.CERATOSAURUS_TISSUE.get())
+                .add(ModItems.BRACHIOSAURUS_TISSUE.get());
     }
 }

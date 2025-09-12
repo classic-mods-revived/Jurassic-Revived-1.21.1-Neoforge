@@ -5,6 +5,8 @@ import net.jurassicrevived.jurassicrevived.entity.client.VelociraptorRenderer;
 import net.jurassicrevived.jurassicrevived.entity.client.BrachiosaurusRenderer;
 import net.jurassicrevived.jurassicrevived.entity.client.CeratosaurusRenderer;
 import net.jurassicrevived.jurassicrevived.entity.client.DilophosaurusRenderer;
+import net.jurassicrevived.jurassicrevived.screen.ModMenuTypes;
+import net.jurassicrevived.jurassicrevived.screen.custom.DNAExtractorScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.api.distmarker.Dist;
@@ -13,6 +15,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
@@ -37,5 +40,10 @@ public class JRModClient {
         EntityRenderers.register(ModEntities.CERATOSAURUS.get(), CeratosaurusRenderer::new);
         EntityRenderers.register(ModEntities.BRACHIOSAURUS.get(), BrachiosaurusRenderer::new);
         EntityRenderers.register(ModEntities.DILOPHOSAURUS.get(), DilophosaurusRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(ModMenuTypes.DNA_EXTRACTOR_MENU.get(), DNAExtractorScreen::new);
     }
 }

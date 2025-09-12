@@ -1,10 +1,13 @@
 package net.jurassicrevived.jurassicrevived;
 
 import net.jurassicrevived.jurassicrevived.block.ModBlocks;
+import net.jurassicrevived.jurassicrevived.block.entity.custom.ModBlockEntities;
 import net.jurassicrevived.jurassicrevived.entity.ModEntities;
 import net.jurassicrevived.jurassicrevived.event.FenceDiagonalUpdateHandler;
 import net.jurassicrevived.jurassicrevived.item.ModCreativeModeTabs;
 import net.jurassicrevived.jurassicrevived.item.ModItems;
+import net.jurassicrevived.jurassicrevived.recipe.ModRecipes;
+import net.jurassicrevived.jurassicrevived.screen.ModMenuTypes;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -43,6 +46,11 @@ public class JRMod {
         ModBlocks.register(modEventBus);
 
         ModEntities.register(modEventBus);
+
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+
+        ModRecipes.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.

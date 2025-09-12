@@ -1,10 +1,7 @@
 package net.jurassicrevived.jurassicrevived.block;
 
 import net.jurassicrevived.jurassicrevived.JRMod;
-import net.jurassicrevived.jurassicrevived.block.custom.DecoBlock;
-import net.jurassicrevived.jurassicrevived.block.custom.EggBlock;
-import net.jurassicrevived.jurassicrevived.block.custom.LowSecurityFencePoleBlock;
-import net.jurassicrevived.jurassicrevived.block.custom.LowSecurityFenceWireBlock;
+import net.jurassicrevived.jurassicrevived.block.custom.*;
 import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
@@ -24,6 +21,9 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> CAT_PLUSHIE = registerBlock("cat_plushie",
             () -> new DecoBlock(BlockBehaviour.Properties.of().noOcclusion().sound(SoundType.WOOL)));
+
+    public static final DeferredBlock<Block> DNA_EXTRACTOR = registerBlock("dna_extractor",
+            () -> new DNAExtractorBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f)));
 
     public static final DeferredBlock<Block> ROYAL_FERN = registerBlock("royal_fern",
             () -> new FlowerBlock(MobEffects.UNLUCK, 0, BlockBehaviour.Properties.ofFullCopy(Blocks.ALLIUM)));
