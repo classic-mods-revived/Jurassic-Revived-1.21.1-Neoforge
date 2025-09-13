@@ -54,6 +54,10 @@ public class DNAExtractingRecipeBuilder implements RecipeBuilder {
                 this.ingredient, this.secondIngredient, new ItemStack(this.result, this.count)
         );
 
-        output.accept(recipeId, recipe, null);
+        ResourceLocation suffixedId = ResourceLocation.fromNamespaceAndPath(
+                recipeId.getNamespace(),
+                recipeId.getPath() + "_from_dna_extracting"
+        );
+        output.accept(suffixedId, recipe, null);
     }
 }

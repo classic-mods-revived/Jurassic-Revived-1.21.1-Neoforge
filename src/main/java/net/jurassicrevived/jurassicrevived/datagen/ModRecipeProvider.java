@@ -117,9 +117,35 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_stone_bricks", has(Blocks.STONE_BRICKS)).save(pRecipeOutput);
 
         new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.VELOCIRAPTOR_TISSUE, ModItems.VELOCIRAPTOR_DNA,
-                1).save(pRecipeOutput, JRMod.MOD_ID + ":dna_extracting_velociraptor");
+                1).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.TYRANNOSAURUS_REX_TISSUE, ModItems.TYRANNOSAURUS_REX_DNA,
+                1).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.TRICERATOPS_TISSUE, ModItems.TRICERATOPS_DNA,
+                1).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.SPINOSAURUS_TISSUE, ModItems.SPINOSAURUS_DNA,
+                1).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.PTERANODON_TISSUE, ModItems.PTERANODON_DNA,
+                1).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.PARASAUROLOPHUS_TISSUE, ModItems.PARASAUROLOPHUS_DNA,
+                1).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.INDOMINUS_REX_TISSUE, ModItems.INDOMINUS_REX_DNA,
+                1).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.GALLIMIMUS_TISSUE, ModItems.GALLIMIMUS_DNA,
+                1).save(pRecipeOutput);
+        //new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.DIPLODOCUS_TISSUE, ModItems.DIPLODOCUS_DNA,
+        //        1).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.DILOPHOSAURUS_TISSUE, ModItems.DILOPHOSAURUS_DNA,
+                1).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.COMPSOGNATHUS_TISSUE, ModItems.COMPSOGNATHUS_DNA,
+                1).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.CERATOSAURUS_TISSUE, ModItems.CERATOSAURUS_DNA,
+                1).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.BRACHIOSAURUS_TISSUE, ModItems.BRACHIOSAURUS_DNA,
+                1).save(pRecipeOutput);
+
+
         new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.MOSQUITO_IN_AMBER, ModItems.VELOCIRAPTOR_DNA,
-                1).save(pRecipeOutput, JRMod.MOD_ID + ":dna_extracting_random_dna");
+                1).save(pRecipeOutput, JRMod.MOD_ID + ":random_dna");
     }
 
     protected static void oreSmelting(RecipeOutput pRecipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,

@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:dna_extracting",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:ampoule"
+    },
+    {
+      "item": "jurassicrevived:indominus_rex_tissue"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:indominus_rex_dna"
+  }
+}
