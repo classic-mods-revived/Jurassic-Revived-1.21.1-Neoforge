@@ -116,7 +116,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', Blocks.STONE_BRICKS)
                 .unlockedBy("has_stone_bricks", has(Blocks.STONE_BRICKS)).save(pRecipeOutput);
 
-        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.VELOCIRAPTOR_TISSUE, ModItems.VELOCIRAPTOR_DNA, 1).save(pRecipeOutput, JRMod.MOD_ID + ":dna_extracting_velociraptor");
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.VELOCIRAPTOR_TISSUE, ModItems.VELOCIRAPTOR_DNA,
+                1).save(pRecipeOutput, JRMod.MOD_ID + ":dna_extracting_velociraptor");
+        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.MOSQUITO_IN_AMBER, ModItems.VELOCIRAPTOR_DNA,
+                1).save(pRecipeOutput, JRMod.MOD_ID + ":dna_extracting_random_dna");
     }
 
     protected static void oreSmelting(RecipeOutput pRecipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,

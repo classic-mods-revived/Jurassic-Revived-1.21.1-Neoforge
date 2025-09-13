@@ -57,8 +57,8 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
 
     private final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 100;
-    private int DEFAULT_MAX_PROGRESS = 100;
+    private int maxProgress = 200;
+    private int DEFAULT_MAX_PROGRESS = 200;
 
     public DNAExtractorBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.DNA_EXTRACTOR_BE.get(), pos, blockState);

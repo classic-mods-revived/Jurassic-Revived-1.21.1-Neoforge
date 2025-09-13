@@ -19,6 +19,7 @@ public class ModTags {
 
     public static class Items {
         public static final TagKey<Item> TISSUES = createTag("tissues");
+        public static final TagKey<Item> DNA = createTag("dna");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, name));
