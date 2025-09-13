@@ -7,6 +7,7 @@ import net.jurassicrevived.jurassicrevived.recipe.ModRecipes;
 import net.jurassicrevived.jurassicrevived.screen.custom.DNAExtractorMenu;
 import net.jurassicrevived.jurassicrevived.util.ModTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -54,6 +55,9 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
     private static final int OUTPUT_SLOT_1 = 2;
     private static final int OUTPUT_SLOT_2 = 3;
     private static final int OUTPUT_SLOT_3 = 4;
+
+    // Cache the chosen output for the current craft so checks stay consistent
+    private ItemStack lockedOutput = ItemStack.EMPTY;
 
     private final ContainerData data;
     private int progress = 0;
@@ -123,9 +127,15 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
-        ItemStack prospectiveOutput = new ItemStack(ModItems.VELOCIRAPTOR_DNA.get());
-        boolean canOutputNow = canInsertItemIntoOutputSlot(prospectiveOutput)
-                && canInsertAmountIntoOutputSlot(prospectiveOutput.getCount());
+        // Decide/lock output at the start of crafting so we keep it consistent
+        if (progress == 0) {
+            lockedOutput = determineOutputForCurrentInputs().copy();
+        }
+
+        ItemStack prospectiveOutput = lockedOutput.isEmpty() ? determineOutputForCurrentInputs() : lockedOutput;
+        boolean canOutputNow = !prospectiveOutput.isEmpty()
+                && canInsertItemIntoOutputSlot(prospectiveOutput)
+                && canInsertAmountIntoOutputSlot(prospectiveOutput);
 
         if (hasRecipe() && canOutputNow) {
             increaseCraftingProgress();
@@ -143,13 +153,17 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
     private void resetProgress() {
         this.progress = 0;
         this.maxProgress = DEFAULT_MAX_PROGRESS;
+        this.lockedOutput = ItemStack.EMPTY;
     }
 
     private void craftItem() {
         Optional<RecipeHolder<DNAExtractorRecipe>> recipe = getCurrentRecipe();
-        ItemStack output = recipe.get().value().output();
+        if (recipe.isEmpty()) return;
 
-        if (!canInsertItemIntoOutputSlot(output) || !canInsertAmountIntoOutputSlot(output.getCount())) {
+        ItemStack output = lockedOutput.isEmpty() ? recipe.get().value().output().copy() : lockedOutput.copy();
+        if (output.isEmpty()) return;
+
+        if (!canInsertItemIntoOutputSlot(output) || !canInsertAmountIntoOutputSlot(output)) {
             return;
         }
 
@@ -193,20 +207,20 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
         if (recipe.isEmpty()) {
             return false;
         }
-        ItemStack output = recipe.get().value().output();
-        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+        ItemStack output = lockedOutput.isEmpty() ? recipe.get().value().output() : lockedOutput;
+        return !output.isEmpty() && canInsertAmountIntoOutputSlot(output) && canInsertItemIntoOutputSlot(output);
     }
 
     private Optional<RecipeHolder<DNAExtractorRecipe>> getCurrentRecipe() {
         assert this.level != null;
-        return this.level.getRecipeManager().getRecipeFor(ModRecipes.DNA_EXTRACTOR_RECIPE_TYPE.get(), new DNAExtractorRecipeInput(itemHandler.getStackInSlot(AMPOULE_SLOT), itemHandler.getStackInSlot(MATERIAL_SLOT)), this.level);
+        return this.level.getRecipeManager().getRecipeFor(
+                ModRecipes.DNA_EXTRACTOR_RECIPE_TYPE.get(),
+                new DNAExtractorRecipeInput(itemHandler.getStackInSlot(AMPOULE_SLOT), itemHandler.getStackInSlot(MATERIAL_SLOT)),
+                this.level
+        );
     }
 
-    private boolean canInsertAmountIntoOutputSlot(int count) {
-        ItemStack output = new ItemStack(ModItems.VELOCIRAPTOR_DNA.get(), count);
-        return canInsertAmountIntoOutputSlot(output);
-    }
-
+    // Remove the hard-coded velociraptor DNA assumption and drive it from a concrete output stack
     private boolean canInsertAmountIntoOutputSlot(ItemStack output) {
         int toInsert = output.getCount();
         int[] slots = {OUTPUT_SLOT_1, OUTPUT_SLOT_2, OUTPUT_SLOT_3};
@@ -229,6 +243,38 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
         return false;
     }
 
+    // Pick the output for the current inputs (random DNA for mosquito-in-amber case)
+    private ItemStack determineOutputForCurrentInputs() {
+        Optional<RecipeHolder<DNAExtractorRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) return ItemStack.EMPTY;
+
+        ItemStack material = itemHandler.getStackInSlot(MATERIAL_SLOT);
+        if (material.getItem() == ModItems.MOSQUITO_IN_AMBER.get()) {
+            ItemStack randomDna = pickRandomDnaFromTag();
+            // Respect the recipe’s output count if it matters (e.g., 1)
+            int count = Math.max(1, recipe.get().value().output().getCount());
+            if (!randomDna.isEmpty()) {
+                randomDna.setCount(count);
+            }
+            return randomDna;
+        }
+
+        return recipe.get().value().output().copy();
+    }
+
+    // Select a random item from the ModTags.Items.DNA tag
+    private ItemStack pickRandomDnaFromTag() {
+        if (this.level == null) return ItemStack.EMPTY;
+
+        var registry = this.level.registryAccess().registryOrThrow(Registries.ITEM);
+        var tagged = registry.getTag(ModTags.Items.DNA);
+        if (tagged.isEmpty()) return ItemStack.EMPTY;
+
+        var holderSet = tagged.get();
+        var picked = holderSet.getRandomElement(this.level.random);
+        return picked.map(h -> new ItemStack(h.value())).orElse(ItemStack.EMPTY);
+    }
+
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {
         int[] slots = {OUTPUT_SLOT_1, OUTPUT_SLOT_2, OUTPUT_SLOT_3};
 
@@ -240,7 +286,7 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
         }
         return false;
     }
-    
+
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
         return saveWithoutMetadata(registries);

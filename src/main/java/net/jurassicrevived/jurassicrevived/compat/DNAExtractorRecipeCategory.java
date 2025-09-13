@@ -11,12 +11,18 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.block.ModBlocks;
+import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.jurassicrevived.jurassicrevived.recipe.DNAExtractorRecipe;
+import net.jurassicrevived.jurassicrevived.util.ModTags;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class DNAExtractorRecipeCategory implements IRecipeCategory<DNAExtractorRecipe> {
     public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "dna_extracting");
@@ -69,7 +75,27 @@ public class DNAExtractorRecipeCategory implements IRecipeCategory<DNAExtractorR
         builder.addSlot(RecipeIngredientRole.INPUT, 39, 35).addIngredients(recipe.getIngredients().get(0));
         builder.addSlot(RecipeIngredientRole.INPUT, 57, 35).addIngredients(recipe.getIngredients().get(1));
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStack(recipe.getResultItem(null));
+        // If the second input is the Mosquito in Amber, show all items from the DNA tag as possible outputs
+        ItemStack amber = new ItemStack(ModItems.MOSQUITO_IN_AMBER.get());
+        boolean isMosquitoRecipe = recipe.getIngredients().size() > 1 && recipe.getIngredients().get(1).test(amber);
+
+        if (isMosquitoRecipe) {
+            var level = Minecraft.getInstance().level;
+            if (level != null) {
+                var itemRegistry = level.registryAccess().registryOrThrow(Registries.ITEM);
+                var dnaTagOpt = itemRegistry.getTag(ModTags.Items.DNA);
+                List<ItemStack> dnaOutputs = dnaTagOpt.map(holderSet ->
+                        holderSet.stream()
+                                .map(h -> new ItemStack(h.value(), Math.max(1, recipe.getResultItem(null).getCount())))
+                                .collect(Collectors.toList())
+                ).orElse(List.of());
+
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStacks(dnaOutputs);
+            return;
+        }
     }
 
+        // Default single-output behavior
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStack(recipe.getResultItem(null));
+    }
 }
