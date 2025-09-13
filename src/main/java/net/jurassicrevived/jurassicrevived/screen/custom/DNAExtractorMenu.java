@@ -41,7 +41,7 @@ public class DNAExtractorMenu extends AbstractContainerMenu {
         this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 1, 57, 35) {
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.is(ModTags.Items.TISSUES);
+                return stack.is(ModTags.Items.TISSUES)|| stack.getItem() == ModItems.MOSQUITO_IN_AMBER.get();
             }
         });
 
