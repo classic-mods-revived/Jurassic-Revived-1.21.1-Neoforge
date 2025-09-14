@@ -7,6 +7,7 @@ import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
@@ -144,8 +145,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 1).save(pRecipeOutput);
 
 
-        new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.MOSQUITO_IN_AMBER, ModItems.VELOCIRAPTOR_DNA,
-                1).save(pRecipeOutput, JRMod.MOD_ID + ":random_dna");
+        DNAExtractingRecipeBuilder
+                .amberRandomDNAUniform(
+                        ModItems.AMPOULE.get(),
+                        ModItems.MOSQUITO_IN_AMBER.get(),
+                        ModItems.VELOCIRAPTOR_DNA.get(), 1)
+                .addDNAWeight(ModItems.INDOMINUS_REX_DNA.get(), 0)
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "random_dna_from_dna_extracting"));
+
     }
 
     protected static void oreSmelting(RecipeOutput pRecipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,

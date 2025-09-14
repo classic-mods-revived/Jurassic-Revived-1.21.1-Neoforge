@@ -11,5 +11,8 @@
   "result": {
     "count": 1,
     "id": "jurassicrevived:velociraptor_dna"
+  },
+  "weights": {
+    "jurassicrevived:indominus_rex_dna": 0
   }
 }

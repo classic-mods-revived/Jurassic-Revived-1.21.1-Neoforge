@@ -75,7 +75,6 @@ public class DNAExtractorRecipeCategory implements IRecipeCategory<DNAExtractorR
         builder.addSlot(RecipeIngredientRole.INPUT, 39, 35).addIngredients(recipe.getIngredients().get(0));
         builder.addSlot(RecipeIngredientRole.INPUT, 57, 35).addIngredients(recipe.getIngredients().get(1));
 
-        // If the second input is the Mosquito in Amber, show all items from the DNA tag as possible outputs
         ItemStack amber = new ItemStack(ModItems.MOSQUITO_IN_AMBER.get());
         boolean isMosquitoRecipe = recipe.getIngredients().size() > 1 && recipe.getIngredients().get(1).test(amber);
 
@@ -84,18 +83,24 @@ public class DNAExtractorRecipeCategory implements IRecipeCategory<DNAExtractorR
             if (level != null) {
                 var itemRegistry = level.registryAccess().registryOrThrow(Registries.ITEM);
                 var dnaTagOpt = itemRegistry.getTag(ModTags.Items.DNA);
-                List<ItemStack> dnaOutputs = dnaTagOpt.map(holderSet ->
+                java.util.List<ItemStack> dnaOutputs = dnaTagOpt.map(holderSet ->
                         holderSet.stream()
                                 .map(h -> new ItemStack(h.value(), Math.max(1, recipe.getResultItem(null).getCount())))
-                                .collect(Collectors.toList())
-                ).orElse(List.of());
+                                .collect(java.util.stream.Collectors.toList())
+                ).orElse(java.util.List.of());
 
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStacks(dnaOutputs);
-            return;
+                var slot = builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStacks(dnaOutputs);
+                slot.addRichTooltipCallback((view, tooltip) -> {
+                    var opt = view.getDisplayedItemStack();
+                    if (opt.isPresent()) {
+                        int weight = recipe.getWeightFor(opt.get().getItem());
+                        tooltip.add(Component.literal("Weight: " + weight));
+                    }
+                });
+                return;
+            }
         }
-    }
 
-        // Default single-output behavior
         builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStack(recipe.getResultItem(null));
     }
 }

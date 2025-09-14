@@ -1,5 +1,6 @@
 package net.jurassicrevived.jurassicrevived.recipe;
 
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -8,6 +9,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -17,13 +19,27 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import net.minecraft.core.registries.BuiltInRegistries;
 
-public record DNAExtractorRecipe(NonNullList<Ingredient> inputs, ItemStack output) implements Recipe<DNAExtractorRecipeInput> {
+public record DNAExtractorRecipe(NonNullList<Ingredient> inputs, ItemStack output
+                                 , java.util.Map<ResourceLocation, Integer> weights // optional per-output weights
+) implements Recipe<DNAExtractorRecipeInput> {
 
     public DNAExtractorRecipe(Ingredient first, Ingredient second, ItemStack output) {
-        this(NonNullList.create(), output);
+        this(NonNullList.create(), output, java.util.Map.of());
         this.inputs.add(first);
         this.inputs.add(second);
+    }
+
+    public DNAExtractorRecipe(NonNullList<Ingredient> inputs, ItemStack output) {
+        this(inputs, output, java.util.Map.of());
+    }
+
+    // Convenience for codec constructor
+    public DNAExtractorRecipe(NonNullList<Ingredient> inputs, ItemStack output, java.util.Map<ResourceLocation, Integer> weights) {
+        this.inputs = inputs;
+        this.output = output;
+        this.weights = java.util.Map.copyOf(weights);
     }
 
     @Override
@@ -69,7 +85,21 @@ public record DNAExtractorRecipe(NonNullList<Ingredient> inputs, ItemStack outpu
         return output.copy();
     }
 
+    public int getWeightFor(net.minecraft.world.item.Item item) {
+        ResourceLocation key = BuiltInRegistries.ITEM.getKey(item);
+        if (key == null) return 1;
+        return Math.max(0, weights.getOrDefault(key, 1));
+    }
+
+    public java.util.Map<ResourceLocation, Integer> weights() {
+        return this.weights;
+    }
+
     public static class Serializer implements RecipeSerializer<DNAExtractorRecipe> {
+
+        // Store weights as a simple map of item ids -> int
+        private static final Codec<java.util.Map<ResourceLocation, Integer>> WEIGHTS_CODEC =
+                Codec.unboundedMap(ResourceLocation.CODEC, Codec.INT);
 
         public static final MapCodec<DNAExtractorRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
                 instance.group(
@@ -85,7 +115,10 @@ public record DNAExtractorRecipe(NonNullList<Ingredient> inputs, ItemStack outpu
                                         (NonNullList<Ingredient> nnl) -> DataResult.success(List.copyOf(nnl)))
                                 .forGetter(DNAExtractorRecipe::inputs),
 
-                        ItemStack.CODEC.fieldOf("result").forGetter(DNAExtractorRecipe::output)
+                        ItemStack.CODEC.fieldOf("result").forGetter(DNAExtractorRecipe::output),
+
+                        WEIGHTS_CODEC.optionalFieldOf("weights", java.util.Map.of())
+                                .forGetter(DNAExtractorRecipe::weights)
                 ).apply(instance, DNAExtractorRecipe::new)
         );
 
@@ -95,6 +128,12 @@ public record DNAExtractorRecipe(NonNullList<Ingredient> inputs, ItemStack outpu
                     ByteBufCodecs.collection(NonNullList::createWithCapacity, Ingredient.CONTENTS_STREAM_CODEC)
                             .encode((RegistryFriendlyByteBuf) buf, recipe.inputs());
                     ItemStack.STREAM_CODEC.encode((RegistryFriendlyByteBuf) buf, recipe.output());
+                    var weights = recipe.weights();
+                    ((RegistryFriendlyByteBuf) buf).writeVarInt(weights.size());
+                    for (var e : weights.entrySet()) {
+                        ((RegistryFriendlyByteBuf) buf).writeResourceLocation(e.getKey());
+                        ((RegistryFriendlyByteBuf) buf).writeVarInt(e.getValue());
+                    }
                 },
                 buf -> {
                     NonNullList<Ingredient> decodedInputs =
@@ -103,10 +142,16 @@ public record DNAExtractorRecipe(NonNullList<Ingredient> inputs, ItemStack outpu
                         throw new IllegalArgumentException("DNAExtractorRecipe requires exactly 2 ingredients in stream, got " + decodedInputs.size());
                     }
                     ItemStack result = ItemStack.STREAM_CODEC.decode((RegistryFriendlyByteBuf) buf);
-                    return new DNAExtractorRecipe(decodedInputs, result);
+                    int size = ((RegistryFriendlyByteBuf) buf).readVarInt();
+                    java.util.Map<ResourceLocation, Integer> weights = new java.util.HashMap<>();
+                    for (int i = 0; i < size; i++) {
+                        ResourceLocation id = ((RegistryFriendlyByteBuf) buf).readResourceLocation();
+                        int w = ((RegistryFriendlyByteBuf) buf).readVarInt();
+                        weights.put(id, w);
+                    }
+                    return new DNAExtractorRecipe(decodedInputs, result, weights);
                 }
         );
-
 
         @Override
         public @NotNull MapCodec<DNAExtractorRecipe> codec() {

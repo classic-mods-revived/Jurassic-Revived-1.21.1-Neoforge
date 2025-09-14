@@ -11,6 +11,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -243,15 +244,14 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
         return false;
     }
 
-    // Pick the output for the current inputs (random DNA for mosquito-in-amber case)
+    // Pick the output for the current inputs (weighted random DNA for mosquito-in-amber case)
     private ItemStack determineOutputForCurrentInputs() {
         Optional<RecipeHolder<DNAExtractorRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) return ItemStack.EMPTY;
 
         ItemStack material = itemHandler.getStackInSlot(MATERIAL_SLOT);
         if (material.getItem() == ModItems.MOSQUITO_IN_AMBER.get()) {
-            ItemStack randomDna = pickRandomDnaFromTag();
-            // Respect the recipe’s output count if it matters (e.g., 1)
+            ItemStack randomDna = pickWeightedRandomDnaFromTag(recipe.get().value());
             int count = Math.max(1, recipe.get().value().output().getCount());
             if (!randomDna.isEmpty()) {
                 randomDna.setCount(count);
@@ -262,8 +262,8 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
         return recipe.get().value().output().copy();
     }
 
-    // Select a random item from the ModTags.Items.DNA tag
-    private ItemStack pickRandomDnaFromTag() {
+    // Select a weighted-random item from the ModTags.Items.DNA tag using the recipe's weights
+    private ItemStack pickWeightedRandomDnaFromTag(DNAExtractorRecipe recipe) {
         if (this.level == null) return ItemStack.EMPTY;
 
         var registry = this.level.registryAccess().registryOrThrow(Registries.ITEM);
@@ -271,8 +271,31 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
         if (tagged.isEmpty()) return ItemStack.EMPTY;
 
         var holderSet = tagged.get();
-        var picked = holderSet.getRandomElement(this.level.random);
-        return picked.map(h -> new ItemStack(h.value())).orElse(ItemStack.EMPTY);
+
+        int totalWeight = 0;
+        // pre-compute weights
+        java.util.ArrayList<net.minecraft.world.item.Item> items = new java.util.ArrayList<>();
+        java.util.ArrayList<Integer> weights = new java.util.ArrayList<>();
+        for (var holder : holderSet) {
+            var item = holder.value();
+            int w = Math.max(0, recipe.getWeightFor(item));
+            if (w > 0) {
+                items.add(item);
+                weights.add(w);
+                totalWeight += w;
+            }
+        }
+        if (totalWeight <= 0) return ItemStack.EMPTY;
+
+        int roll = this.level.random.nextInt(totalWeight);
+        int acc = 0;
+        for (int i = 0; i < items.size(); i++) {
+            acc += weights.get(i);
+            if (roll < acc) {
+                return new ItemStack(items.get(i));
+            }
+        }
+        return ItemStack.EMPTY;
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {
