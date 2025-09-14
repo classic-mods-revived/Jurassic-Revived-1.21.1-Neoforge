@@ -7,11 +7,11 @@ import net.jurassicrevived.jurassicrevived.recipe.ModRecipes;
 import net.jurassicrevived.jurassicrevived.screen.custom.DNAExtractorMenu;
 import net.jurassicrevived.jurassicrevived.util.ModTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -24,10 +24,10 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 import java.util.Optional;
 
 public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider {
@@ -57,8 +57,13 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
     private static final int OUTPUT_SLOT_2 = 3;
     private static final int OUTPUT_SLOT_3 = 4;
 
+    // Provide a per-face view that restricts insert/extract by slot
+    private final java.util.EnumMap<Direction, IItemHandler> sidedHandlers = new java.util.EnumMap<>(Direction.class);
+
     // Cache the chosen output for the current craft so checks stay consistent
     private ItemStack lockedOutput = ItemStack.EMPTY;
+    // Track input signature so we only re-roll output when inputs actually change
+    private String lastInputSignature = "";
 
     private final ContainerData data;
     private int progress = 0;
@@ -90,6 +95,56 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
                 return 2;
             }
         };
+    }
+
+    // Return a face-scoped handler that:
+    // - allows insert only into AMPOULE_SLOT and MATERIAL_SLOT (if item is valid for the slot)
+    // - allows extract only from OUTPUT_SLOT_1..3
+    // For null direction (internal/container use), return the full handler.
+    public IItemHandler getItemHandler(@Nullable Direction direction) {
+        if (direction == null) {
+            return this.itemHandler;
+        }
+        return sidedHandlers.computeIfAbsent(direction, dir -> new IItemHandler() {
+            @Override
+            public int getSlots() {
+                return itemHandler.getSlots();
+            }
+
+            @Override
+            public @NotNull ItemStack getStackInSlot(int slot) {
+                return itemHandler.getStackInSlot(slot);
+            }
+
+            @Override
+            public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+                // Only allow insert into input slots, and only if the item is valid for that slot
+                if ((slot == AMPOULE_SLOT || slot == MATERIAL_SLOT) && itemHandler.isItemValid(slot, stack)) {
+                    return itemHandler.insertItem(slot, stack, simulate);
+                }
+                return stack; // reject insert
+            }
+
+            @Override
+            public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+                // Only allow extract from output slots
+                if (slot == OUTPUT_SLOT_1 || slot == OUTPUT_SLOT_2 || slot == OUTPUT_SLOT_3) {
+                    return itemHandler.extractItem(slot, amount, simulate);
+                }
+                return ItemStack.EMPTY; // reject extract
+            }
+
+            @Override
+            public int getSlotLimit(int slot) {
+                return itemHandler.getSlotLimit(slot);
+            }
+
+            @Override
+            public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+                // Expose validity consistent with insertion rule
+                return (slot == AMPOULE_SLOT || slot == MATERIAL_SLOT) && itemHandler.isItemValid(slot, stack);
+            }
+        });
     }
 
     @Override
@@ -128,9 +183,27 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
-        // Decide/lock output at the start of crafting so we keep it consistent
+        // If no recipe is available right now, fully reset (including the locked choice)
+        Optional<RecipeHolder<DNAExtractorRecipe>> recipeOpt = getCurrentRecipe();
+        if (recipeOpt.isEmpty()) {
+            resetProgress();
+            this.lockedOutput = ItemStack.EMPTY;
+            this.lastInputSignature = "";
+            return;
+        }
+
+        // Compute a signature of the current inputs (item + count [+ NBT if present])
+        String currentSignature = signatureOf(
+                itemHandler.getStackInSlot(AMPOULE_SLOT),
+                itemHandler.getStackInSlot(MATERIAL_SLOT)
+        );
+
+        // Decide/lock output at the start of crafting, or whenever inputs change
         if (progress == 0) {
-            lockedOutput = determineOutputForCurrentInputs().copy();
+            if (lockedOutput.isEmpty() || !currentSignature.equals(lastInputSignature)) {
+                lockedOutput = determineOutputForCurrentInputs().copy();
+                lastInputSignature = currentSignature;
+            }
         }
 
         ItemStack prospectiveOutput = lockedOutput.isEmpty() ? determineOutputForCurrentInputs() : lockedOutput;
@@ -138,15 +211,19 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
                 && canInsertItemIntoOutputSlot(prospectiveOutput)
                 && canInsertAmountIntoOutputSlot(prospectiveOutput);
 
-        if (hasRecipe() && canOutputNow) {
+        if (!prospectiveOutput.isEmpty() && canOutputNow) {
             increaseCraftingProgress();
             setChanged(level, pos, state);
 
             if (hasCraftingFinished()) {
                 craftItem();
                 resetProgress();
+                // After crafting, inputs changed (consumed) -> clear choice; next tick will re-evaluate
+                this.lockedOutput = ItemStack.EMPTY;
+                this.lastInputSignature = "";
             }
         } else {
+            // Can't progress right now (e.g., outputs blocked) – keep lockedOutput so we don't reroll
             resetProgress();
         }
     }
@@ -154,7 +231,7 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
     private void resetProgress() {
         this.progress = 0;
         this.maxProgress = DEFAULT_MAX_PROGRESS;
-        this.lockedOutput = ItemStack.EMPTY;
+        // NOTE: do NOT clear lockedOutput here; we only clear it when inputs change or no recipe
     }
 
     private void craftItem() {
@@ -296,6 +373,18 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
             }
         }
         return ItemStack.EMPTY;
+    }
+
+    // Build a stable signature for the two input stacks so we can detect changes
+    private static String signatureOf(ItemStack ampoule, ItemStack material) {
+        return stackSig(ampoule) + "#" + stackSig(material);
+    }
+
+    private static String stackSig(ItemStack s) {
+        if (s.isEmpty()) return "empty";
+        String id = s.getItem().builtInRegistryHolder().key().location().toString();
+        // Use item id + count; omit NBT to avoid deprecated API usage
+        return id + "x" + s.getCount();
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {
