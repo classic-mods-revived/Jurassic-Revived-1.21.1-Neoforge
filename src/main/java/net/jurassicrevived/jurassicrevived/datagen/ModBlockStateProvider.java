@@ -50,6 +50,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         horizontalFacingWithItem(ModBlocks.CAT_PLUSHIE);
         horizontalFacingWithItem(ModBlocks.DNA_EXTRACTOR);
+        horizontalFacingWithItem(ModBlocks.FOSSIL_GRINDER);
 
         eggLike(ModBlocks.HATCHED_VELOCIRAPTOR_EGG);
         //eggLike(ModBlocks.HATCHED_TYRANNOSAURUS_REX_EGG);

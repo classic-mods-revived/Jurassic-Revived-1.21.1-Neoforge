@@ -7,6 +7,7 @@ import net.jurassicrevived.jurassicrevived.entity.client.CeratosaurusRenderer;
 import net.jurassicrevived.jurassicrevived.entity.client.DilophosaurusRenderer;
 import net.jurassicrevived.jurassicrevived.screen.ModMenuTypes;
 import net.jurassicrevived.jurassicrevived.screen.custom.DNAExtractorScreen;
+import net.jurassicrevived.jurassicrevived.screen.custom.FossilGrinderScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.api.distmarker.Dist;
@@ -45,5 +46,6 @@ public class JRModClient {
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenuTypes.DNA_EXTRACTOR_MENU.get(), DNAExtractorScreen::new);
+        event.register(ModMenuTypes.FOSSIL_GRINDER_MENU.get(), FossilGrinderScreen::new);
     }
 }

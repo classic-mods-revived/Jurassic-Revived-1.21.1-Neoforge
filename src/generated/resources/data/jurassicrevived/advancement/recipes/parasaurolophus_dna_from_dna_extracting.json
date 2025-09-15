@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ampoule": {
+      "conditions": {
+        "items": [
+          {
+            "items": "jurassicrevived:ampoule"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_ampoule"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "jurassicrevived:parasaurolophus_dna_from_dna_extracting"
+    ]
+  }
+}

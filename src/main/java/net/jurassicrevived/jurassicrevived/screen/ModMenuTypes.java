@@ -2,6 +2,7 @@ package net.jurassicrevived.jurassicrevived.screen;
 
 import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.screen.custom.DNAExtractorMenu;
+import net.jurassicrevived.jurassicrevived.screen.custom.FossilGrinderMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -17,6 +18,8 @@ public class ModMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<DNAExtractorMenu>> DNA_EXTRACTOR_MENU =
             registerMenuType("dna_extractor_menu", DNAExtractorMenu::new);
+    public static final DeferredHolder<MenuType<?>, MenuType<FossilGrinderMenu>> FOSSIL_GRINDER_MENU =
+            registerMenuType("fossil_grinder_menu", FossilGrinderMenu::new);
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

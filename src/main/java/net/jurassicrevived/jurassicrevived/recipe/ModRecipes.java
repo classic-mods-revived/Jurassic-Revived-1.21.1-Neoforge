@@ -25,6 +25,15 @@ public class ModRecipes {
                     return "dna_extracting";
                 }
             });
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<FossilGrinderRecipe>> FOSSIL_GRINDER_SERIALIZER =
+            SERIALIZERS.register("fossil_grinding", FossilGrinderRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<FossilGrinderRecipe>> FOSSIL_GRINDER_RECIPE_TYPE =
+            TYPES.register("fossil_grinding", () -> new RecipeType<FossilGrinderRecipe>() {
+                @Override
+                public String toString() {
+                    return "fossil_grinding";
+                }
+            });
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
