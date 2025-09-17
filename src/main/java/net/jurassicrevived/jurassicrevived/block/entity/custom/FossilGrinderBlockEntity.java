@@ -155,6 +155,16 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
         return Component.translatable("block.jurassicrevived.fossil_grinder");
     }
 
+    // Returns true if nothing meaningful is stored (no items, no progress)
+    public boolean isEmptyForDrop() {
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            if (!itemHandler.getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+        return this.progress == 0;
+    }
+
     @Override
     public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
         return new FossilGrinderMenu(i, inventory, this, this.data);

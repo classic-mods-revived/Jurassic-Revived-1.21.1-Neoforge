@@ -55,7 +55,8 @@ public class FossilCleanerScreen extends AbstractContainerScreen<FossilCleanerMe
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        renderFluidTooltipArea(guiGraphics, pMouseX, pMouseY, x, y, menu.blockEntity.getFluid(), 8, 7, fluidRenderer);
+        // Make hover area align with the tank's top-left corner (16x50)
+        renderFluidTooltipArea(guiGraphics, pMouseX, pMouseY, x, y, menu.blockEntity.getFluid(), 7, 8, fluidRenderer);
     }
 
     @Override
@@ -69,7 +70,8 @@ public class FossilCleanerScreen extends AbstractContainerScreen<FossilCleanerMe
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight, 176, 166);
         RenderProgressArrow(guiGraphics, x, y);
 
-        fluidRenderer.render(guiGraphics, x + 8, y + 7, menu.blockEntity.getFluid());
+        // Render fluid at the same top-left corner used for the hover area
+        fluidRenderer.render(guiGraphics, x + 7, y + 8, menu.blockEntity.getFluid());
     }
 
     private void RenderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
@@ -82,10 +84,20 @@ public class FossilCleanerScreen extends AbstractContainerScreen<FossilCleanerMe
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         renderBackground(guiGraphics, mouseX, mouseY, partialTick);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
-        renderTooltip(guiGraphics, mouseX, mouseY);
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) /2;
+        // Highlight the tall fluid area (16x50) like an item slot when hovered
+        if (MouseUtil.isMouseOver(mouseX, mouseY, x + 7, y + 8, 16, 50)) {
+            renderHoverHighlight(guiGraphics, x + 7, y + 8, 16, 50);
+        }
+        renderTooltip(guiGraphics, mouseX, mouseY);
         guiGraphics.blit(SKULL_TEXTURE,  x + 57, y + 35, 0, 0, 16, 16, 16, 16);
+    }
+
+    // Draws a translucent white overlay similar to vanilla slot hover highlight
+    private static void renderHoverHighlight(GuiGraphics g, int x, int y, int w, int h) {
+        // Same color at top and bottom to avoid gradient banding; alpha ~0.5
+        g.fillGradient(x, y, x + w, y + h, 0x80FFFFFF, 0x80FFFFFF);
     }
 
     public static boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, FluidTankRenderer renderer) {

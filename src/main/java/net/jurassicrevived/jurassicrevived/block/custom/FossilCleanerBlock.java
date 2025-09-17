@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.jurassicrevived.jurassicrevived.block.entity.custom.FossilCleanerBlockEntity;
 import net.jurassicrevived.jurassicrevived.block.entity.custom.ModBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -22,8 +23,12 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import org.jetbrains.annotations.Nullable;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.component.CustomData;
+import net.minecraft.nbt.CompoundTag;
 
 public class FossilCleanerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -69,14 +74,44 @@ public class FossilCleanerBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof FossilCleanerBlockEntity fossilCleanerBlockEntity) {
-                fossilCleanerBlockEntity.drops();
+    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        if (!level.isClientSide) {
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof FossilCleanerBlockEntity fbe) {
+                ItemStack stack = new ItemStack(this.asItem());
+
+                boolean saveData = !fbe.isEmptyForDrop();
+                if (saveData) {
+                    // Serialize BE (no metadata)
+                    CompoundTag tag = fbe.saveWithoutMetadata(level.registryAccess());
+                    // Add mandatory block entity type id
+                    var beTypeKey = level.registryAccess()
+                            .registryOrThrow(Registries.BLOCK_ENTITY_TYPE)
+                            .getKey(fbe.getType());
+                    if (beTypeKey != null) {
+                        tag.putString("id", beTypeKey.toString());
+                    }
+                    // Attach saved data so placement restores state
+                    stack.set(DataComponents.BLOCK_ENTITY_DATA, CustomData.of(tag));
+                }
+
+                popResource(level, pos, stack);
+
+                level.removeBlockEntity(pos);
+                level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+                return state;
             }
         }
+        super.playerWillDestroy(level, pos, state, player);
+        return state;
+    }
 
+    // Keep inventory-spill disabled; the item now carries contents.
+    @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (pState.getBlock() != pNewState.getBlock()) {
+            // Intentionally do nothing here to avoid duplicate/empty drops.
+        }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 

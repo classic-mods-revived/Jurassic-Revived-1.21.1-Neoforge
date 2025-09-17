@@ -152,6 +152,15 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
         return Component.translatable("block.jurassicrevived.dna_extractor");
     }
 
+    // Returns true if nothing meaningful is stored (no items, no progress)
+    public boolean isEmptyForDrop() {
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            if (!itemHandler.getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+        return this.progress == 0;
+    }
     @Override
     public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
         return new DNAExtractorMenu(i, inventory, this, this.data);

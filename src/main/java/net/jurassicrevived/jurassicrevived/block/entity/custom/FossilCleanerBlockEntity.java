@@ -130,6 +130,25 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
         return FLUID_TANK.getFluid();
     }
 
+    // Returns true if nothing meaningful is stored (no items, no fluid, no progress)
+    public boolean isEmptyForDrop() {
+        // No items in any slot
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            if (!itemHandler.getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+        // No fluid
+        if (!getFluid().isEmpty()) {
+            return false;
+        }
+        // No in-progress work
+        if (this.progress > 0) {
+            return false;
+        }
+        return true;
+    }
+
     public FossilCleanerBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.FOSSIL_CLEANER_BE.get(), pos, blockState);
         this.data = new ContainerData() {

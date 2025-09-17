@@ -4,6 +4,9 @@ import com.mojang.serialization.MapCodec;
 import net.jurassicrevived.jurassicrevived.block.entity.custom.FossilGrinderBlockEntity;
 import net.jurassicrevived.jurassicrevived.block.entity.custom.ModBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -11,6 +14,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -68,14 +72,39 @@ public class FossilGrinderBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof FossilGrinderBlockEntity fossilGrinderBlockEntity) {
-                fossilGrinderBlockEntity.drops();
+    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        if (!level.isClientSide) {
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof FossilGrinderBlockEntity fbe) {
+                // Build an item of this block
+                ItemStack stack = new ItemStack(this.asItem());
+
+                if (!fbe.isEmptyForDrop()) {
+                    CompoundTag tag = fbe.saveWithoutMetadata(level.registryAccess());
+                    var beTypeKey = level.registryAccess()
+                            .registryOrThrow(Registries.BLOCK_ENTITY_TYPE)
+                            .getKey(fbe.getType());
+                    if (beTypeKey != null) {
+                        tag.putString("id", beTypeKey.toString());
+                    }
+                    stack.set(DataComponents.BLOCK_ENTITY_DATA, CustomData.of(tag));
+                }
+
+                popResource(level, pos, stack);
+                level.removeBlockEntity(pos);
+                level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+                return state;
             }
         }
+        super.playerWillDestroy(level, pos, state, player);
+        return state;
+    }
 
+    @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (pState.getBlock() != pNewState.getBlock()) {
+            // Intentionally do nothing here to avoid duplicate/empty drops; playerWillDestroy handles drops.
+        }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 
