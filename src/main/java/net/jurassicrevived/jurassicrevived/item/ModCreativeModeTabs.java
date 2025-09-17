@@ -50,6 +50,7 @@ public class ModCreativeModeTabs {
 
                         pOutput.accept(ModBlocks.DNA_EXTRACTOR);
                         pOutput.accept(ModBlocks.FOSSIL_GRINDER);
+                        pOutput.accept(ModBlocks.FOSSIL_CLEANER);
 
                         pOutput.accept(ModBlocks.STONE_FOSSIL);
                         pOutput.accept(ModBlocks.DEEPSLATE_FOSSIL);

@@ -1,0 +1,12 @@
+{
+  "type": "jurassicrevived:fossil_cleaning",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:deepslate_fossil"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:velociraptor_skull_fossil"
+  }
+}

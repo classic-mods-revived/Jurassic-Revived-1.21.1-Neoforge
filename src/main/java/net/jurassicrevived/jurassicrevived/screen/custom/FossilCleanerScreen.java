@@ -2,22 +2,29 @@ package net.jurassicrevived.jurassicrevived.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jurassicrevived.jurassicrevived.JRMod;
+import net.jurassicrevived.jurassicrevived.screen.renderer.FluidTankRenderer;
+import net.jurassicrevived.jurassicrevived.util.MouseUtil;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.TooltipFlag;
+import net.neoforged.neoforge.fluids.FluidStack;
 
-public class FossilGrinderScreen extends AbstractContainerScreen<FossilGrinderMenu> {
+import java.util.Optional;
+
+public class FossilCleanerScreen extends AbstractContainerScreen<FossilCleanerMenu> {
     private static final ResourceLocation GUI_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/fossil_grinder/fossil_grinder_gui.png");
+            ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/fossil_cleaner/fossil_cleaner_gui.png");
     private static final ResourceLocation ARROW_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/arrow.png");
     private static final ResourceLocation SKULL_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/skull.png");
+    private FluidTankRenderer fluidRenderer;
 
-    public FossilGrinderScreen(FossilGrinderMenu menu, Inventory playerInventory, Component title) {
+    public FossilCleanerScreen(FossilCleanerMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
     }
 
@@ -27,6 +34,28 @@ public class FossilGrinderScreen extends AbstractContainerScreen<FossilGrinderMe
 
         this.inventoryLabelY = 10000;
         this.titleLabelY = 10000;
+
+        assignFluidRenderer();
+    }
+
+    private void assignFluidRenderer() {
+        fluidRenderer = new FluidTankRenderer(16000, true, 16, 50);
+    }
+
+    private void renderFluidTooltipArea(GuiGraphics guiGraphics, int MouseX, int MouseY, int x, int y,
+                                        FluidStack stack, int offsetX, int offsetY, FluidTankRenderer renderer) {
+        if(isMouseAboveArea(MouseX, MouseY, x, y, offsetX, offsetY, renderer)) {
+            guiGraphics.renderTooltip(this.font, renderer.getTooltip(stack, TooltipFlag.Default.NORMAL),
+                    Optional.empty(), MouseX - x, MouseY - y);
+        }
+    }
+
+    @Override
+    protected void renderLabels(GuiGraphics guiGraphics, int pMouseX, int pMouseY) {
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+
+        renderFluidTooltipArea(guiGraphics, pMouseX, pMouseY, x, y, menu.blockEntity.getFluid(), 8, 7, fluidRenderer);
     }
 
     @Override
@@ -39,6 +68,8 @@ public class FossilGrinderScreen extends AbstractContainerScreen<FossilGrinderMe
 
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight, 176, 166);
         RenderProgressArrow(guiGraphics, x, y);
+
+        fluidRenderer.render(guiGraphics, x + 8, y + 7, menu.blockEntity.getFluid());
     }
 
     private void RenderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
@@ -55,5 +86,9 @@ public class FossilGrinderScreen extends AbstractContainerScreen<FossilGrinderMe
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) /2;
         guiGraphics.blit(SKULL_TEXTURE,  x + 57, y + 35, 0, 0, 16, 16, 16, 16);
+    }
+
+    public static boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, FluidTankRenderer renderer) {
+        return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, renderer.getWidth(), renderer.getHeight());
     }
 }

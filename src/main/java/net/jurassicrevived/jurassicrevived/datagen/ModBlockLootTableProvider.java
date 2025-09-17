@@ -35,6 +35,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.LOW_SECURITY_FENCE_WIRE.get());
         dropSelf(ModBlocks.DNA_EXTRACTOR.get());
         dropSelf(ModBlocks.FOSSIL_GRINDER.get());
+        dropSelf(ModBlocks.FOSSIL_CLEANER.get());
 
         this.add(ModBlocks.GYPSUM_STONE.get(),
                 block -> createMultipleOreDrops(ModBlocks.GYPSUM_STONE.get(), ModBlocks.GYPSUM_COBBLESTONE.get().asItem(),1, 1));

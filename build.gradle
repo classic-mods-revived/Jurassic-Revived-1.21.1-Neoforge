@@ -27,6 +27,12 @@ repositories {
             includeGroup("software.bernie.geckolib")
         }
     }
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 base {
@@ -142,6 +148,10 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
+
+
+    //implementation "curse.maven:mekanism-268560:6018306"
+    implementation "curse.maven:jea-890755:6329637"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

@@ -1,7 +1,7 @@
 package net.jurassicrevived.jurassicrevived.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.jurassicrevived.jurassicrevived.block.entity.custom.DNAExtractorBlockEntity;
+import net.jurassicrevived.jurassicrevived.block.entity.custom.FossilCleanerBlockEntity;
 import net.jurassicrevived.jurassicrevived.block.entity.custom.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -24,11 +24,11 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class DNAExtractorBlock extends BaseEntityBlock {
+public class FossilCleanerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final MapCodec<DNAExtractorBlock> CODEC = simpleCodec(DNAExtractorBlock::new);
+    public static final MapCodec<FossilCleanerBlock> CODEC = simpleCodec(FossilCleanerBlock::new);
 
-    public DNAExtractorBlock(Properties properties) {
+    public FossilCleanerBlock(Properties properties) {
         super(properties);
     }
 
@@ -59,7 +59,7 @@ public class DNAExtractorBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new DNAExtractorBlockEntity(blockPos, blockState);
+        return new FossilCleanerBlockEntity(blockPos, blockState);
     }
 
     @Override
@@ -71,8 +71,8 @@ public class DNAExtractorBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof DNAExtractorBlockEntity dnaExtractorBlockEntity) {
-                dnaExtractorBlockEntity.drops();
+            if (blockEntity instanceof FossilCleanerBlockEntity fossilCleanerBlockEntity) {
+                fossilCleanerBlockEntity.drops();
             }
         }
 
@@ -82,25 +82,29 @@ public class DNAExtractorBlock extends BaseEntityBlock {
     @Override
     protected ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos,
                                               Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
-        if (!pLevel.isClientSide()) {
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof DNAExtractorBlockEntity dnaExtractorBlockEntity) {
-                ((ServerPlayer) pPlayer).openMenu(new SimpleMenuProvider(dnaExtractorBlockEntity, Component.translatable("block.jurassicrevived.dna_extractor")), pPos);
-            } else {
-                throw new IllegalStateException("Our Container provider is missing!");
+        BlockEntity entity = pLevel.getBlockEntity(pPos);
+        if (entity instanceof FossilCleanerBlockEntity fossilCleanerBlockEntity) {
+            // Allow fluid interaction via right-click (fills or drains as appropriate) on both sides for correct feedback
+            boolean interacted = net.neoforged.neoforge.fluids.FluidUtil.interactWithFluidHandler(pPlayer, pHand, fossilCleanerBlockEntity.getFluidTank(null));
+            if (interacted) {
+                return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
             }
-        }
 
+            if (!pLevel.isClientSide()) {
+                ((ServerPlayer) pPlayer).openMenu(
+                    new SimpleMenuProvider(fossilCleanerBlockEntity, Component.translatable("block.jurassicrevived.fossil_cleaner")),
+                    pPos
+                );
+            }
+        } else if (!pLevel.isClientSide()) {
+            throw new IllegalStateException("Our Container provider is missing!");
+        }
         return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 
     @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        if (level.isClientSide) {
-            return null;
-        }
-
-        return createTickerHelper(blockEntityType, ModBlockEntities.DNA_EXTRACTOR_BE.get(),
-                (level1, blockPos, blockState, dnaExtractorBlockEntity) -> dnaExtractorBlockEntity.tick(level1, blockPos, blockState));
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return level.isClientSide ? null
+            : createTickerHelper(type, ModBlockEntities.FOSSIL_CLEANER_BE.get(), FossilCleanerBlockEntity::serverTick);
     }
 }

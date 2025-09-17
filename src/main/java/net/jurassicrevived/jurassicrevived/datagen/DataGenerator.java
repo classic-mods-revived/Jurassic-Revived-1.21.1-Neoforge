@@ -1,9 +1,11 @@
 package net.jurassicrevived.jurassicrevived.datagen;
 
 import net.jurassicrevived.jurassicrevived.JRMod;
+import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -36,5 +38,12 @@ public class DataGenerator {
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
 
         generator.addProvider(event.includeServer(), new ModWorldGenProvider(packOutput, lookupProvider));
+
+        //if (event.includeServer()) {
+        //    var glm = new ModGlobalLootModifierProvider(packOutput)
+        //            .addBrushItemForAllArchaeologyTables("add_velociraptor_skull_fossil", ModItems.VELOCIRAPTOR_SKULL_FOSSIL.get(), 0.50f)
+        //            .addBrushItemForAllArchaeologyTables("add_triceratops_skull_fossil", ModItems.TRICERATOPS_SKULL_FOSSIL.get(), 0.50f);
+        //    generator.addProvider(true, glm);
+        //}
     }
 }

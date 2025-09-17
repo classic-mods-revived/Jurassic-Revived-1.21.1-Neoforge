@@ -34,6 +34,15 @@ public class ModRecipes {
                     return "fossil_grinding";
                 }
             });
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<FossilCleanerRecipe>> FOSSIL_CLEANER_SERIALIZER =
+            SERIALIZERS.register("fossil_cleaning", FossilCleanerRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<FossilCleanerRecipe>> FOSSIL_CLEANER_RECIPE_TYPE =
+            TYPES.register("fossil_cleaning", () -> new RecipeType<FossilCleanerRecipe>() {
+                @Override
+                public String toString() {
+                    return "fossil_cleaning";
+                }
+            });
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
