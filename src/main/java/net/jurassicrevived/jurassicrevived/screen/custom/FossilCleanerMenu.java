@@ -4,7 +4,6 @@ import net.jurassicrevived.jurassicrevived.block.ModBlocks;
 import net.jurassicrevived.jurassicrevived.block.entity.custom.FossilCleanerBlockEntity;
 import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.jurassicrevived.jurassicrevived.screen.ModMenuTypes;
-import net.jurassicrevived.jurassicrevived.util.ModTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

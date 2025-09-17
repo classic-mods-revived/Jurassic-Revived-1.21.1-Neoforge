@@ -3,8 +3,11 @@ package net.jurassicrevived.jurassicrevived.compat;
 import mezz.jei.api.ingredients.IIngredientRenderer;
 import net.jurassicrevived.jurassicrevived.screen.renderer.FluidTankRenderer;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.neoforge.fluids.FluidStack;
+
+import java.util.List;
 
 public class FluidStackSlotRenderer implements IIngredientRenderer<FluidStack> {
     private final FluidTankRenderer tankRenderer;
@@ -30,7 +33,7 @@ public class FluidStackSlotRenderer implements IIngredientRenderer<FluidStack> {
     }
 
     @Override
-    public java.util.List<net.minecraft.network.chat.Component> getTooltip(FluidStack ingredient, TooltipFlag tooltipFlag) {
+    public List<Component> getTooltip(FluidStack ingredient, TooltipFlag tooltipFlag) {
         return tankRenderer.getTooltip(ingredient, tooltipFlag);
     }
 }

@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.fluids.FluidUtil;
 import org.jetbrains.annotations.Nullable;
 
 public class FossilCleanerBlock extends BaseEntityBlock {
@@ -85,7 +86,7 @@ public class FossilCleanerBlock extends BaseEntityBlock {
         BlockEntity entity = pLevel.getBlockEntity(pPos);
         if (entity instanceof FossilCleanerBlockEntity fossilCleanerBlockEntity) {
             // Allow fluid interaction via right-click (fills or drains as appropriate) on both sides for correct feedback
-            boolean interacted = net.neoforged.neoforge.fluids.FluidUtil.interactWithFluidHandler(pPlayer, pHand, fossilCleanerBlockEntity.getFluidTank(null));
+            boolean interacted = FluidUtil.interactWithFluidHandler(pPlayer, pHand, fossilCleanerBlockEntity.getFluidTank(null));
             if (interacted) {
                 return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
             }

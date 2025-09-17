@@ -22,6 +22,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluids;
@@ -33,6 +34,11 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class FossilCleanerRecipeCategory implements IRecipeCategory<FossilCleanerRecipe> {
     public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "fossil_cleaning");
     public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/fossil_cleaner/fossil_cleaner_gui.png");
@@ -43,7 +49,7 @@ public class FossilCleanerRecipeCategory implements IRecipeCategory<FossilCleane
     private final IDrawable background;
     private final IDrawable icon;
     private final FluidTankRenderer fluidRenderer;
-    private static java.util.List<ItemStack> WATER_CONTAINERS_CACHE = null;
+    private static List<ItemStack> WATER_CONTAINERS_CACHE = null;
 
     public FossilCleanerRecipeCategory(IGuiHelper guiHelper) {
         this.background = guiHelper.drawableBuilder(TEXTURE, 0, 0, 176, 80).setTextureSize(176, 166).build();
@@ -107,11 +113,11 @@ public class FossilCleanerRecipeCategory implements IRecipeCategory<FossilCleane
         if (level != null) {
             var itemRegistry = level.registryAccess().registryOrThrow(Registries.ITEM);
             var fossilsTagOpt = itemRegistry.getTag(ModTags.Items.FOSSILS);
-            java.util.List<ItemStack> fossilOutputs = fossilsTagOpt.map(holderSet ->
+            List<ItemStack> fossilOutputs = fossilsTagOpt.map(holderSet ->
                     holderSet.stream()
                             .map(h -> new ItemStack(h.value(), Math.max(1, recipe.getResultItem(null).getCount())))
-                            .collect(java.util.stream.Collectors.toList())
-            ).orElse(java.util.List.of());
+                            .collect(Collectors.toList())
+            ).orElse(List.of());
 
             var slot = builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStacks(fossilOutputs);
             slot.addRichTooltipCallback((view, tooltip) -> {
@@ -128,21 +134,21 @@ public class FossilCleanerRecipeCategory implements IRecipeCategory<FossilCleane
         builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStack(recipe.getResultItem(null));
     }
 
-    private static java.util.List<ItemStack> buildWaterContainersList() {
-        var list = new java.util.ArrayList<ItemStack>();
+    private static List<ItemStack> buildWaterContainersList() {
+        var list = new ArrayList<ItemStack>();
         // Always include vanilla water bucket (already filled)
         list.add(new ItemStack(Items.WATER_BUCKET));
 
         var mc = Minecraft.getInstance();
         var level = mc.level;
         if (level == null) {
-            return java.util.Collections.unmodifiableList(list);
+            return Collections.unmodifiableList(list);
         }
 
         final int REQUIRED_MB = 250;
 
         var itemRegistry = level.registryAccess().registryOrThrow(Registries.ITEM);
-        for (net.minecraft.world.item.Item item : itemRegistry) {
+        for (Item item : itemRegistry) {
             if (item == Items.WATER_BUCKET) continue;
 
             ItemStack empty = new ItemStack(item);
@@ -152,7 +158,7 @@ public class FossilCleanerRecipeCategory implements IRecipeCategory<FossilCleane
             // 1) Already contains water?
             boolean hasWaterNow = false;
             for (int t = 0; t < fh.getTanks(); t++) {
-                net.neoforged.neoforge.fluids.FluidStack fs = fh.getFluidInTank(t);
+                FluidStack fs = fh.getFluidInTank(t);
                 if (!fs.isEmpty() && fs.getFluid().is(net.minecraft.tags.FluidTags.WATER)) {
                     hasWaterNow = true;
                     break;
@@ -176,7 +182,7 @@ public class FossilCleanerRecipeCategory implements IRecipeCategory<FossilCleane
                 list.add(filledFull);
             }
         }
-        return java.util.Collections.unmodifiableList(list);
+        return Collections.unmodifiableList(list);
     }
 
     // Use a temporary source handler pre-filled with water and ask FluidUtil to fill the container.
@@ -204,7 +210,7 @@ public class FossilCleanerRecipeCategory implements IRecipeCategory<FossilCleane
             var fh = out.getCapability(Capabilities.FluidHandler.ITEM, null);
             if (fh != null) {
                 for (int t = 0; t < fh.getTanks(); t++) {
-                    net.neoforged.neoforge.fluids.FluidStack fs = fh.getFluidInTank(t);
+                    FluidStack fs = fh.getFluidInTank(t);
                     if (!fs.isEmpty() && fs.getFluid().is(net.minecraft.tags.FluidTags.WATER)) {
                         return out;
                     }

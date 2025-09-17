@@ -29,11 +29,14 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
@@ -357,7 +360,7 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
         if (stack.getItem() == Items.WATER_BUCKET) {
             // If the tank can't accept a full bucket, do nothing (keep UX consistent)
             int space = FLUID_TANK.getCapacity() - FLUID_TANK.getFluidAmount();
-            if (space >= net.neoforged.neoforge.fluids.FluidType.BUCKET_VOLUME) {
+            if (space >= FluidType.BUCKET_VOLUME) {
                 FluidActionResult result = FluidUtil.tryEmptyContainer(stack, this.FLUID_TANK, Integer.MAX_VALUE, null, true);
                 if (result.isSuccess()) {
                     itemHandler.setStackInSlot(WATER_SLOT, result.getResult());
@@ -373,7 +376,7 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
 
         // Find total water available and the actual water fluid to use
         int availableWater = 0;
-        net.minecraft.world.level.material.Fluid chosenWaterFluid = null;
+        Fluid chosenWaterFluid = null;
         for (int t = 0; t < fh.getTanks(); t++) {
             FluidStack inTank = fh.getFluidInTank(t);
             if (!inTank.isEmpty() && inTank.getFluid().is(FluidTags.WATER)) {
@@ -407,7 +410,7 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
         if (filled <= 0) return;
 
         // If the handler is an IFluidHandlerItem, update the slot with the mutated container
-        if (fh instanceof net.neoforged.neoforge.fluids.capability.IFluidHandlerItem itemHandlerCap) {
+        if (fh instanceof IFluidHandlerItem itemHandlerCap) {
             itemHandler.setStackInSlot(WATER_SLOT, itemHandlerCap.getContainer());
         } else {
             // Some handlers mutate the stack in place; still mark dirty
