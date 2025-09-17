@@ -74,9 +74,15 @@ public class FossilGrinderBlock extends BaseEntityBlock {
     @Override
     public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         if (!level.isClientSide) {
+            // Creative: break without drops
+            if (player.getAbilities().instabuild) {
+                level.removeBlockEntity(pos);
+                level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+                return state;
+            }
+
             BlockEntity be = level.getBlockEntity(pos);
             if (be instanceof FossilGrinderBlockEntity fbe) {
-                // Build an item of this block
                 ItemStack stack = new ItemStack(this.asItem());
 
                 if (!fbe.isEmptyForDrop()) {

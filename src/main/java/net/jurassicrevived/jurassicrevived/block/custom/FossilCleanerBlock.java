@@ -76,22 +76,26 @@ public class FossilCleanerBlock extends BaseEntityBlock {
     @Override
     public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         if (!level.isClientSide) {
+            // Creative: break without drops
+            if (player.getAbilities().instabuild) {
+                level.removeBlockEntity(pos);
+                level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+                return state;
+            }
+
             BlockEntity be = level.getBlockEntity(pos);
             if (be instanceof FossilCleanerBlockEntity fbe) {
                 ItemStack stack = new ItemStack(this.asItem());
 
                 boolean saveData = !fbe.isEmptyForDrop();
                 if (saveData) {
-                    // Serialize BE (no metadata)
                     CompoundTag tag = fbe.saveWithoutMetadata(level.registryAccess());
-                    // Add mandatory block entity type id
                     var beTypeKey = level.registryAccess()
                             .registryOrThrow(Registries.BLOCK_ENTITY_TYPE)
                             .getKey(fbe.getType());
                     if (beTypeKey != null) {
                         tag.putString("id", beTypeKey.toString());
                     }
-                    // Attach saved data so placement restores state
                     stack.set(DataComponents.BLOCK_ENTITY_DATA, CustomData.of(tag));
                 }
 
