@@ -21,11 +21,16 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidUtil;
+import net.neoforged.neoforge.fluids.FluidActionResult;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.jetbrains.annotations.Nullable;
 
 public class FossilCleanerRecipeCategory implements IRecipeCategory<FossilCleanerRecipe> {
@@ -144,7 +149,7 @@ public class FossilCleanerRecipeCategory implements IRecipeCategory<FossilCleane
             var fh = empty.getCapability(Capabilities.FluidHandler.ITEM, null);
             if (fh == null || fh.getTanks() <= 0) continue;
 
-            // 1) Accept items that already contain water by default
+            // 1) Already contains water?
             boolean hasWaterNow = false;
             for (int t = 0; t < fh.getTanks(); t++) {
                 net.neoforged.neoforge.fluids.FluidStack fs = fh.getFluidInTank(t);
@@ -158,37 +163,54 @@ public class FossilCleanerRecipeCategory implements IRecipeCategory<FossilCleane
                 continue;
             }
 
-            // 2) Prefer to show 250 mB if the container can accept that much
-            int accept250 = fh.fill(
-                    new net.neoforged.neoforge.fluids.FluidStack(net.minecraft.world.level.material.Fluids.WATER, REQUIRED_MB),
-                    net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction.SIMULATE
-            );
-            if (accept250 > 0) {
-                ItemStack display = empty.copy();
-                var fhDisplay = display.getCapability(Capabilities.FluidHandler.ITEM, null);
-                if (fhDisplay != null) {
-                    fhDisplay.fill(new net.neoforged.neoforge.fluids.FluidStack(net.minecraft.world.level.material.Fluids.WATER, accept250),
-                            net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE);
-                    list.add(display);
-                }
+            // 2) Try to show 250 mB by using the utility path (works for many creative/infinite containers)
+            ItemStack filled250 = tryFillContainerWithWater(empty, REQUIRED_MB);
+            if (!filled250.isEmpty()) {
+                list.add(filled250);
                 continue;
             }
 
-            // 3) If 250 mB is not possible (e.g., requires larger units), fill completely so it’s not misleadingly empty
-            int acceptFull = fh.fill(
-                    new net.neoforged.neoforge.fluids.FluidStack(net.minecraft.world.level.material.Fluids.WATER, Integer.MAX_VALUE),
-                    net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction.SIMULATE
-            );
-            if (acceptFull > 0) {
-                ItemStack display = empty.copy();
-                var fhDisplay = display.getCapability(Capabilities.FluidHandler.ITEM, null);
-                if (fhDisplay != null) {
-                    fhDisplay.fill(new net.neoforged.neoforge.fluids.FluidStack(net.minecraft.world.level.material.Fluids.WATER, acceptFull),
-                            net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE);
-                    list.add(display);
-                }
+            // 3) If partial fill is not possible, try showing completely filled (so it isn't displayed empty)
+            ItemStack filledFull = tryFillContainerWithWater(empty, Integer.MAX_VALUE);
+            if (!filledFull.isEmpty()) {
+                list.add(filledFull);
             }
         }
         return java.util.Collections.unmodifiableList(list);
+    }
+
+    // Use a temporary source handler pre-filled with water and ask FluidUtil to fill the container.
+    // Many mod containers (including creative/infinite ones) respect this code path even when direct fill() doesn't work.
+    private static ItemStack tryFillContainerWithWater(ItemStack empty, int amountMb) {
+        if (amountMb <= 0) return ItemStack.EMPTY;
+
+        // Build a temporary drain-only source with the requested amount (or a large capacity for "full")
+        int cap = (amountMb == Integer.MAX_VALUE) ? Integer.MAX_VALUE / 4 : amountMb;
+        FluidTank source = new FluidTank(cap) {
+            @Override
+            public boolean isFluidValid(FluidStack stack) {
+                return stack.getFluid().is(FluidTags.WATER);
+            }
+        };
+        int toInsert = (amountMb == Integer.MAX_VALUE) ? cap : amountMb;
+        source.fill(new FluidStack(Fluids.WATER, toInsert),
+                IFluidHandler.FluidAction.EXECUTE);
+
+        // Ask the utility to fill an item copy (simulate=false); result will be a properly filled variant if supported
+        FluidActionResult res = FluidUtil.tryFillContainer(empty.copy(), source, Integer.MAX_VALUE, null, true);
+        if (res.isSuccess()) {
+            ItemStack out = res.getResult();
+            // Sanity check: ensure it's actually water-filled
+            var fh = out.getCapability(Capabilities.FluidHandler.ITEM, null);
+            if (fh != null) {
+                for (int t = 0; t < fh.getTanks(); t++) {
+                    net.neoforged.neoforge.fluids.FluidStack fs = fh.getFluidInTank(t);
+                    if (!fs.isEmpty() && fs.getFluid().is(net.minecraft.tags.FluidTags.WATER)) {
+                        return out;
+                    }
+                }
+            }
+        }
+        return ItemStack.EMPTY;
     }
 }

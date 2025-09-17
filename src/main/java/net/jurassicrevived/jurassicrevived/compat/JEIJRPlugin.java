@@ -1,6 +1,8 @@
 package net.jurassicrevived.jurassicrevived.compat;
 
 import mezz.jei.api.IModPlugin;
+import mezz.jei.api.runtime.IIngredientManager;
+import mezz.jei.api.runtime.IJeiRuntime;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -20,10 +22,18 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import java.util.List;
 
 @JeiPlugin
-public class JEIJRPlugin implements IModPlugin{
+public class JEIJRPlugin implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
         return ResourceLocation.fromNamespaceAndPath("jurassicrevived", "jei_plugin");
+    }
+
+    // Expose JEI ingredient manager so categories can access all item variants (including mod-provided filled tanks)
+    public static @org.jetbrains.annotations.Nullable IIngredientManager INGREDIENT_MANAGER;
+
+    @Override
+    public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
+        INGREDIENT_MANAGER = jeiRuntime.getIngredientManager();
     }
 
     @Override
