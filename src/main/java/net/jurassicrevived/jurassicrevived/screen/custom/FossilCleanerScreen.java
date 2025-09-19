@@ -97,7 +97,11 @@ public class FossilCleanerScreen extends AbstractContainerScreen<FossilCleanerMe
     // Draws a translucent white overlay similar to vanilla slot hover highlight
     private static void renderHoverHighlight(GuiGraphics g, int x, int y, int w, int h) {
         // Same color at top and bottom to avoid gradient banding; alpha ~0.5
+        g.pose().pushPose();
+        g.pose().translate(0, 0, 200); // lift above background/fluid
+        // Same color at top and bottom to avoid gradient banding; alpha ~0.5
         g.fillGradient(x, y, x + w, y + h, 0x80FFFFFF, 0x80FFFFFF);
+        g.pose().popPose();
     }
 
     public static boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, FluidTankRenderer renderer) {
