@@ -120,6 +120,45 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', Blocks.STONE_BRICKS)
                 .unlockedBy("has_stone_bricks", has(Blocks.STONE_BRICKS)).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DNA_EXTRACTOR.get(), 1)
+                .pattern("AAA")
+                .pattern("BCD")
+                .pattern("AAA")
+                .define('A', Items.LAPIS_LAZULI)
+                .define('B', ModItems.SCREEN)
+                .define('C', ModItems.CABLE)
+                .define('D', ModItems.PROCESSOR)
+                .unlockedBy("has_lapis", has(Items.LAPIS_LAZULI))
+                .unlockedBy("has_screen", has(ModItems.SCREEN))
+                .unlockedBy("has_cable", has(ModItems.CABLE))
+                .unlockedBy("has_processor", has(ModItems.PROCESSOR)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FOSSIL_GRINDER.get(), 1)
+                .pattern("ABA")
+                .pattern("CDC")
+                .pattern("AEA")
+                .define('A', Items.IRON_INGOT)
+                .define('B', Blocks.GLASS)
+                .define('C', Items.LAPIS_LAZULI)
+                .define('D', ModItems.CUTTING_BLADES)
+                .define('E', Items.WATER_BUCKET)
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .unlockedBy("has_glass", has(Blocks.GLASS))
+                .unlockedBy("has_lapis", has(Items.LAPIS_LAZULI))
+                .unlockedBy("has_cutting_blades", has(ModItems.CUTTING_BLADES))
+                .unlockedBy("has_water_bucket", has(Items.WATER_BUCKET)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FOSSIL_CLEANER.get(), 1)
+                .pattern("ABA")
+                .pattern("ACA")
+                .pattern("AAA")
+                .define('A', Items.IRON_INGOT)
+                .define('B', Items.LAPIS_LAZULI)
+                .define('C', Blocks.GLASS)
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
+                .unlockedBy("has_glass", has(Blocks.GLASS)).save(pRecipeOutput);
+
         new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.VELOCIRAPTOR_TISSUE, ModItems.VELOCIRAPTOR_DNA, 1)
                 .unlockedBy("has_ampoule", has(ModItems.AMPOULE)).save(pRecipeOutput);
         new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.TYRANNOSAURUS_REX_TISSUE, ModItems.TYRANNOSAURUS_REX_DNA, 1)
