@@ -122,7 +122,49 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
         };
     };
 
+    // Provide a world-facing handler that can be filled but cannot be drained (pipes cannot extract)
+    private final IFluidHandler noDrainView = new IFluidHandler() {
+        @Override
+        public int getTanks() {
+            return FLUID_TANK.getTanks();
+        }
+
+        @Override
+        public FluidStack getFluidInTank(int tank) {
+            return FLUID_TANK.getFluidInTank(tank);
+        }
+
+        @Override
+        public int getTankCapacity(int tank) {
+            return FLUID_TANK.getTankCapacity(tank);
+        }
+
+        @Override
+        public boolean isFluidValid(int tank, FluidStack stack) {
+            return FLUID_TANK.isFluidValid(tank, stack);
+        }
+
+        @Override
+        public int fill(FluidStack resource, FluidAction action) {
+            return FLUID_TANK.fill(resource, action);
+        }
+
+        @Override
+        public FluidStack drain(FluidStack resource, FluidAction action) {
+            return FluidStack.EMPTY; // disallow draining via capability
+        }
+
+        @Override
+        public FluidStack drain(int maxDrain, FluidAction action) {
+            return FluidStack.EMPTY; // disallow draining via capability
+        }
+    };
+
     public IFluidHandler getFluidTank(@Nullable Direction direction) {
+        // If accessed from a side (pipes), expose fill-only view; internal logic uses the real tank
+        if (direction != null) {
+            return noDrainView;
+        }
         return this.FLUID_TANK;
     }
 

@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
+import net.neoforged.neoforge.fluids.FluidActionResult;
 import org.jetbrains.annotations.Nullable;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.component.CustomData;
@@ -124,18 +125,29 @@ public class FossilCleanerBlock extends BaseEntityBlock {
                                               Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         BlockEntity entity = pLevel.getBlockEntity(pPos);
         if (entity instanceof FossilCleanerBlockEntity fossilCleanerBlockEntity) {
-            // Allow fluid interaction via right-click (fills or drains as appropriate) on both sides for correct feedback
-            boolean interacted = FluidUtil.interactWithFluidHandler(pPlayer, pHand, fossilCleanerBlockEntity.getFluidTank(null));
-            if (interacted) {
-                return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
-            }
-
+            // Fill-only interaction: empty the held container into the machine; never drain from the machine
             if (!pLevel.isClientSide()) {
+                FluidActionResult res = FluidUtil.tryEmptyContainer(
+                        pStack,
+                        fossilCleanerBlockEntity.getFluidTank(null), // internal tank reference; only fill is attempted
+                        Integer.MAX_VALUE,
+                        pPlayer,
+                        true
+                );
+                if (res.isSuccess()) {
+                    // Replace held item with the result (e.g., empty bucket), unless in creative
+                    if (!pPlayer.getAbilities().instabuild) {
+                        pPlayer.setItemInHand(pHand, res.getResult());
+                    }
+                    return ItemInteractionResult.SUCCESS;
+                }
+
                 ((ServerPlayer) pPlayer).openMenu(
-                    new SimpleMenuProvider(fossilCleanerBlockEntity, Component.translatable("block.jurassicrevived.fossil_cleaner")),
-                    pPos
+                        new SimpleMenuProvider(fossilCleanerBlockEntity, Component.translatable("block.jurassicrevived.fossil_cleaner")),
+                        pPos
                 );
             }
+            return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
         } else if (!pLevel.isClientSide()) {
             throw new IllegalStateException("Our Container provider is missing!");
         }
