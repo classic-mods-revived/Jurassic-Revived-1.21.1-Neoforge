@@ -153,11 +153,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ACA")
                 .pattern("AAA")
                 .define('A', Items.IRON_INGOT)
-                .define('B', Items.LAPIS_LAZULI)
+                .define('B', Items.IRON_NUGGET)
                 .define('C', Blocks.GLASS)
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
                 .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
                 .unlockedBy("has_glass", has(Blocks.GLASS)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.WRENCH.get(), 1)
+                .pattern(" A ")
+                .pattern(" BA")
+                .pattern("A  ")
+                .define('A', Items.IRON_INGOT)
+                .define('B', Items.IRON_NUGGET)
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET)).save(pRecipeOutput);
 
         new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.VELOCIRAPTOR_TISSUE, ModItems.VELOCIRAPTOR_DNA, 1)
                 .unlockedBy("has_ampoule", has(ModItems.AMPOULE)).save(pRecipeOutput);

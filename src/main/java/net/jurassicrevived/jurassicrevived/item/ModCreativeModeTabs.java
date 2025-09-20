@@ -1,5 +1,6 @@
 package net.jurassicrevived.jurassicrevived.item;
 
+import net.jurassicrevived.jurassicrevived.Config;
 import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
@@ -30,6 +31,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.PROCESSOR);
                         pOutput.accept(ModItems.TIRE);
                         pOutput.accept(ModItems.CUTTING_BLADES);
+                        pOutput.accept(ModItems.WRENCH);
                     }).build());
 
     public static final Supplier<CreativeModeTab> JR_BLOCK_TAB =
@@ -47,6 +49,13 @@ public class ModCreativeModeTabs {
 
                         pOutput.accept(ModBlocks.LOW_SECURITY_FENCE_POLE);
                         pOutput.accept(ModBlocks.LOW_SECURITY_FENCE_WIRE);
+
+                        pOutput.accept(ModBlocks.ITEM_PIPE);
+                        pOutput.accept(ModBlocks.FLUID_PIPE);
+                        // Hide power pipe if power is disabled
+                        if (Config.REQUIRE_POWER) {
+                            pOutput.accept(ModBlocks.POWER_PIPE);
+                        }
 
                         pOutput.accept(ModBlocks.DNA_EXTRACTOR);
                         pOutput.accept(ModBlocks.FOSSIL_GRINDER);

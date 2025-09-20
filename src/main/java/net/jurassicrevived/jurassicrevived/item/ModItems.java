@@ -16,6 +16,8 @@ public class ModItems {
     public static final DeferredItem<Item> JR_DINO_TAB_ICON = ITEMS.register("jr_dino_tab_icon", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> JR_DNA_TAB_ICON = ITEMS.register("jr_dna_tab_icon", () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> WRENCH = ITEMS.register("wrench", () -> new Item(new Item.Properties()));
+
     public static final DeferredItem<Item> VELOCIRAPTOR_SPAWN_EGG = ITEMS.register("velociraptor_spawn_egg",
             () -> new CustomGenderedSpawnEggItem(ModEntities.VELOCIRAPTOR, 0x8A5837, 0x45220D, new Item.Properties()));
     //public static final DeferredItem<Item> TYRANNOSAURUS_REX_SPAWN_EGG = ITEMS.register("tyrannosaurus_rex_spawn_egg",

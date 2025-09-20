@@ -4,13 +4,16 @@ import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.block.ModBlocks;
 import net.jurassicrevived.jurassicrevived.block.custom.LowSecurityFencePoleBlock;
 import net.jurassicrevived.jurassicrevived.block.custom.LowSecurityFenceWireBlock;
+import net.jurassicrevived.jurassicrevived.block.custom.PipeBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -88,6 +91,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 LowSecurityFenceWireBlock.SW,
                 LowSecurityFenceWireBlock.NW
         );
+
+        pipeMultipartWithItem(ModBlocks.ITEM_PIPE, "item_pipe");
+        pipeMultipartWithItem(ModBlocks.FLUID_PIPE, "fluid_pipe");
+        pipeMultipartWithItem(ModBlocks.POWER_PIPE, "power_pipe");
     }
 
     private void blockWithItem(DeferredBlock<Block> deferredBlock) {
@@ -111,6 +118,71 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void eggLike(DeferredBlock<Block> block) {
         ModelFile eggModel = new ModelFile.UncheckedModelFile(modLoc("block/egg"));
         simpleBlock(block.get(), eggModel);
+    }
+
+    // Combined helper: generate multipart for the pipe, and also the item model (3D: parent to base block model)
+    private void pipeMultipartWithItem(DeferredBlock<? extends Block> regBlock, String modelBaseName) {
+        pipeMultipart(regBlock, modelBaseName);
+        // Item model uses the base block model for a 3D inventory icon
+        ModelFile itemParent = new ModelFile.UncheckedModelFile(modLoc("block/" + modelBaseName));
+        simpleBlockItem(regBlock.get(), itemParent);
+    }
+
+    // Generate multipart blockstate for PipeBlock:
+    // - always show "block/<base>"
+    // - show "block/<base>_interchange" for each direction where the enum property equals PIPE
+    // - show "block/<base>_connector"  for each direction where the enum property equals CONNECTOR
+    // - show "block/<base>_connector_pull" for CONNECTOR_PULL
+    private void pipeMultipart(DeferredBlock<? extends Block> regBlock, String modelBaseName) {
+        Block block = regBlock.get();
+        var multipart = getMultipartBuilder(block);
+
+        // Base pipe model always present
+        multipart.part()
+                .modelFile(models().getExistingFile(modLoc("block/" + modelBaseName)))
+                .addModel()
+                .end();
+
+        // Interchange (pipe-to-pipe) connections
+        // Fix backwards rotations: use UP=90, DOWN=270, and standard NESW yaw
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_interchange", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.UP,   net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.PIPE, 90, 0);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_interchange", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.DOWN, net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.PIPE, 270, 0);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_interchange", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.NORTH, net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.PIPE, 0, 180);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_interchange", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.EAST,  net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.PIPE, 0, 270);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_interchange", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.SOUTH, net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.PIPE, 0, 0);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_interchange", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.WEST,  net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.PIPE, 0, 90);
+
+        // Connector (push) connections
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_connector", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.UP,   net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.CONNECTOR, 90, 0);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_connector", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.DOWN, net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.CONNECTOR, 270, 0);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_connector", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.NORTH, net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.CONNECTOR, 0, 180);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_connector", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.EAST,  net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.CONNECTOR, 0, 270);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_connector", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.SOUTH, net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.CONNECTOR, 0, 0);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_connector", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.WEST,  net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.CONNECTOR, 0, 90);
+
+        // Connector pull connections
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_connector_pull", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.UP,   net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.CONNECTOR_PULL, 90, 0);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_connector_pull", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.DOWN, net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.CONNECTOR_PULL, 270, 0);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_connector_pull", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.NORTH, net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.CONNECTOR_PULL, 0, 180);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_connector_pull", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.EAST,  net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.CONNECTOR_PULL, 0, 270);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_connector_pull", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.SOUTH, net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.CONNECTOR_PULL, 0, 0);
+        addDirectionalEnumPart(multipart, "block/" + modelBaseName + "_connector_pull", net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.WEST,  net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType.CONNECTOR_PULL, 0, 90);
+    }
+
+    // Helper to add a part for a specific enum value on a directional property, with X/Y rotation
+    private void addDirectionalEnumPart(MultiPartBlockStateBuilder multipart,
+                                        String modelPath,
+                                        EnumProperty<net.jurassicrevived.jurassicrevived.block.custom.PipeBlock.ConnectionType> prop,
+                                        PipeBlock.ConnectionType value,
+                                        int rotX,
+                                        int rotY) {
+        multipart.part()
+                .modelFile(models().getExistingFile(modLoc(modelPath)))
+                .rotationX(rotX)
+                .rotationY(rotY)
+                .addModel()
+                .condition(prop, value)
+                .end();
     }
 
     private void customFenceMultipart(

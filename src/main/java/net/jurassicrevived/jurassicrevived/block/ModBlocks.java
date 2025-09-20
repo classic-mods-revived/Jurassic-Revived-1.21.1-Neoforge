@@ -2,6 +2,7 @@ package net.jurassicrevived.jurassicrevived.block;
 
 import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.block.custom.*;
+import net.jurassicrevived.jurassicrevived.block.custom.PipeBlock;
 import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
@@ -21,6 +22,15 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> CAT_PLUSHIE = registerBlock("cat_plushie",
             () -> new DecoBlock(BlockBehaviour.Properties.of().noOcclusion().sound(SoundType.WOOL)));
+
+    public static final DeferredBlock<Block> ITEM_PIPE = registerBlock("item_pipe",
+            () -> new PipeBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion(), PipeBlock.Transport.ITEMS));
+
+    public static final DeferredBlock<Block> FLUID_PIPE = registerBlock("fluid_pipe",
+            () -> new PipeBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion(), PipeBlock.Transport.FLUIDS));
+
+    public static final DeferredBlock<Block> POWER_PIPE = registerBlock("power_pipe",
+            () -> new PipeBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion(), PipeBlock.Transport.ENERGY));
 
     public static final DeferredBlock<Block> DNA_EXTRACTOR = registerBlock("dna_extractor",
             () -> new DNAExtractorBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
