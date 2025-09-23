@@ -11,6 +11,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
@@ -120,6 +121,42 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', Blocks.STONE_BRICKS)
                 .unlockedBy("has_stone_bricks", has(Blocks.STONE_BRICKS)).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.LOW_SECURITY_FENCE_POLE.get(), 8)
+                .pattern("ABA")
+                .pattern(" B ")
+                .pattern("ABA")
+                .define('A', Items.IRON_NUGGET)
+                .define('B', Items.IRON_INGOT)
+                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.LOW_SECURITY_FENCE_WIRE.get(), 16)
+                .pattern("AAA")
+                .pattern(" B ")
+                .pattern("AAA")
+                .define('A', Items.IRON_NUGGET)
+                .define('B', Items.REDSTONE)
+                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
+                .unlockedBy("has_redstone", has(Items.REDSTONE)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.MEDIUM_SECURITY_FENCE_POLE.get(), 8)
+                .pattern("ABA")
+                .pattern("ABA")
+                .pattern("ABA")
+                .define('A', Items.IRON_NUGGET)
+                .define('B', Items.IRON_INGOT)
+                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.MEDIUM_SECURITY_FENCE_WIRE.get(), 16)
+                .pattern("AAA")
+                .pattern("BBB")
+                .pattern("AAA")
+                .define('A', Items.IRON_NUGGET)
+                .define('B', Items.REDSTONE)
+                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
+                .unlockedBy("has_redstone", has(Items.REDSTONE)).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DNA_EXTRACTOR.get(), 1)
                 .pattern("AAA")
                 .pattern("BCD")
@@ -162,11 +199,34 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.WRENCH.get(), 1)
                 .pattern(" A ")
                 .pattern(" BA")
-                .pattern("A  ")
+                .pattern("B  ")
                 .define('A', Items.IRON_INGOT)
                 .define('B', Items.IRON_NUGGET)
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
                 .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ITEM_PIPE.get(), 8)
+                .pattern("AAA")
+                .define('A', ModItems.CABLE)
+                .unlockedBy("has_cable", has(ModItems.CABLE)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FLUID_PIPE.get(), 8)
+                .pattern(" A ")
+                .pattern("BBB")
+                .pattern(" A ")
+                .define('A', Items.WATER_BUCKET)
+                .define('B', ModItems.CABLE)
+                .unlockedBy("has_water_bucket", has(Items.WATER_BUCKET))
+                .unlockedBy("has_cable", has(ModItems.CABLE)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.POWER_PIPE.get(), 8)
+                .pattern(" A ")
+                .pattern("BBB")
+                .pattern(" A ")
+                .define('A', Items.REDSTONE)
+                .define('B', ModItems.CABLE)
+                .unlockedBy("has_redstone", has(Items.REDSTONE))
+                .unlockedBy("has_cable", has(ModItems.CABLE)).save(pRecipeOutput);
 
         new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.VELOCIRAPTOR_TISSUE, ModItems.VELOCIRAPTOR_DNA, 1)
                 .unlockedBy("has_ampoule", has(ModItems.AMPOULE)).save(pRecipeOutput);

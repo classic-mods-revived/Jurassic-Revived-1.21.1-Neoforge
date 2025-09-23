@@ -9,6 +9,7 @@ import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.jurassicrevived.jurassicrevived.loot.ModLootModifiers;
 import net.jurassicrevived.jurassicrevived.recipe.ModRecipes;
 import net.jurassicrevived.jurassicrevived.screen.ModMenuTypes;
+import net.jurassicrevived.jurassicrevived.util.FenceClimbHandler;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -59,6 +60,8 @@ public class JRMod {
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
+
+        FenceClimbHandler.register();
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

@@ -2,8 +2,8 @@ package net.jurassicrevived.jurassicrevived.datagen;
 
 import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.block.ModBlocks;
-import net.jurassicrevived.jurassicrevived.block.custom.LowSecurityFencePoleBlock;
-import net.jurassicrevived.jurassicrevived.block.custom.LowSecurityFenceWireBlock;
+import net.jurassicrevived.jurassicrevived.block.custom.FenceWireBlock;
+import net.jurassicrevived.jurassicrevived.block.custom.FencePoleBlock;
 import net.jurassicrevived.jurassicrevived.block.custom.PipeBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -75,10 +75,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 "low_security_fence_pole",
                 "low_security_fence_pole_part",
                 "low_security_fence_pole_diagonal_part",
-                LowSecurityFencePoleBlock.NE,
-                LowSecurityFencePoleBlock.SE,
-                LowSecurityFencePoleBlock.SW,
-                LowSecurityFencePoleBlock.NW
+                FencePoleBlock.NE,
+                FencePoleBlock.SE,
+                FencePoleBlock.SW,
+                FencePoleBlock.NW
         );
 
         customFenceMultipart(
@@ -86,10 +86,32 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 "low_security_fence_wire",
                 "low_security_fence_wire_part",
                 "low_security_fence_wire_diagonal_part",
-                LowSecurityFenceWireBlock.NE,
-                LowSecurityFenceWireBlock.SE,
-                LowSecurityFenceWireBlock.SW,
-                LowSecurityFenceWireBlock.NW
+                FenceWireBlock.NE,
+                FenceWireBlock.SE,
+                FenceWireBlock.SW,
+                FenceWireBlock.NW
+        );
+
+        customFenceMultipart(
+                ModBlocks.MEDIUM_SECURITY_FENCE_POLE,
+                "medium_security_fence_pole",
+                "medium_security_fence_pole_part",
+                "medium_security_fence_pole_diagonal_part",
+                FencePoleBlock.NE,
+                FencePoleBlock.SE,
+                FencePoleBlock.SW,
+                FencePoleBlock.NW
+        );
+
+        customFenceMultipart(
+                ModBlocks.MEDIUM_SECURITY_FENCE_WIRE,
+                "medium_security_fence_wire",
+                "medium_security_fence_wire_part",
+                "medium_security_fence_wire_diagonal_part",
+                FenceWireBlock.NE,
+                FenceWireBlock.SE,
+                FenceWireBlock.SW,
+                FenceWireBlock.NW
         );
 
         pipeMultipartWithItem(ModBlocks.ITEM_PIPE, "item_pipe");

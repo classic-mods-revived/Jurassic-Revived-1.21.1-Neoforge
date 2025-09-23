@@ -9,6 +9,8 @@ import net.jurassicrevived.jurassicrevived.screen.ModMenuTypes;
 import net.jurassicrevived.jurassicrevived.screen.custom.DNAExtractorScreen;
 import net.jurassicrevived.jurassicrevived.screen.custom.FossilCleanerScreen;
 import net.jurassicrevived.jurassicrevived.screen.custom.FossilGrinderScreen;
+import net.jurassicrevived.jurassicrevived.util.FenceClimbClientHandler;
+import net.jurassicrevived.jurassicrevived.util.FenceClimbHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.api.distmarker.Dist;
@@ -42,6 +44,7 @@ public class JRModClient {
         EntityRenderers.register(ModEntities.CERATOSAURUS.get(), CeratosaurusRenderer::new);
         EntityRenderers.register(ModEntities.BRACHIOSAURUS.get(), BrachiosaurusRenderer::new);
         EntityRenderers.register(ModEntities.DILOPHOSAURUS.get(), DilophosaurusRenderer::new);
+        FenceClimbClientHandler.register();
     }
 
     @SubscribeEvent

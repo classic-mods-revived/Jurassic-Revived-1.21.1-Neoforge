@@ -37,6 +37,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.DEEPSLATE_FOSSIL.get());
         dropSelf(ModBlocks.LOW_SECURITY_FENCE_POLE.get());
         dropSelf(ModBlocks.LOW_SECURITY_FENCE_WIRE.get());
+        dropSelf(ModBlocks.MEDIUM_SECURITY_FENCE_POLE.get());
+        dropSelf(ModBlocks.MEDIUM_SECURITY_FENCE_WIRE.get());
         dropSelf(ModBlocks.ITEM_PIPE.get());
         dropSelf(ModBlocks.FLUID_PIPE.get());
         dropSelf(ModBlocks.POWER_PIPE.get());

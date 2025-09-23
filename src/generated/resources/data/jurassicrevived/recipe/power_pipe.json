@@ -3,19 +3,19 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:redstone"
     },
     "B": {
-      "item": "minecraft:iron_nugget"
+      "item": "jurassicrevived:cable"
     }
   },
   "pattern": [
     " A ",
-    " BA",
-    "B  "
+    "BBB",
+    " A "
   ],
   "result": {
-    "count": 1,
-    "id": "jurassicrevived:wrench"
+    "count": 8,
+    "id": "jurassicrevived:power_pipe"
   }
 }

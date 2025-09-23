@@ -62,10 +62,13 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> LOW_SECURITY_FENCE_POLE = registerBlock("low_security_fence_pole",
-            () -> new LowSecurityFencePoleBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion()));
-
+            () -> new FencePoleBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion().requiresCorrectToolForDrops(), FencePoleBlock.Tier.LOW));
     public static final DeferredBlock<Block> LOW_SECURITY_FENCE_WIRE = registerBlock("low_security_fence_wire",
-            () -> new LowSecurityFenceWireBlock(BlockBehaviour.Properties.of().strength(0.5F).noOcclusion()));
+            () -> new FenceWireBlock(BlockBehaviour.Properties.of().strength(0.5F).noOcclusion().requiresCorrectToolForDrops(), FenceWireBlock.Tier.LOW));
+    public static final DeferredBlock<Block> MEDIUM_SECURITY_FENCE_POLE = registerBlock("medium_security_fence_pole",
+            () -> new FencePoleBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion().requiresCorrectToolForDrops(), FencePoleBlock.Tier.MEDIUM));
+    public static final DeferredBlock<Block> MEDIUM_SECURITY_FENCE_WIRE = registerBlock("medium_security_fence_wire",
+            () -> new FenceWireBlock(BlockBehaviour.Properties.of().strength(0.5F).noOcclusion().requiresCorrectToolForDrops(), FenceWireBlock.Tier.MEDIUM));
 
 
 
