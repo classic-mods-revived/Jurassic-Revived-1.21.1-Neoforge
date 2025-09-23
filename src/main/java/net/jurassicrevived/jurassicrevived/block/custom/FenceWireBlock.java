@@ -10,6 +10,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -17,8 +19,11 @@ import net.jurassicrevived.jurassicrevived.util.FenceUpdateGuard;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 
-public class FenceWireBlock extends Block {
+public class FenceWireBlock extends Block implements SimpleWaterloggedBlock {
+
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     private static boolean beginGuard() {
         return FenceUpdateGuard.begin();
@@ -64,12 +69,13 @@ public class FenceWireBlock extends Block {
                 .setValue(SW, false)
                 .setValue(NW, false)
                 .setValue(TIER, tier.id)
+                .setValue(WATERLOGGED, false)
         );
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(NORTH, EAST, SOUTH, WEST, POWERED, NE, SE, SW, NW, TIER);
+        builder.add(NORTH, EAST, SOUTH, WEST, POWERED, NE, SE, SW, NW, TIER, WATERLOGGED);
     }
 
     @Override
@@ -77,6 +83,8 @@ public class FenceWireBlock extends Block {
         Level level = ctx.getLevel();
         BlockPos pos = ctx.getClickedPos();
         boolean powered = level.hasNeighborSignal(pos);
+        boolean waterlogged = level.getFluidState(pos).getType() == Fluids.WATER;
+
         return this.defaultBlockState()
                 .setValue(NORTH, connectsCardinalTo(level, pos, Direction.NORTH))
                 .setValue(EAST, connectsCardinalTo(level, pos, Direction.EAST))
@@ -87,12 +95,16 @@ public class FenceWireBlock extends Block {
                 .setValue(SW, canConnectDiagonally(level, pos, Direction.SOUTH, Direction.WEST))
                 .setValue(NW, canConnectDiagonally(level, pos, Direction.NORTH, Direction.WEST))
                 .setValue(POWERED, powered)
-                .setValue(TIER, tierConfig.id);
+                .setValue(TIER, tierConfig.id)
+                .setValue(WATERLOGGED, waterlogged);
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction dir, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+        if (state.getValue(WATERLOGGED)) {
+            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
         if (dir.getAxis().isHorizontal()) {
             boolean connect = connectsCardinalTo(level, pos, dir);
             state = state.setValue(propertyFor(dir), connect);
@@ -103,6 +115,11 @@ public class FenceWireBlock extends Block {
                 .setValue(SW, canConnectDiagonally(level, pos, Direction.SOUTH, Direction.WEST))
                 .setValue(NW, canConnectDiagonally(level, pos, Direction.NORTH, Direction.WEST));
         return state;
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override

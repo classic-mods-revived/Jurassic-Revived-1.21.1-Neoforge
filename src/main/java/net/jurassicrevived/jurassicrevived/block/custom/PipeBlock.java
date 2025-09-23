@@ -30,10 +30,15 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 // Replace Forge capability import with NeoForge
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import javax.annotation.Nullable;
 
-public class PipeBlock extends Block implements EntityBlock {
+public class PipeBlock extends Block implements EntityBlock, SimpleWaterloggedBlock {
 
     public enum Transport {
         ITEMS, FLUIDS, ENERGY
@@ -59,6 +64,7 @@ public class PipeBlock extends Block implements EntityBlock {
     public static final EnumProperty<ConnectionType> SOUTH = EnumProperty.create("south", ConnectionType.class);
     public static final EnumProperty<ConnectionType> WEST = EnumProperty.create("west", ConnectionType.class);
     public static final EnumProperty<ConnectionType> EAST = EnumProperty.create("east", ConnectionType.class);
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     private final Transport transport;
 
@@ -88,6 +94,7 @@ public class PipeBlock extends Block implements EntityBlock {
                         .setValue(SOUTH, ConnectionType.NONE)
                         .setValue(WEST, ConnectionType.NONE)
                         .setValue(EAST, ConnectionType.NONE)
+                        .setValue(WATERLOGGED, false)
         );
     }
 
@@ -97,7 +104,7 @@ public class PipeBlock extends Block implements EntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(DOWN, UP, NORTH, SOUTH, WEST, EAST);
+        builder.add(DOWN, UP, NORTH, SOUTH, WEST, EAST, WATERLOGGED);
     }
 
     @Nullable
@@ -108,7 +115,8 @@ public class PipeBlock extends Block implements EntityBlock {
         }
         Level level = ctx.getLevel();
         BlockPos pos = ctx.getClickedPos();
-        BlockState state = this.defaultBlockState();
+        BlockState state = this.defaultBlockState()
+                .setValue(WATERLOGGED, level.getFluidState(pos).getType() == Fluids.WATER);
         for (Direction dir : Direction.values()) {
             state = setConnectionForDirection(level, pos, state, dir);
         }
@@ -116,8 +124,17 @@ public class PipeBlock extends Block implements EntityBlock {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+        if (state.getValue(WATERLOGGED)) {
+            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
         return setConnectionForDirection(level, pos, state, direction);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
