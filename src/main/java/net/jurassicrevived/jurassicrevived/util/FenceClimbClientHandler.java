@@ -1,6 +1,5 @@
 package net.jurassicrevived.jurassicrevived.util;
 
-import net.jurassicrevived.jurassicrevived.block.custom.FenceWireBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -28,7 +27,6 @@ public final class FenceClimbClientHandler {
             var pos = new BlockPos(x,y,z);
             var state = level.getBlockState(pos);
 
-            // Accept FenceWireBlock OR FencePoleBlock
             boolean isWire = state.getBlock() instanceof net.jurassicrevived.jurassicrevived.block.custom.FenceWireBlock;
             boolean isPole = state.getBlock() instanceof net.jurassicrevived.jurassicrevived.block.custom.FencePoleBlock;
             if (!isWire && !isPole) continue;
@@ -36,9 +34,7 @@ public final class FenceClimbClientHandler {
             var shape = state.getCollisionShape(level, pos, net.minecraft.world.phys.shapes.CollisionContext.of(player));
             if (shape.isEmpty()) continue;
 
-            // For poles: ignore center post; only consider arms/diagonals by subtracting the POST box
             if (isPole) {
-                // Inline center-post AABB: (6..10, 0..16, 6..10) in 1/16th units
                 var postAabbWorld = new net.minecraft.world.phys.AABB(
                     pos.getX() + 6 / 16.0, pos.getY() + 0.0,       pos.getZ() + 6 / 16.0,
                     pos.getX() + 10 / 16.0, pos.getY() + 16 / 16.0, pos.getZ() + 10 / 16.0
@@ -47,11 +43,12 @@ public final class FenceClimbClientHandler {
                     var moved = aabb.move(pos.getX(), pos.getY(), pos.getZ());
                     // Skip if this sub-box is the center post (approx equals)
                     if (approximatelySame(moved, postAabbWorld)) continue;
-                    if (bb.intersects(moved)) { touching = true; break outer; }
+                    if (bb.intersects(moved) && notStandingOnTop(bb, moved)) { touching = true; break outer; }
                 }
             } else {
                 for (var aabb : shape.toAabbs()) {
-                    if (bb.intersects(aabb.move(pos.getX(), pos.getY(), pos.getZ()))) { touching = true; break outer; }
+                    var moved = aabb.move(pos.getX(), pos.getY(), pos.getZ());
+                    if (bb.intersects(moved) && notStandingOnTop(bb, moved)) { touching = true; break outer; }
                 }
             }
         }
@@ -80,7 +77,6 @@ public final class FenceClimbClientHandler {
         player.hasImpulse = true;
     }
 
-    // Treat two AABBs as the same center post if they are very close numerically
     private static boolean approximatelySame(net.minecraft.world.phys.AABB a, net.minecraft.world.phys.AABB b) {
         double eps = 1e-6;
         return Math.abs(a.minX - b.minX) < eps &&
@@ -89,5 +85,10 @@ public final class FenceClimbClientHandler {
                Math.abs(a.maxX - b.maxX) < eps &&
                Math.abs(a.maxY - b.maxY) < eps &&
                Math.abs(a.maxZ - b.maxZ) < eps;
+    }
+
+    private static boolean notStandingOnTop(net.minecraft.world.phys.AABB player, net.minecraft.world.phys.AABB block) {
+        double eps = 0.05;
+        return !(player.minY >= block.maxY - eps && player.minY <= block.maxY + eps);
     }
 }
