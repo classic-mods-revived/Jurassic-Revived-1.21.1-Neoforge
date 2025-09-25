@@ -1,6 +1,7 @@
 package net.jurassicrevived.jurassicrevived.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import net.jurassicrevived.jurassicrevived.Config;
 import net.jurassicrevived.jurassicrevived.block.entity.custom.GeneratorBlockEntity;
 import net.jurassicrevived.jurassicrevived.block.entity.custom.ModBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -87,6 +88,9 @@ public class GeneratorBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
+        if (!Config.REQUIRE_POWER) {
+            return null;
+        }
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
