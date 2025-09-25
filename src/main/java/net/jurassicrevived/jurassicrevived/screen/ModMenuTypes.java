@@ -4,6 +4,7 @@ import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.screen.custom.DNAExtractorMenu;
 import net.jurassicrevived.jurassicrevived.screen.custom.FossilCleanerMenu;
 import net.jurassicrevived.jurassicrevived.screen.custom.FossilGrinderMenu;
+import net.jurassicrevived.jurassicrevived.screen.custom.GeneratorMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -17,6 +18,8 @@ public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(Registries.MENU, JRMod.MOD_ID);
 
+    public static final DeferredHolder<MenuType<?>, MenuType<GeneratorMenu>> GENERATOR_MENU =
+            registerMenuType("generator_menu", GeneratorMenu::new);
     public static final DeferredHolder<MenuType<?>, MenuType<DNAExtractorMenu>> DNA_EXTRACTOR_MENU =
             registerMenuType("dna_extractor_menu", DNAExtractorMenu::new);
     public static final DeferredHolder<MenuType<?>, MenuType<FossilGrinderMenu>> FOSSIL_GRINDER_MENU =

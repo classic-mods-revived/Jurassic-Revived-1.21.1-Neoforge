@@ -52,6 +52,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.REINFORCED_STONE_BRICKS);
 
         horizontalFacingWithItem(ModBlocks.CAT_PLUSHIE);
+
+        horizontalFacingWithItem(ModBlocks.GENERATOR);
         horizontalFacingWithItem(ModBlocks.DNA_EXTRACTOR);
         horizontalFacingWithItem(ModBlocks.FOSSIL_GRINDER);
         horizontalFacingWithItem(ModBlocks.FOSSIL_CLEANER);

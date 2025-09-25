@@ -32,6 +32,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> POWER_PIPE = registerBlock("power_pipe",
             () -> new PipeBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion(), PipeBlock.Transport.ENERGY));
 
+    public static final DeferredBlock<Block> GENERATOR = registerBlock("generator",
+            () -> new GeneratorBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
     public static final DeferredBlock<Block> DNA_EXTRACTOR = registerBlock("dna_extractor",
             () -> new DNAExtractorBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
     public static final DeferredBlock<Block> FOSSIL_GRINDER = registerBlock("fossil_grinder",

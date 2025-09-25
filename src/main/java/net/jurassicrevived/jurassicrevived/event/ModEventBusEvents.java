@@ -1,10 +1,7 @@
 package net.jurassicrevived.jurassicrevived.event;
 
 import net.jurassicrevived.jurassicrevived.JRMod;
-import net.jurassicrevived.jurassicrevived.block.entity.custom.DNAExtractorBlockEntity;
-import net.jurassicrevived.jurassicrevived.block.entity.custom.FossilCleanerBlockEntity;
-import net.jurassicrevived.jurassicrevived.block.entity.custom.FossilGrinderBlockEntity;
-import net.jurassicrevived.jurassicrevived.block.entity.custom.ModBlockEntities;
+import net.jurassicrevived.jurassicrevived.block.entity.custom.*;
 import net.jurassicrevived.jurassicrevived.entity.ModEntities;
 import net.jurassicrevived.jurassicrevived.entity.custom.VelociraptorEntity;
 import net.jurassicrevived.jurassicrevived.entity.custom.BrachiosaurusEntity;
@@ -21,6 +18,8 @@ public class ModEventBusEvents {
 
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.GENERATOR_BE.get(), GeneratorBlockEntity::getEnergyStorage);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.GENERATOR_BE.get(), GeneratorBlockEntity::getItemHandler);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.DNA_EXTRACTOR_BE.get(), DNAExtractorBlockEntity::getItemHandler);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.FOSSIL_GRINDER_BE.get(), FossilGrinderBlockEntity::getItemHandler);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.FOSSIL_CLEANER_BE.get(), FossilCleanerBlockEntity::getItemHandler);

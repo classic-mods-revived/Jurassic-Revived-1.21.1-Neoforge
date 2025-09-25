@@ -35,6 +35,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.LOW_SECURITY_FENCE_WIRE.get())
                 .add(ModBlocks.MEDIUM_SECURITY_FENCE_POLE.get())
                 .add(ModBlocks.MEDIUM_SECURITY_FENCE_WIRE.get())
+                .add(ModBlocks.GENERATOR.get())
                 .add(ModBlocks.DNA_EXTRACTOR.get())
                 .add(ModBlocks.FOSSIL_CLEANER.get())
                 .add(ModBlocks.FOSSIL_GRINDER.get());

@@ -57,6 +57,7 @@ public class ModCreativeModeTabs {
                         // Hide power pipe if power is disabled
                         if (Config.REQUIRE_POWER) {
                             pOutput.accept(ModBlocks.POWER_PIPE);
+                            pOutput.accept(ModBlocks.GENERATOR);
                         }
 
                         pOutput.accept(ModBlocks.DNA_EXTRACTOR);

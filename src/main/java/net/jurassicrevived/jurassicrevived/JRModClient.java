@@ -9,6 +9,7 @@ import net.jurassicrevived.jurassicrevived.screen.ModMenuTypes;
 import net.jurassicrevived.jurassicrevived.screen.custom.DNAExtractorScreen;
 import net.jurassicrevived.jurassicrevived.screen.custom.FossilCleanerScreen;
 import net.jurassicrevived.jurassicrevived.screen.custom.FossilGrinderScreen;
+import net.jurassicrevived.jurassicrevived.screen.custom.GeneratorScreen;
 import net.jurassicrevived.jurassicrevived.util.FenceClimbClientHandler;
 import net.jurassicrevived.jurassicrevived.util.FenceClimbHandler;
 import net.minecraft.client.Minecraft;
@@ -49,6 +50,7 @@ public class JRModClient {
 
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(ModMenuTypes.GENERATOR_MENU.get(), GeneratorScreen::new);
         event.register(ModMenuTypes.DNA_EXTRACTOR_MENU.get(), DNAExtractorScreen::new);
         event.register(ModMenuTypes.FOSSIL_GRINDER_MENU.get(), FossilGrinderScreen::new);
         event.register(ModMenuTypes.FOSSIL_CLEANER_MENU.get(), FossilCleanerScreen::new);
