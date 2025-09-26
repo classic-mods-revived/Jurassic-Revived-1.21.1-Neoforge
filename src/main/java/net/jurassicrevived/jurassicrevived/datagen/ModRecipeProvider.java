@@ -11,7 +11,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
@@ -157,6 +156,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
                 .unlockedBy("has_redstone", has(Items.REDSTONE)).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GENERATOR.get(), 1)
+                        .pattern("ABA")
+                        .pattern("CDE")
+                        .pattern("ABA")
+                        .define('A', Blocks.IRON_BLOCK)
+                        .define('B', ModItems.CABLE)
+                        .define('C', Blocks.REDSTONE_BLOCK)
+                        .define('D', ModItems.PROCESSOR)
+                        .define('E', Items.COPPER_INGOT)
+                        .unlockedBy("has_iron_block", has(Blocks.IRON_BLOCK))
+                        .unlockedBy("has_cable", has(ModItems.CABLE))
+                        .unlockedBy("has_redstone_block", has(Blocks.REDSTONE_BLOCK))
+                        .unlockedBy("has_processor", has(ModItems.PROCESSOR))
+                        .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DNA_EXTRACTOR.get(), 1)
                 .pattern("AAA")
                 .pattern("BCD")
@@ -219,14 +233,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_water_bucket", has(Items.WATER_BUCKET))
                 .unlockedBy("has_cable", has(ModItems.CABLE)).save(pRecipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.POWER_PIPE.get(), 8)
-                .pattern(" A ")
-                .pattern("BBB")
-                .pattern(" A ")
-                .define('A', Items.REDSTONE)
-                .define('B', ModItems.CABLE)
-                .unlockedBy("has_redstone", has(Items.REDSTONE))
-                .unlockedBy("has_cable", has(ModItems.CABLE)).save(pRecipeOutput);
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.POWER_PIPE.get(), 8)
+                        .pattern(" A ")
+                        .pattern("BBB")
+                        .pattern(" A ")
+                        .define('A', Items.REDSTONE)
+                        .define('B', ModItems.CABLE)
+                        .unlockedBy("has_redstone", has(Items.REDSTONE))
+                        .unlockedBy("has_cable", has(ModItems.CABLE)).save(pRecipeOutput);
 
         new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.VELOCIRAPTOR_TISSUE, ModItems.VELOCIRAPTOR_DNA, 1)
                 .unlockedBy("has_ampoule", has(ModItems.AMPOULE)).save(pRecipeOutput);
@@ -318,7 +332,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_stone_fossil_block", has(ModBlocks.STONE_FOSSIL)).save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "random_fossil_from_stone_fossil_from_fossil_cleaning"));
         FossilCleaningRecipeBuilder.randomFossil(ModBlocks.DEEPSLATE_FOSSIL, ModItems.VELOCIRAPTOR_SKULL_FOSSIL.get(), 1)
                 .unlockedBy("has_deepslate_fossil_block", has(ModBlocks.DEEPSLATE_FOSSIL)).save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "random_fossil_from_deepslate_fossil_from_fossil_cleaning"));
-
     }
 
     protected static void oreSmelting(RecipeOutput pRecipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,
