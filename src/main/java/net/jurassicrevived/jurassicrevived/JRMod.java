@@ -2,6 +2,7 @@ package net.jurassicrevived.jurassicrevived;
 
 import net.jurassicrevived.jurassicrevived.block.ModBlocks;
 import net.jurassicrevived.jurassicrevived.block.entity.custom.ModBlockEntities;
+import net.jurassicrevived.jurassicrevived.datagen.custom.ConfigCondition;
 import net.jurassicrevived.jurassicrevived.entity.ModEntities;
 import net.jurassicrevived.jurassicrevived.event.FenceDiagonalUpdateHandler;
 import net.jurassicrevived.jurassicrevived.item.ModCreativeModeTabs;
@@ -72,6 +73,8 @@ public class JRMod {
         NeoForge.EVENT_BUS.addListener(FenceDiagonalUpdateHandler::onNeighborNotify);
         NeoForge.EVENT_BUS.addListener(FenceDiagonalUpdateHandler::onEntityPlace);
         NeoForge.EVENT_BUS.addListener(FenceDiagonalUpdateHandler::onBreak);
+
+        ConfigCondition.register(modEventBus);
 
     }
 

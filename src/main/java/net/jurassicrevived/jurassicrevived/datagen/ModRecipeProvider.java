@@ -2,6 +2,7 @@ package net.jurassicrevived.jurassicrevived.datagen;
 
 import net.jurassicrevived.jurassicrevived.JRMod;
 import net.jurassicrevived.jurassicrevived.block.ModBlocks;
+import net.jurassicrevived.jurassicrevived.datagen.custom.ConfigCondition;
 import net.jurassicrevived.jurassicrevived.datagen.custom.DNAExtractingRecipeBuilder;
 import net.jurassicrevived.jurassicrevived.datagen.custom.FossilCleaningRecipeBuilder;
 import net.jurassicrevived.jurassicrevived.datagen.custom.FossilGrindingRecipeBuilder;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.List;
@@ -28,6 +30,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput pRecipeOutput) {
+
+        ICondition requirePowerCondition = new ConfigCondition();
+
         List<ItemLike> GYPSUM_SMELTABLES = List.of(ModBlocks.GYPSUM_COBBLESTONE);
 
         oreSmelting(pRecipeOutput, GYPSUM_SMELTABLES, RecipeCategory.MISC, ModBlocks.GYPSUM_STONE, 0.25f, 200, "and_gypsum_stone");
@@ -169,7 +174,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         .unlockedBy("has_cable", has(ModItems.CABLE))
                         .unlockedBy("has_redstone_block", has(Blocks.REDSTONE_BLOCK))
                         .unlockedBy("has_processor", has(ModItems.PROCESSOR))
-                        .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT)).save(pRecipeOutput);
+                        .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .save(pRecipeOutput.withConditions(requirePowerCondition));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DNA_EXTRACTOR.get(), 1)
                 .pattern("AAA")
@@ -240,7 +246,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         .define('A', Items.REDSTONE)
                         .define('B', ModItems.CABLE)
                         .unlockedBy("has_redstone", has(Items.REDSTONE))
-                        .unlockedBy("has_cable", has(ModItems.CABLE)).save(pRecipeOutput);
+                        .unlockedBy("has_cable", has(ModItems.CABLE))
+                        .save(pRecipeOutput.withConditions(requirePowerCondition));
 
         new DNAExtractingRecipeBuilder(ModItems.AMPOULE, ModItems.VELOCIRAPTOR_TISSUE, ModItems.VELOCIRAPTOR_DNA, 1)
                 .unlockedBy("has_ampoule", has(ModItems.AMPOULE)).save(pRecipeOutput);

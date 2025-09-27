@@ -1,4 +1,9 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "jurassicrevived:require_power"
+    }
+  ],
   "parent": "minecraft:recipes/root",
   "criteria": {
     "has_cable": {
