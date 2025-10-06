@@ -1,5 +1,7 @@
 package net.jurassicrevived.jurassicrevived.block.entity.custom;
 
+import net.jurassicrevived.jurassicrevived.Config;
+import net.jurassicrevived.jurassicrevived.block.entity.energy.ModEnergyStorage;
 import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.jurassicrevived.jurassicrevived.recipe.*;
 import net.jurassicrevived.jurassicrevived.screen.custom.FossilGrinderMenu;
@@ -10,7 +12,11 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
@@ -24,6 +30,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -72,6 +79,29 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
     private int progress = 0;
     private int maxProgress = 200;
     private final int DEFAULT_MAX_PROGRESS = 200;
+
+    private static final float ENERGY_TRANSFER_RATE = (float) Config.fePerSecond / 20f;
+
+    private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
+    private ModEnergyStorage createEnergyStorage() {
+        if (Config.REQUIRE_POWER) {
+            return new ModEnergyStorage(16000, (int) ENERGY_TRANSFER_RATE) {
+                @Override
+                public void onEnergyChanged() {
+                    setChanged();
+                    if (getLevel() != null) {
+                        getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                    }
+                }
+            };
+        }
+        return null;
+    }
+
+    public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
+        if (Config.REQUIRE_POWER) {return this.ENERGY_STORAGE;}
+        return null;
+    }
 
     public FossilGrinderBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.FOSSIL_GRINDER_BE.get(), pos, blockState);
@@ -175,7 +205,9 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
         tag.put("inventory", itemHandler.serializeNBT(registries));
         tag.putInt("fossil_grinder.progress", this.progress);
         tag.putInt("fossil_grinder.max_progress", this.maxProgress);
-
+        if (Config.REQUIRE_POWER) {
+            tag.putInt("fossil_grinder.energy", this.ENERGY_STORAGE.getEnergyStored());
+        }
         super.saveAdditional(tag, registries);
     }
 
@@ -185,6 +217,9 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
         itemHandler.deserializeNBT(registries, tag.getCompound("inventory"));
         progress = tag.getInt("fossil_grinder.progress");
         maxProgress = tag.getInt("fossil_grinder.max_progress");
+        if (Config.REQUIRE_POWER) {
+            this.ENERGY_STORAGE.setEnergy(tag.getInt("fossil_grinder.energy"));
+        }
     }
 
     public void drops() {
@@ -196,6 +231,10 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
+        if (Config.REQUIRE_POWER) {
+            pullEnergyFromNeighbors();
+        }
+
         // If no recipe is available right now, fully reset (including the locked choice)
         Optional<RecipeHolder<FossilGrinderRecipe>> recipeOpt = getCurrentRecipe();
         if (recipeOpt.isEmpty()) {
@@ -224,6 +263,11 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
                 && canInsertAmountIntoOutputSlot(prospectiveOutput);
 
         if (!prospectiveOutput.isEmpty() && canOutputNow) {
+            if (Config.REQUIRE_POWER && !consumeEnergyPerTick(64)) {
+                // Not enough energy to continue; don't advance progress but keep state
+                setChanged(level, pos, state);
+                return;
+            }
             increaseCraftingProgress();
             setChanged(level, pos, state);
 
@@ -237,6 +281,45 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
         } else {
             // Can't progress right now (e.g., outputs blocked) – keep lockedOutput so we don't reroll
             resetProgress();
+        }
+    }
+
+    private void pullEnergyFromNeighbors() {
+        if (!Config.REQUIRE_POWER) return;
+        if (level == null) return;
+
+        int capacityLeft = this.ENERGY_STORAGE.getMaxEnergyStored() - this.ENERGY_STORAGE.getEnergyStored();
+        if (capacityLeft <= 0) return;
+
+        int remaining = Math.min((int) ENERGY_TRANSFER_RATE, capacityLeft);
+        if (remaining <= 0) return;
+
+        for (Direction dir : Direction.values()) {
+            if (remaining <= 0) break;
+
+            BlockPos neighborPos = worldPosition.relative(dir);
+            var source = level.getCapability(net.neoforged.neoforge.capabilities.Capabilities.EnergyStorage.BLOCK, neighborPos, dir.getOpposite());
+            if (source == null) {
+                source = level.getCapability(net.neoforged.neoforge.capabilities.Capabilities.EnergyStorage.BLOCK, neighborPos, null);
+            }
+            if (source == null) continue;
+
+            int canExtract = source.extractEnergy(remaining, true);
+            if (canExtract <= 0) continue;
+
+            int canAccept = this.ENERGY_STORAGE.receiveEnergy(canExtract, true);
+            if (canAccept <= 0) continue;
+
+            int actuallyExtracted = source.extractEnergy(canAccept, false);
+            if (actuallyExtracted <= 0) continue;
+
+            int actuallyAccepted = this.ENERGY_STORAGE.receiveEnergy(actuallyExtracted, false);
+            if (actuallyAccepted < actuallyExtracted) {
+                // return overflow to the source (best-effort)
+                source.receiveEnergy(actuallyExtracted - actuallyAccepted, false);
+            }
+
+            remaining -= actuallyAccepted;
         }
     }
 
@@ -411,5 +494,25 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
         return saveWithoutMetadata(registries);
+    }
+
+    @Override
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
+        super.onDataPacket(net, pkt, lookupProvider);
+    }
+
+    @Override
+    public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    // Consume a fixed amount of FE this tick if available; returns true if deducted
+    private boolean consumeEnergyPerTick(int fe) {
+        if (fe <= 0) return true;
+        if (ENERGY_STORAGE.getEnergyStored() >= fe) {
+            ENERGY_STORAGE.extractEnergy(fe, false);
+            return true;
+        }
+        return false;
     }
 }

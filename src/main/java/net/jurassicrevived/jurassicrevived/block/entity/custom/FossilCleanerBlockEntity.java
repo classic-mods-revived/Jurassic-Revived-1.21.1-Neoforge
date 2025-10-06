@@ -1,6 +1,8 @@
 package net.jurassicrevived.jurassicrevived.block.entity.custom;
 
+import net.jurassicrevived.jurassicrevived.Config;
 import net.jurassicrevived.jurassicrevived.block.ModBlocks;
+import net.jurassicrevived.jurassicrevived.block.entity.energy.ModEnergyStorage;
 import net.jurassicrevived.jurassicrevived.item.ModItems;
 import net.jurassicrevived.jurassicrevived.recipe.FossilCleanerRecipe;
 import net.jurassicrevived.jurassicrevived.recipe.FossilCleanerRecipeInput;
@@ -31,6 +33,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
@@ -101,6 +104,29 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
     private int progress = 0;
     private int maxProgress = 200;
     private int DEFAULT_MAX_PROGRESS = 200;
+
+    private static final float ENERGY_TRANSFER_RATE = (float) Config.fePerSecond / 20f;
+
+    private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
+    private ModEnergyStorage createEnergyStorage() {
+        if (Config.REQUIRE_POWER) {
+            return new ModEnergyStorage(16000, (int) ENERGY_TRANSFER_RATE) {
+                @Override
+                public void onEnergyChanged() {
+                    setChanged();
+                    if (getLevel() != null) {
+                        getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                    }
+                }
+            };
+        }
+        return null;
+    }
+
+    public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
+        if (Config.REQUIRE_POWER) {return this.ENERGY_STORAGE;}
+        return null;
+    }
 
     private static final int WATER_CRAFT_AMOUNT = 250;
 
@@ -327,7 +353,9 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
         tag.put("inventory", itemHandler.serializeNBT(registries));
         tag.putInt("fossil_cleaner.progress", this.progress);
         tag.putInt("fossil_cleaner.max_progress", this.maxProgress);
-
+        if (Config.REQUIRE_POWER) {
+            tag.putInt("fossil_cleaner.energy", this.ENERGY_STORAGE.getEnergyStored());
+        }
         tag = FLUID_TANK.writeToNBT(registries, tag);
 
         super.saveAdditional(tag, registries);
@@ -339,7 +367,9 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
         itemHandler.deserializeNBT(registries, tag.getCompound("inventory"));
         progress = tag.getInt("fossil_cleaner.progress");
         maxProgress = tag.getInt("fossil_cleaner.max_progress");
-
+        if (Config.REQUIRE_POWER) {
+            this.ENERGY_STORAGE.setEnergy(tag.getInt("fossil_cleaner.energy"));
+        }
         FLUID_TANK.readFromNBT(registries, tag);
     }
 
@@ -352,6 +382,10 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
+        if (Config.REQUIRE_POWER) {
+            pullEnergyFromNeighbors();
+        }
+
         // Only run server-side logic
         if (level.isClientSide) {
             return;
@@ -392,6 +426,12 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
         boolean hasWaterForCraft = hasEnoughFluidToCraft();
 
         if (!prospectiveOutput.isEmpty() && canOutputNow && hasWaterForCraft) {
+            // Consume 64 FE per tick while crafting; pause if not enough energy
+            if (Config.REQUIRE_POWER && !consumeEnergyPerTick(64)) {
+                // Not enough energy to continue; don't advance progress but keep state
+                setChanged(level, pos, state);
+                return;
+            }
             increaseCraftingProgress();
             setChanged(level, pos, state);
 
@@ -406,6 +446,45 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
         } else {
             // Can't progress right now (e.g., outputs blocked or no water) – keep lockedOutput so we don't reroll
             resetProgress();
+        }
+    }
+
+    private void pullEnergyFromNeighbors() {
+        if (!Config.REQUIRE_POWER) return;
+        if (level == null) return;
+
+        int capacityLeft = this.ENERGY_STORAGE.getMaxEnergyStored() - this.ENERGY_STORAGE.getEnergyStored();
+        if (capacityLeft <= 0) return;
+
+        int remaining = Math.min((int) ENERGY_TRANSFER_RATE, capacityLeft);
+        if (remaining <= 0) return;
+
+        for (Direction dir : Direction.values()) {
+            if (remaining <= 0) break;
+
+            BlockPos neighborPos = worldPosition.relative(dir);
+            var source = level.getCapability(net.neoforged.neoforge.capabilities.Capabilities.EnergyStorage.BLOCK, neighborPos, dir.getOpposite());
+            if (source == null) {
+                source = level.getCapability(net.neoforged.neoforge.capabilities.Capabilities.EnergyStorage.BLOCK, neighborPos, null);
+            }
+            if (source == null) continue;
+
+            int canExtract = source.extractEnergy(remaining, true);
+            if (canExtract <= 0) continue;
+
+            int canAccept = this.ENERGY_STORAGE.receiveEnergy(canExtract, true);
+            if (canAccept <= 0) continue;
+
+            int actuallyExtracted = source.extractEnergy(canAccept, false);
+            if (actuallyExtracted <= 0) continue;
+
+            int actuallyAccepted = this.ENERGY_STORAGE.receiveEnergy(actuallyExtracted, false);
+            if (actuallyAccepted < actuallyExtracted) {
+                // return overflow to the source (best-effort)
+                source.receiveEnergy(actuallyExtracted - actuallyAccepted, false);
+            }
+
+            remaining -= actuallyAccepted;
         }
     }
 
@@ -662,5 +741,13 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
         return false;
     }
 
-
+    // Consume a fixed amount of FE this tick if available; returns true if deducted
+    private boolean consumeEnergyPerTick(int fe) {
+        if (fe <= 0) return true;
+        if (ENERGY_STORAGE.getEnergyStored() >= fe) {
+            ENERGY_STORAGE.extractEnergy(fe, false);
+            return true;
+        }
+        return false;
+    }
 }
