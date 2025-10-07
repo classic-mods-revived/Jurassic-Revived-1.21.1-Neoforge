@@ -354,6 +354,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_stone_fossil_block", has(ModBlocks.STONE_FOSSIL)).save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "random_fossil_from_stone_fossil_from_fossil_cleaning"));
         FossilCleaningRecipeBuilder.randomFossil(ModBlocks.DEEPSLATE_FOSSIL, ModItems.VELOCIRAPTOR_SKULL_FOSSIL.get(), 1)
                 .unlockedBy("has_deepslate_fossil_block", has(ModBlocks.DEEPSLATE_FOSSIL)).save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "random_fossil_from_deepslate_fossil_from_fossil_cleaning"));
+
+        new net.cmr.jurassicrevived.datagen.custom.DNAHybridizingRecipeBuilder(
+                ModItems.TYRANNOSAURUS_REX_DNA.get(),
+                ModItems.VELOCIRAPTOR_DNA.get(),
+                ModItems.CERATOSAURUS_DNA.get(),
+                ModItems.INDOMINUS_REX_DNA.get(),
+                1
+        ).unlockedBy("has_dna", has(ModTags.Items.DNA)).save(pRecipeOutput);
+
     }
 
     protected static void oreSmelting(RecipeOutput pRecipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,

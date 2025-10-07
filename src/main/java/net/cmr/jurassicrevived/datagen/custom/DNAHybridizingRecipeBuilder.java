@@ -15,32 +15,20 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DNAHybridizingRecipeBuilder {
-    // Keep ItemLike references so we can construct Ingredients
     private java.util.Optional<ItemLike> firstItem = java.util.Optional.empty();
     private java.util.Optional<ItemLike> secondItem = java.util.Optional.empty();
+    private java.util.Optional<ItemLike> thirdItem = java.util.Optional.empty();
     private java.util.Optional<Item> resultItem = java.util.Optional.empty();
     private final int count;
     private final Map<String, Criterion<?>> criteria;
-    private final Map<ResourceLocation, Integer> weights = new java.util.HashMap<>();
 
-    public DNAHybridizingRecipeBuilder(ItemLike ingredient, ItemLike secondIngredient, ItemLike result, int count) {
-        this.firstItem = java.util.Optional.of(ingredient);
-        this.secondItem = java.util.Optional.of(secondIngredient);
+    public DNAHybridizingRecipeBuilder(ItemLike ingredientA, ItemLike ingredientB, ItemLike ingredientC, ItemLike result, int count) {
+        this.firstItem = java.util.Optional.of(ingredientA);
+        this.secondItem = java.util.Optional.of(ingredientB);
+        this.thirdItem = java.util.Optional.of(ingredientC);
         this.resultItem = java.util.Optional.of(result.asItem());
         this.count = count;
         this.criteria = new LinkedHashMap();
-    }
-
-    public static DNAHybridizingRecipeBuilder amberRandomDNAUniform(ItemLike ampoule, ItemLike amber, ItemLike placeholderResult, int count) {
-        return new DNAHybridizingRecipeBuilder(ampoule, amber, placeholderResult, count);
-    }
-
-    public DNAHybridizingRecipeBuilder addDNAWeight(ItemLike dnaItem, int weight) {
-        ResourceLocation id = BuiltInRegistries.ITEM.getKey(dnaItem.asItem());
-        if (id != null) {
-            weights.put(id, weight);
-        }
-        return this;
     }
 
     public void save(RecipeOutput output) {
@@ -53,14 +41,13 @@ public class DNAHybridizingRecipeBuilder {
     }
 
     public void save(RecipeOutput output, ResourceLocation recipeId) {
-        // Build Ingredients and Result
         NonNullList<Ingredient> inputs = NonNullList.create();
         inputs.add(Ingredient.of(firstItem.orElseThrow()));
         inputs.add(Ingredient.of(secondItem.orElseThrow()));
+        inputs.add(Ingredient.of(thirdItem.orElseThrow()));
         ItemStack result = new ItemStack(resultItem.orElseThrow(), this.count);
 
-        // Construct the runtime recipe and hand it to RecipeOutput
-        DNAHybridizerRecipe recipe = new DNAHybridizerRecipe(inputs, result, Map.copyOf(this.weights));
+        DNAHybridizerRecipe recipe = new DNAHybridizerRecipe(inputs, result);
 
         AdvancementHolder advancementHolder = null;
         if (!this.criteria.isEmpty()) {

@@ -113,32 +113,7 @@ public class DNAHybridizerRecipeCategory implements IRecipeCategory<DNAHybridize
         builder.addSlot(RecipeIngredientRole.INPUT, 57, 44).addIngredients(recipe.getIngredients().get(1));
         builder.addSlot(RecipeIngredientRole.INPUT, 57, 62).addIngredients(recipe.getIngredients().get(2));
 
-        ItemStack amber = new ItemStack(ModItems.MOSQUITO_IN_AMBER.get());
-        boolean isMosquitoRecipe = recipe.getIngredients().size() > 1 && recipe.getIngredients().get(1).test(amber);
-
-        if (isMosquitoRecipe) {
-            var level = Minecraft.getInstance().level;
-            if (level != null) {
-                var itemRegistry = level.registryAccess().registryOrThrow(Registries.ITEM);
-                var dnaTagOpt = itemRegistry.getTag(ModTags.Items.DNA);
-                List<ItemStack> dnaOutputs = dnaTagOpt.map(holderSet ->
-                        holderSet.stream()
-                                .map(h -> new ItemStack(h.value(), Math.max(1, recipe.getResultItem(null).getCount())))
-                                .collect(java.util.stream.Collectors.toList())
-                ).orElse(List.of());
-
-                var slot = builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStacks(dnaOutputs);
-                slot.addRichTooltipCallback((view, tooltip) -> {
-                    var opt = view.getDisplayedItemStack();
-                    if (opt.isPresent()) {
-                        int weight = recipe.getWeightFor(opt.get().getItem());
-                        tooltip.add(Component.literal("Weight: " + weight));
-                    }
-                });
-                return;
-            }
-        }
-
+        // Simple single fixed output, no randomization/weights
         builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStack(recipe.getResultItem(null));
     }
 }
