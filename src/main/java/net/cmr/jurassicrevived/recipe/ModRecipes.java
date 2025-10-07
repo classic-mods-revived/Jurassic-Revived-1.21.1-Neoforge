@@ -43,6 +43,15 @@ public class ModRecipes {
                     return "fossil_cleaning";
                 }
             });
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<DNAHybridizerRecipe>> DNA_HYBRIDIZER_SERIALIZER =
+            SERIALIZERS.register("dna_hybridizing", DNAHybridizerRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<DNAHybridizerRecipe>> DNA_HYBRIDIZER_RECIPE_TYPE =
+            TYPES.register("dna_hybridizing", () -> new RecipeType<DNAHybridizerRecipe>() {
+                @Override
+                public String toString() {
+                    return "dna_hybridizing";
+                }
+            });
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

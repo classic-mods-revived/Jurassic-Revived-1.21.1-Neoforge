@@ -216,6 +216,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
                 .unlockedBy("has_glass", has(Blocks.GLASS)).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DNA_HYBRIDIZER.get(), 1)
+                .pattern("ABA")
+                .pattern("CDC")
+                .pattern("BEB")
+                .define('A', ModItems.SCREEN)
+                .define('B', Items.IRON_INGOT)
+                .define('C', ModItems.CABLE)
+                .define('D', ModItems.PROCESSOR)
+                .define('E', Items.REDSTONE)
+                .unlockedBy("has_screen", has(ModItems.SCREEN))
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .unlockedBy("has_cable", has(ModItems.CABLE))
+                .unlockedBy("has_processor", has(ModItems.PROCESSOR))
+                .unlockedBy("has_redstone", has(Items.REDSTONE)).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.WRENCH.get(), 1)
                 .pattern(" A ")
                 .pattern(" BA")

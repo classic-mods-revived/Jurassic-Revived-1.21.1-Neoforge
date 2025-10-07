@@ -34,6 +34,9 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<GeneratorBlockEntity>> GENERATOR_BE =
             BLOCK_ENTITIES.register("generator_be", () -> BlockEntityType.Builder.of(
                     GeneratorBlockEntity::new, ModBlocks.GENERATOR.get()).build(null));
+    public static final Supplier<BlockEntityType<DNAHybridizerBlockEntity>> DNA_HYBRIDIZER_BE =
+            BLOCK_ENTITIES.register("dna_hybridizer_be", () -> BlockEntityType.Builder.of(
+                    DNAHybridizerBlockEntity::new, ModBlocks.DNA_HYBRIDIZER.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

@@ -9,6 +9,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.cmr.jurassicrevived.Config;
 import net.cmr.jurassicrevived.JRMod;
 import net.cmr.jurassicrevived.block.ModBlocks;
 import net.cmr.jurassicrevived.item.ModItems;
@@ -22,9 +23,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class DNAExtractorRecipeCategory implements IRecipeCategory<DNAExtractorRecipe> {
     public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "dna_extracting");
     public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/dna_extractor/dna_extractor_gui.png");
+    public static final ResourceLocation ARROW_TEXTURE = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/arrow.png");
+    public static final ResourceLocation WHITE_ARROW_TEXTURE = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/white_arrow.png");
+    private static final ResourceLocation POWER_BAR_TEXTURE = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/power_bar.png");
 
     public static final RecipeType<DNAExtractorRecipe> DNA_EXTRACTOR_RECIPE_RECIPE_TYPE =
             new RecipeType<>(UID, DNAExtractorRecipe.class);
@@ -60,6 +66,39 @@ public class DNAExtractorRecipeCategory implements IRecipeCategory<DNAExtractorR
     @Override
     public void draw(DNAExtractorRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         background.draw(guiGraphics);
+        guiGraphics.blit(ARROW_TEXTURE,  76, 35, 0, 0, 24, 16, 24, 16);
+        if (Config.REQUIRE_POWER) {
+            guiGraphics.blit(POWER_BAR_TEXTURE,  159, 10, 0, 0, 10, 66, 10, 66);
+            // Fill amount for JEI: show total required energy (2000 FE) relative to 16000 FE capacity
+            // Our simple fill is purely visual for JEI, not tied to any BE
+            int barX = 160;
+            int barY = 11;
+            int barW = 8;
+            int barH = 64;
+
+            int maxTicks = 200;
+            long now = System.currentTimeMillis();
+            int progress = (int)((now / 50L) % maxTicks); // ~20 TPS
+            int arrowPixels = 24;
+            int progFilled = progress * arrowPixels / maxTicks;
+            if (progFilled > 0) {
+                guiGraphics.blit(WHITE_ARROW_TEXTURE, 76, 35, 0, 0, progFilled, 16, 24, 16);
+            }
+
+            int requiredFE = 2000;
+            int capacityFE = 16000;
+            int filled = (int)(barH * (requiredFE / (float)capacityFE));
+            // Render red fill similar to EnergyDisplayTooltipArea
+            guiGraphics.fillGradient(barX, barY + (barH - filled), barX + barW, barY + barH, 0xffb51500, 0xff600b00);
+
+            // Tooltip "2000 / 16000 FE" on hover over the energy area
+            int mx = (int) mouseX;
+            int my = (int) mouseY;
+            if (mx >= barX && mx < barX + barW && my >= barY && my < barY + barH) {
+                List<Component> tips = java.util.List.of(Component.literal("2000 / 16000 FE"));
+                guiGraphics.renderTooltip(Minecraft.getInstance().font, tips, java.util.Optional.empty(), mx, my);
+            }
+        }
     }
 
     @Override
