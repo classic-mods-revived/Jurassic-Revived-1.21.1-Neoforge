@@ -40,6 +40,9 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<EmbryonicMachineBlockEntity>> EMBRYONIC_MACHINE_BE =
             BLOCK_ENTITIES.register("embryonic_machine_be", () -> BlockEntityType.Builder.of(
                     EmbryonicMachineBlockEntity::new, ModBlocks.EMBRYONIC_MACHINE.get()).build(null));
+    public static final Supplier<BlockEntityType<EmbryoCalcificationMachineBlockEntity>> EMBRYO_CALCIFICATION_MACHINE_BE =
+            BLOCK_ENTITIES.register("embryo_calcification_machine_be", () -> BlockEntityType.Builder.of(
+                    EmbryoCalcificationMachineBlockEntity::new, ModBlocks.EMBRYO_CALCIFICATION_MACHINE.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

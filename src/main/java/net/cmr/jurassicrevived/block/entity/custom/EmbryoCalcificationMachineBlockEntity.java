@@ -1,0 +1,470 @@
+package net.cmr.jurassicrevived.block.entity.custom;
+
+import net.cmr.jurassicrevived.Config;
+import net.cmr.jurassicrevived.block.entity.energy.ModEnergyStorage;
+import net.cmr.jurassicrevived.item.ModItems;
+import net.cmr.jurassicrevived.recipe.EmbryoCalcificationMachineRecipe;
+import net.cmr.jurassicrevived.recipe.EmbryoCalcificationMachineRecipeInput;
+import net.cmr.jurassicrevived.recipe.ModRecipes;
+import net.cmr.jurassicrevived.screen.custom.EmbryoCalcificationMachineMenu;
+import net.cmr.jurassicrevived.util.ModTags;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Containers;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
+
+public class EmbryoCalcificationMachineBlockEntity extends BlockEntity implements MenuProvider {
+    public final ItemStackHandler itemHandler = new ItemStackHandler(5) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            setChanged();
+            if (!level.isClientSide()) {
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            }
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return switch (slot) {
+                case 0 -> stack.getItem() == ModItems.AMPOULE.get();
+                case 1 -> stack.is(ModTags.Items.TISSUES) || stack.getItem() == ModItems.MOSQUITO_IN_AMBER.get();
+                case 2, 3, 4 -> true;
+                default -> super.isItemValid(slot, stack);
+            };
+        }
+    };
+
+    private static final int SYRINGE_SLOT = 0;
+    private static final int EGG_SLOT = 1;
+    private static final int OUTPUT_SLOT = 2;
+
+    // Provide a per-face view that restricts insert/extract by slot
+    private final java.util.EnumMap<Direction, IItemHandler> sidedHandlers = new java.util.EnumMap<>(Direction.class);
+
+    // Cache the chosen output for the current craft so checks stay consistent
+    private ItemStack lockedOutput = ItemStack.EMPTY;
+    // Track input signature so we only re-roll output when inputs actually change
+    private String lastInputSignature = "";
+
+    private final ContainerData data;
+    private int progress = 0;
+    private int maxProgress = 200;
+    private int DEFAULT_MAX_PROGRESS = 200;
+
+    private static final float ENERGY_TRANSFER_RATE = (float) Config.fePerSecond / 20f;
+
+    private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
+    private ModEnergyStorage createEnergyStorage() {
+        if (Config.REQUIRE_POWER) {
+            return new ModEnergyStorage(16000, (int) ENERGY_TRANSFER_RATE) {
+                @Override
+                public void onEnergyChanged() {
+                    setChanged();
+                    if (getLevel() != null) {
+                        getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                    }
+                }
+            };
+        }
+        return null;
+    }
+
+    public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
+        if (Config.REQUIRE_POWER) {return this.ENERGY_STORAGE;}
+        return null;
+    }
+
+    public EmbryoCalcificationMachineBlockEntity(BlockPos pos, BlockState blockState) {
+        super(ModBlockEntities.EMBRYO_CALCIFICATION_MACHINE_BE.get(), pos, blockState);
+        this.data = new ContainerData() {
+            @Override
+            public int get(int pIndex) {
+                return switch (pIndex) {
+                    case 0 -> EmbryoCalcificationMachineBlockEntity.this.progress;
+                    case 1 -> EmbryoCalcificationMachineBlockEntity.this.maxProgress;
+                    default -> 0;
+                };
+            }
+
+            @Override
+            public void set(int pIndex, int pValue) {
+                switch (pIndex) {
+                    case 0 -> EmbryoCalcificationMachineBlockEntity.this.progress = pValue;
+                    case 1 -> EmbryoCalcificationMachineBlockEntity.this.maxProgress = pValue;
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return 2;
+            }
+        };
+    }
+
+    // Return a face-scoped handler that:
+    // - allows insert only into SYRINGE_SLOT and EGG_SLOT (if item is valid for the slot)
+    // - allows extract only from OUTPUT_SLOT_1..3
+    // For null direction (internal/container use), return the full handler.
+    public IItemHandler getItemHandler(@Nullable Direction direction) {
+        if (direction == null) {
+            return this.itemHandler;
+        }
+        return sidedHandlers.computeIfAbsent(direction, dir -> new IItemHandler() {
+            @Override
+            public int getSlots() {
+                return itemHandler.getSlots();
+            }
+
+            @Override
+            public @NotNull ItemStack getStackInSlot(int slot) {
+                return itemHandler.getStackInSlot(slot);
+            }
+
+            @Override
+            public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+                // Only allow insert into input slots, and only if the item is valid for that slot
+                if ((slot == SYRINGE_SLOT || slot == EGG_SLOT) && itemHandler.isItemValid(slot, stack)) {
+                    return itemHandler.insertItem(slot, stack, simulate);
+                }
+                return stack; // reject insert
+            }
+
+            @Override
+            public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+                // Only allow extract from output slots
+                if (slot == OUTPUT_SLOT) {
+                    return itemHandler.extractItem(slot, amount, simulate);
+                }
+                return ItemStack.EMPTY; // reject extract
+            }
+
+            @Override
+            public int getSlotLimit(int slot) {
+                return itemHandler.getSlotLimit(slot);
+            }
+
+            @Override
+            public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+                // Expose validity consistent with insertion rule
+                return (slot == SYRINGE_SLOT || slot == EGG_SLOT) && itemHandler.isItemValid(slot, stack);
+            }
+        });
+    }
+
+    @Override
+    public Component getDisplayName() {
+        return Component.translatable("block.jurassicrevived.embryo_calcification_machine");
+    }
+
+    // Returns true if nothing meaningful is stored (no items, no progress)
+    public boolean isEmptyForDrop() {
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            if (!itemHandler.getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+        return this.progress == 0;
+    }
+    @Override
+    public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
+        return new EmbryoCalcificationMachineMenu(i, inventory, this, this.data);
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        tag.put("inventory", itemHandler.serializeNBT(registries));
+        tag.putInt("embryo_calcification_machine.progress", this.progress);
+        tag.putInt("embryo_calcification_machine.max_progress", this.maxProgress);
+        if (Config.REQUIRE_POWER) {
+            tag.putInt("embryo_calcification_machine.energy", this.ENERGY_STORAGE.getEnergyStored());
+        }
+
+        super.saveAdditional(tag, registries);
+    }
+
+    @Override
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        itemHandler.deserializeNBT(registries, tag.getCompound("inventory"));
+        if (Config.REQUIRE_POWER) {
+            this.ENERGY_STORAGE.setEnergy(tag.getInt("embryo_calcification_machine.energy"));
+        }
+        progress = tag.getInt("embryo_calcification_machine.progress");
+        maxProgress = tag.getInt("embryo_calcification_machine.max_progress");
+    }
+
+    public void drops() {
+        SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            inv.setItem(i, itemHandler.getStackInSlot(i));
+        }
+        Containers.dropContents(this.level, this.worldPosition, inv);
+    }
+
+    public void tick(Level level, BlockPos pos, BlockState state) {
+        if (Config.REQUIRE_POWER) {
+            pullEnergyFromNeighbors();
+        }
+
+        // If no recipe is available right now, fully reset (including the locked choice)
+        Optional<RecipeHolder<EmbryoCalcificationMachineRecipe>> recipeOpt = getCurrentRecipe();
+        if (recipeOpt.isEmpty()) {
+            resetProgress();
+            this.lockedOutput = ItemStack.EMPTY;
+            this.lastInputSignature = "";
+            return;
+        }
+
+        // Compute a signature of the current inputs (item + count [+ NBT if present])
+        String currentSignature = signatureOf(
+                itemHandler.getStackInSlot(SYRINGE_SLOT),
+                itemHandler.getStackInSlot(EGG_SLOT)
+        );
+
+        // Decide/lock output at the start of crafting, or whenever inputs change
+        if (progress == 0) {
+            if (lockedOutput.isEmpty() || !currentSignature.equals(lastInputSignature)) {
+                // Remove weighted selection; always use recipe's defined result
+                lockedOutput = recipeOpt.get().value().output().copy();
+                lastInputSignature = currentSignature;
+            }
+        }
+
+        ItemStack prospectiveOutput = lockedOutput.isEmpty() ? recipeOpt.get().value().output().copy() : lockedOutput;
+        boolean canOutputNow = !prospectiveOutput.isEmpty()
+                && canInsertItemIntoOutputSlot(prospectiveOutput)
+                && canInsertAmountIntoOutputSlot(prospectiveOutput);
+
+        if (!prospectiveOutput.isEmpty() && canOutputNow) {
+            // Consume 64 FE per tick while crafting; pause if not enough energy
+            if (Config.REQUIRE_POWER && !consumeEnergyPerTick(64)) {
+                setChanged(level, pos, state);
+                return;
+            }
+
+            increaseCraftingProgress();
+            setChanged(level, pos, state);
+
+            if (hasCraftingFinished()) {
+                craftItem();
+                resetProgress();
+                this.lockedOutput = ItemStack.EMPTY;
+                this.lastInputSignature = "";
+            }
+        } else {
+            resetProgress();
+        }
+    }
+
+    private void pullEnergyFromNeighbors() {
+        if (!Config.REQUIRE_POWER) return;
+        if (level == null) return;
+
+        int capacityLeft = this.ENERGY_STORAGE.getMaxEnergyStored() - this.ENERGY_STORAGE.getEnergyStored();
+        if (capacityLeft <= 0) return;
+
+        int remaining = Math.min((int) ENERGY_TRANSFER_RATE, capacityLeft);
+        if (remaining <= 0) return;
+
+        for (Direction dir : Direction.values()) {
+            if (remaining <= 0) break;
+
+            BlockPos neighborPos = worldPosition.relative(dir);
+            var source = level.getCapability(net.neoforged.neoforge.capabilities.Capabilities.EnergyStorage.BLOCK, neighborPos, dir.getOpposite());
+            if (source == null) {
+                source = level.getCapability(net.neoforged.neoforge.capabilities.Capabilities.EnergyStorage.BLOCK, neighborPos, null);
+            }
+            if (source == null) continue;
+
+            int canExtract = source.extractEnergy(remaining, true);
+            if (canExtract <= 0) continue;
+
+            int canAccept = this.ENERGY_STORAGE.receiveEnergy(canExtract, true);
+            if (canAccept <= 0) continue;
+
+            int actuallyExtracted = source.extractEnergy(canAccept, false);
+            if (actuallyExtracted <= 0) continue;
+
+            int actuallyAccepted = this.ENERGY_STORAGE.receiveEnergy(actuallyExtracted, false);
+            if (actuallyAccepted < actuallyExtracted) {
+                // return overflow to the source (best-effort)
+                source.receiveEnergy(actuallyExtracted - actuallyAccepted, false);
+            }
+
+            remaining -= actuallyAccepted;
+        }
+    }
+
+    private void resetProgress() {
+        this.progress = 0;
+        this.maxProgress = DEFAULT_MAX_PROGRESS;
+        // NOTE: do NOT clear lockedOutput here; we only clear it when inputs change or no recipe
+    }
+
+    private void craftItem() {
+        Optional<RecipeHolder<EmbryoCalcificationMachineRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) return;
+
+        ItemStack output = lockedOutput.isEmpty() ? recipe.get().value().output().copy() : lockedOutput.copy();
+        if (output.isEmpty()) return;
+
+        if (!canInsertItemIntoOutputSlot(output) || !canInsertAmountIntoOutputSlot(output)) {
+            return;
+        }
+
+        int[] slots = {OUTPUT_SLOT};
+
+        for (int slot : slots) {
+            ItemStack current = itemHandler.getStackInSlot(slot);
+
+            if (current.isEmpty()) {
+                itemHandler.setStackInSlot(slot, output.copy());
+                itemHandler.extractItem(SYRINGE_SLOT, 1, false);
+                itemHandler.extractItem(EGG_SLOT, 1, false);
+                return;
+            }
+
+            if (current.getItem() == output.getItem()
+                    && current.getCount() + output.getCount() <= current.getMaxStackSize()) {
+                itemHandler.setStackInSlot(slot, new ItemStack(current.getItem(), current.getCount() + output.getCount()));
+                itemHandler.extractItem(SYRINGE_SLOT, 1, false);
+                itemHandler.extractItem(EGG_SLOT, 1, false);
+                return;
+            }
+        }
+    }
+
+    private boolean hasCraftingFinished() {
+        return this.progress >= this.maxProgress;
+    }
+
+    private void increaseCraftingProgress() {
+        progress++;
+    }
+
+    private boolean isOutputSlotsEmptyorReceivable() {
+        return itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() || itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() < this.itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
+    }
+
+    private boolean hasRecipe() {
+        Optional<RecipeHolder<EmbryoCalcificationMachineRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) {
+            return false;
+        }
+        ItemStack output = lockedOutput.isEmpty() ? recipe.get().value().output() : lockedOutput;
+        return !output.isEmpty() && canInsertAmountIntoOutputSlot(output) && canInsertItemIntoOutputSlot(output);
+    }
+
+    private Optional<RecipeHolder<EmbryoCalcificationMachineRecipe>> getCurrentRecipe() {
+        assert this.level != null;
+        return this.level.getRecipeManager().getRecipeFor(
+                ModRecipes.EMBRYO_CALCIFICATION_MACHINE_RECIPE_TYPE.get(),
+                new EmbryoCalcificationMachineRecipeInput(itemHandler.getStackInSlot(SYRINGE_SLOT), itemHandler.getStackInSlot(EGG_SLOT)),
+                this.level
+        );
+    }
+
+    // Remove the hard-coded velociraptor DNA assumption and drive it from a concrete output stack
+    private boolean canInsertAmountIntoOutputSlot(ItemStack output) {
+        int toInsert = output.getCount();
+        int[] slots = {OUTPUT_SLOT};
+
+        for (int slot : slots) {
+            ItemStack stack = itemHandler.getStackInSlot(slot);
+
+            if (stack.isEmpty()) {
+                // Respect special cap for empty slots
+                if (toInsert <= 8) {
+                    return true;
+                }
+            } else if (stack.getItem() == output.getItem()) {
+                int space = stack.getMaxStackSize() - stack.getCount();
+                if (space >= toInsert) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // Determine output strictly from the recipe's defined result (no weighted randomness)
+    private ItemStack determineOutputForCurrentInputs() {
+        Optional<RecipeHolder<EmbryoCalcificationMachineRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) return ItemStack.EMPTY;
+        return recipe.get().value().output().copy();
+    }
+
+    // Build a stable signature for the two input stacks so we can detect changes
+    private static String signatureOf(ItemStack ampoule, ItemStack material) {
+        return stackSig(ampoule) + "#" + stackSig(material);
+    }
+
+    private static String stackSig(ItemStack s) {
+        if (s.isEmpty()) return "empty";
+        String id = s.getItem().builtInRegistryHolder().key().location().toString();
+        // Use item id + count; omit NBT to avoid deprecated API usage
+        return id + "x" + s.getCount();
+    }
+
+    private boolean canInsertItemIntoOutputSlot(ItemStack output) {
+        int[] slots = {OUTPUT_SLOT};
+
+        for (int slot : slots) {
+            ItemStack stack = itemHandler.getStackInSlot(slot);
+            if (stack.isEmpty() || stack.getItem() == output.getItem()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return saveWithoutMetadata(registries);
+    }
+
+    @Override
+    public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
+        super.onDataPacket(net, pkt, lookupProvider);
+    }
+
+    // Consume a fixed amount of FE this tick if available; returns true if deducted
+    private boolean consumeEnergyPerTick(int fe) {
+        if (fe <= 0) return true;
+        if (ENERGY_STORAGE.getEnergyStored() >= fe) {
+            ENERGY_STORAGE.extractEnergy(fe, false);
+            return true;
+        }
+        return false;
+    }
+}

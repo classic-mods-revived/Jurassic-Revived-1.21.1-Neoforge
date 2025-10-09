@@ -44,6 +44,8 @@ public class ModBlocks {
             () -> new DNAHybridizerBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
     public static final DeferredBlock<Block> EMBRYONIC_MACHINE = registerBlock("embryonic_machine",
             () -> new EmbryonicMachineBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
+    public static final DeferredBlock<Block> EMBRYO_CALCIFICATION_MACHINE = registerBlock("embryo_calcification_machine",
+            () -> new EmbryoCalcificationMachineBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
 
     public static final DeferredBlock<Block> ROYAL_FERN = registerBlock("royal_fern",
             () -> new FlowerBlock(MobEffects.UNLUCK, 0, BlockBehaviour.Properties.ofFullCopy(Blocks.ALLIUM)));

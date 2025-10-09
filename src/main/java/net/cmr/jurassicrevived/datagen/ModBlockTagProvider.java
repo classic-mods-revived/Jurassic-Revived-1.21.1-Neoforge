@@ -40,8 +40,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.FOSSIL_CLEANER.get())
                 .add(ModBlocks.FOSSIL_GRINDER.get())
                 .add(ModBlocks.DNA_HYBRIDIZER.get())
-                .add(ModBlocks.EMBRYONIC_MACHINE.get());
-                //.add(ModBlocks.EMBRYO_CALCIFICATION_MACHINE.get());
+                .add(ModBlocks.EMBRYONIC_MACHINE.get())
+                .add(ModBlocks.EMBRYO_CALCIFICATION_MACHINE.get());
                 //.add(ModBlocks.INCUBATOR.get());
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL);

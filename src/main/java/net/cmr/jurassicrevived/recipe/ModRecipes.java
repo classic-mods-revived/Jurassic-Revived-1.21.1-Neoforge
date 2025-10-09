@@ -61,6 +61,15 @@ public class ModRecipes {
                     return "embryonic_machining";
                 }
             });
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<EmbryoCalcificationMachineRecipe>> EMBRYO_CALCIFICATION_MACHINE_SERIALIZER =
+            SERIALIZERS.register("embryo_calcification_machining", EmbryoCalcificationMachineRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<EmbryoCalcificationMachineRecipe>> EMBRYO_CALCIFICATION_MACHINE_RECIPE_TYPE =
+            TYPES.register("embryo_calcification_machining", () -> new RecipeType<EmbryoCalcificationMachineRecipe>() {
+                @Override
+                public String toString() {
+                    return "embryo_calcification_machining";
+                }
+            });
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
