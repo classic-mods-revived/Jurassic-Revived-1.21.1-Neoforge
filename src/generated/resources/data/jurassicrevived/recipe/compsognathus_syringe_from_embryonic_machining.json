@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:embryonic_machining",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:syringe"
+    },
+    {
+      "item": "jurassicrevived:compsognathus_dna"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:compsognathus_syringe"
+  }
+}

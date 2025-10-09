@@ -37,6 +37,9 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<DNAHybridizerBlockEntity>> DNA_HYBRIDIZER_BE =
             BLOCK_ENTITIES.register("dna_hybridizer_be", () -> BlockEntityType.Builder.of(
                     DNAHybridizerBlockEntity::new, ModBlocks.DNA_HYBRIDIZER.get()).build(null));
+    public static final Supplier<BlockEntityType<EmbryonicMachineBlockEntity>> EMBRYONIC_MACHINE_BE =
+            BLOCK_ENTITIES.register("embryonic_machine_be", () -> BlockEntityType.Builder.of(
+                    EmbryonicMachineBlockEntity::new, ModBlocks.EMBRYONIC_MACHINE.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

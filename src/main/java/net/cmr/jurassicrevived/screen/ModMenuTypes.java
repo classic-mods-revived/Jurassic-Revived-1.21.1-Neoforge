@@ -1,11 +1,7 @@
 package net.cmr.jurassicrevived.screen;
 
 import net.cmr.jurassicrevived.JRMod;
-import net.cmr.jurassicrevived.screen.custom.DNAExtractorMenu;
-import net.cmr.jurassicrevived.screen.custom.FossilCleanerMenu;
-import net.cmr.jurassicrevived.screen.custom.FossilGrinderMenu;
-import net.cmr.jurassicrevived.screen.custom.DNAHybridizerMenu;
-import net.cmr.jurassicrevived.screen.custom.GeneratorMenu;
+import net.cmr.jurassicrevived.screen.custom.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -29,6 +25,8 @@ public class ModMenuTypes {
             registerMenuType("fossil_cleaner_menu", FossilCleanerMenu::new);
     public static final DeferredHolder<MenuType<?>, MenuType<DNAHybridizerMenu>> DNA_HYBRIDIZER_MENU =
             registerMenuType("dna_hybridizer_menu", DNAHybridizerMenu::new);
+    public static final DeferredHolder<MenuType<?>, MenuType<EmbryonicMachineMenu>> EMBRYONIC_MACHINE_MENU =
+            registerMenuType("embryonic_machine_menu", EmbryonicMachineMenu::new);
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

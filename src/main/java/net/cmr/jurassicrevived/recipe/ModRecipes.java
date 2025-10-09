@@ -52,6 +52,15 @@ public class ModRecipes {
                     return "dna_hybridizing";
                 }
             });
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<EmbryonicMachineRecipe>> EMBRYONIC_MACHINE_SERIALIZER =
+            SERIALIZERS.register("embryonic_machining", EmbryonicMachineRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<EmbryonicMachineRecipe>> EMBRYONIC_MACHINE_RECIPE_TYPE =
+            TYPES.register("embryonic_machining", () -> new RecipeType<EmbryonicMachineRecipe>() {
+                @Override
+                public String toString() {
+                    return "embryonic_machining";
+                }
+            });
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

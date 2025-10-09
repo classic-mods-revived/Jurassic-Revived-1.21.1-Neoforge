@@ -6,11 +6,7 @@ import net.cmr.jurassicrevived.entity.client.BrachiosaurusRenderer;
 import net.cmr.jurassicrevived.entity.client.CeratosaurusRenderer;
 import net.cmr.jurassicrevived.entity.client.DilophosaurusRenderer;
 import net.cmr.jurassicrevived.screen.ModMenuTypes;
-import net.cmr.jurassicrevived.screen.custom.DNAExtractorScreen;
-import net.cmr.jurassicrevived.screen.custom.FossilCleanerScreen;
-import net.cmr.jurassicrevived.screen.custom.FossilGrinderScreen;
-import net.cmr.jurassicrevived.screen.custom.DNAHybridizerScreen;
-import net.cmr.jurassicrevived.screen.custom.GeneratorScreen;
+import net.cmr.jurassicrevived.screen.custom.*;
 import net.cmr.jurassicrevived.util.FenceClimbClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -55,5 +51,6 @@ public class JRModClient {
         event.register(ModMenuTypes.FOSSIL_GRINDER_MENU.get(), FossilGrinderScreen::new);
         event.register(ModMenuTypes.FOSSIL_CLEANER_MENU.get(), FossilCleanerScreen::new);
         event.register(ModMenuTypes.DNA_HYBRIDIZER_MENU.get(), DNAHybridizerScreen::new);
+        event.register(ModMenuTypes.EMBRYONIC_MACHINE_MENU.get(), EmbryonicMachineScreen::new);
     }
 }
