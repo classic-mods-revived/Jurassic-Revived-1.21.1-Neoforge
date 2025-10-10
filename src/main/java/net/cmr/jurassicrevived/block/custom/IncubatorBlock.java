@@ -1,7 +1,7 @@
 package net.cmr.jurassicrevived.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.cmr.jurassicrevived.block.entity.custom.EmbryoCalcificationMachineBlockEntity;
+import net.cmr.jurassicrevived.block.entity.custom.IncubatorBlockEntity;
 import net.cmr.jurassicrevived.block.entity.custom.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -33,17 +33,17 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class EmbryoCalcificationMachineBlock extends BaseEntityBlock {
+public class IncubatorBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final MapCodec<EmbryoCalcificationMachineBlock> CODEC = simpleCodec(EmbryoCalcificationMachineBlock::new);
+    public static final MapCodec<IncubatorBlock> CODEC = simpleCodec(IncubatorBlock::new);
 
-    public EmbryoCalcificationMachineBlock(Properties properties) {
+    public IncubatorBlock(Properties properties) {
         super(properties);
     }
 
     private static final VoxelShape SHAPE_NORTH = Shapes.box(
-            0.5 / 16.0, 0.0 / 16.0, 2.0 / 16.0,
-            15.5 / 16.0, 14.0 / 16.0, 14.0 / 16.0
+            0.5 / 16.0, 0.0 / 16.0, 0.5 / 16.0,
+            15.5 / 16.0, 16.0 / 16.0, 15.5 / 16.0
     );
 
     private static final VoxelShape SHAPE_SOUTH = rotateShapeY(SHAPE_NORTH, 180);
@@ -109,7 +109,7 @@ public class EmbryoCalcificationMachineBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new EmbryoCalcificationMachineBlockEntity(blockPos, blockState);
+        return new IncubatorBlockEntity(blockPos, blockState);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class EmbryoCalcificationMachineBlock extends BaseEntityBlock {
             }
 
             BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof EmbryoCalcificationMachineBlockEntity fbe) {
+            if (be instanceof IncubatorBlockEntity fbe) {
                 ItemStack stack = new ItemStack(this.asItem());
 
                 if (!fbe.isEmptyForDrop()) {
@@ -166,8 +166,8 @@ public class EmbryoCalcificationMachineBlock extends BaseEntityBlock {
                                               Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof EmbryoCalcificationMachineBlockEntity embryoCalcificationMachineBlockEntity) {
-                ((ServerPlayer) pPlayer).openMenu(new SimpleMenuProvider(embryoCalcificationMachineBlockEntity, Component.translatable("block.jurassicrevived.embryo_calcification_machine")), pPos);
+            if(entity instanceof IncubatorBlockEntity incubatorBlockEntity) {
+                ((ServerPlayer) pPlayer).openMenu(new SimpleMenuProvider(incubatorBlockEntity, Component.translatable("block.jurassicrevived.incubator")), pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -182,7 +182,7 @@ public class EmbryoCalcificationMachineBlock extends BaseEntityBlock {
             return null;
         }
 
-        return createTickerHelper(blockEntityType, ModBlockEntities.EMBRYO_CALCIFICATION_MACHINE_BE.get(),
-                (level1, blockPos, blockState, embryoCalcificationMachineBlockEntity) -> embryoCalcificationMachineBlockEntity.tick(level1, blockPos, blockState));
+        return createTickerHelper(blockEntityType, ModBlockEntities.INCUBATOR_BE.get(),
+                (level1, blockPos, blockState, incubatorBlockEntity) -> incubatorBlockEntity.tick(level1, blockPos, blockState));
     }
 }

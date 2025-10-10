@@ -2,6 +2,7 @@ package net.cmr.jurassicrevived.datagen;
 
 import net.cmr.jurassicrevived.JRMod;
 import net.cmr.jurassicrevived.block.ModBlocks;
+import net.cmr.jurassicrevived.item.ModItems;
 import net.cmr.jurassicrevived.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -41,8 +42,24 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.FOSSIL_GRINDER.get())
                 .add(ModBlocks.DNA_HYBRIDIZER.get())
                 .add(ModBlocks.EMBRYONIC_MACHINE.get())
-                .add(ModBlocks.EMBRYO_CALCIFICATION_MACHINE.get());
-                //.add(ModBlocks.INCUBATOR.get());
+                .add(ModBlocks.EMBRYO_CALCIFICATION_MACHINE.get())
+                .add(ModBlocks.INCUBATOR.get());
+
+
+        this.tag(ModTags.Blocks.HATCHED_EGGS)
+                .add(ModBlocks.HATCHED_VELOCIRAPTOR_EGG.get())
+                //.add(ModBlocks.HATCHED_TYRANNOSAURUS_REX_EGG.get())
+                //.add(ModBlocks.HATCHED_TRICERATOPS_EGG.get())
+                //.add(ModBlocks.HATCHED_SPINOSAURUS_EGG.get())
+                //.add(ModBlocks.HATCHED_PTERANODON_EGG.get())
+                //.add(ModBlocks.HATCHED_PARASAUROLOPHUS_EGG.get())
+                //.add(ModBlocks.HATCHED_INDOMINUS_REX_EGG.get())
+                //.add(ModBlocks.HATCHED_GALLIMIMUS_EGG.get())
+                //.add(ModBlocks.HATCHED_DIPLODOCUS_EGG.get())
+                .add(ModBlocks.HATCHED_DILOPHOSAURUS_EGG.get())
+                //.add(ModBlocks.HATCHED_COMPSOGNATHUS_EGG.get())
+                .add(ModBlocks.HATCHED_CERATOSAURUS_EGG.get())
+                .add(ModBlocks.HATCHED_BRACHIOSAURUS_EGG.get());
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL);
                 //.add(ModBlocks.hq_ORE.get());

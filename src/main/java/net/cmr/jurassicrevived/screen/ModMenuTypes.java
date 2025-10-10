@@ -29,6 +29,8 @@ public class ModMenuTypes {
             registerMenuType("embryonic_machine_menu", EmbryonicMachineMenu::new);
     public static final DeferredHolder<MenuType<?>, MenuType<EmbryoCalcificationMachineMenu>> EMBRYO_CALCIFICATION_MACHINE_MENU =
             registerMenuType("embryo_calcification_machine_menu", EmbryoCalcificationMachineMenu::new);
+    public static final DeferredHolder<MenuType<?>, MenuType<IncubatorMenu>> INCUBATOR_MENU =
+            registerMenuType("incubator_menu", IncubatorMenu::new);
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

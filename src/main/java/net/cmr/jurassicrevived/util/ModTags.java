@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> AQUATIC_PLACEMENT_REPLACEABLES = createTag("aquatic_placement_replaceables");
+        public static final TagKey<Block> HATCHED_EGGS = createTag("hatched_eggs");
 
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, name));
@@ -21,6 +22,7 @@ public class ModTags {
         public static final TagKey<Item> TISSUES = createTag("tissues");
         public static final TagKey<Item> DNA = createTag("dna");
         public static final TagKey<Item> SYRINGES = createTag("syringes");
+        public static final TagKey<Item> EGGS = createTag("eggs");
         public static final TagKey<Item> FOSSILS = createTag("fossils");
         public static final TagKey<Item> SKULLS = createTag("skulls");
 

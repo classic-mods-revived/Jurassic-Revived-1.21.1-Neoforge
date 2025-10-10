@@ -66,6 +66,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.DNA_HYBRIDIZER);
                         pOutput.accept(ModBlocks.EMBRYONIC_MACHINE);
                         pOutput.accept(ModBlocks.EMBRYO_CALCIFICATION_MACHINE);
+                        pOutput.accept(ModBlocks.INCUBATOR);
 
                         pOutput.accept(ModBlocks.STONE_FOSSIL);
                         pOutput.accept(ModBlocks.DEEPSLATE_FOSSIL);

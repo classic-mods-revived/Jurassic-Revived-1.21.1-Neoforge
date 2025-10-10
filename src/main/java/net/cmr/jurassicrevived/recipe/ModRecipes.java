@@ -70,6 +70,15 @@ public class ModRecipes {
                     return "embryo_calcification_machining";
                 }
             });
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<IncubatorRecipe>> INCUBATOR_SERIALIZER =
+            SERIALIZERS.register("incubating", IncubatorRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<IncubatorRecipe>> INCUBATOR_RECIPE_TYPE =
+            TYPES.register("incubating", () -> new RecipeType<IncubatorRecipe>() {
+                @Override
+                public String toString() {
+                    return "incubating";
+                }
+            });
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

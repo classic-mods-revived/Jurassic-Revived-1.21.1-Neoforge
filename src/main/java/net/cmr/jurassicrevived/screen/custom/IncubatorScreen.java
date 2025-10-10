@@ -10,26 +10,25 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 
 import java.util.Optional;
 
-public class EmbryoCalcificationMachineScreen extends AbstractContainerScreen<EmbryoCalcificationMachineMenu> {
+public class IncubatorScreen extends AbstractContainerScreen<IncubatorMenu> {
     private static final ResourceLocation GUI_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/embryo_calcification_machine/embryo_calcification_machine_gui.png");
-    private static final ResourceLocation ARROW_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/arrow.png");
-    private static final ResourceLocation WHITE_ARROW_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/white_arrow.png");
+            ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/incubator/incubator_gui.png");
+    private static final ResourceLocation LIT_PROGRESS_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath("minecraft","container/furnace/lit_progress");
     private static final ResourceLocation POWER_BAR_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/power_bar.png");
-    private static final ResourceLocation SYRINGE_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/syringe.png");
+    private static final ResourceLocation HAY_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/incubator/hay.png");
     private static final ResourceLocation EGG_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/egg.png");
     private EnergyDisplayTooltipArea energyInfoArea;
 
-    public EmbryoCalcificationMachineScreen(EmbryoCalcificationMachineMenu menu, Inventory playerInventory, Component title) {
+    public IncubatorScreen(IncubatorMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
     }
 
@@ -74,9 +73,12 @@ public class EmbryoCalcificationMachineScreen extends AbstractContainerScreen<Em
         int y = (this.height - this.imageHeight) /2;
 
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight, 176, 166);
-        guiGraphics.blit(ARROW_TEXTURE,  x + 76, y + 35, 0, 0, 24, 16, 24, 16);
-        guiGraphics.blit(SYRINGE_TEXTURE, x + 39, y + 35, 0, 0, 16, 16, 16, 16);
-        guiGraphics.blit(EGG_TEXTURE,  x + 57, y + 35, 0, 0, 16, 16, 16, 16);
+        guiGraphics.blit(HAY_TEXTURE,  x + 46, y + 31, 0, 0, 24, 24, 24, 24);
+        guiGraphics.blit(HAY_TEXTURE,  x + 76, y + 31, 0, 0, 24, 24, 24, 24);
+        guiGraphics.blit(HAY_TEXTURE,  x + 106, y + 31, 0, 0, 24, 24, 24, 24);
+        guiGraphics.blit(EGG_TEXTURE,  x + 50, y + 35, 0, 0, 16, 16, 16, 16);
+        guiGraphics.blit(EGG_TEXTURE,  x + 80, y + 35, 0, 0, 16, 16, 16, 16);
+        guiGraphics.blit(EGG_TEXTURE,  x + 110, y + 35, 0, 0, 16, 16, 16, 16);
 
 
         if (Config.REQUIRE_POWER) {
@@ -85,9 +87,11 @@ public class EmbryoCalcificationMachineScreen extends AbstractContainerScreen<Em
         }
     }
 
-    private void RenderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
-        if(menu.isCrafting()) {
-            guiGraphics.blit(WHITE_ARROW_TEXTURE, x+76, y + 35, 0, 0, menu.getScaledArrowProgress(), 16, 24, 16);
+    private void renderProgressArrowForSlot(GuiGraphics g, int x, int y, int slotIdx, int slotPixelX) {
+        if (this.menu.isCrafting(slotIdx)) {
+            int l = Mth.ceil(this.menu.getScaledArrowProgress(slotIdx) * 13.0F) + 1;
+            g.blitSprite(LIT_PROGRESS_TEXTURE, 14, 14, 0, 14 - l,
+                    x + slotPixelX, y + 55 + 14 - l, 14, l);
         }
     }
 
@@ -99,7 +103,9 @@ public class EmbryoCalcificationMachineScreen extends AbstractContainerScreen<Em
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) /2;
 
-        RenderProgressArrow(guiGraphics, x, y);
+        renderProgressArrowForSlot(guiGraphics, x, y, 0, 50);
+        renderProgressArrowForSlot(guiGraphics, x, y, 1, 80);
+        renderProgressArrowForSlot(guiGraphics, x, y, 2, 110);
 
         if (Config.REQUIRE_POWER) {
             energyInfoArea.render(guiGraphics);

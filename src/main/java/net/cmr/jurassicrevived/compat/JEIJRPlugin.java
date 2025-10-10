@@ -39,6 +39,7 @@ public class JEIJRPlugin implements IModPlugin {
         registration.addRecipeCategories(new DNAHybridizerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new EmbryonicMachineRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new EmbryoCalcificationMachineRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new IncubatorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -57,6 +58,8 @@ public class JEIJRPlugin implements IModPlugin {
                 .getAllRecipesFor(ModRecipes.EMBRYONIC_MACHINE_RECIPE_TYPE.get()).stream().map(RecipeHolder::value).toList();
         List<EmbryoCalcificationMachineRecipe> embryoCalcificationMachineRecipes = recipeManager
                 .getAllRecipesFor(ModRecipes.EMBRYO_CALCIFICATION_MACHINE_RECIPE_TYPE.get()).stream().map(RecipeHolder::value).toList();
+        List<IncubatorRecipe> incubatorRecipes = recipeManager
+                .getAllRecipesFor(ModRecipes.INCUBATOR_RECIPE_TYPE.get()).stream().map(RecipeHolder::value).toList();
 
         registration.addRecipes(DNAExtractorRecipeCategory.DNA_EXTRACTOR_RECIPE_RECIPE_TYPE, dnaExtractorRecipes);
         registration.addRecipes(FossilGrinderRecipeCategory.FOSSIL_GRINDER_RECIPE_RECIPE_TYPE, fossilGrinderRecipes);
@@ -64,6 +67,7 @@ public class JEIJRPlugin implements IModPlugin {
         registration.addRecipes(DNAHybridizerRecipeCategory.DNA_HYBRIDIZER_RECIPE_RECIPE_TYPE, dnaHybridizerRecipes);
         registration.addRecipes(EmbryonicMachineRecipeCategory.EMBRYONIC_MACHINE_RECIPE_RECIPE_TYPE, embryonicMachineRecipes);
         registration.addRecipes(EmbryoCalcificationMachineRecipeCategory.EMBRYO_CALCIFICATION_MACHINE_RECIPE_RECIPE_TYPE, embryoCalcificationMachineRecipes);
+        registration.addRecipes(IncubatorRecipeCategory.INCUBATOR_RECIPE_RECIPE_TYPE, incubatorRecipes);
     }
 
     @Override
@@ -80,5 +84,7 @@ public class JEIJRPlugin implements IModPlugin {
                 EmbryonicMachineRecipeCategory.EMBRYONIC_MACHINE_RECIPE_RECIPE_TYPE);
         registration.addRecipeClickArea(EmbryoCalcificationMachineScreen.class, 76, 35, 24, 16,
                 EmbryoCalcificationMachineRecipeCategory.EMBRYO_CALCIFICATION_MACHINE_RECIPE_RECIPE_TYPE);
+        registration.addRecipeClickArea(IncubatorScreen.class, 51, 56, 72, 16,
+                IncubatorRecipeCategory.INCUBATOR_RECIPE_RECIPE_TYPE);
     }
 }

@@ -258,6 +258,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_processor", has(ModItems.PROCESSOR))
                 .unlockedBy("has_flint", has(Items.FLINT)).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.INCUBATOR.get(), 1)
+                .pattern("AAA")
+                .pattern("BCB")
+                .pattern("DED")
+                .define('A', Blocks.GLASS)
+                .define('B', Items.COPPER_INGOT)
+                .define('C', Blocks.HAY_BLOCK)
+                .define('D', Items.IRON_INGOT)
+                .define('E', ModItems.CABLE)
+                .unlockedBy("has_glass", has(Blocks.GLASS))
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .unlockedBy("has_hay", has(Blocks.HAY_BLOCK))
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .unlockedBy("has_cable", has(ModItems.CABLE)).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.WRENCH.get(), 1)
                 .pattern(" A ")
                 .pattern(" BA")
@@ -438,6 +453,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
         new EmbryoCalcificationMachiningRecipeBuilder(ModItems.BRACHIOSAURUS_SYRINGE, Items.EGG, ModItems.BRACHIOSAURUS_EGG, 1)
                 .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+
+        new IncubatingRecipeBuilder(ModItems.VELOCIRAPTOR_EGG, ModBlocks.HATCHED_VELOCIRAPTOR_EGG, 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModItems.CERATOSAURUS_EGG, ModBlocks.HATCHED_CERATOSAURUS_EGG, 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
 
     }
 
