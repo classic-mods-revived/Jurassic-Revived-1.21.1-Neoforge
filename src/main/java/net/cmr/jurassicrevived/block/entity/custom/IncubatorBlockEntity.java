@@ -355,7 +355,7 @@ public class IncubatorBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     // Build a stable signature for the two input stacks so we can detect changes
-    private static String signatureOf(ItemStack ampoule, ItemStack material) {
+    private static String signatureOf(ItemStack testtube, ItemStack material) {
         return null;
     }
 

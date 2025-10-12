@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ampoule": {
+    "has_test_tube": {
       "conditions": {
         "items": [
           {
-            "items": "jurassicrevived:ampoule"
+            "items": "jurassicrevived:test_tube"
           }
         ]
       },
@@ -14,7 +14,7 @@
   },
   "requirements": [
     [
-      "has_ampoule"
+      "has_test_tube"
     ]
   ],
   "rewards": {

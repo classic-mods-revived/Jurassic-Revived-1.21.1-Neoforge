@@ -35,8 +35,8 @@ public class DNAExtractingRecipeBuilder {
         this.criteria = new LinkedHashMap();
     }
 
-    public static DNAExtractingRecipeBuilder amberRandomDNAUniform(ItemLike ampoule, ItemLike amber, ItemLike placeholderResult, int count) {
-        return new DNAExtractingRecipeBuilder(ampoule, amber, placeholderResult, count);
+    public static DNAExtractingRecipeBuilder amberRandomDNAUniform(ItemLike testtube, ItemLike amber, ItemLike placeholderResult, int count) {
+        return new DNAExtractingRecipeBuilder(testtube, amber, placeholderResult, count);
     }
 
     public DNAExtractingRecipeBuilder addDNAWeight(ItemLike dnaItem, int weight) {

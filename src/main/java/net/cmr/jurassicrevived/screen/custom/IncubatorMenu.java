@@ -36,6 +36,10 @@ public class IncubatorMenu extends AbstractContainerMenu {
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(ModTags.Items.EGGS);
             }
+            @Override
+            public boolean mayPickup(Player playerIn) {
+                return true; // Explicitly allow players (and JEI) to take items from this slot
+            }
         });
 
         this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 1, 80, 35) {
@@ -43,12 +47,20 @@ public class IncubatorMenu extends AbstractContainerMenu {
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(ModTags.Items.EGGS);
             }
+            @Override
+            public boolean mayPickup(Player playerIn) {
+                return true; // Explicitly allow players (and JEI) to take items from this slot
+            }
         });
 
         this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 2, 110, 35) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(ModTags.Items.EGGS);
+            }
+            @Override
+            public boolean mayPickup(Player playerIn) {
+                return true; // Explicitly allow players (and JEI) to take items from this slot
             }
         });
 

@@ -51,7 +51,7 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
-                case 0 -> stack.getItem() == ModItems.AMPOULE.get();
+                case 0 -> stack.getItem() == ModItems.TEST_TUBE.get();
                 case 1 -> stack.is(ModTags.Items.TISSUES) || stack.getItem() == ModItems.MOSQUITO_IN_AMBER.get();
                 case 2, 3, 4 -> true;
                 default -> super.isItemValid(slot, stack);
@@ -127,10 +127,6 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
         };
     }
 
-    // Return a face-scoped handler that:
-    // - allows insert only into AMPOULE_SLOT and MATERIAL_SLOT (if item is valid for the slot)
-    // - allows extract only from OUTPUT_SLOT_1..3
-    // For null direction (internal/container use), return the full handler.
     public IItemHandler getItemHandler(@Nullable Direction direction) {
         if (direction == null) {
             return this.itemHandler;

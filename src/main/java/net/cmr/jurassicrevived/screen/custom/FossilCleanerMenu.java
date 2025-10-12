@@ -36,12 +36,20 @@ public class FossilCleanerMenu extends AbstractContainerMenu {
                 // Delegate to BE validation: accepts vanilla water bucket and any container that holds water
                 return blockEntity.itemHandler.isItemValid(0, stack);
             }
+            @Override
+            public boolean mayPickup(Player playerIn) {
+                return true; // Explicitly allow players (and JEI) to take items from this slot
+            }
         });
 
         this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 1, 57, 35) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.getItem() == ModBlocks.STONE_FOSSIL.get().asItem() || stack.getItem() == ModBlocks.DEEPSLATE_FOSSIL.get().asItem();
+            }
+            @Override
+            public boolean mayPickup(Player playerIn) {
+                return true; // Explicitly allow players (and JEI) to take items from this slot
             }
         });
 

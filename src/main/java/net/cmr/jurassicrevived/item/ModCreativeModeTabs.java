@@ -21,7 +21,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_item_tab"))
                     .icon(() -> new ItemStack(ModItems.MOSQUITO_IN_AMBER.get()))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.AMPOULE);
+                        pOutput.accept(ModItems.TEST_TUBE);
                         pOutput.accept(ModItems.SYRINGE);
                         pOutput.accept(ModItems.CRUSHED_FOSSIL);
                         pOutput.accept(ModItems.MOSQUITO_IN_AMBER);
@@ -89,101 +89,95 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_fossil_tab"))
                     .icon(() -> new ItemStack(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL.get()))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.VELOCIRAPTOR_SKULL_FOSSIL);
-                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL);
-                        pOutput.accept(ModItems.TRICERATOPS_SKULL_FOSSIL);
-                        pOutput.accept(ModItems.SPINOSAURUS_SKULL_FOSSIL);
-                        pOutput.accept(ModItems.PTERANODON_SKULL_FOSSIL);
-                        pOutput.accept(ModItems.PARASAUROLOPHUS_SKULL_FOSSIL);
-                        pOutput.accept(ModItems.GALLIMIMUS_SKULL_FOSSIL);
-                        //pOutput.accept(ModItems.DIPLODOCUS_SKULL_FOSSIL);
-                        pOutput.accept(ModItems.DILOPHOSAURUS_SKULL_FOSSIL);
-                        pOutput.accept(ModItems.COMPSOGNATHUS_SKULL_FOSSIL);
-                        pOutput.accept(ModItems.CERATOSAURUS_SKULL_FOSSIL);
                         pOutput.accept(ModItems.BRACHIOSAURUS_SKULL_FOSSIL);
+                        pOutput.accept(ModItems.CERATOSAURUS_SKULL_FOSSIL);
+                        pOutput.accept(ModItems.COMPSOGNATHUS_SKULL_FOSSIL);
+                        pOutput.accept(ModItems.DILOPHOSAURUS_SKULL_FOSSIL);
+                        pOutput.accept(ModItems.DIPLODOCUS_SKULL_FOSSIL);
+                        pOutput.accept(ModItems.GALLIMIMUS_SKULL_FOSSIL);
+                        pOutput.accept(ModItems.PARASAUROLOPHUS_SKULL_FOSSIL);
+                        pOutput.accept(ModItems.SPINOSAURUS_SKULL_FOSSIL);
+                        pOutput.accept(ModItems.TRICERATOPS_SKULL_FOSSIL);
+                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL);
+                        pOutput.accept(ModItems.VELOCIRAPTOR_SKULL_FOSSIL);
 
-                        pOutput.accept(ModItems.FRESH_VELOCIRAPTOR_SKULL);
-                        pOutput.accept(ModItems.FRESH_TYRANNOSAURUS_REX_SKULL);
-                        pOutput.accept(ModItems.FRESH_TRICERATOPS_SKULL);
-                        pOutput.accept(ModItems.FRESH_SPINOSAURUS_SKULL);
-                        pOutput.accept(ModItems.FRESH_PTERANODON_SKULL);
-                        pOutput.accept(ModItems.FRESH_PARASAUROLOPHUS_SKULL);
-                        pOutput.accept(ModItems.FRESH_INDOMINUS_REX_SKULL);
-                        pOutput.accept(ModItems.FRESH_GALLIMIMUS_SKULL);
-                        //pOutput.accept(ModItems.FRESH_DIPLODOCUS_SKULL);
-                        pOutput.accept(ModItems.FRESH_DILOPHOSAURUS_SKULL);
-                        pOutput.accept(ModItems.FRESH_COMPSOGNATHUS_SKULL);
-                        pOutput.accept(ModItems.FRESH_CERATOSAURUS_SKULL);
                         pOutput.accept(ModItems.FRESH_BRACHIOSAURUS_SKULL);
+                        pOutput.accept(ModItems.FRESH_CERATOSAURUS_SKULL);
+                        pOutput.accept(ModItems.FRESH_COMPSOGNATHUS_SKULL);
+                        pOutput.accept(ModItems.FRESH_DILOPHOSAURUS_SKULL);
+                        pOutput.accept(ModItems.FRESH_DIPLODOCUS_SKULL);
+                        pOutput.accept(ModItems.FRESH_GALLIMIMUS_SKULL);
+                        pOutput.accept(ModItems.FRESH_INDOMINUS_REX_SKULL);
+                        pOutput.accept(ModItems.FRESH_PARASAUROLOPHUS_SKULL);
+                        pOutput.accept(ModItems.FRESH_SPINOSAURUS_SKULL);
+                        pOutput.accept(ModItems.FRESH_TRICERATOPS_SKULL);
+                        pOutput.accept(ModItems.FRESH_TYRANNOSAURUS_REX_SKULL);
+                        pOutput.accept(ModItems.FRESH_VELOCIRAPTOR_SKULL);
                     }).build());
 
     public static final Supplier<CreativeModeTab> JR_DNA_TAB =
             CREATIVE_MODE_TABS.register("jurassicrevived_dna_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_dna_tab"))
-                    .icon(() -> new ItemStack(ModItems.JR_DNA_TAB_ICON.get()))
+                    .icon(() -> new ItemStack(ModItems.TYRANNOSAURUS_REX_DNA.get()))
                     .displayItems((pParameters, pOutput) -> {
 
-                        pOutput.accept(ModItems.VELOCIRAPTOR_TISSUE);
-                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_TISSUE);
-                        pOutput.accept(ModItems.TRICERATOPS_TISSUE);
-                        pOutput.accept(ModItems.SPINOSAURUS_TISSUE);
-                        pOutput.accept(ModItems.PTERANODON_TISSUE);
-                        pOutput.accept(ModItems.PARASAUROLOPHUS_TISSUE);
-                        pOutput.accept(ModItems.INDOMINUS_REX_TISSUE);
-                        pOutput.accept(ModItems.GALLIMIMUS_TISSUE);
-                        //pOutput.accept(ModItems.DIPLODOCUS_TISSUE);
-                        pOutput.accept(ModItems.DILOPHOSAURUS_TISSUE);
-                        pOutput.accept(ModItems.COMPSOGNATHUS_TISSUE);
-                        pOutput.accept(ModItems.CERATOSAURUS_TISSUE);
                         pOutput.accept(ModItems.BRACHIOSAURUS_TISSUE);
+                        pOutput.accept(ModItems.CERATOSAURUS_TISSUE);
+                        pOutput.accept(ModItems.COMPSOGNATHUS_TISSUE);
+                        pOutput.accept(ModItems.DILOPHOSAURUS_TISSUE);
+                        pOutput.accept(ModItems.DIPLODOCUS_TISSUE);
+                        pOutput.accept(ModItems.GALLIMIMUS_TISSUE);
+                        pOutput.accept(ModItems.INDOMINUS_REX_TISSUE);
+                        pOutput.accept(ModItems.PARASAUROLOPHUS_TISSUE);
+                        pOutput.accept(ModItems.SPINOSAURUS_TISSUE);
+                        pOutput.accept(ModItems.TRICERATOPS_TISSUE);
+                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_TISSUE);
+                        pOutput.accept(ModItems.VELOCIRAPTOR_TISSUE);
 
-                        pOutput.accept(ModItems.VELOCIRAPTOR_DNA);
-                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_DNA);
-                        pOutput.accept(ModItems.TRICERATOPS_DNA);
-                        pOutput.accept(ModItems.SPINOSAURUS_DNA);
-                        pOutput.accept(ModItems.PTERANODON_DNA);
-                        pOutput.accept(ModItems.PARASAUROLOPHUS_DNA);
-                        pOutput.accept(ModItems.INDOMINUS_REX_DNA);
-                        pOutput.accept(ModItems.GALLIMIMUS_DNA);
-                        //pOutput.accept(ModItems.DIPLODOCUS_DNA);
-                        pOutput.accept(ModItems.DILOPHOSAURUS_DNA);
-                        pOutput.accept(ModItems.COMPSOGNATHUS_DNA);
-                        pOutput.accept(ModItems.CERATOSAURUS_DNA);
                         pOutput.accept(ModItems.BRACHIOSAURUS_DNA);
+                        pOutput.accept(ModItems.CERATOSAURUS_DNA);
+                        pOutput.accept(ModItems.COMPSOGNATHUS_DNA);
+                        pOutput.accept(ModItems.DILOPHOSAURUS_DNA);
+                        pOutput.accept(ModItems.DIPLODOCUS_DNA);
+                        pOutput.accept(ModItems.GALLIMIMUS_DNA);
+                        pOutput.accept(ModItems.INDOMINUS_REX_DNA);
+                        pOutput.accept(ModItems.PARASAUROLOPHUS_DNA);
+                        pOutput.accept(ModItems.SPINOSAURUS_DNA);
+                        pOutput.accept(ModItems.TRICERATOPS_DNA);
+                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_DNA);
+                        pOutput.accept(ModItems.VELOCIRAPTOR_DNA);
 
-                        pOutput.accept(ModItems.VELOCIRAPTOR_SYRINGE);
-                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_SYRINGE);
-                        pOutput.accept(ModItems.TRICERATOPS_SYRINGE);
-                        pOutput.accept(ModItems.SPINOSAURUS_SYRINGE);
-                        pOutput.accept(ModItems.PTERANODON_SYRINGE);
-                        pOutput.accept(ModItems.PARASAUROLOPHUS_SYRINGE);
-                        pOutput.accept(ModItems.INDOMINUS_REX_SYRINGE);
-                        pOutput.accept(ModItems.GALLIMIMUS_SYRINGE);
-                        //pOutput.accept(ModItems.DIPLODOCUS_SYRINGE);
-                        pOutput.accept(ModItems.DILOPHOSAURUS_SYRINGE);
-                        pOutput.accept(ModItems.COMPSOGNATHUS_SYRINGE);
-                        pOutput.accept(ModItems.CERATOSAURUS_SYRINGE);
                         pOutput.accept(ModItems.BRACHIOSAURUS_SYRINGE);
+                        pOutput.accept(ModItems.CERATOSAURUS_SYRINGE);
+                        pOutput.accept(ModItems.COMPSOGNATHUS_SYRINGE);
+                        pOutput.accept(ModItems.DILOPHOSAURUS_SYRINGE);
+                        pOutput.accept(ModItems.DIPLODOCUS_SYRINGE);
+                        pOutput.accept(ModItems.GALLIMIMUS_SYRINGE);
+                        pOutput.accept(ModItems.INDOMINUS_REX_SYRINGE);
+                        pOutput.accept(ModItems.PARASAUROLOPHUS_SYRINGE);
+                        pOutput.accept(ModItems.SPINOSAURUS_SYRINGE);
+                        pOutput.accept(ModItems.TRICERATOPS_SYRINGE);
+                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_SYRINGE);
+                        pOutput.accept(ModItems.VELOCIRAPTOR_SYRINGE);
 
-                        pOutput.accept(ModItems.VELOCIRAPTOR_EGG);
-                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_EGG);
-                        pOutput.accept(ModItems.TRICERATOPS_EGG);
-                        pOutput.accept(ModItems.SPINOSAURUS_EGG);
-                        pOutput.accept(ModItems.PTERANODON_EGG);
-                        pOutput.accept(ModItems.PARASAUROLOPHUS_EGG);
-                        pOutput.accept(ModItems.INDOMINUS_REX_EGG);
-                        pOutput.accept(ModItems.GALLIMIMUS_EGG);
-                        //pOutput.accept(ModItems.DIPLODOCUS_EGG);
-                        pOutput.accept(ModItems.DILOPHOSAURUS_EGG);
-                        pOutput.accept(ModItems.COMPSOGNATHUS_EGG);
-                        pOutput.accept(ModItems.CERATOSAURUS_EGG);
                         pOutput.accept(ModItems.BRACHIOSAURUS_EGG);
+                        pOutput.accept(ModItems.CERATOSAURUS_EGG);
+                        pOutput.accept(ModItems.COMPSOGNATHUS_EGG);
+                        pOutput.accept(ModItems.DILOPHOSAURUS_EGG);
+                        pOutput.accept(ModItems.DIPLODOCUS_EGG);
+                        pOutput.accept(ModItems.GALLIMIMUS_EGG);
+                        pOutput.accept(ModItems.INDOMINUS_REX_EGG);
+                        pOutput.accept(ModItems.PARASAUROLOPHUS_EGG);
+                        pOutput.accept(ModItems.SPINOSAURUS_EGG);
+                        pOutput.accept(ModItems.TRICERATOPS_EGG);
+                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_EGG);
+                        pOutput.accept(ModItems.VELOCIRAPTOR_EGG);
                     }).build());
 
     public static final Supplier<CreativeModeTab> JR_DINO_TAB =
             CREATIVE_MODE_TABS.register("jurassicrevived_dino_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_dino_tab"))
-                    .icon(() -> new ItemStack(ModItems.JR_DINO_TAB_ICON.get()))
+                    .icon(() -> new ItemStack(ModItems.VELOCIRAPTOR_SPAWN_EGG.get()))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.VELOCIRAPTOR_SPAWN_EGG);
                         pOutput.accept(ModItems.CERATOSAURUS_SPAWN_EGG);

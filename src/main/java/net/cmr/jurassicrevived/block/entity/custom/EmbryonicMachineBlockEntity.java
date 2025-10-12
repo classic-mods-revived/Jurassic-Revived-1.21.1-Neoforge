@@ -472,8 +472,8 @@ public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProv
     }
 
     // Build a stable signature for the two input stacks so we can detect changes
-    private static String signatureOf(ItemStack ampoule, ItemStack material) {
-        return stackSig(ampoule) + "#" + stackSig(material);
+    private static String signatureOf(ItemStack testtube, ItemStack material) {
+        return stackSig(testtube) + "#" + stackSig(material);
     }
 
     private static String stackSig(ItemStack s) {

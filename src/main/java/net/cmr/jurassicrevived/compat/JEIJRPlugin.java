@@ -1,16 +1,17 @@
 package net.cmr.jurassicrevived.compat;
 
 import mezz.jei.api.IModPlugin;
+import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IIngredientManager;
 import mezz.jei.api.runtime.IJeiRuntime;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.registration.IGuiHandlerRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
+import net.cmr.jurassicrevived.block.ModBlocks;
 import net.cmr.jurassicrevived.recipe.*;
+import net.cmr.jurassicrevived.screen.ModMenuTypes;
 import net.cmr.jurassicrevived.screen.custom.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 
@@ -86,5 +87,83 @@ public class JEIJRPlugin implements IModPlugin {
                 EmbryoCalcificationMachineRecipeCategory.EMBRYO_CALCIFICATION_MACHINE_RECIPE_RECIPE_TYPE);
         registration.addRecipeClickArea(IncubatorScreen.class, 51, 56, 72, 16,
                 IncubatorRecipeCategory.INCUBATOR_RECIPE_RECIPE_TYPE);
+    }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.DNA_EXTRACTOR.get()), DNAExtractorRecipeCategory.DNA_EXTRACTOR_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.FOSSIL_GRINDER.get()), FossilGrinderRecipeCategory.FOSSIL_GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.FOSSIL_CLEANER.get()), FossilCleanerRecipeCategory.FOSSIL_CLEANER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.DNA_HYBRIDIZER.get()), DNAHybridizerRecipeCategory.DNA_HYBRIDIZER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.EMBRYONIC_MACHINE.get()), EmbryonicMachineRecipeCategory.EMBRYONIC_MACHINE_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.EMBRYO_CALCIFICATION_MACHINE.get()), EmbryoCalcificationMachineRecipeCategory.EMBRYO_CALCIFICATION_MACHINE_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.INCUBATOR.get()), IncubatorRecipeCategory.INCUBATOR_RECIPE_RECIPE_TYPE);
+    }
+
+    @Override
+    public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
+        registration.addRecipeTransferHandler(
+                DNAExtractorMenu.class,
+                ModMenuTypes.DNA_EXTRACTOR_MENU.get(),
+                DNAExtractorRecipeCategory.DNA_EXTRACTOR_RECIPE_RECIPE_TYPE,
+                36, // The index of the FIRST recipe input slot in your Menu (slot 36)
+                2,  // The NUMBER of recipe input slots (slots 36, 37)
+                0,  // The index where the player inventory slots START (slot 0)
+                36  // The NUMBER of player inventory slots to check (slots 0-35)
+        );
+        registration.addRecipeTransferHandler(
+                FossilGrinderMenu.class,
+                ModMenuTypes.FOSSIL_GRINDER_MENU.get(),
+                FossilGrinderRecipeCategory.FOSSIL_GRINDER_RECIPE_RECIPE_TYPE,
+                36, // The index of the FIRST recipe input slot in your Menu (slot 36)
+                1,  // The NUMBER of recipe input slots (slots 36, 37)
+                0,  // The index where the player inventory slots START (slot 0)
+                36  // The NUMBER of player inventory slots to check (slots 0-35)
+        );
+        registration.addRecipeTransferHandler(
+                FossilCleanerMenu.class,
+                ModMenuTypes.FOSSIL_CLEANER_MENU.get(),
+                FossilCleanerRecipeCategory.FOSSIL_CLEANER_RECIPE_RECIPE_TYPE,
+                36, // The index of the FIRST recipe input slot in your Menu (slot 36)
+                2,  // The NUMBER of recipe input slots (slots 36, 37)
+                0,  // The index where the player inventory slots START (slot 0)
+                36  // The NUMBER of player inventory slots to check (slots 0-35)
+        );
+        registration.addRecipeTransferHandler(
+                DNAHybridizerMenu.class,
+                ModMenuTypes.DNA_HYBRIDIZER_MENU.get(),
+                DNAHybridizerRecipeCategory.DNA_HYBRIDIZER_RECIPE_RECIPE_TYPE,
+                36, // The index of the FIRST recipe input slot in your Menu (slot 36)
+                3,  // The NUMBER of recipe input slots (slots 36, 37)
+                0,  // The index where the player inventory slots START (slot 0)
+                36  // The NUMBER of player inventory slots to check (slots 0-35)
+        );
+        registration.addRecipeTransferHandler(
+                EmbryonicMachineMenu.class,
+                ModMenuTypes.EMBRYONIC_MACHINE_MENU.get(),
+                EmbryonicMachineRecipeCategory.EMBRYONIC_MACHINE_RECIPE_RECIPE_TYPE,
+                36, // The index of the FIRST recipe input slot in your Menu (slot 36)
+                2,  // The NUMBER of recipe input slots (slots 36, 37)
+                0,  // The index where the player inventory slots START (slot 0)
+                36  // The NUMBER of player inventory slots to check (slots 0-35)
+        );
+        registration.addRecipeTransferHandler(
+                EmbryoCalcificationMachineMenu.class,
+                ModMenuTypes.EMBRYO_CALCIFICATION_MACHINE_MENU.get(),
+                EmbryoCalcificationMachineRecipeCategory.EMBRYO_CALCIFICATION_MACHINE_RECIPE_RECIPE_TYPE,
+                36, // The index of the FIRST recipe input slot in your Menu (slot 36)
+                2,  // The NUMBER of recipe input slots (slots 36, 37)
+                0,  // The index where the player inventory slots START (slot 0)
+                36  // The NUMBER of player inventory slots to check (slots 0-35)
+        );
+        registration.addRecipeTransferHandler(
+                IncubatorMenu.class,
+                ModMenuTypes.INCUBATOR_MENU.get(),
+                IncubatorRecipeCategory.INCUBATOR_RECIPE_RECIPE_TYPE,
+                36, // The index of the FIRST recipe input slot in your Menu (slot 36)
+                3,  // The NUMBER of recipe input slots (slots 36, 37)
+                0,  // The index where the player inventory slots START (slot 0)
+                36  // The NUMBER of player inventory slots to check (slots 0-35)
+        );
     }
 }

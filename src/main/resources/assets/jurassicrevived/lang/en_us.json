@@ -58,7 +58,6 @@
   "item.jurassicrevived.tyrannosaurus_rex_skull_fossil": "Tyrannosaurus Rex Skull Fossil",
   "item.jurassicrevived.triceratops_skull_fossil": "Triceratops Skull Fossil",
   "item.jurassicrevived.spinosaurus_skull_fossil": "Spinosaurus Skull Fossil",
-  "item.jurassicrevived.pteranodon_skull_fossil": "Pteranodon Skull Fossil",
   "item.jurassicrevived.parasaurolophus_skull_fossil": "Parasaurolophus Skull Fossil",
   "item.jurassicrevived.indominus_rex_skull_fossil": "Indominus Rex Skull Fossil",
   "item.jurassicrevived.gallimimus_skull_fossil": "Gallimimus Skull Fossil",
@@ -72,7 +71,6 @@
   "item.jurassicrevived.fresh_tyrannosaurus_rex_skull": "Fresh Tyrannosaurus Rex Skull",
   "item.jurassicrevived.fresh_triceratops_skull": "Fresh Triceratops Skull",
   "item.jurassicrevived.fresh_spinosaurus_skull": "Fresh Spinosaurus Skull",
-  "item.jurassicrevived.fresh_pteranodon_skull": "Fresh Pteranodon Skull",
   "item.jurassicrevived.fresh_parasaurolophus_skull": "Fresh Parasaurolophus Skull",
   "item.jurassicrevived.fresh_indominus_rex_skull": "Fresh Indominus Rex Skull",
   "item.jurassicrevived.fresh_gallimimus_skull": "Fresh Gallimimus Skull",
@@ -82,7 +80,7 @@
   "item.jurassicrevived.fresh_ceratosaurus_skull": "Fresh Ceratosaurus Skull",
   "item.jurassicrevived.fresh_brachiosaurus_skull": "Fresh Brachiosaurus Skull",
 
-  "item.jurassicrevived.ampoule": "Ampoule",
+  "item.jurassicrevived.test_tube": "Test Tube",
   "item.jurassicrevived.syringe": "Syringe",
   "item.jurassicrevived.crushed_fossil": "Crushed Fossil",
   "item.jurassicrevived.mosquito_in_amber": "Mosquito In Amber",
@@ -98,7 +96,6 @@
   "item.jurassicrevived.tyrannosaurus_rex_tissue": "Tyrannosaurus Rex Tissue",
   "item.jurassicrevived.triceratops_tissue": "Triceratops Tissue",
   "item.jurassicrevived.spinosaurus_tissue": "Spinosaurus Tissue",
-  "item.jurassicrevived.pteranodon_tissue": "Pteranodon DNA",
   "item.jurassicrevived.parasaurolophus_tissue": "Parasaurolophus Tissue",
   "item.jurassicrevived.indominus_rex_tissue": "Indominus Rex Tissue",
   "item.jurassicrevived.gallimimus_tissue": "Gallimimus Tissue",
@@ -112,7 +109,6 @@
   "item.jurassicrevived.tyrannosaurus_rex_dna": "Tyrannosaurus Rex DNA",
   "item.jurassicrevived.triceratops_dna": "Triceratops DNA",
   "item.jurassicrevived.spinosaurus_dna": "Spinosaurus DNA",
-  "item.jurassicrevived.pteranodon_dna": "Pteranodon DNA",
   "item.jurassicrevived.parasaurolophus_dna": "Parasaurolophus DNA",
   "item.jurassicrevived.indominus_rex_dna": "Indominus Rex DNA",
   "item.jurassicrevived.gallimimus_dna": "Gallimimus DNA",
@@ -126,7 +122,6 @@
   "item.jurassicrevived.tyrannosaurus_rex_syringe": "Tyrannosaurus Rex Syringe",
   "item.jurassicrevived.triceratops_syringe": "Triceratops Syringe",
   "item.jurassicrevived.spinosaurus_syringe": "Spinosaurus Syringe",
-  "item.jurassicrevived.pteranodon_syringe": "Pteranodon Syringe",
   "item.jurassicrevived.parasaurolophus_syringe": "Parasaurolophus Syringe",
   "item.jurassicrevived.indominus_rex_syringe": "Indominus Rex Syringe",
   "item.jurassicrevived.gallimimus_syringe": "Gallimimus Syringe",
@@ -140,7 +135,6 @@
   "item.jurassicrevived.tyrannosaurus_rex_egg": "Tyrannosaurus Rex Egg",
   "item.jurassicrevived.triceratops_egg": "Triceratops Egg",
   "item.jurassicrevived.spinosaurus_egg": "Spinosaurus Egg",
-  "item.jurassicrevived.pteranodon_egg": "Pteranodon Egg",
   "item.jurassicrevived.parasaurolophus_egg": "Parasaurolophus Egg",
   "item.jurassicrevived.indominus_rex_egg": "Indominus Rex Egg",
   "item.jurassicrevived.gallimimus_egg": "Gallimimus Egg",
@@ -154,7 +148,6 @@
   "block.jurassicrevived.hatched_tyrannosaurus_rex_egg": "§aHatched Tyrannosaurus Rex Egg",
   "block.jurassicrevived.hatched_triceratops_egg": "§aHatched Triceratops Egg",
   "block.jurassicrevived.hatched_spinosaurus_egg": "§aHatched Spinosaurus Egg",
-  "block.jurassicrevived.hatched_pteranodon_egg": "§aHatched Pteranodon Egg",
   "block.jurassicrevived.hatched_parasaurolophus_egg": "§aHatched Parasaurolophus Egg",
   "block.jurassicrevived.hatched_indominus_rex_egg": "§aHatched Indominus Rex Egg",
   "block.jurassicrevived.hatched_gallimimus_egg": "§aHatched Gallimimus Egg",
@@ -169,8 +162,5 @@
 
   "jurassicrevived.tooltip.liquid.amount.with.capacity": "%s / %s mB",
   "jurassicrevived.tooltip.liquid.amount": "%s mB",
-  "jurassicrevived.tooltip.accepts_any_water_container": "Accepts any water container, even one's with more water than the tank can hold.",
-
-  "item.jurassicrevived.jr_dino_tab_icon": "§c(You Shouldn't have this, it has no use)§r Dinosaur Spawn Eggs §b[Creative Tab Icon]",
-  "item.jurassicrevived.jr_dna_tab_icon": "§c(You Shouldn't have this, it has no use)§r Genetic Material §b[Creative Tab Icon]"
+  "jurassicrevived.tooltip.accepts_any_water_container": "Accepts any water container, even one's with more water than the tank can hold."
 }

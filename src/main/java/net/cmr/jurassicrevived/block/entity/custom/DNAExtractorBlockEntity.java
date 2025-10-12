@@ -50,7 +50,7 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
-                case 0 -> stack.getItem() == ModItems.AMPOULE.get();
+                case 0 -> stack.getItem() == ModItems.TEST_TUBE.get();
                 case 1 -> stack.is(ModTags.Items.TISSUES) || stack.getItem() == ModItems.MOSQUITO_IN_AMBER.get();
                 case 2, 3, 4 -> true;
                 default -> super.isItemValid(slot, stack);
@@ -58,7 +58,7 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
         }
     };
 
-    private static final int AMPOULE_SLOT = 0;
+    private static final int TEST_TUBE_SLOT = 0;
     private static final int MATERIAL_SLOT = 1;
     private static final int OUTPUT_SLOT_1 = 2;
     private static final int OUTPUT_SLOT_2 = 3;
@@ -128,7 +128,7 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
     }
 
     // Return a face-scoped handler that:
-    // - allows insert only into AMPOULE_SLOT and MATERIAL_SLOT (if item is valid for the slot)
+    // - allows insert only into TEST_TUBE_SLOT and MATERIAL_SLOT (if item is valid for the slot)
     // - allows extract only from OUTPUT_SLOT_1..3
     // For null direction (internal/container use), return the full handler.
     public IItemHandler getItemHandler(@Nullable Direction direction) {
@@ -149,7 +149,7 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
             @Override
             public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
                 // Only allow insert into input slots, and only if the item is valid for that slot
-                if ((slot == AMPOULE_SLOT || slot == MATERIAL_SLOT) && itemHandler.isItemValid(slot, stack)) {
+                if ((slot == TEST_TUBE_SLOT || slot == MATERIAL_SLOT) && itemHandler.isItemValid(slot, stack)) {
                     return itemHandler.insertItem(slot, stack, simulate);
                 }
                 return stack; // reject insert
@@ -172,7 +172,7 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
             @Override
             public boolean isItemValid(int slot, @NotNull ItemStack stack) {
                 // Expose validity consistent with insertion rule
-                return (slot == AMPOULE_SLOT || slot == MATERIAL_SLOT) && itemHandler.isItemValid(slot, stack);
+                return (slot == TEST_TUBE_SLOT || slot == MATERIAL_SLOT) && itemHandler.isItemValid(slot, stack);
             }
         });
     }
@@ -243,7 +243,7 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
 
         // Compute a signature of the current inputs (item + count [+ NBT if present])
         String currentSignature = signatureOf(
-                itemHandler.getStackInSlot(AMPOULE_SLOT),
+                itemHandler.getStackInSlot(TEST_TUBE_SLOT),
                 itemHandler.getStackInSlot(MATERIAL_SLOT)
         );
 
@@ -347,7 +347,7 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
 
             if (current.isEmpty()) {
                 itemHandler.setStackInSlot(slot, output.copy());
-                itemHandler.extractItem(AMPOULE_SLOT, 1, false);
+                itemHandler.extractItem(TEST_TUBE_SLOT, 1, false);
                 itemHandler.extractItem(MATERIAL_SLOT, 1, false);
                 return;
             }
@@ -355,7 +355,7 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
             if (current.getItem() == output.getItem()
                     && current.getCount() + output.getCount() <= current.getMaxStackSize()) {
                 itemHandler.setStackInSlot(slot, new ItemStack(current.getItem(), current.getCount() + output.getCount()));
-                itemHandler.extractItem(AMPOULE_SLOT, 1, false);
+                itemHandler.extractItem(TEST_TUBE_SLOT, 1, false);
                 itemHandler.extractItem(MATERIAL_SLOT, 1, false);
                 return;
             }
@@ -388,7 +388,7 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
         assert this.level != null;
         return this.level.getRecipeManager().getRecipeFor(
                 ModRecipes.DNA_EXTRACTOR_RECIPE_TYPE.get(),
-                new DNAExtractorRecipeInput(itemHandler.getStackInSlot(AMPOULE_SLOT), itemHandler.getStackInSlot(MATERIAL_SLOT)),
+                new DNAExtractorRecipeInput(itemHandler.getStackInSlot(TEST_TUBE_SLOT), itemHandler.getStackInSlot(MATERIAL_SLOT)),
                 this.level
         );
     }
@@ -471,8 +471,8 @@ public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider
     }
 
     // Build a stable signature for the two input stacks so we can detect changes
-    private static String signatureOf(ItemStack ampoule, ItemStack material) {
-        return stackSig(ampoule) + "#" + stackSig(material);
+    private static String signatureOf(ItemStack test_tube, ItemStack material) {
+        return stackSig(test_tube) + "#" + stackSig(material);
     }
 
     private static String stackSig(ItemStack s) {

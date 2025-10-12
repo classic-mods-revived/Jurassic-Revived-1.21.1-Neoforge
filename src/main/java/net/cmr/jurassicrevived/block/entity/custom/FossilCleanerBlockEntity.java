@@ -243,10 +243,6 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
         };
     }
 
-    // Return a face-scoped handler that:
-    // - allows insert only into AMPOULE_SLOT and MATERIAL_SLOT (if item is valid for the slot)
-    // - allows extract only from OUTPUT_SLOT_1..3
-    // For null direction (internal/container use), return the full handler.
     public IItemHandler getItemHandler(@Nullable Direction direction) {
         if (direction == null) {
             return this.itemHandler;
