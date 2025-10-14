@@ -32,6 +32,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.TIRE);
                         pOutput.accept(ModItems.CUTTING_BLADES);
                         pOutput.accept(ModItems.WRENCH);
+                        pOutput.accept(ModItems.MAC_N_CHEESE);
                     }).build());
 
     public static final Supplier<CreativeModeTab> JR_BLOCK_TAB =
@@ -174,12 +175,13 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> JR_DINO_TAB =
             CREATIVE_MODE_TABS.register("jurassicrevived_dino_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_dino_tab"))
-                    .icon(() -> new ItemStack(ModItems.VELOCIRAPTOR_SPAWN_EGG.get()))
+                    .icon(() -> new ItemStack(ModItems.TYRANNOSAURUS_REX_SPAWN_EGG.get()))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.VELOCIRAPTOR_SPAWN_EGG);
-                        pOutput.accept(ModItems.CERATOSAURUS_SPAWN_EGG);
                         pOutput.accept(ModItems.BRACHIOSAURUS_SPAWN_EGG);
+                        pOutput.accept(ModItems.CERATOSAURUS_SPAWN_EGG);
                         pOutput.accept(ModItems.DILOPHOSAURUS_SPAWN_EGG);
+                        pOutput.accept(ModItems.TYRANNOSAURUS_REX_SPAWN_EGG);
+                        pOutput.accept(ModItems.VELOCIRAPTOR_SPAWN_EGG);
                     }).build());
 
     public static void register(IEventBus eventBus) {

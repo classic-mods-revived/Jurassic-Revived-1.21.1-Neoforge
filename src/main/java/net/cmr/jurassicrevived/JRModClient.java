@@ -1,10 +1,7 @@
 package net.cmr.jurassicrevived;
 
 import net.cmr.jurassicrevived.entity.ModEntities;
-import net.cmr.jurassicrevived.entity.client.VelociraptorRenderer;
-import net.cmr.jurassicrevived.entity.client.BrachiosaurusRenderer;
-import net.cmr.jurassicrevived.entity.client.CeratosaurusRenderer;
-import net.cmr.jurassicrevived.entity.client.DilophosaurusRenderer;
+import net.cmr.jurassicrevived.entity.client.*;
 import net.cmr.jurassicrevived.screen.ModMenuTypes;
 import net.cmr.jurassicrevived.screen.custom.*;
 import net.cmr.jurassicrevived.util.FenceClimbClientHandler;
@@ -37,10 +34,11 @@ public class JRModClient {
         // Some client setup code
         JRMod.LOGGER.info("HELLO FROM CLIENT SETUP");
         JRMod.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
-        EntityRenderers.register(ModEntities.VELOCIRAPTOR.get(), VelociraptorRenderer::new);
-        EntityRenderers.register(ModEntities.CERATOSAURUS.get(), CeratosaurusRenderer::new);
         EntityRenderers.register(ModEntities.BRACHIOSAURUS.get(), BrachiosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.CERATOSAURUS.get(), CeratosaurusRenderer::new);
         EntityRenderers.register(ModEntities.DILOPHOSAURUS.get(), DilophosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.TYRANNOSAURUS_REX.get(), TyrannosaurusRexRenderer::new);
+        EntityRenderers.register(ModEntities.VELOCIRAPTOR.get(), VelociraptorRenderer::new);
         FenceClimbClientHandler.register();
     }
 

@@ -4,10 +4,7 @@ import net.cmr.jurassicrevived.Config;
 import net.cmr.jurassicrevived.JRMod;
 import net.cmr.jurassicrevived.block.entity.custom.*;
 import net.cmr.jurassicrevived.entity.ModEntities;
-import net.cmr.jurassicrevived.entity.custom.VelociraptorEntity;
-import net.cmr.jurassicrevived.entity.custom.BrachiosaurusEntity;
-import net.cmr.jurassicrevived.entity.custom.CeratosaurusEntity;
-import net.cmr.jurassicrevived.entity.custom.DilophosaurusEntity;
+import net.cmr.jurassicrevived.entity.custom.*;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -43,9 +40,10 @@ public class ModEventBusEvents {
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntities.VELOCIRAPTOR.get(), VelociraptorEntity.createAttributes().build());
-        event.put(ModEntities.CERATOSAURUS.get(), CeratosaurusEntity.createAttributes().build());
         event.put(ModEntities.BRACHIOSAURUS.get(), BrachiosaurusEntity.createAttributes().build());
+        event.put(ModEntities.CERATOSAURUS.get(), CeratosaurusEntity.createAttributes().build());
         event.put(ModEntities.DILOPHOSAURUS.get(), DilophosaurusEntity.createAttributes().build());
+        event.put(ModEntities.TYRANNOSAURUS_REX.get(), TyrannosaurusRexEntity.createAttributes().build());
+        event.put(ModEntities.VELOCIRAPTOR.get(), VelociraptorEntity.createAttributes().build());
     }
 }

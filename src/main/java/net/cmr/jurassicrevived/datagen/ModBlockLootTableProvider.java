@@ -60,6 +60,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         //dropSelf(ModBlocks.HATCHED_GALLIMIMUS_EGG.get());
         //dropSelf(ModBlocks.HATCHED_DIPLODOCUS_EGG.get());
         //dropSelf(ModBlocks.HATCHED_COMPSOGNATHUS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_TYRANNOSAURUS_REX_EGG.get());
         dropSelf(ModBlocks.HATCHED_VELOCIRAPTOR_EGG.get());
 
 
