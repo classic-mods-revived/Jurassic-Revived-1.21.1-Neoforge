@@ -33,6 +33,8 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.CUTTING_BLADES);
                         pOutput.accept(ModItems.WRENCH);
                         pOutput.accept(ModItems.MAC_N_CHEESE);
+                        pOutput.accept(ModItems.WALNUT_PUMPKIN_PIE);
+                        pOutput.accept(ModItems.BANANA_NUT_COOKIE);
                     }).build());
 
     public static final Supplier<CreativeModeTab> JR_BLOCK_TAB =
@@ -179,6 +181,7 @@ public class ModCreativeModeTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.BRACHIOSAURUS_SPAWN_EGG);
                         pOutput.accept(ModItems.CERATOSAURUS_SPAWN_EGG);
+                        pOutput.accept(ModItems.COMPSOGNATHUS_SPAWN_EGG);
                         pOutput.accept(ModItems.DILOPHOSAURUS_SPAWN_EGG);
                         pOutput.accept(ModItems.TYRANNOSAURUS_REX_SPAWN_EGG);
                         pOutput.accept(ModItems.VELOCIRAPTOR_SPAWN_EGG);

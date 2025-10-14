@@ -1,7 +1,7 @@
 package net.cmr.jurassicrevived.entity.custom;
 
 import net.cmr.jurassicrevived.entity.ModEntities;
-import net.cmr.jurassicrevived.entity.client.BrachiosaurusVariant;
+import net.cmr.jurassicrevived.entity.client.CompsognathusVariant;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -10,40 +10,36 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
-import software.bernie.geckolib.animation.AnimationState;
 
-public class BrachiosaurusEntity extends Animal implements GeoEntity {
+public class CompsognathusEntity extends Animal implements GeoEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     private static final EntityDataAccessor<Integer> VARIANT =
-            SynchedEntityData.defineId(BrachiosaurusEntity.class, EntityDataSerializers.INT);
+            SynchedEntityData.defineId(CompsognathusEntity.class, EntityDataSerializers.INT);
 
     // Procedural tail sway state (client-side use for rendering)
     private float tailSwayOffset;   // Smoothed offset in range roughly [-1, 1]
     private float tailSwayVelocity; // Internal velocity for spring-damper
     private float tailSwayPrev;     // Previous frame value for interpolation
 
-    public BrachiosaurusEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
+    public CompsognathusEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
@@ -51,47 +47,44 @@ public class BrachiosaurusEntity extends Animal implements GeoEntity {
     protected void registerGoals() {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
         this.goalSelector.addGoal(2, new FloatGoal(this));
-        this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, DilophosaurusEntity.class, (float) 20, 1, 1));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, VelociraptorEntity.class, (float) 20, 1, 1));
-        this.goalSelector.addGoal(5, new AvoidEntityGoal<>(this, CeratosaurusEntity.class, (float) 20, 1, 1));
-        //this.goalSelector.addGoal(6, new AvoidEntityGoal<>(this, SpinosaurusEntity.class, (float) 20, 1, 1));
-        this.goalSelector.addGoal(7, new AvoidEntityGoal<>(this, TyrannosaurusRexEntity.class, (float) 20, 1, 1));
-        this.goalSelector.addGoal(8, new MeleeAttackGoal(this, 1, false) {
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.2, false) {
             private double getAttackReachSqr(LivingEntity entity) {
-                return 49;
+                return 4;
             }
         });
-        this.goalSelector.addGoal(9, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(9, new FollowParentGoal(this, 1.25));
-        this.goalSelector.addGoal(10, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(11, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(12, new FollowMobGoal(this, 1, (float) 20, (float) 10));
-        this.goalSelector.addGoal(13, new RandomLookAroundGoal(this));
-
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Animal.class, 10, false, false,
+                target -> target.getType() != this.getType()));
+        this.goalSelector.addGoal(5, new BreedGoal(this, 1.0));
+        this.goalSelector.addGoal(6, new FollowParentGoal(this, 1.25));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(9, new FollowMobGoal(this, 1, (float) 20, (float) 10));
+        this.goalSelector.addGoal(10, new AvoidEntityGoal<>(this, LivingEntity.class, (float) 20, 1, 1));
+        this.goalSelector.addGoal(11, new RandomLookAroundGoal(this));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 500D)
+                .add(Attributes.MAX_HEALTH, 5D)
                 .add(Attributes.MOVEMENT_SPEED, 0.3D)
                 .add(Attributes.ARMOR, 0D)
                 .add(Attributes.FOLLOW_RANGE, 32D)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 1D)
-                .add(Attributes.ATTACK_KNOCKBACK, 0D)
-                .add(Attributes.ATTACK_DAMAGE, 75D);
+                .add(Attributes.ATTACK_DAMAGE, 2D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.3D)
+                .add(Attributes.ATTACK_KNOCKBACK, 0D);
     }
 
     @Override
     public boolean isFood(ItemStack pStack) {
-        return pStack.is(Items.KELP);
+        return pStack.is(Items.BEEF);
     }
 
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        AgeableMob child = ModEntities.BRACHIOSAURUS.get().create(pLevel);
-        if (child instanceof BrachiosaurusEntity baby) {
-            BrachiosaurusVariant randomVariant = Util.getRandom(BrachiosaurusVariant.values(), this.random);
+        AgeableMob child = ModEntities.COMPSOGNATHUS.get().create(pLevel);
+        if (child instanceof CompsognathusEntity baby) {
+            CompsognathusVariant randomVariant = Util.getRandom(CompsognathusVariant.values(), this.random);
             baby.setVariant(randomVariant);
         }
         return child;
@@ -112,13 +105,13 @@ public class BrachiosaurusEntity extends Animal implements GeoEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "Walk/Run/Idle", state -> {
             if (state.isMoving())
-                return state.setAndContinue(BrachiosaurusEntity.this.isSprinting() ? RawAnimation.begin().then("anim.brachiosaurus.running", Animation.LoopType.LOOP) : RawAnimation.begin().then("anim.brachiosaurus.walk", Animation.LoopType.LOOP));
+                return state.setAndContinue(CompsognathusEntity.this.isSprinting() ? RawAnimation.begin().then("anim.compsognathus.run", Animation.LoopType.LOOP) : RawAnimation.begin().then("anim.compsognathus.walk", Animation.LoopType.LOOP));
 
-            return state.setAndContinue(RawAnimation.begin().then("anim.brachiosaurus.idle", Animation.LoopType.LOOP));
+            return state.setAndContinue(RawAnimation.begin().then("anim.compsognathus.idle", Animation.LoopType.LOOP));
         }));
 
         controllers.add(new AnimationController<>(this, "attackController", state -> PlayState.STOP)
-                .triggerableAnim("attack", RawAnimation.begin().then("anim.brachiosaurus.attack", Animation.LoopType.PLAY_ONCE)));
+                .triggerableAnim("attack", RawAnimation.begin().then("anim.compsognathus.attack", Animation.LoopType.PLAY_ONCE)));
     }
 
     private float getSignedTurnDelta() {
@@ -186,18 +179,18 @@ public class BrachiosaurusEntity extends Animal implements GeoEntity {
         return this.entityData.get(VARIANT);
     }
 
-    public BrachiosaurusVariant getVariant() {
-        return BrachiosaurusVariant.byId(this.getTypeVariant() & 255);
+    public CompsognathusVariant getVariant() {
+        return CompsognathusVariant.byId(this.getTypeVariant() & 255);
     }
 
-    private void setVariant(BrachiosaurusVariant variant) {
+    private void setVariant(CompsognathusVariant variant) {
         this.entityData.set(VARIANT, variant.getId() & 255);
     }
 
     @Override
     public boolean canMate(Animal other) {
         if (!super.canMate(other)) return false;
-        if (!(other instanceof BrachiosaurusEntity that)) return false;
+        if (!(other instanceof CompsognathusEntity that)) return false;
         return this.getVariant() != that.getVariant();
     }
     @Override
@@ -214,7 +207,7 @@ public class BrachiosaurusEntity extends Animal implements GeoEntity {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        BrachiosaurusVariant variant = Util.getRandom(BrachiosaurusVariant.values(), this.random);
+        CompsognathusVariant variant = Util.getRandom(CompsognathusVariant.values(), this.random);
         this.setVariant(variant);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }

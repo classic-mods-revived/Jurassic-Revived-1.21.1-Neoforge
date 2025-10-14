@@ -15,13 +15,15 @@ public class ModItems {
 
     public static final DeferredItem<Item> WRENCH = ITEMS.register("wrench", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> MAC_N_CHEESE = ITEMS.register("mac_n_cheese", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationModifier(0.6f).build())));
+    public static final DeferredItem<Item> WALNUT_PUMPKIN_PIE = ITEMS.register("walnut_pumpkin_pie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationModifier(0.6f).build())));
+    public static final DeferredItem<Item> BANANA_NUT_COOKIE = ITEMS.register("banana_nut_cookie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationModifier(0.6f).build())));
 
     public static final DeferredItem<Item> BRACHIOSAURUS_SPAWN_EGG = ITEMS.register("brachiosaurus_spawn_egg",
             () -> new CustomGenderedSpawnEggItem(ModEntities.BRACHIOSAURUS, 0x95846D, 0x4B4236, new Item.Properties()));
     public static final DeferredItem<Item> CERATOSAURUS_SPAWN_EGG = ITEMS.register("ceratosaurus_spawn_egg",
             () -> new CustomGenderedSpawnEggItem(ModEntities.CERATOSAURUS, 0x954846, 0x221F1D, new Item.Properties()));
-    //public static final DeferredItem<Item> COMPSOGNATHUS_SPAWN_EGG = ITEMS.register("compsognathus_spawn_egg",
-    //        () -> new CustomGenderedSpawnEggItem(ModEntities.COMPSOGNATHUS, 0x676D24, 0x373E16, new Item.Properties()));
+    public static final DeferredItem<Item> COMPSOGNATHUS_SPAWN_EGG = ITEMS.register("compsognathus_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.COMPSOGNATHUS, 0x676D24, 0x373E16, new Item.Properties()));
     //public static final DeferredItem<Item> DIPLODOCUS_SPAWN_EGG = ITEMS.register("diplodocus_spawn_egg",
     //        () -> new CustomGenderedSpawnEggItem(ModEntities.DIPLODOCUS, 0x, 0x, new Item.Properties()));
     public static final DeferredItem<Item> DILOPHOSAURUS_SPAWN_EGG = ITEMS.register("dilophosaurus_spawn_egg",

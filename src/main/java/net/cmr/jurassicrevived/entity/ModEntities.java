@@ -22,6 +22,10 @@ public class ModEntities {
             ENTITY_TYPES.register("ceratosaurus", () -> EntityType.Builder.of(CeratosaurusEntity::new, MobCategory.CREATURE)
                     .sized(1.875f, 2.375f).build("ceratosaurus"));
 
+    public static final Supplier<EntityType<CompsognathusEntity>> COMPSOGNATHUS =
+            ENTITY_TYPES.register("compsognathus", () -> EntityType.Builder.of(CompsognathusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("compsognathus"));
+
     public static final Supplier<EntityType<DilophosaurusEntity>> DILOPHOSAURUS =
             ENTITY_TYPES.register("dilophosaurus", () -> EntityType.Builder.of(DilophosaurusEntity::new, MobCategory.CREATURE)
                     .sized(1.875f, 2.375f).build("dilophosaurus"));

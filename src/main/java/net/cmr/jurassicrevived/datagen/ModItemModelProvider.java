@@ -19,6 +19,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         withExistingParent(ModItems.BRACHIOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.CERATOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ModItems.COMPSOGNATHUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.DILOPHOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.TYRANNOSAURUS_REX_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.VELOCIRAPTOR_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
@@ -35,6 +36,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.CUTTING_BLADES.get());
         basicItem(ModItems.WRENCH.get());
         basicItem(ModItems.MAC_N_CHEESE.get());
+        basicItem(ModItems.WALNUT_PUMPKIN_PIE.get());
+        basicItem(ModItems.BANANA_NUT_COOKIE.get());
 
         basicItem(ModItems.BRACHIOSAURUS_SKULL_FOSSIL.get());
         basicItem(ModItems.CERATOSAURUS_SKULL_FOSSIL.get());
@@ -128,7 +131,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         //simpleBlockItemBlockTexture(ModBlocks.HATCHED_INDOMINUS_REX_EGG);
         //simpleBlockItemBlockTexture(ModBlocks.HATCHED_GALLIMIMUS_EGG);
         //simpleBlockItemBlockTexture(ModBlocks.HATCHED_DIPLODOCUS_EGG);
-        //simpleBlockItemBlockTexture(ModBlocks.HATCHED_COMPSOGNATHUS_EGG);
+        simpleBlockItemBlockTexture(ModBlocks.HATCHED_COMPSOGNATHUS_EGG);
         simpleBlockItemBlockTexture(ModBlocks.HATCHED_VELOCIRAPTOR_EGG);
 
         flowerItem(ModBlocks.ROYAL_FERN);
