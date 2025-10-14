@@ -28,6 +28,8 @@ public class ModItems {
     //        () -> new CustomGenderedSpawnEggItem(ModEntities.DIPLODOCUS, 0x, 0x, new Item.Properties()));
     public static final DeferredItem<Item> DILOPHOSAURUS_SPAWN_EGG = ITEMS.register("dilophosaurus_spawn_egg",
             () -> new CustomGenderedSpawnEggItem(ModEntities.DILOPHOSAURUS, 0x575D32, 0x16191C, new Item.Properties()));
+    public static final DeferredItem<Item> FDUCK_SPAWN_EGG = ITEMS.register("fduck_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.FDUCK, 0xff8800, 0x421111, new Item.Properties()));
     //public static final DeferredItem<Item> GALLIMIMUS_SPAWN_EGG = ITEMS.register("gallimimus_spawn_egg",
     //        () -> new CustomGenderedSpawnEggItem(ModEntities.GALLIMIMUX, 0xAD7341, 0x5C3925, new Item.Properties()));
     //public static final DeferredItem<Item> INDOMINUS_REX_SPAWN_EGG = ITEMS.register("indominus_rex_spawn_egg",
