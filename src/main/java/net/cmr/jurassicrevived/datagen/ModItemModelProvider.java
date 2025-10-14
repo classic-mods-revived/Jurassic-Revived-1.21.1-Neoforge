@@ -22,6 +22,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModItems.COMPSOGNATHUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.DILOPHOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.FDUCK_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ModItems.OURANOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ModItems.PARASAUROLOPHUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.TYRANNOSAURUS_REX_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.VELOCIRAPTOR_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 
@@ -47,6 +49,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.DIPLODOCUS_SKULL_FOSSIL.get());
         basicItem(ModItems.GALLIMIMUS_SKULL_FOSSIL.get());
         basicItem(ModItems.PARASAUROLOPHUS_SKULL_FOSSIL.get());
+        basicItem(ModItems.OURANOSAURUS_SKULL_FOSSIL.get());
         basicItem(ModItems.SPINOSAURUS_SKULL_FOSSIL.get());
         basicItem(ModItems.TRICERATOPS_SKULL_FOSSIL.get());
         basicItem(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL.get());
@@ -60,6 +63,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.FRESH_GALLIMIMUS_SKULL.get());
         basicItem(ModItems.FRESH_INDOMINUS_REX_SKULL.get());
         basicItem(ModItems.FRESH_PARASAUROLOPHUS_SKULL.get());
+        basicItem(ModItems.FRESH_OURANOSAURUS_SKULL.get());
         basicItem(ModItems.FRESH_SPINOSAURUS_SKULL.get());
         basicItem(ModItems.FRESH_TRICERATOPS_SKULL.get());
         basicItem(ModItems.FRESH_TYRANNOSAURUS_REX_SKULL.get());
@@ -72,6 +76,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.DIPLODOCUS_TISSUE.get());
         basicItem(ModItems.GALLIMIMUS_TISSUE.get());
         basicItem(ModItems.INDOMINUS_REX_TISSUE.get());
+        basicItem(ModItems.OURANOSAURUS_TISSUE.get());
         basicItem(ModItems.PARASAUROLOPHUS_TISSUE.get());
         basicItem(ModItems.SPINOSAURUS_TISSUE.get());
         basicItem(ModItems.TRICERATOPS_TISSUE.get());
@@ -85,6 +90,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.DIPLODOCUS_DNA.get());
         basicItem(ModItems.GALLIMIMUS_DNA.get());
         basicItem(ModItems.INDOMINUS_REX_DNA.get());
+        basicItem(ModItems.OURANOSAURUS_DNA.get());
         basicItem(ModItems.PARASAUROLOPHUS_DNA.get());
         basicItem(ModItems.SPINOSAURUS_DNA.get());
         basicItem(ModItems.TRICERATOPS_DNA.get());
@@ -98,6 +104,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.DIPLODOCUS_SYRINGE.get());
         basicItem(ModItems.GALLIMIMUS_SYRINGE.get());
         basicItem(ModItems.INDOMINUS_REX_SYRINGE.get());
+        basicItem(ModItems.OURANOSAURUS_SYRINGE.get());
         basicItem(ModItems.PARASAUROLOPHUS_SYRINGE.get());
         basicItem(ModItems.SPINOSAURUS_SYRINGE.get());
         basicItem(ModItems.TRICERATOPS_SYRINGE.get());
@@ -111,6 +118,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.DIPLODOCUS_EGG.get());
         basicItem(ModItems.GALLIMIMUS_EGG.get());
         basicItem(ModItems.INDOMINUS_REX_EGG.get());
+        basicItem(ModItems.OURANOSAURUS_EGG.get());
         basicItem(ModItems.PARASAUROLOPHUS_EGG.get());
         basicItem(ModItems.SPINOSAURUS_EGG.get());
         basicItem(ModItems.TRICERATOPS_EGG.get());
@@ -128,7 +136,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleBlockItemBlockTexture(ModBlocks.HATCHED_TYRANNOSAURUS_REX_EGG);
         //simpleBlockItemBlockTexture(ModBlocks.HATCHED_TRICERATOPS_EGG);
         //simpleBlockItemBlockTexture(ModBlocks.HATCHED_SPINOSAURUS_EGG);
-        //simpleBlockItemBlockTexture(ModBlocks.HATCHED_PARASAUROLOPHUS_EGG);
+        simpleBlockItemBlockTexture(ModBlocks.HATCHED_OURANOSAURUS_EGG);
+        simpleBlockItemBlockTexture(ModBlocks.HATCHED_PARASAUROLOPHUS_EGG);
         //simpleBlockItemBlockTexture(ModBlocks.HATCHED_INDOMINUS_REX_EGG);
         //simpleBlockItemBlockTexture(ModBlocks.HATCHED_GALLIMIMUS_EGG);
         //simpleBlockItemBlockTexture(ModBlocks.HATCHED_DIPLODOCUS_EGG);

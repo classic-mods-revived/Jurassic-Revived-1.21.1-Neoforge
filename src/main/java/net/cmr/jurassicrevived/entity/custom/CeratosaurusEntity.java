@@ -116,7 +116,7 @@ public class CeratosaurusEntity extends Animal implements GeoEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "Walk/Run/Idle", state -> {
             if (state.isMoving())
-                return state.setAndContinue(CeratosaurusEntity.this.isSprinting() ? RawAnimation.begin().then("anim.ceratosaurus.running", Animation.LoopType.LOOP) : RawAnimation.begin().then("anim.ceratosaurus.walk", Animation.LoopType.LOOP));
+                return state.setAndContinue(CeratosaurusEntity.this.isSprinting() ? RawAnimation.begin().then("anim.ceratosaurus.run", Animation.LoopType.LOOP) : RawAnimation.begin().then("anim.ceratosaurus.walk", Animation.LoopType.LOOP));
 
             return state.setAndContinue(RawAnimation.begin().then("anim.ceratosaurus.idle", Animation.LoopType.LOOP));
         }));

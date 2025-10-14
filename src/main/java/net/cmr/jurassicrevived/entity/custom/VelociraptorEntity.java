@@ -117,7 +117,7 @@ public class VelociraptorEntity extends Animal implements GeoEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "Walk/Run/Idle", state -> {
             if (state.isMoving())
-                return state.setAndContinue(VelociraptorEntity.this.isSprinting() ? RawAnimation.begin().then("anim.velociraptor.running", Animation.LoopType.LOOP) : RawAnimation.begin().then("anim.velociraptor.walk", Animation.LoopType.LOOP));
+                return state.setAndContinue(VelociraptorEntity.this.isSprinting() ? RawAnimation.begin().then("anim.velociraptor.run", Animation.LoopType.LOOP) : RawAnimation.begin().then("anim.velociraptor.walk", Animation.LoopType.LOOP));
 
             return state.setAndContinue(RawAnimation.begin().then("anim.velociraptor.idle", Animation.LoopType.LOOP));
         }));

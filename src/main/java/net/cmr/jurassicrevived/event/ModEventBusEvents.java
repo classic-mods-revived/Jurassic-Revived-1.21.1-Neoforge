@@ -45,6 +45,8 @@ public class ModEventBusEvents {
         event.put(ModEntities.COMPSOGNATHUS.get(), CompsognathusEntity.createAttributes().build());
         event.put(ModEntities.DILOPHOSAURUS.get(), DilophosaurusEntity.createAttributes().build());
         event.put(ModEntities.FDUCK.get(), FDuckEntity.createAttributes().build());
+        event.put(ModEntities.OURANOSAURUS.get(), OuranosaurusEntity.createAttributes().build());
+        event.put(ModEntities.PARASAUROLOPHUS.get(), OuranosaurusEntity.createAttributes().build());
         event.put(ModEntities.TYRANNOSAURUS_REX.get(), TyrannosaurusRexEntity.createAttributes().build());
         event.put(ModEntities.VELOCIRAPTOR.get(), VelociraptorEntity.createAttributes().build());
     }

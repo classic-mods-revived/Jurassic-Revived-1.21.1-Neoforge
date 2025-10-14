@@ -112,7 +112,7 @@ public class BrachiosaurusEntity extends Animal implements GeoEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "Walk/Run/Idle", state -> {
             if (state.isMoving())
-                return state.setAndContinue(BrachiosaurusEntity.this.isSprinting() ? RawAnimation.begin().then("anim.brachiosaurus.running", Animation.LoopType.LOOP) : RawAnimation.begin().then("anim.brachiosaurus.walk", Animation.LoopType.LOOP));
+                return state.setAndContinue(BrachiosaurusEntity.this.isSprinting() ? RawAnimation.begin().then("anim.brachiosaurus.run", Animation.LoopType.LOOP) : RawAnimation.begin().then("anim.brachiosaurus.walk", Animation.LoopType.LOOP));
 
             return state.setAndContinue(RawAnimation.begin().then("anim.brachiosaurus.idle", Animation.LoopType.LOOP));
         }));

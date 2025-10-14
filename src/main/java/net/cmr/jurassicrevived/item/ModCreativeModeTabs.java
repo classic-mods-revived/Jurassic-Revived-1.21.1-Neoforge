@@ -95,6 +95,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.DILOPHOSAURUS_SKULL_FOSSIL);
                         pOutput.accept(ModItems.DIPLODOCUS_SKULL_FOSSIL);
                         pOutput.accept(ModItems.GALLIMIMUS_SKULL_FOSSIL);
+                        pOutput.accept(ModItems.OURANOSAURUS_SKULL_FOSSIL);
                         pOutput.accept(ModItems.PARASAUROLOPHUS_SKULL_FOSSIL);
                         pOutput.accept(ModItems.SPINOSAURUS_SKULL_FOSSIL);
                         pOutput.accept(ModItems.TRICERATOPS_SKULL_FOSSIL);
@@ -108,6 +109,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.FRESH_DIPLODOCUS_SKULL);
                         pOutput.accept(ModItems.FRESH_GALLIMIMUS_SKULL);
                         pOutput.accept(ModItems.FRESH_INDOMINUS_REX_SKULL);
+                        pOutput.accept(ModItems.FRESH_OURANOSAURUS_SKULL);
                         pOutput.accept(ModItems.FRESH_PARASAUROLOPHUS_SKULL);
                         pOutput.accept(ModItems.FRESH_SPINOSAURUS_SKULL);
                         pOutput.accept(ModItems.FRESH_TRICERATOPS_SKULL);
@@ -128,6 +130,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.DIPLODOCUS_TISSUE);
                         pOutput.accept(ModItems.GALLIMIMUS_TISSUE);
                         pOutput.accept(ModItems.INDOMINUS_REX_TISSUE);
+                        pOutput.accept(ModItems.OURANOSAURUS_TISSUE);
                         pOutput.accept(ModItems.PARASAUROLOPHUS_TISSUE);
                         pOutput.accept(ModItems.SPINOSAURUS_TISSUE);
                         pOutput.accept(ModItems.TRICERATOPS_TISSUE);
@@ -141,6 +144,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.DIPLODOCUS_DNA);
                         pOutput.accept(ModItems.GALLIMIMUS_DNA);
                         pOutput.accept(ModItems.INDOMINUS_REX_DNA);
+                        pOutput.accept(ModItems.OURANOSAURUS_DNA);
                         pOutput.accept(ModItems.PARASAUROLOPHUS_DNA);
                         pOutput.accept(ModItems.SPINOSAURUS_DNA);
                         pOutput.accept(ModItems.TRICERATOPS_DNA);
@@ -154,6 +158,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.DIPLODOCUS_SYRINGE);
                         pOutput.accept(ModItems.GALLIMIMUS_SYRINGE);
                         pOutput.accept(ModItems.INDOMINUS_REX_SYRINGE);
+                        pOutput.accept(ModItems.OURANOSAURUS_SYRINGE);
                         pOutput.accept(ModItems.PARASAUROLOPHUS_SYRINGE);
                         pOutput.accept(ModItems.SPINOSAURUS_SYRINGE);
                         pOutput.accept(ModItems.TRICERATOPS_SYRINGE);
@@ -167,6 +172,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.DIPLODOCUS_EGG);
                         pOutput.accept(ModItems.GALLIMIMUS_EGG);
                         pOutput.accept(ModItems.INDOMINUS_REX_EGG);
+                        pOutput.accept(ModItems.OURANOSAURUS_EGG);
                         pOutput.accept(ModItems.PARASAUROLOPHUS_EGG);
                         pOutput.accept(ModItems.SPINOSAURUS_EGG);
                         pOutput.accept(ModItems.TRICERATOPS_EGG);
@@ -183,6 +189,8 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.CERATOSAURUS_SPAWN_EGG);
                         pOutput.accept(ModItems.COMPSOGNATHUS_SPAWN_EGG);
                         pOutput.accept(ModItems.DILOPHOSAURUS_SPAWN_EGG);
+                        pOutput.accept(ModItems.OURANOSAURUS_SPAWN_EGG);
+                        pOutput.accept(ModItems.PARASAUROLOPHUS_SPAWN_EGG);
                         pOutput.accept(ModItems.TYRANNOSAURUS_REX_SPAWN_EGG);
                         pOutput.accept(ModItems.VELOCIRAPTOR_SPAWN_EGG);
                     }).build());
