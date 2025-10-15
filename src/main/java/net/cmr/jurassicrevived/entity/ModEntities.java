@@ -14,6 +14,10 @@ public class ModEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, JRMod.MOD_ID);
 
+    public static final Supplier<EntityType<AlbertosaurusEntity>> ALBERTOSAURUS =
+            ENTITY_TYPES.register("albertosaurus", () -> EntityType.Builder.of(AlbertosaurusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("albertosaurus"));
+
     public static final Supplier<EntityType<BrachiosaurusEntity>> BRACHIOSAURUS =
             ENTITY_TYPES.register("brachiosaurus", () -> EntityType.Builder.of(BrachiosaurusEntity::new, MobCategory.CREATURE)
                     .sized(1.875f, 2.375f).build("brachiosaurus"));

@@ -59,7 +59,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.HATCHED_DILOPHOSAURUS_EGG.get())
                 .add(ModBlocks.HATCHED_COMPSOGNATHUS_EGG.get())
                 .add(ModBlocks.HATCHED_CERATOSAURUS_EGG.get())
-                .add(ModBlocks.HATCHED_BRACHIOSAURUS_EGG.get());
+                .add(ModBlocks.HATCHED_BRACHIOSAURUS_EGG.get())
+                .add(ModBlocks.HATCHED_ALBERTOSAURUS_EGG.get());
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL);
                 //.add(ModBlocks.hq_ORE.get());

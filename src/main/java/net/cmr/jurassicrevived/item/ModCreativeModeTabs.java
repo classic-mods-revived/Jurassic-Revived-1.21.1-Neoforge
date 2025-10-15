@@ -89,6 +89,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_fossil_tab"))
                     .icon(() -> new ItemStack(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL.get()))
                     .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(ModItems.ALBERTOSAURUS_SKULL_FOSSIL);
                         pOutput.accept(ModItems.BRACHIOSAURUS_SKULL_FOSSIL);
                         pOutput.accept(ModItems.CERATOSAURUS_SKULL_FOSSIL);
                         pOutput.accept(ModItems.COMPSOGNATHUS_SKULL_FOSSIL);
@@ -102,6 +103,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL);
                         pOutput.accept(ModItems.VELOCIRAPTOR_SKULL_FOSSIL);
 
+                        pOutput.accept(ModItems.FRESH_ALBERTOSAURUS_SKULL);
                         pOutput.accept(ModItems.FRESH_BRACHIOSAURUS_SKULL);
                         pOutput.accept(ModItems.FRESH_CERATOSAURUS_SKULL);
                         pOutput.accept(ModItems.FRESH_COMPSOGNATHUS_SKULL);
@@ -123,6 +125,7 @@ public class ModCreativeModeTabs {
                     .icon(() -> new ItemStack(ModItems.TYRANNOSAURUS_REX_DNA.get()))
                     .displayItems((pParameters, pOutput) -> {
 
+                        pOutput.accept(ModItems.ALBERTOSAURUS_TISSUE);
                         pOutput.accept(ModItems.BRACHIOSAURUS_TISSUE);
                         pOutput.accept(ModItems.CERATOSAURUS_TISSUE);
                         pOutput.accept(ModItems.COMPSOGNATHUS_TISSUE);
@@ -137,6 +140,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.TYRANNOSAURUS_REX_TISSUE);
                         pOutput.accept(ModItems.VELOCIRAPTOR_TISSUE);
 
+                        pOutput.accept(ModItems.ALBERTOSAURUS_DNA);
                         pOutput.accept(ModItems.BRACHIOSAURUS_DNA);
                         pOutput.accept(ModItems.CERATOSAURUS_DNA);
                         pOutput.accept(ModItems.COMPSOGNATHUS_DNA);
@@ -151,6 +155,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.TYRANNOSAURUS_REX_DNA);
                         pOutput.accept(ModItems.VELOCIRAPTOR_DNA);
 
+                        pOutput.accept(ModItems.ALBERTOSAURUS_SYRINGE);
                         pOutput.accept(ModItems.BRACHIOSAURUS_SYRINGE);
                         pOutput.accept(ModItems.CERATOSAURUS_SYRINGE);
                         pOutput.accept(ModItems.COMPSOGNATHUS_SYRINGE);
@@ -165,6 +170,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.TYRANNOSAURUS_REX_SYRINGE);
                         pOutput.accept(ModItems.VELOCIRAPTOR_SYRINGE);
 
+                        pOutput.accept(ModItems.ALBERTOSAURUS_EGG);
                         pOutput.accept(ModItems.BRACHIOSAURUS_EGG);
                         pOutput.accept(ModItems.CERATOSAURUS_EGG);
                         pOutput.accept(ModItems.COMPSOGNATHUS_EGG);
@@ -185,6 +191,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_dino_tab"))
                     .icon(() -> new ItemStack(ModItems.TYRANNOSAURUS_REX_SPAWN_EGG.get()))
                     .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(ModItems.ALBERTOSAURUS_SPAWN_EGG);
                         pOutput.accept(ModItems.BRACHIOSAURUS_SPAWN_EGG);
                         pOutput.accept(ModItems.CERATOSAURUS_SPAWN_EGG);
                         pOutput.accept(ModItems.COMPSOGNATHUS_SPAWN_EGG);

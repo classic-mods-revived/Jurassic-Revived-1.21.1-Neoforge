@@ -306,6 +306,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         .unlockedBy("has_cable", has(ModItems.CABLE))
                         .save(pRecipeOutput.withConditions(requirePowerCondition));
 
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE, ModItems.ALBERTOSAURUS_TISSUE, ModItems.ALBERTOSAURUS_DNA, 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE)).save(pRecipeOutput);
         new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE, ModItems.BRACHIOSAURUS_TISSUE, ModItems.BRACHIOSAURUS_DNA, 1)
                 .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE)).save(pRecipeOutput);
         new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE, ModItems.CERATOSAURUS_TISSUE, ModItems.CERATOSAURUS_DNA, 1)
@@ -339,6 +341,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "random_dna_from_dna_extracting"));
 
 
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.ALBERTOSAURUS_SKULL_FOSSIL, ModItems.ALBERTOSAURUS_TISSUE, 1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
         FossilGrindingRecipeBuilder.fossilWeighted(ModItems.BRACHIOSAURUS_SKULL_FOSSIL, ModItems.BRACHIOSAURUS_TISSUE, 1)
                 .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
         FossilGrindingRecipeBuilder.fossilWeighted(ModItems.CERATOSAURUS_SKULL_FOSSIL, ModItems.CERATOSAURUS_TISSUE, 1)
@@ -365,6 +369,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
 
 
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_ALBERTOSAURUS_SKULL, ModItems.ALBERTOSAURUS_TISSUE, 1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
         FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_BRACHIOSAURUS_SKULL, ModItems.BRACHIOSAURUS_TISSUE, 1)
                 .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
         FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_CERATOSAURUS_SKULL, ModItems.CERATOSAURUS_TISSUE, 1)
@@ -401,6 +407,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         new DNAHybridizingRecipeBuilder(ModItems.TYRANNOSAURUS_REX_DNA.get(), ModItems.VELOCIRAPTOR_DNA.get(), ModItems.CERATOSAURUS_DNA.get(), ModItems.INDOMINUS_REX_DNA.get(), 1)
                 .unlockedBy("has_dna", has(ModTags.Items.DNA)).save(pRecipeOutput);
 
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.ALBERTOSAURUS_DNA, ModItems.ALBERTOSAURUS_SYRINGE, 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
         new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.BRACHIOSAURUS_DNA, ModItems.BRACHIOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
         new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.CERATOSAURUS_DNA, ModItems.CERATOSAURUS_SYRINGE, 1)
@@ -429,6 +437,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
 
 
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.ALBERTOSAURUS_SYRINGE, Items.EGG, ModItems.ALBERTOSAURUS_EGG, 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
         new EmbryoCalcificationMachiningRecipeBuilder(ModItems.BRACHIOSAURUS_SYRINGE, Items.EGG, ModItems.BRACHIOSAURUS_EGG, 1)
                 .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
         new EmbryoCalcificationMachiningRecipeBuilder(ModItems.CERATOSAURUS_SYRINGE, Items.EGG, ModItems.CERATOSAURUS_EGG, 1)
@@ -456,6 +466,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         new EmbryoCalcificationMachiningRecipeBuilder(ModItems.VELOCIRAPTOR_SYRINGE, Items.EGG, ModItems.VELOCIRAPTOR_EGG, 1)
                 .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
 
+        new IncubatingRecipeBuilder(ModItems.ALBERTOSAURUS_EGG, ModBlocks.HATCHED_ALBERTOSAURUS_EGG, 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
         new IncubatingRecipeBuilder(ModItems.BRACHIOSAURUS_EGG, ModBlocks.HATCHED_BRACHIOSAURUS_EGG, 1)
                 .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
         new IncubatingRecipeBuilder(ModItems.CERATOSAURUS_EGG, ModBlocks.HATCHED_CERATOSAURUS_EGG, 1)
