@@ -2,7 +2,7 @@ package net.cmr.jurassicrevived.entity.client;
 
 import com.google.common.collect.Maps;
 import net.cmr.jurassicrevived.JRMod;
-import net.cmr.jurassicrevived.entity.custom.OuranosaurusEntity;
+import net.cmr.jurassicrevived.entity.custom.GallimimusEntity;
 import net.minecraft.Util;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -13,12 +13,12 @@ import software.bernie.geckolib.model.GeoModel;
 
 import java.util.Map;
 
-public class OuranosaurusModel extends GeoModel<OuranosaurusEntity> {
+public class GallimimusModel extends GeoModel<GallimimusEntity> {
 
-    private static final Map<OuranosaurusVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(OuranosaurusVariant.class), map -> {
-                map.put(OuranosaurusVariant.MALE, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/entity/ouranosaurus.png"));
-                map.put(OuranosaurusVariant.FEMALE, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/entity/ouranosaurus_female.png"));
+    private static final Map<GallimimusVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(GallimimusVariant.class), map -> {
+                map.put(GallimimusVariant.MALE, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/entity/gallimimus.png"));
+                map.put(GallimimusVariant.FEMALE, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/entity/gallimimus_female.png"));
             });
 
     // Model-local "currently applied" offsets; cleared before each entity render
@@ -26,25 +26,25 @@ public class OuranosaurusModel extends GeoModel<OuranosaurusEntity> {
     private float[] appliedRoll = null;
 
     @Override
-    public ResourceLocation getModelResource(OuranosaurusEntity animatable) {
-        return ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "geo/ouranosaurus.geo.json");
+    public ResourceLocation getModelResource(GallimimusEntity animatable) {
+        return ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "geo/gallimimus.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureResource(OuranosaurusEntity animatable) {
+    public ResourceLocation getTextureResource(GallimimusEntity animatable) {
         return LOCATION_BY_VARIANT.get(animatable.getVariant());
     }
 
     @Override
-    public ResourceLocation getAnimationResource(OuranosaurusEntity animatable) {
-        return ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "animations/ouranosaurus.animation.json");
+    public ResourceLocation getAnimationResource(GallimimusEntity animatable) {
+        return ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "animations/gallimimus.animation.json");
     }
 
     @Override
-    public void setCustomAnimations(OuranosaurusEntity entity, long id, AnimationState<OuranosaurusEntity> state) {
+    public void setCustomAnimations(GallimimusEntity entity, long id, AnimationState<GallimimusEntity> state) {
         super.setCustomAnimations(entity, id, state);
 
-        String[] tailBones = { "Tail1", "Tail2", "Tail3", "Tail4", "Tail5", "Tail6", "Tail7" };
+        String[] tailBones = { "Tailpart1", "Tailpart2", "Tailpart3", "Tailpart4", "Tailpart5", "Tailpart6" };
         int n = tailBones.length;
 
         if (appliedYaw == null || appliedYaw.length != n) {
@@ -78,7 +78,7 @@ public class OuranosaurusModel extends GeoModel<OuranosaurusEntity> {
         float baseYaw = sway * maxYawDeg * deg2rad;
         float baseRoll = -baseYaw * rollFraction;
 
-        float[] weights = { 1.00f, 0.78f, 0.58f, 0.42f, 0.30f, 0.22f, 0.16f };
+        float[] weights = { 1.00f, 0.78f, 0.58f, 0.42f, 0.30f, 0.22f };
 
         for (int i = 0; i < n; i++) {
             GeoBone bone = getAnimationProcessor().getBone(tailBones[i]);
@@ -97,11 +97,11 @@ public class OuranosaurusModel extends GeoModel<OuranosaurusEntity> {
             appliedRoll[i] = roll;
         }
         
-        GeoBone head = getAnimationProcessor().getBone("Neck2");
+        GeoBone head = getAnimationProcessor().getBone("Neckpart1");
 
         if (head != null) {
             var entityData = state.getData(DataTickets.ENTITY_MODEL_DATA);
-            float clampedYawDeg = Mth.clamp(entityData.netHeadYaw(), -10.0f, 10.0f);
+            float clampedYawDeg = Mth.clamp(entityData.netHeadYaw(), -30.0f, 30.0f);
             head.setRotY(clampedYawDeg * Mth.DEG_TO_RAD);
         }
     }

@@ -30,8 +30,8 @@ public class ModItems {
             () -> new CustomGenderedSpawnEggItem(ModEntities.DILOPHOSAURUS, 0x575D32, 0x16191C, new Item.Properties()));
     public static final DeferredItem<Item> FDUCK_SPAWN_EGG = ITEMS.register("fduck_spawn_egg",
             () -> new CustomGenderedSpawnEggItem(ModEntities.FDUCK, 0xff8800, 0x421111, new Item.Properties()));
-    //public static final DeferredItem<Item> GALLIMIMUS_SPAWN_EGG = ITEMS.register("gallimimus_spawn_egg",
-    //        () -> new CustomGenderedSpawnEggItem(ModEntities.GALLIMIMUX, 0xAD7341, 0x5C3925, new Item.Properties()));
+    public static final DeferredItem<Item> GALLIMIMUS_SPAWN_EGG = ITEMS.register("gallimimus_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.GALLIMIMUS, 0xAD7341, 0x5C3925, new Item.Properties()));
     //public static final DeferredItem<Item> INDOMINUS_REX_SPAWN_EGG = ITEMS.register("indominus_rex_spawn_egg",
     //        () -> new CustomGenderedSpawnEggItem(ModEntities.INDOMINUX_REX, 0x9C9B99, 0x60605F, new Item.Properties()));
     public static final DeferredItem<Item> OURANOSAURUS_SPAWN_EGG = ITEMS.register("ouranosaurus_spawn_egg",
