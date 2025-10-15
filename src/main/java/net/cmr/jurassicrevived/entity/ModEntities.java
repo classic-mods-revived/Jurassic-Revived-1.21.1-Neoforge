@@ -42,6 +42,10 @@ public class ModEntities {
             ENTITY_TYPES.register("parasaurolophus", () -> EntityType.Builder.of(ParasaurolophusEntity::new, MobCategory.CREATURE)
                     .sized(1.875f, 2.375f).build("parasaurolophus"));
 
+    public static final Supplier<EntityType<TriceratopsEntity>> TRICERATOPS =
+            ENTITY_TYPES.register("triceratops", () -> EntityType.Builder.of(TriceratopsEntity::new, MobCategory.CREATURE)
+                    .sized(0.75f, 0.95f).build("triceratops"));
+
     public static final Supplier<EntityType<TyrannosaurusRexEntity>> TYRANNOSAURUS_REX =
             ENTITY_TYPES.register("tyrannosaurus_rex", () -> EntityType.Builder.of(TyrannosaurusRexEntity::new, MobCategory.CREATURE)
                     .sized(0.75f, 0.95f).build("tyrannosaurus_rex"));
