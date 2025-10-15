@@ -1,7 +1,7 @@
 package net.cmr.jurassicrevived.entity.custom;
 
 import net.cmr.jurassicrevived.entity.ModEntities;
-import net.cmr.jurassicrevived.entity.client.GallimimusVariant;
+import net.cmr.jurassicrevived.entity.client.IndominusRexVariant;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -14,7 +14,10 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -26,63 +29,74 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 
-public class GallimimusEntity extends Animal implements GeoEntity {
+public class IndominusRexEntity extends Animal implements GeoEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     private static final EntityDataAccessor<Integer> VARIANT =
-            SynchedEntityData.defineId(GallimimusEntity.class, EntityDataSerializers.INT);
+            SynchedEntityData.defineId(IndominusRexEntity.class, EntityDataSerializers.INT);
 
     // Procedural tail sway state (client-side use for rendering)
     private float tailSwayOffset;   // Smoothed offset in range roughly [-1, 1]
     private float tailSwayVelocity; // Internal velocity for spring-damper
     private float tailSwayPrev;     // Previous frame value for interpolation
 
-    public GallimimusEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
+    public IndominusRexEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new PanicGoal(this, 2.5));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
         this.goalSelector.addGoal(2, new FloatGoal(this));
-        this.goalSelector.addGoal(3, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(7, new FollowMobGoal(this, 1, (float) 20, (float) 10));
-        this.goalSelector.addGoal(8, new AvoidEntityGoal<>(this, TriceratopsEntity.class, (float) 20, 1, 1));
-        this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, DilophosaurusEntity.class, (float) 20, 1.2, 1.2));
-        this.goalSelector.addGoal(10, new AvoidEntityGoal<>(this, VelociraptorEntity.class, (float) 20, 1.2, 1.2));
-        this.goalSelector.addGoal(11, new AvoidEntityGoal<>(this, CeratosaurusEntity.class, (float) 20, 1.2, 1.2));
-        this.goalSelector.addGoal(12, new AvoidEntityGoal<>(this, SpinosaurusEntity.class, (float) 20, 1.2, 1.2));
-        this.goalSelector.addGoal(13, new AvoidEntityGoal<>(this, TyrannosaurusRexEntity.class, (float) 20, 1.2, 1.2));
-        this.goalSelector.addGoal(14, new AvoidEntityGoal<>(this, IndominusRexEntity.class, (float) 20, 1.2, 1.2));
-        this.goalSelector.addGoal(15, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, BrachiosaurusEntity.class, (float) 20, 1, 1));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1, false) {
+            private double getAttackReachSqr(LivingEntity entity) {
+                return 25;
+            }
+        });
+        this.goalSelector.addGoal(5, new BreedGoal(this, 1.0));
+        this.goalSelector.addGoal(6, new FollowParentGoal(this, 1.25));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Animal.class, 10, false, false,
+                target -> target.getType() != this.getType()));
+        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(10, new FollowMobGoal(this, 1.2, (float) 20, (float) 10));
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, TriceratopsEntity.class, false, false));
+        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, GallimimusEntity.class, false, false));
+        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal(this, DilophosaurusEntity.class, false, false));
+        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal(this, CeratosaurusEntity.class, false, false));
+        this.targetSelector.addGoal(15, new NearestAttackableTargetGoal(this, ParasaurolophusEntity.class, false, false));
+        this.targetSelector.addGoal(16, new NearestAttackableTargetGoal(this, VelociraptorEntity.class, false, false));
+        this.targetSelector.addGoal(17, new NearestAttackableTargetGoal(this, TyrannosaurusRexEntity.class, false, false));
+        this.targetSelector.addGoal(18, new NearestAttackableTargetGoal(this, SpinosaurusEntity.class, false, false));
+        this.targetSelector.addGoal(19, new NearestAttackableTargetGoal(this, Player.class, false, false));
+        this.goalSelector.addGoal(20, new RandomLookAroundGoal(this));
+
 
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 75D)
+                .add(Attributes.MAX_HEALTH, 800D)
                 .add(Attributes.MOVEMENT_SPEED, 0.3D)
                 .add(Attributes.ARMOR, 0D)
                 .add(Attributes.FOLLOW_RANGE, 32D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0D)
                 .add(Attributes.ATTACK_KNOCKBACK, 0D)
-                .add(Attributes.ATTACK_DAMAGE, 0D);
+                .add(Attributes.ATTACK_DAMAGE, 45D);
     }
 
     @Override
     public boolean isFood(ItemStack pStack) {
-        return pStack.is(Items.KELP);
+        return pStack.is(Items.BEEF);
     }
 
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        AgeableMob child = ModEntities.GALLIMIMUS.get().create(pLevel);
-        if (child instanceof GallimimusEntity baby) {
-            GallimimusVariant randomVariant = Util.getRandom(GallimimusVariant.values(), this.random);
+        AgeableMob child = ModEntities.INDOMINUS_REX.get().create(pLevel);
+        if (child instanceof IndominusRexEntity baby) {
+            IndominusRexVariant randomVariant = Util.getRandom(IndominusRexVariant.values(), this.random);
             baby.setVariant(randomVariant);
         }
         return child;
@@ -103,13 +117,13 @@ public class GallimimusEntity extends Animal implements GeoEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "Walk/Run/Idle", state -> {
             if (state.isMoving())
-                return state.setAndContinue(GallimimusEntity.this.isSprinting() ? RawAnimation.begin().then("anim.gallimimus.run", Animation.LoopType.LOOP) : RawAnimation.begin().then("anim.gallimimus.walk", Animation.LoopType.LOOP));
+                return state.setAndContinue(IndominusRexEntity.this.isSprinting() ? RawAnimation.begin().then("anim.indominus_rex.running", Animation.LoopType.LOOP) : RawAnimation.begin().then("anim.indominus_rex.walk", Animation.LoopType.LOOP));
 
-            return state.setAndContinue(RawAnimation.begin().then("anim.gallimimus.idle", Animation.LoopType.LOOP));
+            return state.setAndContinue(RawAnimation.begin().then("anim.indominus_rex.idle", Animation.LoopType.LOOP));
         }));
 
         controllers.add(new AnimationController<>(this, "attackController", state -> PlayState.STOP)
-                .triggerableAnim("attack", RawAnimation.begin().then("anim.gallimimus.attack", Animation.LoopType.PLAY_ONCE)));
+                .triggerableAnim("attack", RawAnimation.begin().then("anim.indominus_rex.attack", Animation.LoopType.PLAY_ONCE)));
     }
 
     private float getSignedTurnDelta() {
@@ -177,18 +191,18 @@ public class GallimimusEntity extends Animal implements GeoEntity {
         return this.entityData.get(VARIANT);
     }
 
-    public GallimimusVariant getVariant() {
-        return GallimimusVariant.byId(this.getTypeVariant() & 255);
+    public IndominusRexVariant getVariant() {
+        return IndominusRexVariant.byId(this.getTypeVariant() & 255);
     }
 
-    private void setVariant(GallimimusVariant variant) {
+    private void setVariant(IndominusRexVariant variant) {
         this.entityData.set(VARIANT, variant.getId() & 255);
     }
 
     @Override
     public boolean canMate(Animal other) {
         if (!super.canMate(other)) return false;
-        if (!(other instanceof GallimimusEntity that)) return false;
+        if (!(other instanceof IndominusRexEntity that)) return false;
         return this.getVariant() != that.getVariant();
     }
     @Override
@@ -205,7 +219,7 @@ public class GallimimusEntity extends Animal implements GeoEntity {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        GallimimusVariant variant = Util.getRandom(GallimimusVariant.values(), this.random);
+        IndominusRexVariant variant = Util.getRandom(IndominusRexVariant.values(), this.random);
         this.setVariant(variant);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
