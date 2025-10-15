@@ -17,6 +17,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        withExistingParent(ModItems.APATOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.ALBERTOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.BRACHIOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.CERATOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
@@ -48,6 +49,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.WALNUT_PUMPKIN_PIE.get());
         basicItem(ModItems.BANANA_NUT_COOKIE.get());
 
+        basicItem(ModItems.APATOSAURUS_SKULL_FOSSIL.get());
         basicItem(ModItems.ALBERTOSAURUS_SKULL_FOSSIL.get());
         basicItem(ModItems.BRACHIOSAURUS_SKULL_FOSSIL.get());
         basicItem(ModItems.CERATOSAURUS_SKULL_FOSSIL.get());
@@ -62,6 +64,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.TYRANNOSAURUS_REX_SKULL_FOSSIL.get());
         basicItem(ModItems.VELOCIRAPTOR_SKULL_FOSSIL.get());
 
+        basicItem(ModItems.FRESH_APATOSAURUS_SKULL.get());
         basicItem(ModItems.FRESH_ALBERTOSAURUS_SKULL.get());
         basicItem(ModItems.FRESH_BRACHIOSAURUS_SKULL.get());
         basicItem(ModItems.FRESH_CERATOSAURUS_SKULL.get());
@@ -77,6 +80,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.FRESH_TYRANNOSAURUS_REX_SKULL.get());
         basicItem(ModItems.FRESH_VELOCIRAPTOR_SKULL.get());
 
+        basicItem(ModItems.APATOSAURUS_TISSUE.get());
         basicItem(ModItems.ALBERTOSAURUS_TISSUE.get());
         basicItem(ModItems.BRACHIOSAURUS_TISSUE.get());
         basicItem(ModItems.CERATOSAURUS_TISSUE.get());
@@ -92,6 +96,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.TYRANNOSAURUS_REX_TISSUE.get());
         basicItem(ModItems.VELOCIRAPTOR_TISSUE.get());
 
+        basicItem(ModItems.APATOSAURUS_DNA.get());
         basicItem(ModItems.ALBERTOSAURUS_DNA.get());
         basicItem(ModItems.BRACHIOSAURUS_DNA.get());
         basicItem(ModItems.CERATOSAURUS_DNA.get());
@@ -107,6 +112,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.TYRANNOSAURUS_REX_DNA.get());
         basicItem(ModItems.VELOCIRAPTOR_DNA.get());
 
+        basicItem(ModItems.APATOSAURUS_SYRINGE.get());
         basicItem(ModItems.ALBERTOSAURUS_SYRINGE.get());
         basicItem(ModItems.BRACHIOSAURUS_SYRINGE.get());
         basicItem(ModItems.CERATOSAURUS_SYRINGE.get());
@@ -122,6 +128,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.TYRANNOSAURUS_REX_SYRINGE.get());
         basicItem(ModItems.VELOCIRAPTOR_SYRINGE.get());
 
+        basicItem(ModItems.APATOSAURUS_EGG.get());
         basicItem(ModItems.ALBERTOSAURUS_EGG.get());
         basicItem(ModItems.BRACHIOSAURUS_EGG.get());
         basicItem(ModItems.CERATOSAURUS_EGG.get());
@@ -156,6 +163,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleBlockItemBlockTexture(ModBlocks.HATCHED_COMPSOGNATHUS_EGG);
         simpleBlockItemBlockTexture(ModBlocks.HATCHED_VELOCIRAPTOR_EGG);
         simpleBlockItemBlockTexture(ModBlocks.HATCHED_ALBERTOSAURUS_EGG);
+        simpleBlockItemBlockTexture(ModBlocks.HATCHED_APATOSAURUS_EGG);
 
         flowerItem(ModBlocks.ROYAL_FERN);
         flowerItem(ModBlocks.HORSETAIL_FERN);

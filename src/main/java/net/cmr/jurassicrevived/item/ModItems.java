@@ -18,6 +18,8 @@ public class ModItems {
     public static final DeferredItem<Item> WALNUT_PUMPKIN_PIE = ITEMS.register("walnut_pumpkin_pie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationModifier(0.6f).build())));
     public static final DeferredItem<Item> BANANA_NUT_COOKIE = ITEMS.register("banana_nut_cookie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationModifier(0.6f).build())));
 
+    public static final DeferredItem<Item> APATOSAURUS_SPAWN_EGG = ITEMS.register("apatosaurus_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.APATOSAURUS, 0x7f7d6f, 0x36373b, new Item.Properties()));
     public static final DeferredItem<Item> ALBERTOSAURUS_SPAWN_EGG = ITEMS.register("albertosaurus_spawn_egg",
             () -> new CustomGenderedSpawnEggItem(ModEntities.ALBERTOSAURUS, 0x2b2315, 0x7a442d, new Item.Properties()));
     public static final DeferredItem<Item> BRACHIOSAURUS_SPAWN_EGG = ITEMS.register("brachiosaurus_spawn_egg",
@@ -73,6 +75,7 @@ public class ModItems {
     public static final DeferredItem<Item> CERATOSAURUS_SKULL_FOSSIL = ITEMS.register("ceratosaurus_skull_fossil", () -> new Item(new Item.Properties().stacksTo(16)));
     public static final DeferredItem<Item> BRACHIOSAURUS_SKULL_FOSSIL = ITEMS.register("brachiosaurus_skull_fossil", () -> new Item(new Item.Properties().stacksTo(16)));
     public static final DeferredItem<Item> ALBERTOSAURUS_SKULL_FOSSIL = ITEMS.register("albertosaurus_skull_fossil", () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> APATOSAURUS_SKULL_FOSSIL = ITEMS.register("apatosaurus_skull_fossil", () -> new Item(new Item.Properties().stacksTo(16)));
 
     public static final DeferredItem<Item> FRESH_VELOCIRAPTOR_SKULL = ITEMS.register("fresh_velociraptor_skull", () -> new Item(new Item.Properties().stacksTo(16)));
     public static final DeferredItem<Item> FRESH_TYRANNOSAURUS_REX_SKULL = ITEMS.register("fresh_tyrannosaurus_rex_skull", () -> new Item(new Item.Properties().stacksTo(16)));
@@ -88,6 +91,7 @@ public class ModItems {
     public static final DeferredItem<Item> FRESH_CERATOSAURUS_SKULL = ITEMS.register("fresh_ceratosaurus_skull", () -> new Item(new Item.Properties().stacksTo(16)));
     public static final DeferredItem<Item> FRESH_BRACHIOSAURUS_SKULL = ITEMS.register("fresh_brachiosaurus_skull", () -> new Item(new Item.Properties().stacksTo(16)));
     public static final DeferredItem<Item> FRESH_ALBERTOSAURUS_SKULL = ITEMS.register("fresh_albertosaurus_skull", () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> FRESH_APATOSAURUS_SKULL = ITEMS.register("fresh_apatosaurus_skull", () -> new Item(new Item.Properties().stacksTo(16)));
 
     public static final DeferredItem<Item> VELOCIRAPTOR_TISSUE = ITEMS.register("velociraptor_tissue", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.EPIC)));
     public static final DeferredItem<Item> TYRANNOSAURUS_REX_TISSUE = ITEMS.register("tyrannosaurus_rex_tissue", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.EPIC)));
@@ -103,6 +107,7 @@ public class ModItems {
     public static final DeferredItem<Item> CERATOSAURUS_TISSUE = ITEMS.register("ceratosaurus_tissue", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.EPIC)));
     public static final DeferredItem<Item> BRACHIOSAURUS_TISSUE = ITEMS.register("brachiosaurus_tissue", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.EPIC)));
     public static final DeferredItem<Item> ALBERTOSAURUS_TISSUE = ITEMS.register("albertosaurus_tissue", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> APATOSAURUS_TISSUE = ITEMS.register("apatosaurus_tissue", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.EPIC)));
 
     public static final DeferredItem<Item> VELOCIRAPTOR_DNA = ITEMS.register("velociraptor_dna", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.RARE)));
     public static final DeferredItem<Item> TYRANNOSAURUS_REX_DNA = ITEMS.register("tyrannosaurus_rex_dna", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.RARE)));
@@ -118,6 +123,7 @@ public class ModItems {
     public static final DeferredItem<Item> CERATOSAURUS_DNA = ITEMS.register("ceratosaurus_dna", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.RARE)));
     public static final DeferredItem<Item> BRACHIOSAURUS_DNA = ITEMS.register("brachiosaurus_dna", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.RARE)));
     public static final DeferredItem<Item> ALBERTOSAURUS_DNA = ITEMS.register("albertosaurus_dna", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.RARE)));
+    public static final DeferredItem<Item> APATOSAURUS_DNA = ITEMS.register("apatosaurus_dna", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.RARE)));
 
     public static final DeferredItem<Item> VELOCIRAPTOR_SYRINGE = ITEMS.register("velociraptor_syringe", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> TYRANNOSAURUS_REX_SYRINGE = ITEMS.register("tyrannosaurus_rex_syringe", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON)));
@@ -133,6 +139,7 @@ public class ModItems {
     public static final DeferredItem<Item> CERATOSAURUS_SYRINGE = ITEMS.register("ceratosaurus_syringe", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> BRACHIOSAURUS_SYRINGE = ITEMS.register("brachiosaurus_syringe", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> ALBERTOSAURUS_SYRINGE = ITEMS.register("albertosaurus_syringe", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> APATOSAURUS_SYRINGE = ITEMS.register("apatosaurus_syringe", () -> new Item(new Item.Properties().stacksTo(8).rarity(Rarity.UNCOMMON)));
 
     public static final DeferredItem<Item> VELOCIRAPTOR_EGG = ITEMS.register("velociraptor_egg", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> TYRANNOSAURUS_REX_EGG = ITEMS.register("tyrannosaurus_rex_egg", () -> new Item(new Item.Properties().stacksTo(1)));
@@ -148,6 +155,7 @@ public class ModItems {
     public static final DeferredItem<Item> CERATOSAURUS_EGG = ITEMS.register("ceratosaurus_egg", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> BRACHIOSAURUS_EGG = ITEMS.register("brachiosaurus_egg", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> ALBERTOSAURUS_EGG = ITEMS.register("albertosaurus_egg", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> APATOSAURUS_EGG = ITEMS.register("apatosaurus_egg", () -> new Item(new Item.Properties().stacksTo(1)));
 
 
 

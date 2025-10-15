@@ -18,6 +18,10 @@ public class ModEntities {
             ENTITY_TYPES.register("albertosaurus", () -> EntityType.Builder.of(AlbertosaurusEntity::new, MobCategory.CREATURE)
                     .sized(1.875f, 2.375f).build("albertosaurus"));
 
+    public static final Supplier<EntityType<ApatosaurusEntity>> APATOSAURUS =
+            ENTITY_TYPES.register("apatosaurus", () -> EntityType.Builder.of(ApatosaurusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("apatosaurus"));
+
     public static final Supplier<EntityType<BrachiosaurusEntity>> BRACHIOSAURUS =
             ENTITY_TYPES.register("brachiosaurus", () -> EntityType.Builder.of(BrachiosaurusEntity::new, MobCategory.CREATURE)
                     .sized(1.875f, 2.375f).build("brachiosaurus"));

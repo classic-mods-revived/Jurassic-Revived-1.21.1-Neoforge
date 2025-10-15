@@ -96,6 +96,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> REINFORCED_STONE_BRICKS = registerBlock("reinforced_stone_bricks",
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
+    public static final DeferredBlock<Block> HATCHED_APATOSAURUS_EGG = registerBlock("hatched_apatosaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.APATOSAURUS));
+e
     public static final DeferredBlock<Block> HATCHED_ALBERTOSAURUS_EGG = registerBlock("hatched_albertosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.ALBERTOSAURUS));
 

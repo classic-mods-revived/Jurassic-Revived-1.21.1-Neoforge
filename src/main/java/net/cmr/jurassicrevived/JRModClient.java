@@ -35,6 +35,7 @@ public class JRModClient {
         JRMod.LOGGER.info("HELLO FROM CLIENT SETUP");
         JRMod.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         EntityRenderers.register(ModEntities.ALBERTOSAURUS.get(), AlbertosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.APATOSAURUS.get(), ApatosaurusRenderer::new);
         EntityRenderers.register(ModEntities.BRACHIOSAURUS.get(), BrachiosaurusRenderer::new);
         EntityRenderers.register(ModEntities.CERATOSAURUS.get(), CeratosaurusRenderer::new);
         EntityRenderers.register(ModEntities.COMPSOGNATHUS.get(), CompsognathusRenderer::new);

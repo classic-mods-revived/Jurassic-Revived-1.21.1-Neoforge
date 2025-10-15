@@ -2,10 +2,10 @@
   "itemGroup.jurassicrevived.jurassicrevived_item_tab": "Items and Tools",
   "itemGroup.jurassicrevived.jurassicrevived_block_tab": "Blocks and Machines",
   "itemGroup.jurassicrevived.jurassicrevived_plant_tab": "Prehistoric Plants",
-  "itemGroup.jurassicrevived.jurassicrevived_fossil_tab": "Fossils",
   "itemGroup.jurassicrevived.jurassicrevived_dna_tab": "Genetic Material",
   "itemGroup.jurassicrevived.jurassicrevived_dino_tab": "Dinosaur Spawn Eggs",
 
+  "item.jurassicrevived.apatosaurus_spawn_egg": "Apatosaurus Spawn Egg",
   "item.jurassicrevived.albertosaurus_spawn_egg": "Albertosaurus Spawn Egg",
   "item.jurassicrevived.brachiosaurus_spawn_egg": "Brachiosaurus Spawn Egg",
   "item.jurassicrevived.ceratosaurus_spawn_egg": "Ceratosaurus Spawn Egg",
@@ -22,6 +22,7 @@
   "item.jurassicrevived.triceratops_spawn_egg": "Triceratops Spawn Egg",
   "item.jurassicrevived.tyrannosaurus_rex_spawn_egg": "Tyrannosaurus Rex Spawn Egg",
 
+  "entity.jurassicrevived.apatosaurus": "Apatosaurus",
   "entity.jurassicrevived.albertosaurus": "Albertosaurus",
   "entity.jurassicrevived.brachiosaurus": "Brachiosaurus",
   "entity.jurassicrevived.ceratosaurus": "Ceratosaurus",
@@ -90,6 +91,7 @@
   "item.jurassicrevived.ceratosaurus_skull_fossil": "Ceratosaurus Skull Fossil",
   "item.jurassicrevived.brachiosaurus_skull_fossil": "Brachiosaurus Skull Fossil",
   "item.jurassicrevived.albertosaurus_skull_fossil": "Albertosaurus Skull Fossil",
+  "item.jurassicrevived.apatosaurus_skull_fossil": "Apatosaurus Skull Fossil",
 
   "item.jurassicrevived.fresh_velociraptor_skull": "Fresh Velociraptor Skull",
   "item.jurassicrevived.fresh_tyrannosaurus_rex_skull": "Fresh Tyrannosaurus Rex Skull",
@@ -105,6 +107,7 @@
   "item.jurassicrevived.fresh_ceratosaurus_skull": "Fresh Ceratosaurus Skull",
   "item.jurassicrevived.fresh_brachiosaurus_skull": "Fresh Brachiosaurus Skull",
   "item.jurassicrevived.fresh_albertosaurus_skull": "Fresh Albertosaurus Skull",
+  "item.jurassicrevived.fresh_apatosaurus_skull": "Fresh Apatosaurus Skull",
 
   "item.jurassicrevived.test_tube": "Test Tube",
   "item.jurassicrevived.syringe": "Syringe",
@@ -135,6 +138,7 @@
   "item.jurassicrevived.ceratosaurus_tissue": "Ceratosaurus Tissue",
   "item.jurassicrevived.brachiosaurus_tissue": "Brachiosaurus Tissue",
   "item.jurassicrevived.albertosaurus_tissue": "Albertosaurus Tissue",
+  "item.jurassicrevived.apatosaurus_tissue": "Apatosaurus Tissue",
 
   "item.jurassicrevived.velociraptor_dna": "Velociraptor DNA",
   "item.jurassicrevived.tyrannosaurus_rex_dna": "Tyrannosaurus Rex DNA",
@@ -150,6 +154,7 @@
   "item.jurassicrevived.ceratosaurus_dna": "Ceratosaurus DNA",
   "item.jurassicrevived.brachiosaurus_dna": "Brachiosaurus DNA",
   "item.jurassicrevived.albertosaurus_dna": "Albertosaurus DNA",
+  "item.jurassicrevived.apatosaurus_dna": "Apatosaurus DNA",
 
   "item.jurassicrevived.velociraptor_syringe": "Velociraptor Syringe",
   "item.jurassicrevived.tyrannosaurus_rex_syringe": "Tyrannosaurus Rex Syringe",
@@ -165,6 +170,7 @@
   "item.jurassicrevived.ceratosaurus_syringe": "Ceratosaurus Syringe",
   "item.jurassicrevived.brachiosaurus_syringe": "Brachiosaurus Syringe",
   "item.jurassicrevived.albertosaurus_syringe": "Albertosaurus Syringe",
+  "item.jurassicrevived.apatosaurus_syringe": "Apatosaurus Syringe",
 
   "item.jurassicrevived.velociraptor_egg": "Velociraptor Egg",
   "item.jurassicrevived.tyrannosaurus_rex_egg": "Tyrannosaurus Rex Egg",
@@ -180,6 +186,7 @@
   "item.jurassicrevived.ceratosaurus_egg": "Ceratosaurus Egg",
   "item.jurassicrevived.brachiosaurus_egg": "Brachiosaurus Egg",
   "item.jurassicrevived.albertosaurus_egg": "Albertosaurus Egg",
+  "item.jurassicrevived.apatosaurus_egg": "Apatosaurus Egg",
 
   "block.jurassicrevived.hatched_velociraptor_egg": "§aHatched Velociraptor Egg",
   "block.jurassicrevived.hatched_tyrannosaurus_rex_egg": "§aHatched Tyrannosaurus Rex Egg",
@@ -195,6 +202,7 @@
   "block.jurassicrevived.hatched_ceratosaurus_egg": "§aHatched Ceratosaurus Egg",
   "block.jurassicrevived.hatched_brachiosaurus_egg": "§aHatched Brachiosaurus Egg",
   "block.jurassicrevived.hatched_albertosaurus_egg": "§aHatched Albertosaurus Egg",
+  "block.jurassicrevived.hatched_apatosaurus_egg": "§aHatched Apatosaurus Egg",
 
   "tooltip.jurassicrevived.gender": "Gender: %s",
   "tooltip.jurassicrevived.gender.hint": "Hint: %s to change",
