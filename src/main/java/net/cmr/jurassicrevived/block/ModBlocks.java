@@ -117,8 +117,8 @@ public class ModBlocks {
     //public static final DeferredBlock<Block> HATCHED_GALLIMIMUS_EGG = registerBlock("hatched_gallimimus_egg",
     //        () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.GALLIMIMUS));
 
-    //public static final DeferredBlock<Block> HATCHED_DIPLODOCUS_EGG = registerBlock("hatched_diplodocus_egg",
-    //        () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DIPLODOCUS));
+    public static final DeferredBlock<Block> HATCHED_DIPLODOCUS_EGG = registerBlock("hatched_diplodocus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DIPLODOCUS));
 
     public static final DeferredBlock<Block> HATCHED_OURANOSAURUS_EGG = registerBlock("hatched_ouranosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.OURANOSAURUS));

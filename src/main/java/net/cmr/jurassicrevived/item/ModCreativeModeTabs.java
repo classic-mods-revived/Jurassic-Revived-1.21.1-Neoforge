@@ -183,7 +183,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.HATCHED_CERATOSAURUS_EGG);
                         pOutput.accept(ModBlocks.HATCHED_COMPSOGNATHUS_EGG);
                         pOutput.accept(ModBlocks.HATCHED_DILOPHOSAURUS_EGG);
-                        //pOutput.accept(ModBlocks.HATCHED_DIPLODOCUS_EGG);
+                        pOutput.accept(ModBlocks.HATCHED_DIPLODOCUS_EGG);
                         //pOutput.accept(ModBlocks.HATCHED_GALLIMIMUS_EGG);
                         //pOutput.accept(ModBlocks.HATCHED_INDOMINUS_REX_EGG);
                         pOutput.accept(ModBlocks.HATCHED_OURANOSAURUS_EGG);
@@ -203,6 +203,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.CERATOSAURUS_SPAWN_EGG);
                         pOutput.accept(ModItems.COMPSOGNATHUS_SPAWN_EGG);
                         pOutput.accept(ModItems.DILOPHOSAURUS_SPAWN_EGG);
+                        pOutput.accept(ModItems.DIPLODOCUS_SPAWN_EGG);
                         pOutput.accept(ModItems.OURANOSAURUS_SPAWN_EGG);
                         pOutput.accept(ModItems.PARASAUROLOPHUS_SPAWN_EGG);
                         pOutput.accept(ModItems.TRICERATOPS_SPAWN_EGG);
