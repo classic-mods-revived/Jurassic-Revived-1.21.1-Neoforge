@@ -193,6 +193,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.GALLIMIMUS_SPAWN_EGG);
                         pOutput.accept(ModItems.OURANOSAURUS_SPAWN_EGG);
                         pOutput.accept(ModItems.PARASAUROLOPHUS_SPAWN_EGG);
+                        pOutput.accept(ModItems.SPINOSAURUS_SPAWN_EGG);
                         pOutput.accept(ModItems.TRICERATOPS_SPAWN_EGG);
                         pOutput.accept(ModItems.TYRANNOSAURUS_REX_SPAWN_EGG);
                         pOutput.accept(ModItems.VELOCIRAPTOR_SPAWN_EGG);

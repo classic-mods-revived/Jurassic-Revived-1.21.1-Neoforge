@@ -1,0 +1,12 @@
+{
+  "type": "jurassicrevived:incubating",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:spinosaurus_egg"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:hatched_spinosaurus_egg"
+  }
+}
