@@ -70,6 +70,8 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> GYPSUM_STONE_BRICKS = registerBlock("gypsum_stone_bricks",
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> SMOOTH_GYPSUM_STONE = registerBlock("smooth_gypsum_stone",
+            () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> LOW_SECURITY_FENCE_POLE = registerBlock("low_security_fence_pole",
             () -> new FencePoleBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion().requiresCorrectToolForDrops(), FencePoleBlock.Tier.LOW));
@@ -98,6 +100,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> HATCHED_APATOSAURUS_EGG = registerBlock("hatched_apatosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.APATOSAURUS));
+
     public static final DeferredBlock<Block> HATCHED_ALBERTOSAURUS_EGG = registerBlock("hatched_albertosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.ALBERTOSAURUS));
 
@@ -139,6 +142,57 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> HATCHED_BRACHIOSAURUS_EGG = registerBlock("hatched_brachiosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.BRACHIOSAURUS));
+
+    public static final DeferredBlock<Block> HATCHED_BARYONYX_EGG = registerBlock("hatched_baryonyx_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.BARYONYX));
+
+    public static final DeferredBlock<Block> HATCHED_CARNOTAURUS_EGG = registerBlock("hatched_carnotaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.CARNOTAURUS));
+
+    public static final DeferredBlock<Block> HATCHED_CONCAVENATOR_EGG = registerBlock("hatched_concavenator_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.CONCAVENATOR));
+
+    public static final DeferredBlock<Block> HATCHED_DEINONYCHUS_EGG = registerBlock("hatched_deinonychus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DEINONYCHUS));
+
+    public static final DeferredBlock<Block> HATCHED_EDMONTOSAURUS_EGG = registerBlock("hatched_edmontosaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.EDMONTOSAURUS));
+
+    public static final DeferredBlock<Block> HATCHED_GIGANOTOSAURUS_EGG = registerBlock("hatched_giganotosaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.GIGANOTOSAURUS));
+
+    public static final DeferredBlock<Block> HATCHED_GUANLONG_EGG = registerBlock("hatched_guanlong_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.GUANLONG));
+
+    public static final DeferredBlock<Block> HATCHED_HERRERASAURUS_EGG = registerBlock("hatched_herrerasaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.HERRERASAURUS));
+
+    public static final DeferredBlock<Block> HATCHED_MAJUNGASAURUS_EGG = registerBlock("hatched_majungasaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.MAJUNGASAURUS));
+
+    public static final DeferredBlock<Block> HATCHED_PROCOMPSOGNATHUS_EGG = registerBlock("hatched_procompsognathus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.PROCOMPSOGNATHUS));
+
+    public static final DeferredBlock<Block> HATCHED_PROTOCERATOPS_EGG = registerBlock("hatched_protoceratops_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.PROTOCERATOPS));
+
+    public static final DeferredBlock<Block> HATCHED_RUGOPS_EGG = registerBlock("hatched_rugops_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.RUGOPS));
+
+    public static final DeferredBlock<Block> HATCHED_SHANTUNGOSAURUS_EGG = registerBlock("hatched_shantungosaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.SHANTUNGOSAURUS));
+
+    public static final DeferredBlock<Block> HATCHED_STEGOSAURUS_EGG = registerBlock("hatched_stegosaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.STEGOSAURUS));
+
+    public static final DeferredBlock<Block> HATCHED_STYRACOSAURUS_EGG = registerBlock("hatched_styracosaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.STYRACOSAURUS));
+
+    public static final DeferredBlock<Block> HATCHED_THERIZINOSAURUS_EGG = registerBlock("hatched_therizinosaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.THERIZINOSAURUS));
+
+    public static final DeferredBlock<Block> HATCHED_DISTORTUS_REX_EGG = registerBlock("hatched_distortus_rex_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DISTORTUS_REX));
 
     public static <T extends Block>DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

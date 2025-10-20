@@ -1,6 +1,7 @@
 package net.cmr.jurassicrevived.entity.custom;
 
 import net.cmr.jurassicrevived.entity.ModEntities;
+import net.cmr.jurassicrevived.entity.ai.SprintingMeleeAttackGoal;
 import net.cmr.jurassicrevived.entity.client.DilophosaurusVariant;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
@@ -56,7 +57,7 @@ public class DilophosaurusEntity extends Animal implements GeoEntity {
         this.goalSelector.addGoal(7, new AvoidEntityGoal<>(this, CeratosaurusEntity.class, (float) 20, 1, 1));
         this.goalSelector.addGoal(8, new AvoidEntityGoal<>(this, TriceratopsEntity.class, (float) 20, 1, 1));
         this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, BrachiosaurusEntity.class, (float) 20, 1, 1));
-        this.goalSelector.addGoal(10, new MeleeAttackGoal(this, 1, false) {
+        this.goalSelector.addGoal(10, new SprintingMeleeAttackGoal(this, 1.25, false) {
             private double getAttackReachSqr(LivingEntity entity) {
                 return 4;
             }
@@ -82,7 +83,7 @@ public class DilophosaurusEntity extends Animal implements GeoEntity {
                 .add(Attributes.FOLLOW_RANGE, 32D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.3D)
                 .add(Attributes.ATTACK_KNOCKBACK, 0D)
-                .add(Attributes.ATTACK_DAMAGE, 8D);
+                .add(Attributes.ATTACK_DAMAGE, 5D);
     }
 
     @Override
@@ -123,6 +124,9 @@ public class DilophosaurusEntity extends Animal implements GeoEntity {
 
         controllers.add(new AnimationController<>(this, "attackController", state -> PlayState.STOP)
                 .triggerableAnim("attack", RawAnimation.begin().then("anim.dilophosaurus.attack", Animation.LoopType.PLAY_ONCE)));
+
+        controllers.add(new AnimationController<>(this, "mouthController", state -> PlayState.STOP)
+                .triggerableAnim("mouth", RawAnimation.begin().then("anim.dilophosaurus.mouth", Animation.LoopType.PLAY_ONCE)));
     }
 
     private float getSignedTurnDelta() {
@@ -130,9 +134,22 @@ public class DilophosaurusEntity extends Animal implements GeoEntity {
         return Mth.wrapDegrees(this.yBodyRot - this.yBodyRotO);
     }
 
+    private int mouthAnimCooldown = 0;
+
     @Override
     public void tick() {
         super.tick();
+
+        if (!level().isClientSide) {
+            if (mouthAnimCooldown > 0) {
+                mouthAnimCooldown--;
+            } else {
+                this.triggerAnim("mouthController", "mouth");
+                // 30s–60s in ticks
+                mouthAnimCooldown = this.random.nextInt(1200 - 600 + 1) + 600;
+            }
+        }
+
         if (level().isClientSide) {
             // Capture previous for smooth interpolation between ticks
             this.tailSwayPrev = this.tailSwayOffset;

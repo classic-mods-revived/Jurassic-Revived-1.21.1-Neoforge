@@ -29,6 +29,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.CAT_PLUSHIE.get());
         dropSelf(ModBlocks.GYPSUM_COBBLESTONE.get());
         dropSelf(ModBlocks.GYPSUM_STONE_BRICKS.get());
+        dropSelf(ModBlocks.SMOOTH_GYPSUM_STONE.get());
         dropSelf(ModBlocks.STONE_FOSSIL.get());
         dropSelf(ModBlocks.DEEPSLATE_FOSSIL.get());
         dropSelf(ModBlocks.LOW_SECURITY_FENCE_POLE.get());
@@ -64,6 +65,24 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.HATCHED_COMPSOGNATHUS_EGG.get());
         dropSelf(ModBlocks.HATCHED_TYRANNOSAURUS_REX_EGG.get());
         dropSelf(ModBlocks.HATCHED_VELOCIRAPTOR_EGG.get());
+        dropSelf(ModBlocks.HATCHED_BARYONYX_EGG.get());
+        dropSelf(ModBlocks.HATCHED_CARNOTAURUS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_CONCAVENATOR_EGG.get());
+        dropSelf(ModBlocks.HATCHED_DEINONYCHUS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_EDMONTOSAURUS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_GIGANOTOSAURUS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_GUANLONG_EGG.get());
+        dropSelf(ModBlocks.HATCHED_HERRERASAURUS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_MAJUNGASAURUS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_PROCOMPSOGNATHUS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_PROTOCERATOPS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_RUGOPS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_SHANTUNGOSAURUS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_STEGOSAURUS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_STYRACOSAURUS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_THERIZINOSAURUS_EGG.get());
+        dropSelf(ModBlocks.HATCHED_DISTORTUS_REX_EGG.get());
+
 
 
         this.dropSelf(ModBlocks.ROYAL_FERN.get());

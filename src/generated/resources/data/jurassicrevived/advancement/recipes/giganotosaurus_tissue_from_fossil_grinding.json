@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fossil": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#jurassicrevived:fossils"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_fossil"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "jurassicrevived:giganotosaurus_tissue_from_fossil_grinding"
+    ]
+  }
+}

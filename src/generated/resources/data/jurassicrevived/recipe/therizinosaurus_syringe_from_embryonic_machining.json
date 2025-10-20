@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:embryonic_machining",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:syringe"
+    },
+    {
+      "item": "jurassicrevived:therizinosaurus_dna"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:therizinosaurus_syringe"
+  }
+}

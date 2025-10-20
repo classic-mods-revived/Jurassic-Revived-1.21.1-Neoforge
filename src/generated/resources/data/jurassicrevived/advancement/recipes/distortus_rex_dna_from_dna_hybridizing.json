@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dna": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#jurassicrevived:dna"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_dna"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "jurassicrevived:distortus_rex_dna_from_dna_hybridizing"
+    ]
+  }
+}

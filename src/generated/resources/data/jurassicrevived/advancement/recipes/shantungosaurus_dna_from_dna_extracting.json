@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_test_tube": {
+      "conditions": {
+        "items": [
+          {
+            "items": "jurassicrevived:test_tube"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_test_tube"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "jurassicrevived:shantungosaurus_dna_from_dna_extracting"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#jurassicrevived:skulls"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_skull"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "jurassicrevived:procompsognathus_tissue_from_skull_grinding"
+    ]
+  }
+}

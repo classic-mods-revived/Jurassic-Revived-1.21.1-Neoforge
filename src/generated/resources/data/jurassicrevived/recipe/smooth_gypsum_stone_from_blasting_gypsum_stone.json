@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "blocks",
+  "cookingtime": 100,
+  "experience": 0.25,
+  "group": "jr_smooth_gypsum_stone",
+  "ingredient": {
+    "item": "jurassicrevived:gypsum_stone"
+  },
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:smooth_gypsum_stone"
+  }
+}
