@@ -46,12 +46,46 @@ public record DNAHybridizerRecipe(NonNullList<Ingredient> inputs, ItemStack outp
     @Override
     public boolean matches(@NotNull DNAHybridizerRecipeInput recipeInput, Level level) {
         if (level.isClientSide) return false;
-        if (recipeInput.size() != 3 || inputs.size() != 3) return false;
+        if (recipeInput.size() != 9) return false;
+        if (inputs.isEmpty() || inputs.size() > 9) return false;
 
-        // Order-sensitive: slot 0 -> ingredient 0, slot 1 -> ingredient 1, slot 2 -> ingredient 2
-        return inputs.get(0).test(recipeInput.getItem(0))
-                && inputs.get(1).test(recipeInput.getItem(1))
-                && inputs.get(2).test(recipeInput.getItem(2));
+        // Build list of required ingredients (skip empty = "don't care")
+        java.util.List<Ingredient> required = new java.util.ArrayList<>();
+        for (Ingredient ing : inputs) {
+            if (!ing.isEmpty()) required.add(ing);
+        }
+        if (required.isEmpty()) return false;
+
+        // Unordered matching with exactness check (no extras allowed)
+        boolean[] used = new boolean[9];
+        int matchedCount = 0;
+
+        // First, match all required ingredients
+        for (Ingredient need : required) {
+            boolean matched = false;
+            for (int i = 0; i < 9; i++) {
+                if (used[i]) continue;
+                var stack = recipeInput.getItem(i);
+                if (stack.isEmpty()) continue;
+                if (need.test(stack)) {
+                    used[i] = true;
+                    matched = true;
+                    matchedCount++;
+                    break;
+                }
+            }
+            if (!matched) return false; // missing a required ingredient
+        }
+
+        // Then, ensure there are no leftover non-empty inputs that weren't matched
+        for (int i = 0; i < 9; i++) {
+            if (used[i]) continue;
+            if (!recipeInput.getItem(i).isEmpty()) {
+                return false; // extra/unexpected ingredient present
+            }
+        }
+
+        return true;
     }
 
     @Override
@@ -73,10 +107,10 @@ public record DNAHybridizerRecipe(NonNullList<Ingredient> inputs, ItemStack outp
 
         public static final MapCodec<DNAHybridizerRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
                 instance.group(
-                        Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients")
+                        Ingredient.CODEC.listOf().fieldOf("ingredients")
                                 .flatXmap(list -> {
-                                            if (list.size() != 3) {
-                                                return DataResult.error(() -> "DNAHybridizerRecipe requires exactly 3 ingredients, got " + list.size());
+                                            if (list.isEmpty() || list.size() > 9) {
+                                                return DataResult.error(() -> "DNAHybridizerRecipe requires 1-9 ingredients, got " + list.size());
                                             }
                                             NonNullList<Ingredient> nnl = NonNullList.create();
                                             nnl.addAll(list);
@@ -98,8 +132,8 @@ public record DNAHybridizerRecipe(NonNullList<Ingredient> inputs, ItemStack outp
                     NonNullList<Ingredient> decodedInputs =
                             ByteBufCodecs.collection(NonNullList::createWithCapacity, Ingredient.CONTENTS_STREAM_CODEC)
                                     .decode((RegistryFriendlyByteBuf) buf);
-                    if (decodedInputs.size() != 3) {
-                        throw new IllegalArgumentException("DNAHybridizerRecipe requires exactly 3 ingredients in stream, got " + decodedInputs.size());
+                    if (decodedInputs.isEmpty() || decodedInputs.size() > 9) {
+                        throw new IllegalArgumentException("DNAHybridizerRecipe requires 1-9 ingredients in stream, got " + decodedInputs.size());
                     }
                     ItemStack result = ItemStack.STREAM_CODEC.decode((RegistryFriendlyByteBuf) buf);
                     return new DNAHybridizerRecipe(decodedInputs, result);

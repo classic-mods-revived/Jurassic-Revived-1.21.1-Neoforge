@@ -2,7 +2,6 @@ package net.cmr.jurassicrevived.block.entity.custom;
 
 import net.cmr.jurassicrevived.Config;
 import net.cmr.jurassicrevived.block.entity.energy.ModEnergyStorage;
-import net.cmr.jurassicrevived.item.ModItems;
 import net.cmr.jurassicrevived.recipe.DNAHybridizerRecipe;
 import net.cmr.jurassicrevived.recipe.DNAHybridizerRecipeInput;
 import net.cmr.jurassicrevived.recipe.ModRecipes;
@@ -11,7 +10,7 @@ import net.cmr.jurassicrevived.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
@@ -26,6 +25,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -39,7 +39,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvider {
-    public final ItemStackHandler itemHandler = new ItemStackHandler(5) {
+    public final ItemStackHandler itemHandler = new ItemStackHandler(11) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -51,9 +51,8 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
-                case 0 -> stack.getItem() == ModItems.TEST_TUBE.get();
-                case 1 -> stack.is(ModTags.Items.TISSUES) || stack.getItem() == ModItems.MOSQUITO_IN_AMBER.get();
-                case 2, 3, 4 -> true;
+                case 0, 1, 2, 3, 4, 5, 6, 7, 8 -> stack.is(ModTags.Items.DNA);
+                case 9 -> true;
                 default -> super.isItemValid(slot, stack);
             };
         }
@@ -62,7 +61,13 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
     private static final int DNA_SLOT_1 = 0;
     private static final int DNA_SLOT_2 = 1;
     private static final int DNA_SLOT_3 = 2;
-    private static final int OUTPUT_SLOT = 3;
+    private static final int DNA_SLOT_4 = 3;
+    private static final int DNA_SLOT_5 = 4;
+    private static final int DNA_SLOT_6 = 5;
+    private static final int DNA_SLOT_7 = 6;
+    private static final int DNA_SLOT_8 = 7;
+    private static final int DNA_SLOT_9 = 8;
+    private static final int OUTPUT_SLOT = 9;
 
     // Provide a per-face view that restricts insert/extract by slot
     private final java.util.EnumMap<Direction, IItemHandler> sidedHandlers = new java.util.EnumMap<>(Direction.class);
@@ -80,21 +85,35 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
     private static final float ENERGY_TRANSFER_RATE = (float) Config.fePerSecond / 20f;
 
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
+
+    // Expose a receive-only view to neighbors. Internal code uses ENERGY_STORAGE directly.
+    private final IEnergyStorage EXTERNAL_ENERGY_CAP = new IEnergyStorage() {
+        @Override
+        public int receiveEnergy(int maxReceive, boolean simulate) {
+            return ENERGY_STORAGE == null ? 0 : ENERGY_STORAGE.receiveEnergy(maxReceive, simulate);
+        }
+        @Override
+        public int extractEnergy(int maxExtract, boolean simulate) {
+            return 0; // block external pulls
+        }
+        @Override
+        public int getEnergyStored() {
+            return ENERGY_STORAGE == null ? 0 : ENERGY_STORAGE.getEnergyStored();
+        }
+        @Override
+        public int getMaxEnergyStored() {
+            return ENERGY_STORAGE == null ? 0 : ENERGY_STORAGE.getMaxEnergyStored();
+        }
+        @Override
+        public boolean canExtract() { return false; }
+        @Override
+        public boolean canReceive() { return ENERGY_STORAGE != null && ENERGY_STORAGE.canReceive(); }
+    };
+
     private ModEnergyStorage createEnergyStorage() {
         if (Config.REQUIRE_POWER) {
+            // Allow internal extraction; onEnergyChanged keeps client in sync
             return new ModEnergyStorage(16000, (int) ENERGY_TRANSFER_RATE) {
-                @Override
-                public int extractEnergy(int maxExtract, boolean simulate) {
-                    // Disallow sending power out
-                    return 0;
-                }
-
-                @Override
-                public boolean canExtract() {
-                    // Disallow sending power out
-                    return false;
-                }
-
                 @Override
                 public void onEnergyChanged() {
                     setChanged();
@@ -108,8 +127,9 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
-        if (Config.REQUIRE_POWER) {return this.ENERGY_STORAGE;}
-        return null;
+        if (!Config.REQUIRE_POWER) return null;
+        // Always expose the wrapper so pipes/networks can't pull out
+        return EXTERNAL_ENERGY_CAP;
     }
 
     public DNAHybridizerBlockEntity(BlockPos pos, BlockState blockState) {
@@ -156,8 +176,8 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
 
             @Override
             public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-                // Only allow insert into input slots, and only if the item is valid for that slot
-                if ((slot == DNA_SLOT_1 || slot == DNA_SLOT_2 || slot == DNA_SLOT_3) && itemHandler.isItemValid(slot, stack)) {
+                // Allow insert into all 9 input slots
+                if ((slot >= DNA_SLOT_1 && slot <= DNA_SLOT_9) && itemHandler.isItemValid(slot, stack)) {
                     return itemHandler.insertItem(slot, stack, simulate);
                 }
                 return stack; // reject insert
@@ -165,11 +185,10 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
 
             @Override
             public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-                // Only allow extract from output slots
                 if (slot == OUTPUT_SLOT) {
                     return itemHandler.extractItem(slot, amount, simulate);
                 }
-                return ItemStack.EMPTY; // reject extract
+                return ItemStack.EMPTY;
             }
 
             @Override
@@ -179,8 +198,7 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
 
             @Override
             public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-                // Expose validity consistent with insertion rule
-                return (slot == DNA_SLOT_1 || slot == DNA_SLOT_2 || slot == DNA_SLOT_3) && itemHandler.isItemValid(slot, stack);
+                return (slot >= DNA_SLOT_1 && slot <= DNA_SLOT_9) && itemHandler.isItemValid(slot, stack);
             }
         });
     }
@@ -240,7 +258,6 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
             pullEnergyFromNeighbors();
         }
 
-        // If no recipe is available right now, fully reset (including the locked choice)
         Optional<RecipeHolder<DNAHybridizerRecipe>> recipeOpt = getCurrentRecipe();
         if (recipeOpt.isEmpty()) {
             resetProgress();
@@ -249,14 +266,18 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
             return;
         }
 
-        // Compute a signature of the current inputs (item + count [+ NBT if present])
         String currentSignature = signatureOf(
                 itemHandler.getStackInSlot(DNA_SLOT_1),
                 itemHandler.getStackInSlot(DNA_SLOT_2),
-                itemHandler.getStackInSlot(DNA_SLOT_3)
+                itemHandler.getStackInSlot(DNA_SLOT_3),
+                itemHandler.getStackInSlot(DNA_SLOT_4),
+                itemHandler.getStackInSlot(DNA_SLOT_5),
+                itemHandler.getStackInSlot(DNA_SLOT_6),
+                itemHandler.getStackInSlot(DNA_SLOT_7),
+                itemHandler.getStackInSlot(DNA_SLOT_8),
+                itemHandler.getStackInSlot(DNA_SLOT_9)
         );
 
-        // Decide/lock output at the start of crafting, or whenever inputs change
         if (progress == 0) {
             if (lockedOutput.isEmpty() || !currentSignature.equals(lastInputSignature)) {
                 lockedOutput = determineOutputForCurrentInputs().copy();
@@ -264,15 +285,18 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
             }
         }
 
+        // Require exact unordered match (no extras) before crafting/charging
+        java.util.List<Integer> exactMatch = findExactUnorderedMatchIndices(recipeOpt.get().value());
         ItemStack prospectiveOutput = lockedOutput.isEmpty() ? determineOutputForCurrentInputs() : lockedOutput;
-        boolean canOutputNow = !prospectiveOutput.isEmpty()
+
+        boolean canProceed = exactMatch != null
+                && !prospectiveOutput.isEmpty()
                 && canInsertItemIntoOutputSlot(prospectiveOutput)
                 && canInsertAmountIntoOutputSlot(prospectiveOutput);
 
-        if (!prospectiveOutput.isEmpty() && canOutputNow) {
-            // Consume 64 FE per tick while crafting; pause if not enough energy
-            if (Config.REQUIRE_POWER && !consumeEnergyPerTick(64)) {
-                // Not enough energy to continue; don't advance progress but keep state
+        if (canProceed) {
+            // Charge per tick before progressing
+            if (Config.REQUIRE_POWER && !consumeEnergyPerTick(10)) {
                 setChanged(level, pos, state);
                 return;
             }
@@ -283,12 +307,10 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
             if (hasCraftingFinished()) {
                 craftItem();
                 resetProgress();
-                // After crafting, inputs changed (consumed) -> clear choice; next tick will re-evaluate
                 this.lockedOutput = ItemStack.EMPTY;
                 this.lastInputSignature = "";
             }
         } else {
-            // Can't progress right now (e.g., outputs blocked) – keep lockedOutput so we don't reroll
             resetProgress();
         }
     }
@@ -349,26 +371,87 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
             return;
         }
 
-        int[] slots = {OUTPUT_SLOT};
+        // Compute exact unordered match indices; if not exact (extras present), abort craft
+        java.util.List<Integer> matchedIndices = findExactUnorderedMatchIndices(recipe.get().value());
+        if (matchedIndices == null) {
+            return; // inputs contain extras or missing required; don't craft
+        }
 
-        for (int slot : slots) {
-            ItemStack current = itemHandler.getStackInSlot(slot);
+        ItemStack current = itemHandler.getStackInSlot(OUTPUT_SLOT);
+        if (current.isEmpty()) {
+            itemHandler.setStackInSlot(OUTPUT_SLOT, output.copy());
+        } else if (current.getItem() == output.getItem()
+                && current.getCount() + output.getCount() <= current.getMaxStackSize()) {
+            itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(current.getItem(), current.getCount() + output.getCount()));
+        } else {
+            return;
+        }
 
-            if (current.isEmpty()) {
-                itemHandler.setStackInSlot(slot, output.copy());
-                itemHandler.extractItem(DNA_SLOT_1, 1, false);
-                itemHandler.extractItem(DNA_SLOT_2, 1, false);
-                itemHandler.extractItem(DNA_SLOT_3, 1, false);
-                return;
+        // Consume exactly the matched indices
+        for (int idx : matchedIndices) {
+            itemHandler.extractItem(idx, 1, false);
+        }
+    }
+
+    private @org.jetbrains.annotations.Nullable java.util.List<Integer> findExactUnorderedMatchIndices(DNAHybridizerRecipe recipe) {
+        // Build required list (skip empty ingredients)
+        java.util.List<net.minecraft.world.item.crafting.Ingredient> required = new java.util.ArrayList<>();
+        for (var ing : recipe.inputs()) {
+            if (!ing.isEmpty()) required.add(ing);
+        }
+        if (required.isEmpty()) return null;
+
+        boolean[] used = new boolean[9];
+        java.util.List<Integer> matched = new java.util.ArrayList<>(required.size());
+
+        // Match all required ingredients to distinct non-empty inputs
+        for (var need : required) {
+            boolean found = false;
+            for (int i = 0; i < 9; i++) {
+                if (used[i]) continue;
+                var stack = itemHandler.getStackInSlot(i);
+                if (stack.isEmpty()) continue;
+                if (need.test(stack)) {
+                    used[i] = true;
+                    matched.add(i);
+                    found = true;
+                    break;
+                }
             }
+            if (!found) {
+                return null; // missing a required ingredient
+            }
+        }
 
-            if (current.getItem() == output.getItem()
-                    && current.getCount() + output.getCount() <= current.getMaxStackSize()) {
-                itemHandler.setStackInSlot(slot, new ItemStack(current.getItem(), current.getCount() + output.getCount()));
-                itemHandler.extractItem(DNA_SLOT_1, 1, false);
-                itemHandler.extractItem(DNA_SLOT_2, 1, false);
-                itemHandler.extractItem(DNA_SLOT_3, 1, false);
-                return;
+        // Ensure there are no extra non-empty inputs left unmatched
+        for (int i = 0; i < 9; i++) {
+            if (used[i]) continue;
+            if (!itemHandler.getStackInSlot(i).isEmpty()) {
+                return null; // extra/unexpected input present
+            }
+        }
+
+        return matched;
+    }
+
+    private void consumeInputsForUnordered(DNAHybridizerRecipe recipe) {
+        var required = new java.util.ArrayList<net.minecraft.world.item.crafting.Ingredient>();
+        for (var ing : recipe.inputs()) {
+            if (!ing.isEmpty()) required.add(ing);
+        }
+        if (required.isEmpty()) return;
+
+        boolean[] used = new boolean[9];
+        for (var need : required) {
+            for (int i = 0; i < 9; i++) {
+                if (used[i]) continue;
+                ItemStack inSlot = itemHandler.getStackInSlot(i);
+                if (inSlot.isEmpty()) continue;
+                if (need.test(inSlot)) {
+                    itemHandler.extractItem(i, 1, false);
+                    used[i] = true;
+                    break;
+                }
             }
         }
     }
@@ -399,7 +482,17 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
         assert this.level != null;
         return this.level.getRecipeManager().getRecipeFor(
                 ModRecipes.DNA_HYBRIDIZER_RECIPE_TYPE.get(),
-                new DNAHybridizerRecipeInput(itemHandler.getStackInSlot(DNA_SLOT_1), itemHandler.getStackInSlot(DNA_SLOT_2), itemHandler.getStackInSlot(DNA_SLOT_3)),
+                new DNAHybridizerRecipeInput(
+                        itemHandler.getStackInSlot(DNA_SLOT_1),
+                        itemHandler.getStackInSlot(DNA_SLOT_2),
+                        itemHandler.getStackInSlot(DNA_SLOT_3),
+                        itemHandler.getStackInSlot(DNA_SLOT_4),
+                        itemHandler.getStackInSlot(DNA_SLOT_5),
+                        itemHandler.getStackInSlot(DNA_SLOT_6),
+                        itemHandler.getStackInSlot(DNA_SLOT_7),
+                        itemHandler.getStackInSlot(DNA_SLOT_8),
+                        itemHandler.getStackInSlot(DNA_SLOT_9)
+                ),
                 this.level
         );
     }
@@ -435,9 +528,12 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
         return recipe.get().value().output().copy();
     }
 
-    // Build a stable signature for the three input stacks so we can detect changes
-    private static String signatureOf(ItemStack first, ItemStack second, ItemStack third) {
-        return stackSig(first) + "#" + stackSig(second) + "#" + stackSig(third);
+    private static String signatureOf(ItemStack s0, ItemStack s1, ItemStack s2,
+                                      ItemStack s3, ItemStack s4, ItemStack s5,
+                                      ItemStack s6, ItemStack s7, ItemStack s8) {
+        return stackSig(s0) + "#" + stackSig(s1) + "#" + stackSig(s2) + "#"
+                + stackSig(s3) + "#" + stackSig(s4) + "#" + stackSig(s5) + "#"
+                + stackSig(s6) + "#" + stackSig(s7) + "#" + stackSig(s8);
     }
 
     private static String stackSig(ItemStack s) {
@@ -472,6 +568,20 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
     @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
         super.onDataPacket(net, pkt, lookupProvider);
+    }
+
+    private void consumeInputsFor(DNAHybridizerRecipe recipe) {
+        NonNullList<Ingredient> req = recipe.inputs();
+        int max = Math.min(req.size(), 9);
+        for (int i = 0; i < max; i++) {
+            var ing = req.get(i);
+            if (ing.isEmpty()) continue; // ignored slot
+            int slotIndex = i; // slot i corresponds to input i
+            ItemStack inSlot = itemHandler.getStackInSlot(slotIndex);
+            if (!inSlot.isEmpty() && ing.test(inSlot)) {
+                itemHandler.extractItem(slotIndex, 1, false);
+            }
+        }
     }
 
     // Consume a fixed amount of FE this tick if available; returns true if deducted

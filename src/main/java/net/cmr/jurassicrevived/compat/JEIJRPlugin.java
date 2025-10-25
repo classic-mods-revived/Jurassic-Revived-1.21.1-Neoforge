@@ -79,7 +79,7 @@ public class JEIJRPlugin implements IModPlugin {
                 FossilGrinderRecipeCategory.FOSSIL_GRINDER_RECIPE_RECIPE_TYPE);
         registration.addRecipeClickArea(FossilCleanerScreen.class, 76, 35, 24, 16,
                 FossilCleanerRecipeCategory.FOSSIL_CLEANER_RECIPE_RECIPE_TYPE);
-        registration.addRecipeClickArea(DNAHybridizerScreen.class, 76, 35, 24, 16,
+        registration.addRecipeClickArea(DNAHybridizerScreen.class, 93, 35, 24, 16,
                 DNAHybridizerRecipeCategory.DNA_HYBRIDIZER_RECIPE_RECIPE_TYPE);
         registration.addRecipeClickArea(EmbryonicMachineScreen.class, 76, 35, 24, 16,
                 EmbryonicMachineRecipeCategory.EMBRYONIC_MACHINE_RECIPE_RECIPE_TYPE);
@@ -98,6 +98,13 @@ public class JEIJRPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.EMBRYONIC_MACHINE.get()), EmbryonicMachineRecipeCategory.EMBRYONIC_MACHINE_RECIPE_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.EMBRYO_CALCIFICATION_MACHINE.get()), EmbryoCalcificationMachineRecipeCategory.EMBRYO_CALCIFICATION_MACHINE_RECIPE_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.INCUBATOR.get()), IncubatorRecipeCategory.INCUBATOR_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WHITE_DNA_EXTRACTOR.get()), DNAExtractorRecipeCategory.DNA_EXTRACTOR_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WHITE_FOSSIL_GRINDER.get()), FossilGrinderRecipeCategory.FOSSIL_GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WHITE_FOSSIL_CLEANER.get()), FossilCleanerRecipeCategory.FOSSIL_CLEANER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WHITE_DNA_HYBRIDIZER.get()), DNAHybridizerRecipeCategory.DNA_HYBRIDIZER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WHITE_EMBRYONIC_MACHINE.get()), EmbryonicMachineRecipeCategory.EMBRYONIC_MACHINE_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WHITE_EMBRYO_CALCIFICATION_MACHINE.get()), EmbryoCalcificationMachineRecipeCategory.EMBRYO_CALCIFICATION_MACHINE_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WHITE_INCUBATOR.get()), IncubatorRecipeCategory.INCUBATOR_RECIPE_RECIPE_TYPE);
     }
 
     @Override
@@ -134,7 +141,7 @@ public class JEIJRPlugin implements IModPlugin {
                 ModMenuTypes.DNA_HYBRIDIZER_MENU.get(),
                 DNAHybridizerRecipeCategory.DNA_HYBRIDIZER_RECIPE_RECIPE_TYPE,
                 36, // The index of the FIRST recipe input slot in your Menu (slot 36)
-                3,  // The NUMBER of recipe input slots (slots 36, 37)
+                9,  // The NUMBER of recipe input slots (slots 36, 37)
                 0,  // The index where the player inventory slots START (slot 0)
                 36  // The NUMBER of player inventory slots to check (slots 0-35)
         );

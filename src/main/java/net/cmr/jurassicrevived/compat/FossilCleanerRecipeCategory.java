@@ -149,25 +149,29 @@ public class FossilCleanerRecipeCategory implements IRecipeCategory<FossilCleane
         if (level != null) {
             var itemRegistry = level.registryAccess().registryOrThrow(Registries.ITEM);
             var fossilsTagOpt = itemRegistry.getTag(ModTags.Items.FOSSILS);
-            List<ItemStack> fossilOutputs = fossilsTagOpt.map(holderSet ->
+            java.util.List<ItemStack> fossilOutputs = fossilsTagOpt.map(holderSet ->
                     holderSet.stream()
-                            .map(h -> new ItemStack(h.value(), Math.max(1, recipe.getResultItem(null).getCount())))
-                            .collect(Collectors.toList())
-            ).orElse(List.of());
+                            .map(h -> new ItemStack(h.value(), Math.max(1, recipe.output().getCount())))
+                            .collect(java.util.stream.Collectors.toList())
+            ).orElse(java.util.List.of());
+
+            // Hide zero-weight fossils
+            fossilOutputs = fossilOutputs.stream()
+                    .filter(stack -> recipe.getWeightFor(stack.getItem()) > 0)
+                    .collect(java.util.stream.Collectors.toList());
 
             var slot = builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStacks(fossilOutputs);
             slot.addRichTooltipCallback((view, tooltip) -> {
                 var opt = view.getDisplayedItemStack();
                 if (opt.isPresent()) {
                     int weight = recipe.getWeightFor(opt.get().getItem());
-                    tooltip.add(Component.literal("Weight: " + weight));
+                    //tooltip.add(Component.literal("Weight: " + weight));
                 }
             });
             return;
         }
 
-        // Fallback if registry not available (e.g., very early client init)
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStack(recipe.getResultItem(null));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStack(recipe.output());
     }
 
     private static List<ItemStack> buildWaterContainersList() {

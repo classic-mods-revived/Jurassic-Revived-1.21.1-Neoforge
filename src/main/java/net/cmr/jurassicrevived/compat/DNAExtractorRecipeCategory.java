@@ -126,12 +126,17 @@ public class DNAExtractorRecipeCategory implements IRecipeCategory<DNAExtractorR
                                 .collect(java.util.stream.Collectors.toList())
                 ).orElse(java.util.List.of());
 
+                // Filter out items with a weight of 0 so they don't show in JEI
+                dnaOutputs = dnaOutputs.stream()
+                        .filter(stack -> recipe.getWeightFor(stack.getItem()) > 0)
+                        .collect(java.util.stream.Collectors.toList());
+
                 var slot = builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStacks(dnaOutputs);
                 slot.addRichTooltipCallback((view, tooltip) -> {
                     var opt = view.getDisplayedItemStack();
                     if (opt.isPresent()) {
                         int weight = recipe.getWeightFor(opt.get().getItem());
-                        tooltip.add(Component.literal("Weight: " + weight));
+                        //tooltip.add(Component.literal("Weight: " + weight));
                     }
                 });
                 return;

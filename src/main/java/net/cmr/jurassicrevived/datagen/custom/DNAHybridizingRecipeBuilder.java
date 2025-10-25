@@ -15,20 +15,40 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DNAHybridizingRecipeBuilder {
-    private java.util.Optional<ItemLike> firstItem = java.util.Optional.empty();
-    private java.util.Optional<ItemLike> secondItem = java.util.Optional.empty();
-    private java.util.Optional<ItemLike> thirdItem = java.util.Optional.empty();
+    // ... existing code ...
     private java.util.Optional<Item> resultItem = java.util.Optional.empty();
     private final int count;
     private final Map<String, Criterion<?>> criteria;
+    private final NonNullList<Ingredient> ingredients = NonNullList.create();
+    // ... existing code ...
 
-    public DNAHybridizingRecipeBuilder(ItemLike ingredientA, ItemLike ingredientB, ItemLike ingredientC, ItemLike result, int count) {
-        this.firstItem = java.util.Optional.of(ingredientA);
-        this.secondItem = java.util.Optional.of(ingredientB);
-        this.thirdItem = java.util.Optional.of(ingredientC);
+    // New: primary factory with result + count only
+    public DNAHybridizingRecipeBuilder(ItemLike result, int count) {
         this.resultItem = java.util.Optional.of(result.asItem());
         this.count = count;
         this.criteria = new LinkedHashMap();
+    }
+
+    // Optional: convenience static constructor
+    public static DNAHybridizingRecipeBuilder result(ItemLike result, int count) {
+        return new DNAHybridizingRecipeBuilder(result, count);
+    }
+
+    // Add up to 9 ingredients total (recipes may use 1–9)
+    public DNAHybridizingRecipeBuilder addIngredient(ItemLike item) {
+        if (this.ingredients.size() >= 9) {
+            throw new IllegalStateException("DNAHybridizer supports at most 9 input ingredients");
+        }
+        this.ingredients.add(Ingredient.of(item));
+        return this;
+    }
+
+    public DNAHybridizingRecipeBuilder addIngredient(Ingredient ingredient) {
+        if (this.ingredients.size() >= 9) {
+            throw new IllegalStateException("DNAHybridizer supports at most 9 input ingredients");
+        }
+        this.ingredients.add(ingredient);
+        return this;
     }
 
     public void save(RecipeOutput output) {
@@ -41,10 +61,11 @@ public class DNAHybridizingRecipeBuilder {
     }
 
     public void save(RecipeOutput output, ResourceLocation recipeId) {
+        if (this.ingredients.isEmpty()) {
+            throw new IllegalStateException("DNAHybridizingRecipeBuilder requires at least 1 ingredient");
+        }
         NonNullList<Ingredient> inputs = NonNullList.create();
-        inputs.add(Ingredient.of(firstItem.orElseThrow()));
-        inputs.add(Ingredient.of(secondItem.orElseThrow()));
-        inputs.add(Ingredient.of(thirdItem.orElseThrow()));
+        inputs.addAll(this.ingredients);
         ItemStack result = new ItemStack(resultItem.orElseThrow(), this.count);
 
         DNAHybridizerRecipe recipe = new DNAHybridizerRecipe(inputs, result);

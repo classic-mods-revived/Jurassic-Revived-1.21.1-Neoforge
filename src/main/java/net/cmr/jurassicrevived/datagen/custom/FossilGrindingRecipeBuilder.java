@@ -39,10 +39,9 @@ public class FossilGrindingRecipeBuilder {
     // Caller provides the fossil (source) and the specific tissue item; count applies to produced stacks.
     public static FossilGrindingRecipeBuilder fossilWeighted(ItemLike fossil, ItemLike tissueResult, int count) {
         FossilGrindingRecipeBuilder b = new FossilGrindingRecipeBuilder(fossil, tissueResult, count);
-        b.addWeightedOutput(Items.BONE_MEAL, 30)
-         .addWeightedOutput(Items.FLINT, 30)
-         .addWeightedOutput(ModItems.CRUSHED_FOSSIL.get(), 30)
-         .addWeightedOutput(tissueResult, 10);
+        b.addWeightedOutput(Items.BONE_MEAL, 40)
+         .addWeightedOutput(ModItems.CRUSHED_FOSSIL.get(), 40)
+         .addWeightedOutput(tissueResult, 20);
         return b;
     }
 

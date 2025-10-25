@@ -13,6 +13,7 @@
     "id": "jurassicrevived:velociraptor_dna"
   },
   "weights": {
+    "jurassicrevived:distortus_rex_dna": 0,
     "jurassicrevived:indominus_rex_dna": 0
   }
 }

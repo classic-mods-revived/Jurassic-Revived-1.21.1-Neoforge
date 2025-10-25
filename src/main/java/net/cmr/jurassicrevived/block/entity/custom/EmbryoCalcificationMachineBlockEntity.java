@@ -79,21 +79,34 @@ public class EmbryoCalcificationMachineBlockEntity extends BlockEntity implement
     private static final float ENERGY_TRANSFER_RATE = (float) Config.fePerSecond / 20f;
 
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
+    // Expose a receive-only view to neighbors. Internal code uses ENERGY_STORAGE directly.
+    private final IEnergyStorage EXTERNAL_ENERGY_CAP = new IEnergyStorage() {
+        @Override
+        public int receiveEnergy(int maxReceive, boolean simulate) {
+            return ENERGY_STORAGE == null ? 0 : ENERGY_STORAGE.receiveEnergy(maxReceive, simulate);
+        }
+        @Override
+        public int extractEnergy(int maxExtract, boolean simulate) {
+            return 0; // block external pulls
+        }
+        @Override
+        public int getEnergyStored() {
+            return ENERGY_STORAGE == null ? 0 : ENERGY_STORAGE.getEnergyStored();
+        }
+        @Override
+        public int getMaxEnergyStored() {
+            return ENERGY_STORAGE == null ? 0 : ENERGY_STORAGE.getMaxEnergyStored();
+        }
+        @Override
+        public boolean canExtract() { return false; }
+        @Override
+        public boolean canReceive() { return ENERGY_STORAGE != null && ENERGY_STORAGE.canReceive(); }
+    };
+
     private ModEnergyStorage createEnergyStorage() {
         if (Config.REQUIRE_POWER) {
+            // Allow internal extraction; onEnergyChanged keeps client in sync
             return new ModEnergyStorage(16000, (int) ENERGY_TRANSFER_RATE) {
-                @Override
-                public int extractEnergy(int maxExtract, boolean simulate) {
-                    // Disallow sending power out
-                    return 0;
-                }
-
-                @Override
-                public boolean canExtract() {
-                    // Disallow sending power out
-                    return false;
-                }
-
                 @Override
                 public void onEnergyChanged() {
                     setChanged();
@@ -107,8 +120,9 @@ public class EmbryoCalcificationMachineBlockEntity extends BlockEntity implement
     }
 
     public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
-        if (Config.REQUIRE_POWER) {return this.ENERGY_STORAGE;}
-        return null;
+        if (!Config.REQUIRE_POWER) return null;
+        // Always expose the wrapper so pipes/networks can't pull out
+        return EXTERNAL_ENERGY_CAP;
     }
 
     public EmbryoCalcificationMachineBlockEntity(BlockPos pos, BlockState blockState) {
@@ -274,7 +288,7 @@ public class EmbryoCalcificationMachineBlockEntity extends BlockEntity implement
 
         if (!prospectiveOutput.isEmpty() && canOutputNow) {
             // Consume 64 FE per tick while crafting; pause if not enough energy
-            if (Config.REQUIRE_POWER && !consumeEnergyPerTick(64)) {
+            if (Config.REQUIRE_POWER && !consumeEnergyPerTick(10)) {
                 setChanged(level, pos, state);
                 return;
             }

@@ -3,6 +3,7 @@ package net.cmr.jurassicrevived.recipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,17 +11,21 @@ public record DNAHybridizerRecipeInput(List<ItemStack> inputs) implements Recipe
 
     public DNAHybridizerRecipeInput {
         Objects.requireNonNull(inputs, "inputs");
-        if (inputs.size() != 3) {
-            throw new IllegalArgumentException("DNAHybridizerRecipeInput requires exactly 3 input stacks, got " + inputs.size());
+        if (inputs.size() != 9) {
+            throw new IllegalArgumentException("DNAHybridizerRecipeInput requires exactly 9 input stacks, got " + inputs.size());
         }
-        ItemStack first = Objects.requireNonNullElse(inputs.get(0), ItemStack.EMPTY);
-        ItemStack second = Objects.requireNonNullElse(inputs.get(1), ItemStack.EMPTY);
-        ItemStack third = Objects.requireNonNullElse(inputs.get(2), ItemStack.EMPTY);
-        inputs = List.of(first, second, third);
+        // Normalize nulls to EMPTY and defensively copy
+        List<ItemStack> copy = new ArrayList<>(9);
+        for (int i = 0; i < 9; i++) {
+            copy.add(Objects.requireNonNullElse(inputs.get(i), ItemStack.EMPTY));
+        }
+        inputs = List.copyOf(copy);
     }
 
-    public DNAHybridizerRecipeInput(ItemStack first, ItemStack second, ItemStack third) {
-        this(List.of(first, second, third));
+    public DNAHybridizerRecipeInput(ItemStack s0, ItemStack s1, ItemStack s2,
+                                    ItemStack s3, ItemStack s4, ItemStack s5,
+                                    ItemStack s6, ItemStack s7, ItemStack s8) {
+        this(List.of(s0, s1, s2, s3, s4, s5, s6, s7, s8));
     }
 
     @Override

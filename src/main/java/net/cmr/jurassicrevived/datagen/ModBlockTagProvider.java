@@ -44,7 +44,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.DNA_HYBRIDIZER.get())
                 .add(ModBlocks.EMBRYONIC_MACHINE.get())
                 .add(ModBlocks.EMBRYO_CALCIFICATION_MACHINE.get())
-                .add(ModBlocks.INCUBATOR.get());
+                .add(ModBlocks.INCUBATOR.get())
+                .add(ModBlocks.WHITE_GENERATOR.get())
+                .add(ModBlocks.WHITE_DNA_EXTRACTOR.get())
+                .add(ModBlocks.WHITE_FOSSIL_CLEANER.get())
+                .add(ModBlocks.WHITE_FOSSIL_GRINDER.get())
+                .add(ModBlocks.WHITE_DNA_HYBRIDIZER.get())
+                .add(ModBlocks.WHITE_EMBRYONIC_MACHINE.get())
+                .add(ModBlocks.WHITE_EMBRYO_CALCIFICATION_MACHINE.get())
+                .add(ModBlocks.WHITE_INCUBATOR.get());
 
 
         this.tag(ModTags.Blocks.HATCHED_EGGS)

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:white_dna_extractor"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:dna_extractor"
+  }
+}
