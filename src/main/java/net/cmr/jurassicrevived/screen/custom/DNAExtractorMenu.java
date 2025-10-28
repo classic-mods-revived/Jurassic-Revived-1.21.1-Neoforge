@@ -31,7 +31,7 @@ public class DNAExtractorMenu extends AbstractContainerMenu {
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
 
-        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 0, 39, 35) {
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 0, 57, 35) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.getItem() == ModItems.TEST_TUBE.get();
@@ -42,7 +42,7 @@ public class DNAExtractorMenu extends AbstractContainerMenu {
             }
         });
 
-        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 1, 57, 35) {
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 1, 80, 7) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(ModTags.Items.TISSUES)|| stack.getItem() == ModItems.MOSQUITO_IN_AMBER.get();
@@ -53,19 +53,19 @@ public class DNAExtractorMenu extends AbstractContainerMenu {
             }
         });
 
-        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 2, 103, 35) {
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 2, 62, 63) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;
             }
         });
-        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 3, 121, 35) {
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 3, 80, 63) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;
             }
         });
-        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 4, 139, 35) {
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 4, 98, 63) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;

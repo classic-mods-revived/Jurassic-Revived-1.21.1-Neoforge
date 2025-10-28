@@ -14,6 +14,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
@@ -40,6 +41,86 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         oreSmelting(pRecipeOutput, GYPSUM_STONE_SMELTABLES, RecipeCategory.MISC, ModBlocks.SMOOTH_GYPSUM_STONE, 0.25f, 200, "jr_smooth_gypsum_stone");
         oreBlasting(pRecipeOutput, GYPSUM_STONE_SMELTABLES, RecipeCategory.MISC, ModBlocks.SMOOTH_GYPSUM_STONE, 0.25f, 100, "jr_smooth_gypsum_stone");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GYPSUM_BRICKS_STAIRS.get(), 4)
+                .pattern("A  ")
+                .pattern("AA ")
+                .pattern("AAA")
+                .define('A', ModBlocks.GYPSUM_STONE_BRICKS.get())
+                .unlockedBy("has_gypsum_stone_bricks", has(ModBlocks.GYPSUM_STONE_BRICKS)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GYPSUM_BRICKS_SLAB.get(), 6)
+                .pattern("AAA")
+                .define('A', ModBlocks.GYPSUM_STONE_BRICKS.get())
+                .unlockedBy("has_gypsum_stone_bricks", has(ModBlocks.GYPSUM_STONE_BRICKS)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GYPSUM_BRICKS_WALL.get(), 6)
+                .pattern("AAA")
+                .pattern("AAA")
+                .define('A', ModBlocks.GYPSUM_STONE_BRICKS.get())
+                .unlockedBy("has_gypsum_stone_bricks", has(ModBlocks.GYPSUM_STONE_BRICKS)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CHISELED_GYPSUM_STONE.get(), 1)
+                .pattern("A")
+                .pattern("A")
+                .define('A', ModBlocks.GYPSUM_BRICKS_SLAB.get())
+                .unlockedBy("has_gypsum_bricks_slab", has(ModBlocks.GYPSUM_STONE_BRICKS)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REINFORCED_BRICKS_STAIRS.get(), 4)
+                .pattern("A  ")
+                .pattern("AA ")
+                .pattern("AAA")
+                .define('A', ModBlocks.REINFORCED_STONE_BRICKS.get())
+                .unlockedBy("has_reinforced_stone_bricks", has(ModBlocks.REINFORCED_STONE_BRICKS)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REINFORCED_BRICKS_SLAB.get(), 6)
+                .pattern("AAA")
+                .define('A', ModBlocks.REINFORCED_STONE_BRICKS.get())
+                .unlockedBy("has_reinforced_stone_bricks", has(ModBlocks.REINFORCED_STONE_BRICKS)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REINFORCED_BRICKS_WALL.get(), 6)
+                .pattern("AAA")
+                .pattern("AAA")
+                .define('A', ModBlocks.REINFORCED_STONE_BRICKS.get())
+                .unlockedBy("has_reinforced_stone_bricks", has(ModBlocks.REINFORCED_STONE_BRICKS)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CHISELED_REINFORCED_STONE.get(), 1)
+                .pattern("A")
+                .pattern("A")
+                .define('A', ModBlocks.REINFORCED_BRICKS_SLAB.get())
+                .unlockedBy("has_reinforced_bricks_slab", has(ModBlocks.REINFORCED_STONE_BRICKS)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.TRASH_CAN.get(), 1)
+                .pattern("AAA")
+                .pattern("A A")
+                .pattern("AAA")
+                .define('A', Items.IRON_INGOT)
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.BENCH.get(), 1)
+                .pattern("A  ")
+                .pattern("AAA")
+                .pattern("BBB")
+                .define('A', Blocks.SPRUCE_PLANKS)
+                .define('B', ModBlocks.REINFORCED_STONE_BRICKS)
+                .unlockedBy("has_spruce_planks", has(Blocks.SPRUCE_PLANKS))
+                .unlockedBy("has_reinforced_stone_bricks", has(ModBlocks.REINFORCED_STONE_BRICKS)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FENCE_LIGHT.get(), 1)
+                .pattern("A")
+                .pattern("B")
+                .define('A', Blocks.GLOWSTONE)
+                .define('B', Items.IRON_INGOT)
+                .unlockedBy("has_glowstone", has(Blocks.GLOWSTONE))
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.LIGHT_POST.get(), 1)
+                .pattern("A")
+                .pattern("B")
+                .define('A', Blocks.GLOWSTONE)
+                .define('B', ModBlocks.GYPSUM_STONE)
+                .unlockedBy("has_glowstone", has(Blocks.GLOWSTONE))
+                .unlockedBy("has_gypsum_stone", has(ModBlocks.GYPSUM_STONE)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.TEST_TUBE.get(), 3)
                 .pattern("  A")

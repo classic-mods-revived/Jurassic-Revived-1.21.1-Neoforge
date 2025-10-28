@@ -5,11 +5,15 @@ import net.cmr.jurassicrevived.JRMod;
 import net.cmr.jurassicrevived.block.entity.custom.*;
 import net.cmr.jurassicrevived.entity.ModEntities;
 import net.cmr.jurassicrevived.entity.custom.*;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
 @EventBusSubscriber(modid = JRMod.MOD_ID)
 public class ModEventBusEvents {
@@ -73,5 +77,13 @@ public class ModEventBusEvents {
         event.put(ModEntities.TRICERATOPS.get(), TriceratopsEntity.createAttributes().build());
         event.put(ModEntities.TYRANNOSAURUS_REX.get(), TyrannosaurusRexEntity.createAttributes().build());
         event.put(ModEntities.VELOCIRAPTOR.get(), VelociraptorEntity.createAttributes().build());
+    }
+
+    @SubscribeEvent
+    public static void registerSpawnPlacements (RegisterSpawnPlacementsEvent event) {
+        if (!Config.NATURAL_DINOSAUR_SPAWNING) {
+            event.register(ModEntities.BRACHIOSAURUS.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        }
     }
 }

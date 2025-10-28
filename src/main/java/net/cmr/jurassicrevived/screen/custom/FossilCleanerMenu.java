@@ -42,7 +42,7 @@ public class FossilCleanerMenu extends AbstractContainerMenu {
             }
         });
 
-        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 1, 57, 35) {
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 1, 56, 35) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.getItem() == ModBlocks.STONE_FOSSIL.get().asItem() || stack.getItem() == ModBlocks.DEEPSLATE_FOSSIL.get().asItem();
@@ -82,7 +82,7 @@ public class FossilCleanerMenu extends AbstractContainerMenu {
     public int getScaledArrowProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
-        int arrowPixelSize = 24;
+        int arrowPixelSize = 29;
 
         return maxProgress != 0 && progress != 0 ? progress * arrowPixelSize / maxProgress : 0;
     }

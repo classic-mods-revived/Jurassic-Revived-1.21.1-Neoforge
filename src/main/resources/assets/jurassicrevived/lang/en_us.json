@@ -74,14 +74,26 @@
   "entity.jurassicrevived.distortus_rex": "Distortus Rex",
 
   "block.jurassicrevived.cat_plushie": "Cat Plushie",
+  "block.jurassicrevived.trash_can": "Trash Can",
+  "block.jurassicrevived.bench": "Bench",
+  "block.jurassicrevived.light_post": "Light Post",
   "block.jurassicrevived.gypsum_stone": "Gypsum Stone",
-  "block.jurassicrevived.smooth_gypsum_stone": "Smooth Gypsum Stone",
   "block.jurassicrevived.gypsum_cobblestone": "Gypsum Cobblestone",
   "block.jurassicrevived.gypsum_stone_bricks": "Gypsum Stone Bricks",
+  "block.jurassicrevived.smooth_gypsum_stone": "Smooth Gypsum Stone",
+  "block.jurassicrevived.chiseled_gypsum_stone": "Chiseled Gypsum Stone",
+  "block.jurassicrevived.gypsum_brick_stairs": "Gypsum Brick Stairs",
+  "block.jurassicrevived.gypsum_brick_slab": "Gypsum Brick Slab",
+  "block.jurassicrevived.gypsum_brick_wall": "Gypsum Brick Wall",
 
   "block.jurassicrevived.reinforced_stone": "Reinforced Stone",
   "block.jurassicrevived.reinforced_stone_bricks": "Reinforced Stone Bricks",
+  "block.jurassicrevived.chiseled_reinforced_stone": "Chiseled Reinforced Stone",
+  "block.jurassicrevived.reinforced_brick_stairs": "Reinforced Brick Stairs",
+  "block.jurassicrevived.reinforced_brick_slab": "Reinforced Brick Slab",
+  "block.jurassicrevived.reinforced_brick_wall": "Reinforced Brick Wall",
 
+  "block.jurassicrevived.fence_light": "Fence Light",
   "block.jurassicrevived.low_security_fence_pole": "§aLow §r§7Security Fence Pole",
   "block.jurassicrevived.low_security_fence_wire": "§aLow §r§7Security Fence Wire",
   "block.jurassicrevived.medium_security_fence_pole": "§6Medium §r§7Security Fence Pole",
@@ -372,5 +384,11 @@
 
   "jurassicrevived.tooltip.liquid.amount.with.capacity": "%s / %s mB",
   "jurassicrevived.tooltip.liquid.amount": "%s mB",
-  "jurassicrevived.tooltip.accepts_any_water_container": "Accepts any water container, even one's with more water than the tank can hold."
+  "jurassicrevived.tooltip.accepts_any_water_container": "Accepts any water container, even one's with more water than the tank can hold.",
+
+  "jurassicrevived.configuration.requirePower": "Do machines require power?",
+  "jurassicrevived.configuration.naturalDinoSpawning": "Do dinosaurs naturally spawn?",
+  "jurassicrevived.configuration.itemsPerSecond": "Item pipe tranfer rate",
+  "jurassicrevived.configuration.milliBucketsPerSecond": "Fluid pipe tranfer rate",
+  "jurassicrevived.configuration.fePerSecond": "Power pipe tranfer rate"
 }

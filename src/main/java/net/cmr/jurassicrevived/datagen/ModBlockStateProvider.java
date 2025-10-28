@@ -43,6 +43,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.GYPSUM_COBBLESTONE);
         blockWithItem(ModBlocks.GYPSUM_STONE_BRICKS);
         blockWithItem(ModBlocks.SMOOTH_GYPSUM_STONE);
+        blockWithItem(ModBlocks.CHISELED_GYPSUM_STONE);
 
         blockWithItem(ModBlocks.STONE_FOSSIL);
         blockWithItem(ModBlocks.DEEPSLATE_FOSSIL);
@@ -51,8 +52,27 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockWithItem(ModBlocks.REINFORCED_STONE);
         blockWithItem(ModBlocks.REINFORCED_STONE_BRICKS);
+        blockWithItem(ModBlocks.CHISELED_REINFORCED_STONE);
+
+        stairsBlock(((StairBlock) ModBlocks.REINFORCED_BRICKS_STAIRS.get()), blockTexture(ModBlocks.REINFORCED_STONE_BRICKS.get()));
+        slabBlock(((SlabBlock) ModBlocks.REINFORCED_BRICKS_SLAB.get()), blockTexture(ModBlocks.REINFORCED_STONE_BRICKS.get()), blockTexture(ModBlocks.REINFORCED_STONE_BRICKS.get()));
+        wallBlock(((WallBlock) ModBlocks.REINFORCED_BRICKS_WALL.get()), blockTexture(ModBlocks.REINFORCED_STONE_BRICKS.get()));
+
+        blockItem(ModBlocks.REINFORCED_BRICKS_STAIRS);
+        blockItem(ModBlocks.REINFORCED_BRICKS_SLAB);
+
+        stairsBlock(((StairBlock) ModBlocks.GYPSUM_BRICKS_STAIRS.get()), blockTexture(ModBlocks.GYPSUM_STONE_BRICKS.get()));
+        slabBlock(((SlabBlock) ModBlocks.GYPSUM_BRICKS_SLAB.get()), blockTexture(ModBlocks.GYPSUM_STONE_BRICKS.get()), blockTexture(ModBlocks.GYPSUM_STONE_BRICKS.get()));
+        wallBlock(((WallBlock) ModBlocks.GYPSUM_BRICKS_WALL.get()), blockTexture(ModBlocks.GYPSUM_STONE_BRICKS.get()));
+
+        blockItem(ModBlocks.GYPSUM_BRICKS_STAIRS);
+        blockItem(ModBlocks.GYPSUM_BRICKS_SLAB);
 
         horizontalFacingWithItem(ModBlocks.CAT_PLUSHIE);
+        horizontalFacingWithItem(ModBlocks.TRASH_CAN);
+        horizontalFacingWithItem(ModBlocks.BENCH);
+        horizontalFacingWithItem(ModBlocks.FENCE_LIGHT);
+        horizontalFacingWithItem(ModBlocks.LIGHT_POST);
 
         horizontalFacingWithItem(ModBlocks.GENERATOR);
         horizontalFacingWithItem(ModBlocks.DNA_EXTRACTOR);

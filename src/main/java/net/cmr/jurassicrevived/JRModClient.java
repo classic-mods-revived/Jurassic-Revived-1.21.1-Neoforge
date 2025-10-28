@@ -7,6 +7,7 @@ import net.cmr.jurassicrevived.screen.custom.*;
 import net.cmr.jurassicrevived.util.FenceClimbClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -33,7 +34,8 @@ public class JRModClient {
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
         JRMod.LOGGER.info("HELLO FROM CLIENT SETUP");
-        JRMod.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        JRMod.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());// Java
+        EntityRenderers.register(ModEntities.SEAT.get(), NoopRenderer::new);
         EntityRenderers.register(ModEntities.APATOSAURUS.get(), ApatosaurusRenderer::new);
         EntityRenderers.register(ModEntities.ALBERTOSAURUS.get(), AlbertosaurusRenderer::new);
         EntityRenderers.register(ModEntities.BARYONYX.get(), BaryonyxRenderer::new);

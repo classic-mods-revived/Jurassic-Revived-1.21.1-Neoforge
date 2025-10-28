@@ -26,8 +26,7 @@ import java.util.List;
 public class IncubatorRecipeCategory implements IRecipeCategory<IncubatorRecipe> {
     public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "incubating");
     public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/incubator/incubator_gui.png");
-    private static final ResourceLocation LIT_PROGRESS_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath("minecraft","container/furnace/lit_progress");
+    private static final ResourceLocation LANTERN_TEXTURE = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/lantern.png");
     private static final ResourceLocation POWER_BAR_TEXTURE = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/power_bar.png");
 
     public static final RecipeType<IncubatorRecipe> INCUBATOR_RECIPE_RECIPE_TYPE =
@@ -66,9 +65,9 @@ public class IncubatorRecipeCategory implements IRecipeCategory<IncubatorRecipe>
     public void draw(IncubatorRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics g, double mouseX, double mouseY) {
         background.draw(g);
         // Rising flame indicator on all three slots
-        renderRisingFlame(g, 50);
-        renderRisingFlame(g, 80);
-        renderRisingFlame(g, 110);
+        renderLanternFill(g, 50);
+        renderLanternFill(g, 80);
+        renderLanternFill(g, 110);
 
         // 2-second toggle for which stack to paint on top of each slot
         boolean showOutput = ((System.currentTimeMillis() / 2000L) & 1L) == 1L;
@@ -106,13 +105,11 @@ public class IncubatorRecipeCategory implements IRecipeCategory<IncubatorRecipe>
         g.renderItemDecorations(Minecraft.getInstance().font, stack, x, y);
     }
 
-    // Render a rising furnace flame (14x14 sprite) at the given slot center-x (50/80/110)
-    private void renderRisingFlame(GuiGraphics g, int slotPixelX) {
+    private void renderLanternFill(GuiGraphics g, int slotPixelX) {
         long now = System.currentTimeMillis();
-        // 2.5s per cycle for a smoother rise
         float t = (now % 10000L) / 10000f;
         int l = Mth.ceil(t * 13.0F) + 1;
-        g.blitSprite(LIT_PROGRESS_TEXTURE, 14, 14, 0, 14 - l, slotPixelX, 55 + 14 - l, 14, l);
+        g.blit(LANTERN_TEXTURE, slotPixelX, 16, 0, 0, 16, l, 16, 16);
     }
 
     @Override

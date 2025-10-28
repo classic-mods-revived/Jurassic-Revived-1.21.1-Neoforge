@@ -16,6 +16,11 @@ public class Config {
             .gameRestart()
             .define("requirePower", false);
 
+    private static final ModConfigSpec.BooleanValue NATURAL_DINOSAUR_SPAWNING_SPEC = BUILDER
+            .comment("If true, dinosaurs spawn naturally in the world. If false, dinosaurs don't naturally spawn. Requires a restart to take effect, and will not affect existing dinosaurs in the world.")
+            .gameRestart()
+            .define("naturalDinoSpawning", false);
+
     // Throughput (per second) with clamped defaults
     private static final int MAX_ITEMS_PER_SEC = 1024;
     private static final int MAX_MB_PER_SEC = 100000;
@@ -40,6 +45,7 @@ public class Config {
 
     // Cached values
     public static boolean REQUIRE_POWER;
+    public static boolean NATURAL_DINOSAUR_SPAWNING;
     public static int itemsPerSecond;
     public static int milliBucketsPerSecond;
     public static int fePerSecond;
@@ -62,12 +68,18 @@ public class Config {
 
     private static void bake() {
         REQUIRE_POWER = REQUIRE_POWER_SPEC.get();
+        NATURAL_DINOSAUR_SPAWNING = NATURAL_DINOSAUR_SPAWNING_SPEC.get();
         itemsPerSecond = ITEMS_PER_SECOND.get();
         milliBucketsPerSecond = MB_PER_SECOND.get();
         fePerSecond = FE_PER_SECOND.get();
     }
 
     // Public setters for in-game updates
+    public static void setNaturalDinosaurSpawning(boolean value) {
+        NATURAL_DINOSAUR_SPAWNING_SPEC.set(value);
+        NATURAL_DINOSAUR_SPAWNING = value;
+    }
+
     public static void setRequirePower(boolean value) {
         REQUIRE_POWER_SPEC.set(value);
         REQUIRE_POWER = value;

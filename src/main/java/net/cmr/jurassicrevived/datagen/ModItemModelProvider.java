@@ -273,6 +273,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModBlocks.MEDIUM_SECURITY_FENCE_POLE.get().asItem());
         basicItem(ModBlocks.MEDIUM_SECURITY_FENCE_WIRE.get().asItem());
 
+        wallItem(ModBlocks.GYPSUM_BRICKS_WALL, ModBlocks.GYPSUM_STONE_BRICKS);
+        wallItem(ModBlocks.REINFORCED_BRICKS_WALL, ModBlocks.REINFORCED_STONE_BRICKS);
+
         simpleBlockItemBlockTexture(ModBlocks.HATCHED_BRACHIOSAURUS_EGG);
         simpleBlockItemBlockTexture(ModBlocks.HATCHED_CERATOSAURUS_EGG);
         simpleBlockItemBlockTexture(ModBlocks.HATCHED_DILOPHOSAURUS_EGG);

@@ -18,8 +18,8 @@ import java.util.Optional;
 public class IncubatorScreen extends AbstractContainerScreen<IncubatorMenu> {
     private static final ResourceLocation GUI_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/incubator/incubator_gui.png");
-    private static final ResourceLocation LIT_PROGRESS_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath("minecraft","container/furnace/lit_progress");
+    private static final ResourceLocation LANTERN_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/lantern.png");
     private static final ResourceLocation POWER_BAR_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "textures/gui/generic/power_bar.png");
     private static final ResourceLocation EGG_TEXTURE =
@@ -86,8 +86,7 @@ public class IncubatorScreen extends AbstractContainerScreen<IncubatorMenu> {
     private void renderProgressArrowForSlot(GuiGraphics g, int x, int y, int slotIdx, int slotPixelX) {
         if (this.menu.isCrafting(slotIdx)) {
             int l = Mth.ceil(this.menu.getScaledArrowProgress(slotIdx) * 13.0F) + 1;
-            g.blitSprite(LIT_PROGRESS_TEXTURE, 14, 14, 0, 14 - l,
-                    x + slotPixelX, y + 55 + 14 - l, 14, l);
+            g.blit(LANTERN_TEXTURE, x + slotPixelX, y +16 , 0, 0, 16, l, 16, 16);
         }
     }
 

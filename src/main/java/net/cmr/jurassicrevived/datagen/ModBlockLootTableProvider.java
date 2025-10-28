@@ -27,9 +27,17 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.CAT_PLUSHIE.get());
+        dropSelf(ModBlocks.TRASH_CAN.get());
+        dropSelf(ModBlocks.BENCH.get());
+        dropSelf(ModBlocks.FENCE_LIGHT.get());
+        dropSelf(ModBlocks.LIGHT_POST.get());
         dropSelf(ModBlocks.GYPSUM_COBBLESTONE.get());
         dropSelf(ModBlocks.GYPSUM_STONE_BRICKS.get());
         dropSelf(ModBlocks.SMOOTH_GYPSUM_STONE.get());
+        dropSelf(ModBlocks.CHISELED_GYPSUM_STONE.get());
+        dropSelf(ModBlocks.GYPSUM_BRICKS_STAIRS.get());
+        dropSelf(ModBlocks.GYPSUM_BRICKS_SLAB.get());
+        dropSelf(ModBlocks.GYPSUM_BRICKS_WALL.get());
         dropSelf(ModBlocks.STONE_FOSSIL.get());
         dropSelf(ModBlocks.DEEPSLATE_FOSSIL.get());
         dropSelf(ModBlocks.LOW_SECURITY_FENCE_POLE.get());
@@ -49,6 +57,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.REINFORCED_STONE.get());
         dropSelf(ModBlocks.REINFORCED_STONE_BRICKS.get());
+        dropSelf(ModBlocks.CHISELED_REINFORCED_STONE.get());
+        dropSelf(ModBlocks.REINFORCED_BRICKS_STAIRS.get());
+        dropSelf(ModBlocks.REINFORCED_BRICKS_SLAB.get());
+        dropSelf(ModBlocks.REINFORCED_BRICKS_WALL.get());
 
         dropSelf(ModBlocks.HATCHED_APATOSAURUS_EGG.get());
         dropSelf(ModBlocks.HATCHED_ALBERTOSAURUS_EGG.get());

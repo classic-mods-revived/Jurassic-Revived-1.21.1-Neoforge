@@ -43,13 +43,25 @@ public class ModCreativeModeTabs {
                     .icon(() -> new ItemStack(ModBlocks.GYPSUM_STONE_BRICKS.get().asItem()))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModBlocks.CAT_PLUSHIE);
+                        pOutput.accept(ModBlocks.TRASH_CAN);
+                        pOutput.accept(ModBlocks.BENCH);
+                        pOutput.accept(ModBlocks.FENCE_LIGHT);
+                        pOutput.accept(ModBlocks.LIGHT_POST);
                         pOutput.accept(ModBlocks.GYPSUM_STONE);
                         pOutput.accept(ModBlocks.GYPSUM_COBBLESTONE);
                         pOutput.accept(ModBlocks.GYPSUM_STONE_BRICKS);
                         pOutput.accept(ModBlocks.SMOOTH_GYPSUM_STONE);
+                        pOutput.accept(ModBlocks.CHISELED_GYPSUM_STONE);
+                        pOutput.accept(ModBlocks.GYPSUM_BRICKS_STAIRS);
+                        pOutput.accept(ModBlocks.GYPSUM_BRICKS_SLAB);
+                        pOutput.accept(ModBlocks.GYPSUM_BRICKS_WALL);
 
                         pOutput.accept(ModBlocks.REINFORCED_STONE);
                         pOutput.accept(ModBlocks.REINFORCED_STONE_BRICKS);
+                        pOutput.accept(ModBlocks.CHISELED_REINFORCED_STONE);
+                        pOutput.accept(ModBlocks.REINFORCED_BRICKS_STAIRS);
+                        pOutput.accept(ModBlocks.REINFORCED_BRICKS_SLAB);
+                        pOutput.accept(ModBlocks.REINFORCED_BRICKS_WALL);
 
                         pOutput.accept(ModBlocks.LOW_SECURITY_FENCE_POLE);
                         pOutput.accept(ModBlocks.LOW_SECURITY_FENCE_WIRE);

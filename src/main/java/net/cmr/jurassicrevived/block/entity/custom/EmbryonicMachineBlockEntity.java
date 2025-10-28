@@ -39,7 +39,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProvider {
-    public final ItemStackHandler itemHandler = new ItemStackHandler(5) {
+    public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -53,7 +53,7 @@ public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProv
             return switch (slot) {
                 case 0 -> stack.getItem() == ModItems.SYRINGE.get();
                 case 1 -> stack.is(ModTags.Items.DNA);
-                case 2, 3, 4 -> true;
+                case 2 -> true;
                 default -> super.isItemValid(slot, stack);
             };
         }
@@ -62,8 +62,6 @@ public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProv
     private static final int SYRINGE_SLOT = 0;
     private static final int MATERIAL_SLOT = 1;
     private static final int OUTPUT_SLOT_1 = 2;
-    private static final int OUTPUT_SLOT_2 = 3;
-    private static final int OUTPUT_SLOT_3 = 4;
 
     // Provide a per-face view that restricts insert/extract by slot
     private final java.util.EnumMap<Direction, IItemHandler> sidedHandlers = new java.util.EnumMap<>(Direction.class);
@@ -185,7 +183,7 @@ public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProv
             @Override
             public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
                 // Only allow extract from output slots
-                if (slot == OUTPUT_SLOT_1 || slot == OUTPUT_SLOT_2 || slot == OUTPUT_SLOT_3) {
+                if (slot == OUTPUT_SLOT_1) {
                     return itemHandler.extractItem(slot, amount, simulate);
                 }
                 return ItemStack.EMPTY; // reject extract
@@ -367,7 +365,7 @@ public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProv
             return;
         }
 
-        int[] slots = {OUTPUT_SLOT_1, OUTPUT_SLOT_2, OUTPUT_SLOT_3};
+        int[] slots = {OUTPUT_SLOT_1};
 
         for (int slot : slots) {
             ItemStack current = itemHandler.getStackInSlot(slot);
@@ -398,8 +396,7 @@ public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProv
     }
 
     private boolean isOutputSlotsEmptyorReceivable() {
-        return itemHandler.getStackInSlot(OUTPUT_SLOT_1).isEmpty() || itemHandler.getStackInSlot(OUTPUT_SLOT_2).isEmpty() || itemHandler.getStackInSlot(OUTPUT_SLOT_3).isEmpty() ||
-                itemHandler.getStackInSlot(OUTPUT_SLOT_1).getCount() < this.itemHandler.getStackInSlot(OUTPUT_SLOT_1).getMaxStackSize() || itemHandler.getStackInSlot(OUTPUT_SLOT_2).getCount() < this.itemHandler.getStackInSlot(OUTPUT_SLOT_2).getMaxStackSize() || itemHandler.getStackInSlot(OUTPUT_SLOT_3).getCount() < this.itemHandler.getStackInSlot(OUTPUT_SLOT_3).getMaxStackSize();
+        return itemHandler.getStackInSlot(OUTPUT_SLOT_1).isEmpty() || itemHandler.getStackInSlot(OUTPUT_SLOT_1).getCount() < this.itemHandler.getStackInSlot(OUTPUT_SLOT_1).getMaxStackSize();
     }
 
     private boolean hasRecipe() {
@@ -423,7 +420,7 @@ public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProv
     // Remove the hard-coded velociraptor DNA assumption and drive it from a concrete output stack
     private boolean canInsertAmountIntoOutputSlot(ItemStack output) {
         int toInsert = output.getCount();
-        int[] slots = {OUTPUT_SLOT_1, OUTPUT_SLOT_2, OUTPUT_SLOT_3};
+        int[] slots = {OUTPUT_SLOT_1};
 
         for (int slot : slots) {
             ItemStack stack = itemHandler.getStackInSlot(slot);
@@ -510,7 +507,7 @@ public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProv
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {
-        int[] slots = {OUTPUT_SLOT_1, OUTPUT_SLOT_2, OUTPUT_SLOT_3};
+        int[] slots = {OUTPUT_SLOT_1};
 
         for (int slot : slots) {
             ItemStack stack = itemHandler.getStackInSlot(slot);

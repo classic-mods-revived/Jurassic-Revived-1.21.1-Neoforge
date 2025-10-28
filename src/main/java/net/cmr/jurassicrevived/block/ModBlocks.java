@@ -23,6 +23,15 @@ public class ModBlocks {
     public static final DeferredBlock<Block> CAT_PLUSHIE = registerBlock("cat_plushie",
             () -> new DecoBlock(BlockBehaviour.Properties.of().noOcclusion().sound(SoundType.WOOL)));
 
+    public static final DeferredBlock<Block> TRASH_CAN = registerBlock("trash_can",
+            () -> new TrashBlock(BlockBehaviour.Properties.of().noOcclusion()));
+
+    public static final DeferredBlock<Block> BENCH = registerBlock("bench",
+            () -> new BenchBlock(BlockBehaviour.Properties.of().noOcclusion()));
+
+    public static final DeferredBlock<Block> LIGHT_POST = registerBlock("light_post",
+            () -> new LightPostBlock(BlockBehaviour.Properties.of().noOcclusion().lightLevel(state -> 15)));
+
     public static final DeferredBlock<Block> ITEM_PIPE = registerBlock("item_pipe",
             () -> new PipeBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion(), PipeBlock.Transport.ITEMS));
 
@@ -88,6 +97,19 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> SMOOTH_GYPSUM_STONE = registerBlock("smooth_gypsum_stone",
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> CHISELED_GYPSUM_STONE = registerBlock("chiseled_gypsum_stone",
+            () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> GYPSUM_BRICKS_STAIRS = registerBlock("gypsum_bricks_stairs",
+            () -> new StairBlock(ModBlocks.GYPSUM_STONE_BRICKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> GYPSUM_BRICKS_SLAB = registerBlock("gypsum_bricks_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> GYPSUM_BRICKS_WALL = registerBlock("gypsum_bricks_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> FENCE_LIGHT = registerBlock("fence_light",
+            () -> new FenceLightBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion().lightLevel(state -> 15)));
 
     public static final DeferredBlock<Block> LOW_SECURITY_FENCE_POLE = registerBlock("low_security_fence_pole",
             () -> new FencePoleBlock(BlockBehaviour.Properties.of().strength(1.0F).noOcclusion().requiresCorrectToolForDrops(), FencePoleBlock.Tier.LOW));
@@ -113,6 +135,16 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> REINFORCED_STONE_BRICKS = registerBlock("reinforced_stone_bricks",
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> CHISELED_REINFORCED_STONE = registerBlock("chiseled_reinforced_stone",
+            () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> REINFORCED_BRICKS_STAIRS = registerBlock("reinforced_bricks_stairs",
+            () -> new StairBlock(ModBlocks.REINFORCED_STONE_BRICKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> REINFORCED_BRICKS_SLAB = registerBlock("reinforced_bricks_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> REINFORCED_BRICKS_WALL = registerBlock("reinforced_bricks_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> HATCHED_APATOSAURUS_EGG = registerBlock("hatched_apatosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.APATOSAURUS));
