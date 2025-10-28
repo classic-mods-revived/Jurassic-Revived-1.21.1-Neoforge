@@ -1,13 +1,17 @@
 package net.cmr.jurassicrevived.block.entity.custom;
 
 import net.cmr.jurassicrevived.Config;
+import net.cmr.jurassicrevived.block.custom.EmbryoCalcificationMachineBlock;
+import net.cmr.jurassicrevived.block.custom.EmbryonicMachineBlock;
 import net.cmr.jurassicrevived.block.entity.energy.ModEnergyStorage;
 import net.cmr.jurassicrevived.item.ModItems;
 import net.cmr.jurassicrevived.recipe.EmbryonicMachineRecipe;
 import net.cmr.jurassicrevived.recipe.EmbryonicMachineRecipeInput;
 import net.cmr.jurassicrevived.recipe.ModRecipes;
 import net.cmr.jurassicrevived.screen.custom.EmbryonicMachineMenu;
+import net.cmr.jurassicrevived.sound.MachineHumLoopSound;
 import net.cmr.jurassicrevived.util.ModTags;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -39,6 +43,35 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProvider {
+    private @Nullable MachineHumLoopSound humSound;
+
+    public static void clientTick(Level level, BlockPos pos, BlockState state, EmbryonicMachineBlockEntity be) {
+        if (!level.isClientSide) return;
+
+        boolean lit = state.hasProperty(EmbryonicMachineBlock.LIT)
+                && state.getValue(EmbryonicMachineBlock.LIT);
+
+        if (lit) {
+            if (be.humSound == null || be.humSound.isStopped()) {
+                be.humSound = new MachineHumLoopSound(level, pos);
+                Minecraft.getInstance().getSoundManager().play(be.humSound);
+            }
+        } else {
+            if (be.humSound != null && !be.humSound.isStopped()) {
+                be.humSound.stopPlaying();
+            }
+            be.humSound = null;
+        }
+    }
+
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+        if (level != null && level.isClientSide && humSound != null && !humSound.isStopped()) {
+            humSound.stopPlaying();
+        }
+        humSound = null;
+    }
     public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -261,6 +294,7 @@ public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProv
         Optional<RecipeHolder<EmbryonicMachineRecipe>> recipeOpt = getCurrentRecipe();
         if (recipeOpt.isEmpty()) {
             resetProgress();
+            level.setBlockAndUpdate(pos, state.setValue(EmbryonicMachineBlock.LIT, false));
             this.lockedOutput = ItemStack.EMPTY;
             this.lastInputSignature = "";
             return;
@@ -294,11 +328,13 @@ public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProv
             }
 
             increaseCraftingProgress();
+            level.setBlockAndUpdate(pos, state.setValue(EmbryonicMachineBlock.LIT, true));
             setChanged(level, pos, state);
 
             if (hasCraftingFinished()) {
                 craftItem();
                 resetProgress();
+                level.setBlockAndUpdate(pos, state.setValue(EmbryonicMachineBlock.LIT, false));
                 // After crafting, inputs changed (consumed) -> clear choice; next tick will re-evaluate
                 this.lockedOutput = ItemStack.EMPTY;
                 this.lastInputSignature = "";
@@ -306,6 +342,7 @@ public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProv
         } else {
             // Can't progress right now (e.g., outputs blocked) – keep lockedOutput so we don't reroll
             resetProgress();
+            level.setBlockAndUpdate(pos, state.setValue(EmbryonicMachineBlock.LIT, false));
         }
     }
 

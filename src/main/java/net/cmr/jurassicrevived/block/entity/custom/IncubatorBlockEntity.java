@@ -1,13 +1,16 @@
 package net.cmr.jurassicrevived.block.entity.custom;
 
 import net.cmr.jurassicrevived.Config;
+import net.cmr.jurassicrevived.block.custom.IncubatorBlock;
 import net.cmr.jurassicrevived.block.entity.energy.ModEnergyStorage;
 import net.cmr.jurassicrevived.item.ModItems;
 import net.cmr.jurassicrevived.recipe.IncubatorRecipe;
 import net.cmr.jurassicrevived.recipe.IncubatorRecipeInput;
 import net.cmr.jurassicrevived.recipe.ModRecipes;
 import net.cmr.jurassicrevived.screen.custom.IncubatorMenu;
+import net.cmr.jurassicrevived.sound.MachineHumLoopSound;
 import net.cmr.jurassicrevived.util.ModTags;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -38,6 +41,36 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class IncubatorBlockEntity extends BlockEntity implements MenuProvider {
+    private @Nullable MachineHumLoopSound humSound;
+
+    public static void clientTick(Level level, BlockPos pos, BlockState state, IncubatorBlockEntity be) {
+        if (!level.isClientSide) return;
+
+        boolean lit = state.hasProperty(IncubatorBlock.LIT)
+                && state.getValue(IncubatorBlock.LIT);
+
+        if (lit) {
+            if (be.humSound == null || be.humSound.isStopped()) {
+                be.humSound = new MachineHumLoopSound(level, pos);
+                Minecraft.getInstance().getSoundManager().play(be.humSound);
+            }
+        } else {
+            if (be.humSound != null && !be.humSound.isStopped()) {
+                be.humSound.stopPlaying();
+            }
+            be.humSound = null;
+        }
+    }
+
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+        if (level != null && level.isClientSide && humSound != null && !humSound.isStopped()) {
+            humSound.stopPlaying();
+        }
+        humSound = null;
+    }
+
     public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -280,6 +313,11 @@ public class IncubatorBlockEntity extends BlockEntity implements MenuProvider {
             }
 
             anyActive = true; // at least one slot can progress this tick
+        }
+
+        // update block lit state once per tick based on activity
+        if (state.getValue(IncubatorBlock.LIT) != anyActive) {
+            level.setBlockAndUpdate(pos, state.setValue(IncubatorBlock.LIT, anyActive));
         }
 
         // Consume power once per tick if the machine is active (any slot has a valid recipe)

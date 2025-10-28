@@ -10,6 +10,7 @@ import net.cmr.jurassicrevived.item.ModItems;
 import net.cmr.jurassicrevived.loot.ModLootModifiers;
 import net.cmr.jurassicrevived.recipe.ModRecipes;
 import net.cmr.jurassicrevived.screen.ModMenuTypes;
+import net.cmr.jurassicrevived.sound.ModSounds;
 import net.cmr.jurassicrevived.util.FenceClimbHandler;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
@@ -56,6 +57,8 @@ public class JRMod {
         ModRecipes.register(modEventBus);
 
         ModLootModifiers.register(modEventBus);
+
+        ModSounds.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.

@@ -1,15 +1,19 @@
 package net.cmr.jurassicrevived.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import net.cmr.jurassicrevived.block.entity.custom.DNAExtractorBlockEntity;
 import net.cmr.jurassicrevived.block.entity.custom.IncubatorBlockEntity;
 import net.cmr.jurassicrevived.block.entity.custom.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
@@ -26,6 +30,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -35,20 +40,22 @@ import org.jetbrains.annotations.Nullable;
 
 public class IncubatorBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final MapCodec<IncubatorBlock> CODEC = simpleCodec(IncubatorBlock::new);
 
     public IncubatorBlock(Properties properties) {
         super(properties);
     }
 
-    private static final VoxelShape SHAPE_NORTH = Shapes.box(
+    private static final VoxelShape SHAPE = Shapes.box(
+            0.0 / 16.0, 0.0 / 16.0, 0.0 / 16.0,
+            16.0 / 16.0, 23.0 / 16.0, 16.0 / 16.0
+    );
+
+    private static final VoxelShape SHAPE_LIT = Shapes.box(
             0.0 / 16.0, 0.0 / 16.0, 0.0 / 16.0,
             16.0 / 16.0, 18.0 / 16.0, 16.0 / 16.0
     );
-
-    private static final VoxelShape SHAPE_SOUTH = rotateShapeY(SHAPE_NORTH, 180);
-    private static final VoxelShape SHAPE_WEST  = rotateShapeY(SHAPE_NORTH, 90);
-    private static final VoxelShape SHAPE_EAST  = rotateShapeY(SHAPE_NORTH, -90);
 
     private static VoxelShape rotateShapeY(VoxelShape shape, int degrees) {
         double rad = Math.toRadians(((degrees % 360) + 360) % 360);
@@ -87,24 +94,18 @@ public class IncubatorBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite().getOpposite()).setValue(LIT, false);
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, LIT);
     }
 
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        Direction dir = state.getValue(FACING);
-        return switch (dir) {
-            case NORTH -> SHAPE_NORTH;
-            case SOUTH -> SHAPE_SOUTH;
-            case WEST  -> SHAPE_WEST;
-            case EAST  -> SHAPE_EAST;
-            default    -> SHAPE_NORTH;
-        };
+        boolean lit = state.getValue(LIT);
+        return lit ? SHAPE_LIT : SHAPE;
     }
 
     @Override
@@ -178,11 +179,40 @@ public class IncubatorBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        if (blockEntityType != ModBlockEntities.INCUBATOR_BE.get()) return null;
+
         if (level.isClientSide) {
-            return null;
+            // Client ticker: start/stop looping hum
+            return (lvl, pos, st, be) -> {
+                if (be instanceof IncubatorBlockEntity extractor) {
+                    IncubatorBlockEntity.clientTick(lvl, pos, st, extractor);
+                }
+            };
+        } else {
+            // Server ticker: existing logic
+            return createTickerHelper(blockEntityType, ModBlockEntities.INCUBATOR_BE.get(),
+                    (level1, blockPos, blockState, incubatorBlockEntity) -> incubatorBlockEntity.tick(level1, blockPos, blockState));
+        }
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (!state.getValue(LIT)) {
+            return;
         }
 
-        return createTickerHelper(blockEntityType, ModBlockEntities.INCUBATOR_BE.get(),
-                (level1, blockPos, blockState, incubatorBlockEntity) -> incubatorBlockEntity.tick(level1, blockPos, blockState));
+        double xPos = (double)pos.getX() + 0.5;
+        double yPos = pos.getY();
+        double zPos = (double)pos.getZ() + 0.5;
+
+        Direction direction = state.getValue(FACING).getOpposite();
+        Direction.Axis axis = direction.getAxis();
+
+        double defaultOffset = random.nextDouble() * 0.6 - 0.3;
+        double xOffsets = axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52 : defaultOffset;
+        double yOffset = random.nextDouble() * 6.0 / 8.0;
+        double zOffset = axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.52 : defaultOffset;
+
+        level.addParticle(ParticleTypes.SMOKE, xPos + xOffsets, yPos + yOffset, zPos + zOffset, 0.0, 0.0, 0.0);
     }
 }
