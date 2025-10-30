@@ -139,7 +139,7 @@ public class EmbryonicMachineBlockEntity extends BlockEntity implements MenuProv
     private ModEnergyStorage createEnergyStorage() {
         if (Config.REQUIRE_POWER) {
             // Allow internal extraction; onEnergyChanged keeps client in sync
-            return new ModEnergyStorage(16000, (int) ENERGY_TRANSFER_RATE) {
+            return new ModEnergyStorage(64000, (int) ENERGY_TRANSFER_RATE) {
                 @Override
                 public void onEnergyChanged() {
                     setChanged();
