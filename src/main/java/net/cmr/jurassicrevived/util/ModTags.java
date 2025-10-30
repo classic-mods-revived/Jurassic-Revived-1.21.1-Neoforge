@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Block;
 public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> AQUATIC_PLACEMENT_REPLACEABLES = createTag("aquatic_placement_replaceables");
-        public static final TagKey<Block> HATCHED_EGGS = createTag("hatched_eggs");
+        public static final TagKey<Block> INCUBATED_EGGS = createTag("incubated_eggs");
 
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, name));

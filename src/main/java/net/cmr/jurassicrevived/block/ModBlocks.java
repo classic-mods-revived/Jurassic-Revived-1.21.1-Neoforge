@@ -4,9 +4,12 @@ import net.cmr.jurassicrevived.JRMod;
 import net.cmr.jurassicrevived.block.custom.*;
 import net.cmr.jurassicrevived.block.custom.PipeBlock;
 import net.cmr.jurassicrevived.item.ModItems;
+import net.cmr.jurassicrevived.block.custom.IncubatedEggBlock;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
@@ -146,101 +149,198 @@ public class ModBlocks {
     public static final DeferredBlock<Block> REINFORCED_BRICKS_WALL = registerBlock("reinforced_bricks_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
-    public static final DeferredBlock<Block> HATCHED_APATOSAURUS_EGG = registerBlock("hatched_apatosaurus_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.APATOSAURUS));
-
-    public static final DeferredBlock<Block> HATCHED_ALBERTOSAURUS_EGG = registerBlock("hatched_albertosaurus_egg",
+    public static final DeferredBlock<Block> ALBERTOSAURUS_EGG = registerBlock("albertosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.ALBERTOSAURUS));
 
-    public static final DeferredBlock<Block> HATCHED_VELOCIRAPTOR_EGG = registerBlock("hatched_velociraptor_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.VELOCIRAPTOR));
+    public static final DeferredBlock<Block> APATOSAURUS_EGG = registerBlock("apatosaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.APATOSAURUS));
 
-    public static final DeferredBlock<Block> HATCHED_TYRANNOSAURUS_REX_EGG = registerBlock("hatched_tyrannosaurus_rex_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.TYRANNOSAURUS_REX));
-
-    public static final DeferredBlock<Block> HATCHED_TRICERATOPS_EGG = registerBlock("hatched_triceratops_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.TRICERATOPS));
-
-    public static final DeferredBlock<Block> HATCHED_SPINOSAURUS_EGG = registerBlock("hatched_spinosaurus_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.SPINOSAURUS));
-
-    public static final DeferredBlock<Block> HATCHED_PARASAUROLOPHUS_EGG = registerBlock("hatched_parasaurolophus_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.PARASAUROLOPHUS));
-
-    public static final DeferredBlock<Block> HATCHED_INDOMINUS_REX_EGG = registerBlock("hatched_indominus_rex_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.INDOMINUS_REX));
-
-    public static final DeferredBlock<Block> HATCHED_GALLIMIMUS_EGG = registerBlock("hatched_gallimimus_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.GALLIMIMUS));
-
-    public static final DeferredBlock<Block> HATCHED_DIPLODOCUS_EGG = registerBlock("hatched_diplodocus_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DIPLODOCUS));
-
-    public static final DeferredBlock<Block> HATCHED_OURANOSAURUS_EGG = registerBlock("hatched_ouranosaurus_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.OURANOSAURUS));
-
-    public static final DeferredBlock<Block> HATCHED_DILOPHOSAURUS_EGG = registerBlock("hatched_dilophosaurus_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DILOPHOSAURUS));
-
-    public static final DeferredBlock<Block> HATCHED_COMPSOGNATHUS_EGG = registerBlock("hatched_compsognathus_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.COMPSOGNATHUS));
-
-    public static final DeferredBlock<Block> HATCHED_CERATOSAURUS_EGG = registerBlock("hatched_ceratosaurus_egg",
-            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.CERATOSAURUS));
-
-    public static final DeferredBlock<Block> HATCHED_BRACHIOSAURUS_EGG = registerBlock("hatched_brachiosaurus_egg",
+    public static final DeferredBlock<Block> BRACHIOSAURUS_EGG = registerBlock("brachiosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.BRACHIOSAURUS));
 
-    public static final DeferredBlock<Block> HATCHED_BARYONYX_EGG = registerBlock("hatched_baryonyx_egg",
+    public static final DeferredBlock<Block> CERATOSAURUS_EGG = registerBlock("ceratosaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.CERATOSAURUS));
+
+    public static final DeferredBlock<Block> COMPSOGNATHUS_EGG = registerBlock("compsognathus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.COMPSOGNATHUS));
+
+    public static final DeferredBlock<Block> DILOPHOSAURUS_EGG = registerBlock("dilophosaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DILOPHOSAURUS));
+
+    public static final DeferredBlock<Block> DIPLODOCUS_EGG = registerBlock("diplodocus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DIPLODOCUS));
+
+    public static final DeferredBlock<Block> GALLIMIMUS_EGG = registerBlock("gallimimus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.GALLIMIMUS));
+
+    public static final DeferredBlock<Block> INDOMINUS_REX_EGG = registerBlock("indominus_rex_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.INDOMINUS_REX));
+
+    public static final DeferredBlock<Block> OURANOSAURUS_EGG = registerBlock("ouranosaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.OURANOSAURUS));
+
+    public static final DeferredBlock<Block> PARASAUROLOPHUS_EGG = registerBlock("parasaurolophus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.PARASAUROLOPHUS));
+
+    public static final DeferredBlock<Block> SPINOSAURUS_EGG = registerBlock("spinosaurus_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.SPINOSAURUS));
+
+    public static final DeferredBlock<Block> TRICERATOPS_EGG = registerBlock("triceratops_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.TRICERATOPS));
+
+    public static final DeferredBlock<Block> TYRANNOSAURUS_REX_EGG = registerBlock("tyrannosaurus_rex_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.TYRANNOSAURUS_REX));
+
+    public static final DeferredBlock<Block> VELOCIRAPTOR_EGG = registerBlock("velociraptor_egg",
+            () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.VELOCIRAPTOR));
+
+    public static final DeferredBlock<Block> BARYONYX_EGG = registerBlock("baryonyx_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.BARYONYX));
 
-    public static final DeferredBlock<Block> HATCHED_CARNOTAURUS_EGG = registerBlock("hatched_carnotaurus_egg",
+    public static final DeferredBlock<Block> CARNOTAURUS_EGG = registerBlock("carnotaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.CARNOTAURUS));
 
-    public static final DeferredBlock<Block> HATCHED_CONCAVENATOR_EGG = registerBlock("hatched_concavenator_egg",
+    public static final DeferredBlock<Block> CONCAVENATOR_EGG = registerBlock("concavenator_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.CONCAVENATOR));
 
-    public static final DeferredBlock<Block> HATCHED_DEINONYCHUS_EGG = registerBlock("hatched_deinonychus_egg",
+    public static final DeferredBlock<Block> DEINONYCHUS_EGG = registerBlock("deinonychus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DEINONYCHUS));
 
-    public static final DeferredBlock<Block> HATCHED_EDMONTOSAURUS_EGG = registerBlock("hatched_edmontosaurus_egg",
+    public static final DeferredBlock<Block> EDMONTOSAURUS_EGG = registerBlock("edmontosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.EDMONTOSAURUS));
 
-    public static final DeferredBlock<Block> HATCHED_GIGANOTOSAURUS_EGG = registerBlock("hatched_giganotosaurus_egg",
+    public static final DeferredBlock<Block> GIGANOTOSAURUS_EGG = registerBlock("giganotosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.GIGANOTOSAURUS));
 
-    public static final DeferredBlock<Block> HATCHED_GUANLONG_EGG = registerBlock("hatched_guanlong_egg",
+    public static final DeferredBlock<Block> GUANLONG_EGG = registerBlock("guanlong_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.GUANLONG));
 
-    public static final DeferredBlock<Block> HATCHED_HERRERASAURUS_EGG = registerBlock("hatched_herrerasaurus_egg",
+    public static final DeferredBlock<Block> HERRERASAURUS_EGG = registerBlock("herrerasaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.HERRERASAURUS));
 
-    public static final DeferredBlock<Block> HATCHED_MAJUNGASAURUS_EGG = registerBlock("hatched_majungasaurus_egg",
+    public static final DeferredBlock<Block> MAJUNGASAURUS_EGG = registerBlock("majungasaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.MAJUNGASAURUS));
 
-    public static final DeferredBlock<Block> HATCHED_PROCOMPSOGNATHUS_EGG = registerBlock("hatched_procompsognathus_egg",
+    public static final DeferredBlock<Block> PROCOMPSOGNATHUS_EGG = registerBlock("procompsognathus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.PROCOMPSOGNATHUS));
 
-    public static final DeferredBlock<Block> HATCHED_PROTOCERATOPS_EGG = registerBlock("hatched_protoceratops_egg",
+    public static final DeferredBlock<Block> PROTOCERATOPS_EGG = registerBlock("protoceratops_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.PROTOCERATOPS));
 
-    public static final DeferredBlock<Block> HATCHED_RUGOPS_EGG = registerBlock("hatched_rugops_egg",
+    public static final DeferredBlock<Block> RUGOPS_EGG = registerBlock("rugops_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.RUGOPS));
 
-    public static final DeferredBlock<Block> HATCHED_SHANTUNGOSAURUS_EGG = registerBlock("hatched_shantungosaurus_egg",
+    public static final DeferredBlock<Block> SHANTUNGOSAURUS_EGG = registerBlock("shantungosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.SHANTUNGOSAURUS));
 
-    public static final DeferredBlock<Block> HATCHED_STEGOSAURUS_EGG = registerBlock("hatched_stegosaurus_egg",
+    public static final DeferredBlock<Block> STEGOSAURUS_EGG = registerBlock("stegosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.STEGOSAURUS));
 
-    public static final DeferredBlock<Block> HATCHED_STYRACOSAURUS_EGG = registerBlock("hatched_styracosaurus_egg",
+    public static final DeferredBlock<Block> STYRACOSAURUS_EGG = registerBlock("styracosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.STYRACOSAURUS));
 
-    public static final DeferredBlock<Block> HATCHED_THERIZINOSAURUS_EGG = registerBlock("hatched_therizinosaurus_egg",
+    public static final DeferredBlock<Block> THERIZINOSAURUS_EGG = registerBlock("therizinosaurus_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.THERIZINOSAURUS));
 
-    public static final DeferredBlock<Block> HATCHED_DISTORTUS_REX_EGG = registerBlock("hatched_distortus_rex_egg",
+    public static final DeferredBlock<Block> DISTORTUS_REX_EGG = registerBlock("distortus_rex_egg",
             () -> new EggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DISTORTUS_REX));
+    
+
+    public static final DeferredBlock<Block> INCUBATED_APATOSAURUS_EGG = registerBlock("incubated_apatosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.APATOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_ALBERTOSAURUS_EGG = registerBlock("incubated_albertosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.ALBERTOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_VELOCIRAPTOR_EGG = registerBlock("incubated_velociraptor_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.VELOCIRAPTOR));
+
+    public static final DeferredBlock<Block> INCUBATED_TYRANNOSAURUS_REX_EGG = registerBlock("incubated_tyrannosaurus_rex_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.TYRANNOSAURUS_REX));
+
+    public static final DeferredBlock<Block> INCUBATED_TRICERATOPS_EGG = registerBlock("incubated_triceratops_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.TRICERATOPS));
+
+    public static final DeferredBlock<Block> INCUBATED_SPINOSAURUS_EGG = registerBlock("incubated_spinosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.SPINOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_PARASAUROLOPHUS_EGG = registerBlock("incubated_parasaurolophus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.PARASAUROLOPHUS));
+
+    public static final DeferredBlock<Block> INCUBATED_INDOMINUS_REX_EGG = registerBlock("incubated_indominus_rex_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.INDOMINUS_REX));
+
+    public static final DeferredBlock<Block> INCUBATED_GALLIMIMUS_EGG = registerBlock("incubated_gallimimus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.GALLIMIMUS));
+
+    public static final DeferredBlock<Block> INCUBATED_DIPLODOCUS_EGG = registerBlock("incubated_diplodocus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DIPLODOCUS));
+
+    public static final DeferredBlock<Block> INCUBATED_OURANOSAURUS_EGG = registerBlock("incubated_ouranosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.OURANOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_DILOPHOSAURUS_EGG = registerBlock("incubated_dilophosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DILOPHOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_COMPSOGNATHUS_EGG = registerBlock("incubated_compsognathus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.COMPSOGNATHUS));
+
+    public static final DeferredBlock<Block> INCUBATED_CERATOSAURUS_EGG = registerBlock("incubated_ceratosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.CERATOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_BRACHIOSAURUS_EGG = registerBlock("incubated_brachiosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.BRACHIOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_BARYONYX_EGG = registerBlock("incubated_baryonyx_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.BARYONYX));
+
+    public static final DeferredBlock<Block> INCUBATED_CARNOTAURUS_EGG = registerBlock("incubated_carnotaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.CARNOTAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_CONCAVENATOR_EGG = registerBlock("incubated_concavenator_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.CONCAVENATOR));
+
+    public static final DeferredBlock<Block> INCUBATED_DEINONYCHUS_EGG = registerBlock("incubated_deinonychus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DEINONYCHUS));
+
+    public static final DeferredBlock<Block> INCUBATED_EDMONTOSAURUS_EGG = registerBlock("incubated_edmontosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.EDMONTOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_GIGANOTOSAURUS_EGG = registerBlock("incubated_giganotosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.GIGANOTOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_GUANLONG_EGG = registerBlock("incubated_guanlong_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.GUANLONG));
+
+    public static final DeferredBlock<Block> INCUBATED_HERRERASAURUS_EGG = registerBlock("incubated_herrerasaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.HERRERASAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_MAJUNGASAURUS_EGG = registerBlock("incubated_majungasaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.MAJUNGASAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_PROCOMPSOGNATHUS_EGG = registerBlock("incubated_procompsognathus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.PROCOMPSOGNATHUS));
+
+    public static final DeferredBlock<Block> INCUBATED_PROTOCERATOPS_EGG = registerBlock("incubated_protoceratops_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.PROTOCERATOPS));
+
+    public static final DeferredBlock<Block> INCUBATED_RUGOPS_EGG = registerBlock("incubated_rugops_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.RUGOPS));
+
+    public static final DeferredBlock<Block> INCUBATED_SHANTUNGOSAURUS_EGG = registerBlock("incubated_shantungosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.SHANTUNGOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_STEGOSAURUS_EGG = registerBlock("incubated_stegosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.STEGOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_STYRACOSAURUS_EGG = registerBlock("incubated_styracosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.STYRACOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_THERIZINOSAURUS_EGG = registerBlock("incubated_therizinosaurus_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.THERIZINOSAURUS));
+
+    public static final DeferredBlock<Block> INCUBATED_DISTORTUS_REX_EGG = registerBlock("incubated_distortus_rex_egg",
+            () -> new IncubatedEggBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops(), ModEntities.DISTORTUS_REX));
 
     public static <T extends Block>DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
@@ -251,9 +351,13 @@ public class ModBlocks {
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
         ModItems.ITEMS.register(name, () -> {
             Item.Properties props = new Item.Properties();
-            if (block.get() instanceof EggBlock) {
+            if (block.get() instanceof IncubatedEggBlock) {
                 // Use custom lime-green rarity and set stack size to 1
                 props = props.rarity(Rarity.RARE).stacksTo(1);
+            }
+            if (block.get() instanceof EggBlock) {
+                // Set stack size to 1
+                props = props.stacksTo(1);
             }
             return new BlockItem(block.get(), props);
         });

@@ -2,6 +2,7 @@ package net.cmr.jurassicrevived.compat;
 
 import net.cmr.jurassicrevived.JRMod;
 import net.cmr.jurassicrevived.block.custom.EggBlock;
+import net.cmr.jurassicrevived.block.custom.IncubatedEggBlock;
 import net.cmr.jurassicrevived.block.entity.custom.EggBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -28,7 +29,7 @@ import snownee.jade.api.ui.BoxStyle;
 public class EggJadePlugin implements IWailaPlugin {
     private static final ResourceLocation EGG_UID = ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "egg");
     private static final String NBT_SECS = "jr_secs";
-    private static final int TOTAL_SECS = 5;
+    private static final String NBT_TOTAL = "jr_total";
 
     @Override
     public void registerClient(IWailaClientRegistration reg) {
@@ -39,20 +40,16 @@ public class EggJadePlugin implements IWailaPlugin {
                 if (data == null || !data.contains(NBT_SECS)) return;
 
                 int secs = data.getInt(NBT_SECS);
-                float ratio = Mth.clamp(1.0f - (secs / (float) TOTAL_SECS), 0.0f, 1.0f);
+                int total = data.contains(NBT_TOTAL) ? Math.max(1, data.getInt(NBT_TOTAL)) : 5;
+                float ratio = Mth.clamp(1.0f - (secs / (float) total), 0.0f, 1.0f);
 
                 IElementHelper h = IElementHelper.get();
-
-                // Theme the progress bar
                 ProgressStyle style = h.progressStyle()
-                        .color(0xFFFFFFFF, 0xFFFFFFFF)   // bg (semi), fg (green)
-                        .direction(ScreenDirection.RIGHT) // RIGHT/LEFT/UP/DOWN
+                        .color(0xFFFFFFFF, 0xFFFFFFFF)
+                        .direction(ScreenDirection.RIGHT)
                         .fitContentX(true)
                         .fitContentY(true);
-
-                // Use available BoxStyle factories
-                BoxStyle box = BoxStyle.getNestedBox(); // or BoxStyle.getViewGroup()
-                // Full overload: ratio, label (nullable OK but avoid null), style, box, showText
+                BoxStyle box = BoxStyle.getNestedBox();
                 IElement progress = h.progress(ratio, Component.empty(), style, box, true);
                 tooltip.add(progress);
 
@@ -65,6 +62,36 @@ public class EggJadePlugin implements IWailaPlugin {
                 return EGG_UID;
             }
         }, EggBlock.class);
+        // Register the same provider for IncubatedEggBlock separately
+        reg.registerBlockComponent(new snownee.jade.api.IBlockComponentProvider() {
+            @Override
+            public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+                CompoundTag data = accessor.getServerData();
+                if (data == null || !data.contains(NBT_SECS)) return;
+
+                int secs = data.getInt(NBT_SECS);
+                int total = data.contains(NBT_TOTAL) ? Math.max(1, data.getInt(NBT_TOTAL)) : 5;
+                float ratio = Mth.clamp(1.0f - (secs / (float) total), 0.0f, 1.0f);
+
+                IElementHelper h = IElementHelper.get();
+                ProgressStyle style = h.progressStyle()
+                        .color(0xFFFFFFFF, 0xFFFFFFFF)
+                        .direction(ScreenDirection.RIGHT)
+                        .fitContentX(true)
+                        .fitContentY(true);
+                BoxStyle box = BoxStyle.getNestedBox();
+                IElement progress = h.progress(ratio, Component.empty(), style, box, true);
+                tooltip.add(progress);
+
+                tooltip.add(Component.translatable("tooltip.jurassicrevived.egg.hatches_in_seconds", secs)
+                        .withStyle(ChatFormatting.YELLOW));
+            }
+
+            @Override
+            public ResourceLocation getUid() {
+                return EGG_UID;
+            }
+        }, IncubatedEggBlock.class);
     }
 
     @Override
@@ -76,6 +103,7 @@ public class EggJadePlugin implements IWailaPlugin {
                 if (be instanceof EggBlockEntity egg) {
                     int secs = egg.getSecondsRemaining(accessor.getLevel());
                     data.putInt(NBT_SECS, secs);
+                    data.putInt(NBT_TOTAL, egg.getTotalSeconds());
                 }
             }
 
@@ -83,6 +111,6 @@ public class EggJadePlugin implements IWailaPlugin {
             public ResourceLocation getUid() {
                 return EGG_UID;
             }
-        }, EggBlockEntity.class);
+        }, EggBlockEntity.class); // BE is shared by both blocks
     }
 }
