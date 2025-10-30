@@ -156,6 +156,10 @@ public class ModEntities {
             ENTITY_TYPES.register("distortus_rex", () -> EntityType.Builder.of(DistortusRexEntity::new, MobCategory.CREATURE)
                     .sized(1.875f, 2.375f).build("distortus_rex"));
 
+    public static final Supplier<EntityType<ChickenosaurusEntity>> CHICKENOSAURUS =
+            ENTITY_TYPES.register("chickenosaurus", () -> EntityType.Builder.of(ChickenosaurusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("chickenosaurus"));
+
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }

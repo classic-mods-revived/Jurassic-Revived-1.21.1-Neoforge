@@ -69,6 +69,7 @@ public class JRModClient {
         EntityRenderers.register(ModEntities.TRICERATOPS.get(), TriceratopsRenderer::new);
         EntityRenderers.register(ModEntities.TYRANNOSAURUS_REX.get(), TyrannosaurusRexRenderer::new);
         EntityRenderers.register(ModEntities.VELOCIRAPTOR.get(), VelociraptorRenderer::new);
+        EntityRenderers.register(ModEntities.CHICKENOSAURUS.get(), ChickenosaurusRenderer::new);
         FenceClimbClientHandler.register();
     }
 

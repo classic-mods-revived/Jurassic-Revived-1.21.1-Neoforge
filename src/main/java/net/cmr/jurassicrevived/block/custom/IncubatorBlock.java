@@ -57,26 +57,6 @@ public class IncubatorBlock extends BaseEntityBlock {
             16.0 / 16.0, 18.0 / 16.0, 16.0 / 16.0
     );
 
-    private static VoxelShape rotateShapeY(VoxelShape shape, int degrees) {
-        double rad = Math.toRadians(((degrees % 360) + 360) % 360);
-        int turns = (int) Math.round(rad / (Math.PI / 2)); // multiples of 90 only
-        turns = ((turns % 4) + 4) % 4;
-
-        VoxelShape[] buffer = new VoxelShape[]{shape, Shapes.empty()};
-        for (int i = 0; i < turns; i++) {
-            buffer[1] = Shapes.empty();
-            shape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> {
-                double nMinX = 1.0 - maxZ;
-                double nMinZ = minX;
-                double nMaxX = 1.0 - minZ;
-                double nMaxZ = maxX;
-                buffer[1] = Shapes.or(buffer[1], Shapes.box(nMinX, minY, nMinZ, nMaxX, maxY, nMaxZ));
-            });
-            shape = buffer[1];
-        }
-        return shape;
-    }
-
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
