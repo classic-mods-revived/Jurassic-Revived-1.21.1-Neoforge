@@ -114,8 +114,8 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
 
     private final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 200;
-    private int DEFAULT_MAX_PROGRESS = 200;
+    private int maxProgress = 6000;
+    private int DEFAULT_MAX_PROGRESS = 6000;
 
     private static final float ENERGY_TRANSFER_RATE = (float) Config.fePerSecond / 20f;
 

@@ -108,8 +108,8 @@ public class FossilGrinderBlockEntity extends BlockEntity implements MenuProvide
 
     private final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 200;
-    private final int DEFAULT_MAX_PROGRESS = 200;
+    private int maxProgress = 100;
+    private final int DEFAULT_MAX_PROGRESS = 100;
 
     private static final float ENERGY_TRANSFER_RATE = (float) Config.fePerSecond / 20f;
 
