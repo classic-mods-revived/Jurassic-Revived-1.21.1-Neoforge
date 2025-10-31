@@ -19,6 +19,8 @@ public class ModMenuTypes {
             registerMenuType("generator_menu", GeneratorMenu::new);
     public static final DeferredHolder<MenuType<?>, MenuType<DNAExtractorMenu>> DNA_EXTRACTOR_MENU =
             registerMenuType("dna_extractor_menu", DNAExtractorMenu::new);
+    public static final DeferredHolder<MenuType<?>, MenuType<DNAAnalyzerMenu>> DNA_ANALYZER_MENU =
+            registerMenuType("dna_analyzer_menu", DNAAnalyzerMenu::new);
     public static final DeferredHolder<MenuType<?>, MenuType<FossilGrinderMenu>> FOSSIL_GRINDER_MENU =
             registerMenuType("fossil_grinder_menu", FossilGrinderMenu::new);
     public static final DeferredHolder<MenuType<?>, MenuType<FossilCleanerMenu>> FOSSIL_CLEANER_MENU =

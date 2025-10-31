@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:dna_analyzer"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:white_dna_analyzer"
+  }
+}

@@ -6,10 +6,8 @@ import net.cmr.jurassicrevived.block.custom.PipeBlock;
 import net.cmr.jurassicrevived.item.ModItems;
 import net.cmr.jurassicrevived.block.custom.IncubatedEggBlock;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
@@ -48,6 +46,8 @@ public class ModBlocks {
             () -> new GeneratorBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
     public static final DeferredBlock<Block> DNA_EXTRACTOR = registerBlock("dna_extractor",
             () -> new DNAExtractorBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
+    public static final DeferredBlock<Block> DNA_ANALYZER = registerBlock("dna_analyzer",
+            () -> new DNAAnalyzerBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
     public static final DeferredBlock<Block> FOSSIL_GRINDER = registerBlock("fossil_grinder",
             () -> new FossilGrinderBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
     public static final DeferredBlock<Block> FOSSIL_CLEANER = registerBlock("fossil_cleaner",
@@ -64,6 +64,8 @@ public class ModBlocks {
             () -> new GeneratorBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
     public static final DeferredBlock<Block> WHITE_DNA_EXTRACTOR = registerBlock("white_dna_extractor",
             () -> new DNAExtractorBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
+    public static final DeferredBlock<Block> WHITE_DNA_ANALYZER = registerBlock("white_dna_analyzer",
+            () -> new DNAAnalyzerBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
     public static final DeferredBlock<Block> WHITE_FOSSIL_GRINDER = registerBlock("white_fossil_grinder",
             () -> new FossilGrinderBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
     public static final DeferredBlock<Block> WHITE_FOSSIL_CLEANER = registerBlock("white_fossil_cleaner",
@@ -103,12 +105,12 @@ public class ModBlocks {
     public static final DeferredBlock<Block> CHISELED_GYPSUM_STONE = registerBlock("chiseled_gypsum_stone",
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
-    public static final DeferredBlock<Block> GYPSUM_BRICKS_STAIRS = registerBlock("gypsum_bricks_stairs",
+    public static final DeferredBlock<Block> GYPSUM_BRICK_STAIRS = registerBlock("gypsum_brick_stairs",
             () -> new StairBlock(ModBlocks.GYPSUM_STONE_BRICKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> GYPSUM_BRICKS_SLAB = registerBlock("gypsum_bricks_slab",
+    public static final DeferredBlock<Block> GYPSUM_BRICK_SLAB = registerBlock("gypsum_brick_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> GYPSUM_BRICKS_WALL = registerBlock("gypsum_bricks_wall",
+    public static final DeferredBlock<Block> GYPSUM_BRICK_WALL = registerBlock("gypsum_brick_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> FENCE_LIGHT = registerBlock("fence_light",
@@ -141,12 +143,12 @@ public class ModBlocks {
     public static final DeferredBlock<Block> CHISELED_REINFORCED_STONE = registerBlock("chiseled_reinforced_stone",
             () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
-    public static final DeferredBlock<Block> REINFORCED_BRICKS_STAIRS = registerBlock("reinforced_bricks_stairs",
+    public static final DeferredBlock<Block> REINFORCED_BRICK_STAIRS = registerBlock("reinforced_brick_stairs",
             () -> new StairBlock(ModBlocks.REINFORCED_STONE_BRICKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> REINFORCED_BRICKS_SLAB = registerBlock("reinforced_bricks_slab",
+    public static final DeferredBlock<Block> REINFORCED_BRICK_SLAB = registerBlock("reinforced_brick_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> REINFORCED_BRICKS_WALL = registerBlock("reinforced_bricks_wall",
+    public static final DeferredBlock<Block> REINFORCED_BRICK_WALL = registerBlock("reinforced_brick_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> ALBERTOSAURUS_EGG = registerBlock("albertosaurus_egg",

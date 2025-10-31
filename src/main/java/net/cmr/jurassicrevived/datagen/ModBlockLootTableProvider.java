@@ -35,9 +35,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.GYPSUM_STONE_BRICKS.get());
         dropSelf(ModBlocks.SMOOTH_GYPSUM_STONE.get());
         dropSelf(ModBlocks.CHISELED_GYPSUM_STONE.get());
-        dropSelf(ModBlocks.GYPSUM_BRICKS_STAIRS.get());
-        dropSelf(ModBlocks.GYPSUM_BRICKS_SLAB.get());
-        dropSelf(ModBlocks.GYPSUM_BRICKS_WALL.get());
+        dropSelf(ModBlocks.GYPSUM_BRICK_STAIRS.get());
+        dropSelf(ModBlocks.GYPSUM_BRICK_SLAB.get());
+        dropSelf(ModBlocks.GYPSUM_BRICK_WALL.get());
         dropSelf(ModBlocks.STONE_FOSSIL.get());
         dropSelf(ModBlocks.DEEPSLATE_FOSSIL.get());
         dropSelf(ModBlocks.LOW_SECURITY_FENCE_POLE.get());
@@ -58,9 +58,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.REINFORCED_STONE.get());
         dropSelf(ModBlocks.REINFORCED_STONE_BRICKS.get());
         dropSelf(ModBlocks.CHISELED_REINFORCED_STONE.get());
-        dropSelf(ModBlocks.REINFORCED_BRICKS_STAIRS.get());
-        dropSelf(ModBlocks.REINFORCED_BRICKS_SLAB.get());
-        dropSelf(ModBlocks.REINFORCED_BRICKS_WALL.get());
+        dropSelf(ModBlocks.REINFORCED_BRICK_STAIRS.get());
+        dropSelf(ModBlocks.REINFORCED_BRICK_SLAB.get());
+        dropSelf(ModBlocks.REINFORCED_BRICK_WALL.get());
 
         dropSelf(ModBlocks.APATOSAURUS_EGG.get());
         dropSelf(ModBlocks.ALBERTOSAURUS_EGG.get());

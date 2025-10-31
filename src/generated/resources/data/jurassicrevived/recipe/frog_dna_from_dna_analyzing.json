@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:dna_analyzing",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:test_tube"
+    },
+    {
+      "item": "jurassicrevived:frog_material"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:frog_dna"
+  }
+}

@@ -2,7 +2,6 @@ package net.cmr.jurassicrevived.datagen;
 
 import net.cmr.jurassicrevived.JRMod;
 import net.cmr.jurassicrevived.block.ModBlocks;
-import net.cmr.jurassicrevived.item.ModItems;
 import net.cmr.jurassicrevived.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -32,21 +31,21 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.GYPSUM_STONE_BRICKS.get())
                 .add(ModBlocks.SMOOTH_GYPSUM_STONE.get())
                 .add(ModBlocks.CHISELED_GYPSUM_STONE.get())
-                .add(ModBlocks.GYPSUM_BRICKS_STAIRS.get())
-                .add(ModBlocks.GYPSUM_BRICKS_SLAB.get())
-                .add(ModBlocks.GYPSUM_BRICKS_WALL.get())
-                .add(ModBlocks.GYPSUM_BRICKS_STAIRS.get())
-                .add(ModBlocks.GYPSUM_BRICKS_SLAB.get())
-                .add(ModBlocks.GYPSUM_BRICKS_WALL.get())
+                .add(ModBlocks.GYPSUM_BRICK_STAIRS.get())
+                .add(ModBlocks.GYPSUM_BRICK_SLAB.get())
+                .add(ModBlocks.GYPSUM_BRICK_WALL.get())
+                .add(ModBlocks.GYPSUM_BRICK_STAIRS.get())
+                .add(ModBlocks.GYPSUM_BRICK_SLAB.get())
+                .add(ModBlocks.GYPSUM_BRICK_WALL.get())
                 .add(ModBlocks.REINFORCED_STONE.get())
                 .add(ModBlocks.REINFORCED_STONE_BRICKS.get())
                 .add(ModBlocks.CHISELED_REINFORCED_STONE.get())
-                .add(ModBlocks.REINFORCED_BRICKS_STAIRS.get())
-                .add(ModBlocks.REINFORCED_BRICKS_SLAB.get())
-                .add(ModBlocks.REINFORCED_BRICKS_WALL.get())
-                .add(ModBlocks.REINFORCED_BRICKS_STAIRS.get())
-                .add(ModBlocks.REINFORCED_BRICKS_SLAB.get())
-                .add(ModBlocks.REINFORCED_BRICKS_WALL.get())
+                .add(ModBlocks.REINFORCED_BRICK_STAIRS.get())
+                .add(ModBlocks.REINFORCED_BRICK_SLAB.get())
+                .add(ModBlocks.REINFORCED_BRICK_WALL.get())
+                .add(ModBlocks.REINFORCED_BRICK_STAIRS.get())
+                .add(ModBlocks.REINFORCED_BRICK_SLAB.get())
+                .add(ModBlocks.REINFORCED_BRICK_WALL.get())
                 .add(ModBlocks.STONE_FOSSIL.get())
                 .add(ModBlocks.DEEPSLATE_FOSSIL.get())
                 .add(ModBlocks.AMBER_ORE.get())
@@ -57,6 +56,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.MEDIUM_SECURITY_FENCE_WIRE.get())
                 .add(ModBlocks.GENERATOR.get())
                 .add(ModBlocks.DNA_EXTRACTOR.get())
+                .add(ModBlocks.DNA_ANALYZER.get())
                 .add(ModBlocks.FOSSIL_CLEANER.get())
                 .add(ModBlocks.FOSSIL_GRINDER.get())
                 .add(ModBlocks.DNA_HYBRIDIZER.get())
@@ -65,6 +65,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.INCUBATOR.get())
                 .add(ModBlocks.WHITE_GENERATOR.get())
                 .add(ModBlocks.WHITE_DNA_EXTRACTOR.get())
+                .add(ModBlocks.WHITE_DNA_ANALYZER.get())
                 .add(ModBlocks.WHITE_FOSSIL_CLEANER.get())
                 .add(ModBlocks.WHITE_FOSSIL_GRINDER.get())
                 .add(ModBlocks.WHITE_DNA_HYBRIDIZER.get())
@@ -128,6 +129,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(Blocks.SAND)
                 .add(Blocks.CLAY);
 
-        tag(BlockTags.WALLS).add(ModBlocks.GYPSUM_BRICKS_WALL.get());
+        tag(BlockTags.WALLS).add(ModBlocks.GYPSUM_BRICK_WALL.get());
     }
 }

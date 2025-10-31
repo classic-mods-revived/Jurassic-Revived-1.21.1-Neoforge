@@ -53,6 +53,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModItems.THERIZINOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.CHICKENOSAURUS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 
+        basicItem(ModItems.FROG_MATERIAL.get());
+        basicItem(ModItems.FROG_DNA.get());
+
         basicItem(ModItems.TEST_TUBE.get());
         basicItem(ModItems.SYRINGE.get());
         basicItem(ModItems.CRUSHED_FOSSIL.get());
@@ -274,8 +277,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModBlocks.MEDIUM_SECURITY_FENCE_POLE.get().asItem());
         basicItem(ModBlocks.MEDIUM_SECURITY_FENCE_WIRE.get().asItem());
 
-        wallItem(ModBlocks.GYPSUM_BRICKS_WALL, ModBlocks.GYPSUM_STONE_BRICKS);
-        wallItem(ModBlocks.REINFORCED_BRICKS_WALL, ModBlocks.REINFORCED_STONE_BRICKS);
+        wallItem(ModBlocks.GYPSUM_BRICK_WALL, ModBlocks.GYPSUM_STONE_BRICKS);
+        wallItem(ModBlocks.REINFORCED_BRICK_WALL, ModBlocks.REINFORCED_STONE_BRICKS);
 
         simpleBlockItemBlockTexture(ModBlocks.INCUBATED_BRACHIOSAURUS_EGG);
         simpleBlockItemBlockTexture(ModBlocks.INCUBATED_CERATOSAURUS_EGG);

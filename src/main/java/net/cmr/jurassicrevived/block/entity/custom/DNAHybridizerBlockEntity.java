@@ -4,6 +4,7 @@ import net.cmr.jurassicrevived.Config;
 import net.cmr.jurassicrevived.block.custom.DNAExtractorBlock;
 import net.cmr.jurassicrevived.block.custom.DNAHybridizerBlock;
 import net.cmr.jurassicrevived.block.entity.energy.ModEnergyStorage;
+import net.cmr.jurassicrevived.item.ModItems;
 import net.cmr.jurassicrevived.recipe.DNAHybridizerRecipe;
 import net.cmr.jurassicrevived.recipe.DNAHybridizerRecipeInput;
 import net.cmr.jurassicrevived.recipe.ModRecipes;
@@ -86,7 +87,7 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
                 case 0, 1, 2, 3, 4, 5, 6, 7 -> stack.is(ModTags.Items.DNA);
-                case 8 -> true;
+                case 8 -> stack.getItem() == ModItems.FROG_DNA.get();
                 case 9 -> true;
                 default -> super.isItemValid(slot, stack);
             };
@@ -114,8 +115,8 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
 
     private final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 6000;
-    private int DEFAULT_MAX_PROGRESS = 6000;
+    private int maxProgress = 3000;
+    private int DEFAULT_MAX_PROGRESS = 3000;
 
     private static final float ENERGY_TRANSFER_RATE = (float) Config.fePerSecond / 20f;
 

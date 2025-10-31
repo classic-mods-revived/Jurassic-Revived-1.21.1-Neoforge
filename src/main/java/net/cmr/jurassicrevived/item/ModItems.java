@@ -3,6 +3,7 @@ package net.cmr.jurassicrevived.item;
 import net.cmr.jurassicrevived.JRMod;
 import net.cmr.jurassicrevived.entity.ModEntities;
 import net.cmr.jurassicrevived.item.custom.CustomGenderedSpawnEggItem;
+import net.cmr.jurassicrevived.item.custom.FrogSyringeItem;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -13,7 +14,10 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(JRMod.MOD_ID);
 
-    public static final DeferredItem<Item> WRENCH = ITEMS.register("wrench", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> FROG_MATERIAL = ITEMS.register("frog_material", () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> FROG_DNA = ITEMS.register("frog_dna", () -> new Item(new Item.Properties().stacksTo(16)));
+
+    public static final DeferredItem<Item> WRENCH = ITEMS.register("wrench", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> MAC_N_CHEESE = ITEMS.register("mac_n_cheese", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationModifier(0.6f).build())));
     public static final DeferredItem<Item> WALNUT_PUMPKIN_PIE = ITEMS.register("walnut_pumpkin_pie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationModifier(0.6f).build())));
     public static final DeferredItem<Item> BANANA_NUT_COOKIE = ITEMS.register("banana_nut_cookie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationModifier(0.6f).build())));
@@ -88,7 +92,7 @@ public class ModItems {
             () -> new CustomGenderedSpawnEggItem(ModEntities.CHICKENOSAURUS, 0x5d3c11, 0x3a2934, new Item.Properties()));
 
     public static final DeferredItem<Item> TEST_TUBE = ITEMS.register("test_tube", () -> new Item(new Item.Properties().stacksTo(16)));
-    public static final DeferredItem<Item> SYRINGE = ITEMS.register("syringe", () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> SYRINGE = ITEMS.register("syringe", () -> new FrogSyringeItem(new Item.Properties().stacksTo(16)));
     public static final DeferredItem<Item> MOSQUITO_IN_AMBER = ITEMS.register("mosquito_in_amber", () -> new Item(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> CRUSHED_FOSSIL = ITEMS.register("crushed_fossil", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> FROZEN_LEECH = ITEMS.register("frozen_leech", () -> new Item(new Item.Properties().stacksTo(16).rarity(Rarity.RARE)));

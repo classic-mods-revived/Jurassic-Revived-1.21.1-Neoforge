@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dna_analyzer": {
+      "conditions": {
+        "items": [
+          {
+            "items": "jurassicrevived:dna_analyzer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "jurassicrevived:white_dna_analyzer"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dna_analyzer"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "jurassicrevived:white_dna_analyzer"
+    ]
+  }
+}

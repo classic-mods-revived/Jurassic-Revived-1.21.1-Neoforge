@@ -1,6 +1,5 @@
 package net.cmr.jurassicrevived.item;
 
-import net.cmr.jurassicrevived.Config;
 import net.cmr.jurassicrevived.JRMod;
 import net.cmr.jurassicrevived.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
@@ -21,6 +20,8 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("itemGroup.jurassicrevived.jurassicrevived_item_tab"))
                     .icon(() -> new ItemStack(ModItems.MOSQUITO_IN_AMBER.get()))
                     .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(ModItems.FROG_MATERIAL);
+                        pOutput.accept(ModItems.FROG_DNA);
                         pOutput.accept(ModItems.TEST_TUBE);
                         pOutput.accept(ModItems.SYRINGE);
                         pOutput.accept(ModItems.CRUSHED_FOSSIL);
@@ -52,16 +53,16 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.GYPSUM_STONE_BRICKS);
                         pOutput.accept(ModBlocks.SMOOTH_GYPSUM_STONE);
                         pOutput.accept(ModBlocks.CHISELED_GYPSUM_STONE);
-                        pOutput.accept(ModBlocks.GYPSUM_BRICKS_STAIRS);
-                        pOutput.accept(ModBlocks.GYPSUM_BRICKS_SLAB);
-                        pOutput.accept(ModBlocks.GYPSUM_BRICKS_WALL);
+                        pOutput.accept(ModBlocks.GYPSUM_BRICK_STAIRS);
+                        pOutput.accept(ModBlocks.GYPSUM_BRICK_SLAB);
+                        pOutput.accept(ModBlocks.GYPSUM_BRICK_WALL);
 
                         pOutput.accept(ModBlocks.REINFORCED_STONE);
                         pOutput.accept(ModBlocks.REINFORCED_STONE_BRICKS);
                         pOutput.accept(ModBlocks.CHISELED_REINFORCED_STONE);
-                        pOutput.accept(ModBlocks.REINFORCED_BRICKS_STAIRS);
-                        pOutput.accept(ModBlocks.REINFORCED_BRICKS_SLAB);
-                        pOutput.accept(ModBlocks.REINFORCED_BRICKS_WALL);
+                        pOutput.accept(ModBlocks.REINFORCED_BRICK_STAIRS);
+                        pOutput.accept(ModBlocks.REINFORCED_BRICK_SLAB);
+                        pOutput.accept(ModBlocks.REINFORCED_BRICK_WALL);
 
                         pOutput.accept(ModBlocks.LOW_SECURITY_FENCE_POLE);
                         pOutput.accept(ModBlocks.LOW_SECURITY_FENCE_WIRE);
@@ -74,6 +75,7 @@ public class ModCreativeModeTabs {
 
                         pOutput.accept(ModBlocks.GENERATOR);
                         pOutput.accept(ModBlocks.DNA_EXTRACTOR);
+                        pOutput.accept(ModBlocks.DNA_ANALYZER);
                         pOutput.accept(ModBlocks.FOSSIL_GRINDER);
                         pOutput.accept(ModBlocks.FOSSIL_CLEANER);
                         pOutput.accept(ModBlocks.DNA_HYBRIDIZER);
@@ -83,6 +85,7 @@ public class ModCreativeModeTabs {
 
                         pOutput.accept(ModBlocks.WHITE_GENERATOR);
                         pOutput.accept(ModBlocks.WHITE_DNA_EXTRACTOR);
+                        pOutput.accept(ModBlocks.WHITE_DNA_ANALYZER);
                         pOutput.accept(ModBlocks.WHITE_FOSSIL_GRINDER);
                         pOutput.accept(ModBlocks.WHITE_FOSSIL_CLEANER);
                         pOutput.accept(ModBlocks.WHITE_DNA_HYBRIDIZER);

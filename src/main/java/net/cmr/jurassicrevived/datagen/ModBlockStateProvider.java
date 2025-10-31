@@ -55,19 +55,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.REINFORCED_STONE_BRICKS);
         blockWithItem(ModBlocks.CHISELED_REINFORCED_STONE);
 
-        stairsBlock(((StairBlock) ModBlocks.REINFORCED_BRICKS_STAIRS.get()), blockTexture(ModBlocks.REINFORCED_STONE_BRICKS.get()));
-        slabBlock(((SlabBlock) ModBlocks.REINFORCED_BRICKS_SLAB.get()), blockTexture(ModBlocks.REINFORCED_STONE_BRICKS.get()), blockTexture(ModBlocks.REINFORCED_STONE_BRICKS.get()));
-        wallBlock(((WallBlock) ModBlocks.REINFORCED_BRICKS_WALL.get()), blockTexture(ModBlocks.REINFORCED_STONE_BRICKS.get()));
+        stairsBlock(((StairBlock) ModBlocks.REINFORCED_BRICK_STAIRS.get()), blockTexture(ModBlocks.REINFORCED_STONE_BRICKS.get()));
+        slabBlock(((SlabBlock) ModBlocks.REINFORCED_BRICK_SLAB.get()), blockTexture(ModBlocks.REINFORCED_STONE_BRICKS.get()), blockTexture(ModBlocks.REINFORCED_STONE_BRICKS.get()));
+        wallBlock(((WallBlock) ModBlocks.REINFORCED_BRICK_WALL.get()), blockTexture(ModBlocks.REINFORCED_STONE_BRICKS.get()));
 
-        blockItem(ModBlocks.REINFORCED_BRICKS_STAIRS);
-        blockItem(ModBlocks.REINFORCED_BRICKS_SLAB);
+        blockItem(ModBlocks.REINFORCED_BRICK_STAIRS);
+        blockItem(ModBlocks.REINFORCED_BRICK_SLAB);
 
-        stairsBlock(((StairBlock) ModBlocks.GYPSUM_BRICKS_STAIRS.get()), blockTexture(ModBlocks.GYPSUM_STONE_BRICKS.get()));
-        slabBlock(((SlabBlock) ModBlocks.GYPSUM_BRICKS_SLAB.get()), blockTexture(ModBlocks.GYPSUM_STONE_BRICKS.get()), blockTexture(ModBlocks.GYPSUM_STONE_BRICKS.get()));
-        wallBlock(((WallBlock) ModBlocks.GYPSUM_BRICKS_WALL.get()), blockTexture(ModBlocks.GYPSUM_STONE_BRICKS.get()));
+        stairsBlock(((StairBlock) ModBlocks.GYPSUM_BRICK_STAIRS.get()), blockTexture(ModBlocks.GYPSUM_STONE_BRICKS.get()));
+        slabBlock(((SlabBlock) ModBlocks.GYPSUM_BRICK_SLAB.get()), blockTexture(ModBlocks.GYPSUM_STONE_BRICKS.get()), blockTexture(ModBlocks.GYPSUM_STONE_BRICKS.get()));
+        wallBlock(((WallBlock) ModBlocks.GYPSUM_BRICK_WALL.get()), blockTexture(ModBlocks.GYPSUM_STONE_BRICKS.get()));
 
-        blockItem(ModBlocks.GYPSUM_BRICKS_STAIRS);
-        blockItem(ModBlocks.GYPSUM_BRICKS_SLAB);
+        blockItem(ModBlocks.GYPSUM_BRICK_STAIRS);
+        blockItem(ModBlocks.GYPSUM_BRICK_SLAB);
 
         horizontalFacingWithItem(ModBlocks.CAT_PLUSHIE);
         horizontalFacingWithItem(ModBlocks.TRASH_CAN);
@@ -77,6 +77,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.GENERATOR);
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.DNA_EXTRACTOR);
+        horizontalFacingLitNoBlockstateWithItem(ModBlocks.DNA_ANALYZER);
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.FOSSIL_GRINDER);
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.FOSSIL_CLEANER);
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.DNA_HYBRIDIZER);
@@ -85,6 +86,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         horizontalFacingLitWithItem(ModBlocks.INCUBATOR);
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.WHITE_GENERATOR);
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.WHITE_DNA_EXTRACTOR);
+        horizontalFacingLitNoBlockstateWithItem(ModBlocks.WHITE_DNA_ANALYZER);
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.WHITE_FOSSIL_GRINDER);
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.WHITE_FOSSIL_CLEANER);
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.WHITE_DNA_HYBRIDIZER);

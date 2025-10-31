@@ -2,13 +2,7 @@ package net.cmr.jurassicrevived.compat;
 
 import net.cmr.jurassicrevived.JRMod;
 import net.cmr.jurassicrevived.block.custom.*;
-import net.cmr.jurassicrevived.block.entity.custom.DNAExtractorBlockEntity;
-import net.cmr.jurassicrevived.block.entity.custom.DNAHybridizerBlockEntity;
-import net.cmr.jurassicrevived.block.entity.custom.EmbryoCalcificationMachineBlockEntity;
-import net.cmr.jurassicrevived.block.entity.custom.EmbryonicMachineBlockEntity;
-import net.cmr.jurassicrevived.block.entity.custom.FossilCleanerBlockEntity;
-import net.cmr.jurassicrevived.block.entity.custom.FossilGrinderBlockEntity;
-import net.cmr.jurassicrevived.block.entity.custom.IncubatorBlockEntity;
+import net.cmr.jurassicrevived.block.entity.custom.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -62,6 +56,33 @@ public class MachineJadePlugin implements IWailaPlugin {
                                            return UID;
                                        }
                                    }, DNAExtractorBlock.class
+        );
+        reg.registerBlockComponent(new snownee.jade.api.IBlockComponentProvider() {
+                                       @Override
+                                       public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+                                           CompoundTag data = accessor.getServerData();
+                                           if (data == null || !data.contains(NBT_PROGRESS) || !data.contains(NBT_MAX)) return;
+
+                                           int progress = Math.max(0, data.getInt(NBT_PROGRESS));
+                                           int max = Math.max(1, data.getInt(NBT_MAX));
+                                           float ratio = Mth.clamp(progress / (float) max, 0.0f, 1.0f);
+
+                                           IElementHelper h = IElementHelper.get();
+                                           ProgressStyle style = h.progressStyle()
+                                                   .color(0xFFFFFFFF, 0xFFFFFFFF)
+                                                   .direction(ScreenDirection.RIGHT)
+                                                   .fitContentX(true)
+                                                   .fitContentY(true);
+                                           BoxStyle box = BoxStyle.getNestedBox();
+                                           IElement bar = h.progress(ratio, Component.empty(), style, box, true);
+                                           tooltip.add(bar);
+                                       }
+
+                                       @Override
+                                       public ResourceLocation getUid() {
+                                           return UID;
+                                       }
+                                   }, DNAAnalyzerBlock.class
         );
         reg.registerBlockComponent(new snownee.jade.api.IBlockComponentProvider() {
                                        @Override
@@ -262,6 +283,7 @@ public class MachineJadePlugin implements IWailaPlugin {
 
         // Register individually per BE class
         reg.registerBlockDataProvider(provider, DNAExtractorBlockEntity.class);
+        reg.registerBlockDataProvider(provider, DNAAnalyzerBlockEntity.class);
         reg.registerBlockDataProvider(provider, DNAHybridizerBlockEntity.class);
         reg.registerBlockDataProvider(provider, EmbryoCalcificationMachineBlockEntity.class);
         reg.registerBlockDataProvider(provider, EmbryonicMachineBlockEntity.class);

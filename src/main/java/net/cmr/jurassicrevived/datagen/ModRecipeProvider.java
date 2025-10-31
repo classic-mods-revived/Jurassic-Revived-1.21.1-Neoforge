@@ -13,8 +13,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
@@ -42,19 +40,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         oreSmelting(pRecipeOutput, GYPSUM_STONE_SMELTABLES, RecipeCategory.MISC, ModBlocks.SMOOTH_GYPSUM_STONE, 0.25f, 200, "jr_smooth_gypsum_stone");
         oreBlasting(pRecipeOutput, GYPSUM_STONE_SMELTABLES, RecipeCategory.MISC, ModBlocks.SMOOTH_GYPSUM_STONE, 0.25f, 100, "jr_smooth_gypsum_stone");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GYPSUM_BRICKS_STAIRS.get(), 4)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GYPSUM_BRICK_STAIRS.get(), 4)
                 .pattern("A  ")
                 .pattern("AA ")
                 .pattern("AAA")
                 .define('A', ModBlocks.GYPSUM_STONE_BRICKS.get())
                 .unlockedBy("has_gypsum_stone_bricks", has(ModBlocks.GYPSUM_STONE_BRICKS)).save(pRecipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GYPSUM_BRICKS_SLAB.get(), 6)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GYPSUM_BRICK_SLAB.get(), 6)
                 .pattern("AAA")
                 .define('A', ModBlocks.GYPSUM_STONE_BRICKS.get())
                 .unlockedBy("has_gypsum_stone_bricks", has(ModBlocks.GYPSUM_STONE_BRICKS)).save(pRecipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GYPSUM_BRICKS_WALL.get(), 6)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GYPSUM_BRICK_WALL.get(), 6)
                 .pattern("AAA")
                 .pattern("AAA")
                 .define('A', ModBlocks.GYPSUM_STONE_BRICKS.get())
@@ -63,22 +61,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CHISELED_GYPSUM_STONE.get(), 1)
                 .pattern("A")
                 .pattern("A")
-                .define('A', ModBlocks.GYPSUM_BRICKS_SLAB.get())
+                .define('A', ModBlocks.GYPSUM_BRICK_SLAB.get())
                 .unlockedBy("has_gypsum_bricks_slab", has(ModBlocks.GYPSUM_STONE_BRICKS)).save(pRecipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REINFORCED_BRICKS_STAIRS.get(), 4)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REINFORCED_BRICK_STAIRS.get(), 4)
                 .pattern("A  ")
                 .pattern("AA ")
                 .pattern("AAA")
                 .define('A', ModBlocks.REINFORCED_STONE_BRICKS.get())
                 .unlockedBy("has_reinforced_stone_bricks", has(ModBlocks.REINFORCED_STONE_BRICKS)).save(pRecipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REINFORCED_BRICKS_SLAB.get(), 6)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REINFORCED_BRICK_SLAB.get(), 6)
                 .pattern("AAA")
                 .define('A', ModBlocks.REINFORCED_STONE_BRICKS.get())
                 .unlockedBy("has_reinforced_stone_bricks", has(ModBlocks.REINFORCED_STONE_BRICKS)).save(pRecipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REINFORCED_BRICKS_WALL.get(), 6)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REINFORCED_BRICK_WALL.get(), 6)
                 .pattern("AAA")
                 .pattern("AAA")
                 .define('A', ModBlocks.REINFORCED_STONE_BRICKS.get())
@@ -87,7 +85,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CHISELED_REINFORCED_STONE.get(), 1)
                 .pattern("A")
                 .pattern("A")
-                .define('A', ModBlocks.REINFORCED_BRICKS_SLAB.get())
+                .define('A', ModBlocks.REINFORCED_BRICK_SLAB.get())
                 .unlockedBy("has_reinforced_bricks_slab", has(ModBlocks.REINFORCED_STONE_BRICKS)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.TRASH_CAN.get(), 1)
@@ -245,6 +243,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
                 .unlockedBy("has_redstone", has(Items.REDSTONE)).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CAT_PLUSHIE.get(), 1)
+                .pattern("ABA")
+                .pattern("CBD")
+                .pattern("BBA")
+                .define('A', Blocks.BLACK_WOOL)
+                .define('B', Blocks.WHITE_WOOL)
+                .define('C', Blocks.GREEN_WOOL)
+                .define('D', Blocks.GRAY_WOOL)
+                .unlockedBy("has_black_wool", has(Blocks.BLACK_WOOL))
+                .unlockedBy("has_white_wool", has(Blocks.WHITE_WOOL))
+                .unlockedBy("has_green_wool", has(Blocks.GREEN_WOOL))
+                .unlockedBy("has_gray_wool", has(Blocks.GRAY_WOOL)).save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GENERATOR.get(), 1)
                         .pattern("ABA")
                         .pattern("CDE")
@@ -273,6 +284,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_screen", has(ModItems.SCREEN))
                 .unlockedBy("has_cable", has(ModItems.CABLE))
                 .unlockedBy("has_processor", has(ModItems.PROCESSOR)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DNA_ANALYZER.get(), 1)
+                .pattern("AAA")
+                .pattern("BCD")
+                .pattern("EEE")
+                .define('A', ModItems.TEST_TUBE)
+                .define('B', ModItems.SCREEN)
+                .define('C', ModItems.CABLE)
+                .define('D', ModItems.PROCESSOR)
+                .define('E', ModItems.SYRINGE)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE))
+                .unlockedBy("has_screen", has(ModItems.SCREEN))
+                .unlockedBy("has_cable", has(ModItems.CABLE))
+                .unlockedBy("has_processor", has(ModItems.PROCESSOR))
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FOSSIL_GRINDER.get(), 1)
                 .pattern("ABA")
@@ -407,6 +433,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.WHITE_DNA_EXTRACTOR.get()).unlockedBy("has_white_dna_extractor", has(ModBlocks.WHITE_DNA_EXTRACTOR))
                 .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "dna_extractor_from_white_dna_extractor"));
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.WHITE_DNA_ANALYZER.get(), 1)
+                .requires(ModBlocks.DNA_ANALYZER.get()).unlockedBy("has_dna_analyzer", has(ModBlocks.DNA_ANALYZER))
+                .save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.DNA_ANALYZER.get(), 1)
+                .requires(ModBlocks.WHITE_DNA_ANALYZER.get()).unlockedBy("has_white_dna_analyzer", has(ModBlocks.WHITE_DNA_ANALYZER))
+                .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "dna_analyzer_from_white_dna_analyzer"));
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.WHITE_FOSSIL_GRINDER.get(), 1)
                 .requires(ModBlocks.FOSSIL_GRINDER.get()).unlockedBy("has_fossil_grinder", has(ModBlocks.FOSSIL_GRINDER))
                 .save(pRecipeOutput);
@@ -514,6 +547,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE, ModItems.DISTORTUS_REX_TISSUE, ModItems.DISTORTUS_REX_DNA, 1)
                 .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE)).save(pRecipeOutput);
 
+        new DNAAnalyzingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.FROG_MATERIAL.get(), ModItems.FROG_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
 
         DNAExtractingRecipeBuilder
                 .amberRandomDNAUniform(ModItems.TEST_TUBE.get(), ModItems.MOSQUITO_IN_AMBER.get(), ModItems.VELOCIRAPTOR_DNA.get(), 1)

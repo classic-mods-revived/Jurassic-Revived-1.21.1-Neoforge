@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "jurassicrevived:test_tube"
+    },
+    "B": {
+      "item": "jurassicrevived:screen"
+    },
+    "C": {
+      "item": "jurassicrevived:cable"
+    },
+    "D": {
+      "item": "jurassicrevived:processor"
+    },
+    "E": {
+      "item": "jurassicrevived:syringe"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "BCD",
+    "EEE"
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:dna_analyzer"
+  }
+}

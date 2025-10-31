@@ -85,6 +85,9 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<DNAExtractorBlockEntity>> DNA_EXTRACTOR_BE =
             BLOCK_ENTITIES.register("dna_extractor_be", () -> BlockEntityType.Builder.of(
                     DNAExtractorBlockEntity::new, ModBlocks.DNA_EXTRACTOR.get(), ModBlocks.WHITE_DNA_EXTRACTOR.get()).build(null));
+    public static final Supplier<BlockEntityType<DNAAnalyzerBlockEntity>> DNA_ANALYZER_BE =
+            BLOCK_ENTITIES.register("dna_analyzer_be", () -> BlockEntityType.Builder.of(
+                    DNAAnalyzerBlockEntity::new, ModBlocks.DNA_ANALYZER.get(), ModBlocks.WHITE_DNA_ANALYZER.get()).build(null));
     public static final Supplier<BlockEntityType<FossilGrinderBlockEntity>> FOSSIL_GRINDER_BE =
             BLOCK_ENTITIES.register("fossil_grinder_be", () -> BlockEntityType.Builder.of(
                     FossilGrinderBlockEntity::new, ModBlocks.FOSSIL_GRINDER.get(), ModBlocks.WHITE_FOSSIL_GRINDER.get()).build(null));

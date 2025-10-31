@@ -139,7 +139,7 @@ public class DNAExtractorRecipeCategory implements IRecipeCategory<DNAExtractorR
                         .filter(stack -> recipe.getWeightFor(stack.getItem()) > 0)
                         .collect(java.util.stream.Collectors.toList());
 
-                var slot = builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 35).addItemStacks(dnaOutputs);
+                var slot = builder.addSlot(RecipeIngredientRole.OUTPUT, 62, 63).addItemStacks(dnaOutputs);
                 slot.addRichTooltipCallback((view, tooltip) -> {
                     var opt = view.getDisplayedItemStack();
                     if (opt.isPresent()) {
