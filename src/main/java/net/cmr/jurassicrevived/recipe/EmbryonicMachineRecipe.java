@@ -60,14 +60,20 @@ public record EmbryonicMachineRecipe(NonNullList<Ingredient> inputs, ItemStack o
     @Override
     public boolean matches(@NotNull EmbryonicMachineRecipeInput recipeInput, Level level) {
         if (level.isClientSide) return false;
-        if (recipeInput.size() < 2 || inputs.size() < 2) return false;
+        if (recipeInput.size() < 3 || inputs.size() < 3) return false;
 
         ItemStack in0 = recipeInput.getItem(0);
         ItemStack in1 = recipeInput.getItem(1);
+        ItemStack in2 = recipeInput.getItem(2);
+
         Ingredient a = inputs.get(0);
         Ingredient b = inputs.get(1);
+        Ingredient c = inputs.get(2);
 
-        return (a.test(in0) && b.test(in1)) || (a.test(in1) && b.test(in0));
+        // Require the third ingredient to match slot 2 specifically, but allow first two to swap
+        boolean thirdOk = c.test(in2);
+        boolean firstTwoOk = (a.test(in0) && b.test(in1)) || (a.test(in1) && b.test(in0));
+        return thirdOk && firstTwoOk;
     }
 
     @Override
@@ -105,8 +111,8 @@ public record EmbryonicMachineRecipe(NonNullList<Ingredient> inputs, ItemStack o
                 instance.group(
                         Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients")
                                 .flatXmap(list -> {
-                                            if (list.size() != 2) {
-                                                return DataResult.error(() -> "EmbryonicMachineRecipe requires exactly 2 ingredients, got " + list.size());
+                                            if (list.size() != 3) {
+                                                return DataResult.error(() -> "EmbryonicMachineRecipe requires exactly 3 ingredients, got " + list.size());
                                             }
                                             NonNullList<Ingredient> nnl = NonNullList.create();
                                             nnl.addAll(list);
@@ -123,7 +129,6 @@ public record EmbryonicMachineRecipe(NonNullList<Ingredient> inputs, ItemStack o
         );
 
         public static final StreamCodec<RegistryFriendlyByteBuf, EmbryonicMachineRecipe> STREAM_CODEC = StreamCodec.of(
-                // encode
                 (buf, recipe) -> {
                     ByteBufCodecs.collection(NonNullList::createWithCapacity, Ingredient.CONTENTS_STREAM_CODEC)
                             .encode((RegistryFriendlyByteBuf) buf, recipe.inputs());
@@ -138,8 +143,8 @@ public record EmbryonicMachineRecipe(NonNullList<Ingredient> inputs, ItemStack o
                 buf -> {
                     NonNullList<Ingredient> decodedInputs =
                             ByteBufCodecs.collection(NonNullList::createWithCapacity, Ingredient.CONTENTS_STREAM_CODEC).decode((RegistryFriendlyByteBuf) buf);
-                    if (decodedInputs.size() != 2) {
-                        throw new IllegalArgumentException("EmbryonicMachineRecipe requires exactly 2 ingredients in stream, got " + decodedInputs.size());
+                    if (decodedInputs.size() != 3) {
+                        throw new IllegalArgumentException("EmbryonicMachineRecipe requires exactly 3 ingredients in stream, got " + decodedInputs.size());
                     }
                     ItemStack result = ItemStack.STREAM_CODEC.decode((RegistryFriendlyByteBuf) buf);
                     int size = ((RegistryFriendlyByteBuf) buf).readVarInt();

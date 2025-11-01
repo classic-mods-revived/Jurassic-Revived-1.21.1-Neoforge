@@ -111,6 +111,10 @@ public class EmbryonicMachineRecipeCategory implements IRecipeCategory<Embryonic
 
         builder.addSlot(RecipeIngredientRole.INPUT, 39, 35).addIngredients(recipe.getIngredients().get(0));
         builder.addSlot(RecipeIngredientRole.INPUT, 57, 35).addIngredients(recipe.getIngredients().get(1));
+        // Frog DNA third input at (48,53)
+        if (recipe.getIngredients().size() >= 3) {
+            builder.addSlot(RecipeIngredientRole.INPUT, 48, 53).addIngredients(recipe.getIngredients().get(2));
+        }
 
         ItemStack amber = new ItemStack(ModItems.MOSQUITO_IN_AMBER.get());
         boolean isMosquitoRecipe = recipe.getIngredients().size() > 1 && recipe.getIngredients().get(1).test(amber);

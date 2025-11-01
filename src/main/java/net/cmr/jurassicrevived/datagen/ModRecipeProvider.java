@@ -706,69 +706,69 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .addIngredient(ModItems.VELOCIRAPTOR_DNA.get())
                 .unlockedBy("has_dna", has(ModTags.Items.DNA)).save(pRecipeOutput);
 
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.APATOSAURUS_DNA, ModItems.APATOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.APATOSAURUS_DNA, ModItems.FROG_DNA, ModItems.APATOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.ALBERTOSAURUS_DNA, ModItems.ALBERTOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.ALBERTOSAURUS_DNA, ModItems.FROG_DNA, ModItems.ALBERTOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.BRACHIOSAURUS_DNA, ModItems.BRACHIOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.BRACHIOSAURUS_DNA, ModItems.FROG_DNA, ModItems.BRACHIOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.CERATOSAURUS_DNA, ModItems.CERATOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.CERATOSAURUS_DNA, ModItems.FROG_DNA, ModItems.CERATOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.COMPSOGNATHUS_DNA, ModItems.COMPSOGNATHUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.COMPSOGNATHUS_DNA, ModItems.FROG_DNA, ModItems.COMPSOGNATHUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.DILOPHOSAURUS_DNA, ModItems.DILOPHOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.DILOPHOSAURUS_DNA, ModItems.FROG_DNA, ModItems.DILOPHOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.DIPLODOCUS_DNA, ModItems.DIPLODOCUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.DIPLODOCUS_DNA, ModItems.FROG_DNA, ModItems.DIPLODOCUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.GALLIMIMUS_DNA, ModItems.GALLIMIMUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.GALLIMIMUS_DNA, ModItems.FROG_DNA, ModItems.GALLIMIMUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.INDOMINUS_REX_DNA, ModItems.INDOMINUS_REX_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.INDOMINUS_REX_DNA, ModItems.FROG_DNA, ModItems.INDOMINUS_REX_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.OURANOSAURUS_DNA, ModItems.OURANOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.OURANOSAURUS_DNA, ModItems.FROG_DNA, ModItems.OURANOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.PARASAUROLOPHUS_DNA, ModItems.PARASAUROLOPHUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.PARASAUROLOPHUS_DNA, ModItems.FROG_DNA, ModItems.PARASAUROLOPHUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.SPINOSAURUS_DNA, ModItems.SPINOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.SPINOSAURUS_DNA, ModItems.FROG_DNA, ModItems.SPINOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.TRICERATOPS_DNA, ModItems.TRICERATOPS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.TRICERATOPS_DNA, ModItems.FROG_DNA, ModItems.TRICERATOPS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.TYRANNOSAURUS_REX_DNA, ModItems.TYRANNOSAURUS_REX_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.TYRANNOSAURUS_REX_DNA, ModItems.FROG_DNA, ModItems.TYRANNOSAURUS_REX_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.VELOCIRAPTOR_DNA, ModItems.VELOCIRAPTOR_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.VELOCIRAPTOR_DNA, ModItems.FROG_DNA, ModItems.VELOCIRAPTOR_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.BARYONYX_DNA, ModItems.BARYONYX_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.BARYONYX_DNA, ModItems.FROG_DNA, ModItems.BARYONYX_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.CARNOTAURUS_DNA, ModItems.CARNOTAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.CARNOTAURUS_DNA, ModItems.FROG_DNA, ModItems.CARNOTAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.CONCAVENATOR_DNA, ModItems.CONCAVENATOR_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.CONCAVENATOR_DNA, ModItems.FROG_DNA, ModItems.CONCAVENATOR_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.DEINONYCHUS_DNA, ModItems.DEINONYCHUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.DEINONYCHUS_DNA, ModItems.FROG_DNA, ModItems.DEINONYCHUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.EDMONTOSAURUS_DNA, ModItems.EDMONTOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.EDMONTOSAURUS_DNA, ModItems.FROG_DNA, ModItems.EDMONTOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.GIGANOTOSAURUS_DNA, ModItems.GIGANOTOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.GIGANOTOSAURUS_DNA, ModItems.FROG_DNA, ModItems.GIGANOTOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.GUANLONG_DNA, ModItems.GUANLONG_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.GUANLONG_DNA, ModItems.FROG_DNA, ModItems.GUANLONG_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.HERRERASAURUS_DNA, ModItems.HERRERASAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.HERRERASAURUS_DNA, ModItems.FROG_DNA, ModItems.HERRERASAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.MAJUNGASAURUS_DNA, ModItems.MAJUNGASAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.MAJUNGASAURUS_DNA, ModItems.FROG_DNA, ModItems.MAJUNGASAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.PROCOMPSOGNATHUS_DNA, ModItems.PROCOMPSOGNATHUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.PROCOMPSOGNATHUS_DNA, ModItems.FROG_DNA, ModItems.PROCOMPSOGNATHUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.PROTOCERATOPS_DNA, ModItems.PROTOCERATOPS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.PROTOCERATOPS_DNA, ModItems.FROG_DNA, ModItems.PROTOCERATOPS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.RUGOPS_DNA, ModItems.RUGOPS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.RUGOPS_DNA, ModItems.FROG_DNA, ModItems.RUGOPS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.SHANTUNGOSAURUS_DNA, ModItems.SHANTUNGOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.SHANTUNGOSAURUS_DNA, ModItems.FROG_DNA, ModItems.SHANTUNGOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.STEGOSAURUS_DNA, ModItems.STEGOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.STEGOSAURUS_DNA, ModItems.FROG_DNA, ModItems.STEGOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.STYRACOSAURUS_DNA, ModItems.STYRACOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.STYRACOSAURUS_DNA, ModItems.FROG_DNA, ModItems.STYRACOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.THERIZINOSAURUS_DNA, ModItems.THERIZINOSAURUS_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.THERIZINOSAURUS_DNA, ModItems.FROG_DNA, ModItems.THERIZINOSAURUS_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
-        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.DISTORTUS_REX_DNA, ModItems.DISTORTUS_REX_SYRINGE, 1)
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.DISTORTUS_REX_DNA, ModItems.FROG_DNA, ModItems.DISTORTUS_REX_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
 
 

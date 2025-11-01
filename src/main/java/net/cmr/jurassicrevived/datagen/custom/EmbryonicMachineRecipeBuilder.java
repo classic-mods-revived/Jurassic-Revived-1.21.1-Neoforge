@@ -18,14 +18,16 @@ public class EmbryonicMachineRecipeBuilder {
     // Keep ItemLike references so we can construct Ingredients
     private java.util.Optional<ItemLike> firstItem = java.util.Optional.empty();
     private java.util.Optional<ItemLike> secondItem = java.util.Optional.empty();
+    private java.util.Optional<ItemLike> thirdItem = java.util.Optional.empty();
     private java.util.Optional<Item> resultItem = java.util.Optional.empty();
     private final int count;
     private final Map<String, Criterion<?>> criteria;
     private final Map<ResourceLocation, Integer> weights = new java.util.HashMap<>();
 
-    public EmbryonicMachineRecipeBuilder(ItemLike ingredient, ItemLike secondIngredient, ItemLike result, int count) {
+    public EmbryonicMachineRecipeBuilder(ItemLike ingredient, ItemLike secondIngredient, ItemLike thirdIngredient, ItemLike result, int count) {
         this.firstItem = java.util.Optional.of(ingredient);
         this.secondItem = java.util.Optional.of(secondIngredient);
+        this.thirdItem = java.util.Optional.of(thirdIngredient);
         this.resultItem = java.util.Optional.of(result.asItem());
         this.count = count;
         this.criteria = new LinkedHashMap();
@@ -45,6 +47,7 @@ public class EmbryonicMachineRecipeBuilder {
         NonNullList<Ingredient> inputs = NonNullList.create();
         inputs.add(Ingredient.of(firstItem.orElseThrow()));
         inputs.add(Ingredient.of(secondItem.orElseThrow()));
+        inputs.add(Ingredient.of(thirdItem.orElseThrow()));
         ItemStack result = new ItemStack(resultItem.orElseThrow(), this.count);
 
         // Construct the runtime recipe and hand it to RecipeOutput

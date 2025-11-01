@@ -10,16 +10,17 @@ public record EmbryonicMachineRecipeInput(List<ItemStack> inputs) implements Rec
 
     public EmbryonicMachineRecipeInput {
         Objects.requireNonNull(inputs, "inputs");
-        if (inputs.size() != 2) {
-            throw new IllegalArgumentException("EmbryonicMachineRecipeInput requires exactly 2 input stacks, got " + inputs.size());
+        if (inputs.size() != 3) {
+            throw new IllegalArgumentException("EmbryonicMachineRecipeInput requires exactly 3 input stacks, got " + inputs.size());
         }
         ItemStack first = Objects.requireNonNullElse(inputs.get(0), ItemStack.EMPTY);
         ItemStack second = Objects.requireNonNullElse(inputs.get(1), ItemStack.EMPTY);
-        inputs = List.of(first, second);
+        ItemStack third = Objects.requireNonNullElse(inputs.get(2), ItemStack.EMPTY);
+        inputs = List.of(first, second, third);
     }
 
-    public EmbryonicMachineRecipeInput(ItemStack first, ItemStack second) {
-        this(List.of(first, second));
+    public EmbryonicMachineRecipeInput(ItemStack first, ItemStack second, ItemStack third) {
+        this(List.of(first, second, third));
     }
 
     @Override

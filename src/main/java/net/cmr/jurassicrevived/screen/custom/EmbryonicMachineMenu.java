@@ -53,7 +53,19 @@ public class EmbryonicMachineMenu extends AbstractContainerMenu {
             }
         });
 
-        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 2, 103, 35) {
+        // Input: Frog DNA slot
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 2, 48, 53) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(ModItems.FROG_DNA.get());
+            }
+            @Override
+            public boolean mayPickup(Player playerIn) {
+                return true; // Explicitly allow players (and JEI) to take items from this slot
+            }
+        });
+
+        this.addSlot(new SlotItemHandler(blockEntity.itemHandler, 3, 103, 35) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;
@@ -91,25 +103,22 @@ public class EmbryonicMachineMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 4;  // 3 inputs + 1 output
 
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
-        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
+        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        // Check if the slot clicked is one of the vanilla container slots
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            // This is a vanilla container slot so merge the stack into the tile inventory
-            // Restrict to the two input slots only (exclude output slots).
-            int teInputStart = TE_INVENTORY_FIRST_SLOT_INDEX;          // handler indices 0-1
-            int teInputEndExclusive = TE_INVENTORY_FIRST_SLOT_INDEX + 2;
+            // Allow shift-move into all three input slots (0..2)
+            int teInputStart = TE_INVENTORY_FIRST_SLOT_INDEX;          // handler indices 0-2
+            int teInputEndExclusive = TE_INVENTORY_FIRST_SLOT_INDEX + 3;
             if (!moveItemStackTo(sourceStack, teInputStart, teInputEndExclusive, false)) {
-                return ItemStack.EMPTY;  // EMPTY_ITEM
+                return ItemStack.EMPTY;
             }
         } else if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-            // This is a TE slot so merge the stack into the players inventory
             if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
             }
@@ -117,7 +126,6 @@ public class EmbryonicMachineMenu extends AbstractContainerMenu {
             System.out.println("Invalid slotIndex:" + pIndex);
             return ItemStack.EMPTY;
         }
-        // If stack size == 0 (the entire stack was moved) set slot contents to null
         if (sourceStack.getCount() == 0) {
             sourceSlot.set(ItemStack.EMPTY);
         } else {
