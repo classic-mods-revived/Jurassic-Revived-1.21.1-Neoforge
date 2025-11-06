@@ -434,20 +434,30 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private @org.jetbrains.annotations.Nullable java.util.List<Integer> findExactUnorderedMatchIndices(DNAHybridizerRecipe recipe) {
-        // Build required list (skip empty ingredients)
+        // Validate catalyst from recipe (index 8) if present
+        boolean hasCatalyst = recipe.inputs().size() >= 9 && !recipe.inputs().get(8).isEmpty();
+        ItemStack s9 = itemHandler.getStackInSlot(DNA_SLOT_9);
+        if (hasCatalyst) {
+            if (s9.isEmpty() || !recipe.inputs().get(8).test(s9)) return null;
+        } else {
+            if (!s9.isEmpty()) return null;
+        }
+
+        // Build required list for slots 0..7
         java.util.List<net.minecraft.world.item.crafting.Ingredient> required = new java.util.ArrayList<>();
-        for (var ing : recipe.inputs()) {
+        for (int i = 0; i < Math.min(8, recipe.inputs().size()); i++) {
+            var ing = recipe.inputs().get(i);
             if (!ing.isEmpty()) required.add(ing);
         }
         if (required.isEmpty()) return null;
 
         boolean[] used = new boolean[9];
+        used[DNA_SLOT_9] = true;
         java.util.List<Integer> matched = new java.util.ArrayList<>(required.size());
 
-        // Match all required ingredients to distinct non-empty inputs
         for (var need : required) {
             boolean found = false;
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < 8; i++) {
                 if (used[i]) continue;
                 var stack = itemHandler.getStackInSlot(i);
                 if (stack.isEmpty()) continue;
@@ -458,19 +468,16 @@ public class DNAHybridizerBlockEntity extends BlockEntity implements MenuProvide
                     break;
                 }
             }
-            if (!found) {
-                return null; // missing a required ingredient
-            }
+            if (!found) return null;
         }
 
-        // Ensure there are no extra non-empty inputs left unmatched
-        for (int i = 0; i < 9; i++) {
-            if (used[i]) continue;
-            if (!itemHandler.getStackInSlot(i).isEmpty()) {
-                return null; // extra/unexpected input present
-            }
+        // No extras in 0..7
+        for (int i = 0; i < 8; i++) {
+            if (!used[i] && !itemHandler.getStackInSlot(i).isEmpty()) return null;
         }
 
+        // If catalyst present, consume 1 from slot 9
+        if (hasCatalyst) matched.add(DNA_SLOT_9);
         return matched;
     }
 

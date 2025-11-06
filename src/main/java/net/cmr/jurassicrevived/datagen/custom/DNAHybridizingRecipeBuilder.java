@@ -20,6 +20,8 @@ public class DNAHybridizingRecipeBuilder {
     private final int count;
     private final Map<String, Criterion<?>> criteria;
     private final NonNullList<Ingredient> ingredients = NonNullList.create();
+    // Optional fixed catalyst item for slot 9 (index 8)
+    private java.util.Optional<ItemLike> catalyst = java.util.Optional.empty();
     // ... existing code ...
 
     // New: primary factory with result + count only
@@ -51,6 +53,12 @@ public class DNAHybridizingRecipeBuilder {
         return this;
     }
 
+    // Specify the catalyst item that must go in slot 9 (index 8)
+    public DNAHybridizingRecipeBuilder setCatalyst(ItemLike item) {
+        this.catalyst = java.util.Optional.of(item);
+        return this;
+    }
+
     public void save(RecipeOutput output) {
         ResourceLocation resultKey = BuiltInRegistries.ITEM.getKey(this.resultItem.orElseThrow());
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(
@@ -66,6 +74,20 @@ public class DNAHybridizingRecipeBuilder {
         }
         NonNullList<Ingredient> inputs = NonNullList.create();
         inputs.addAll(this.ingredients);
+
+        // Ensure inputs list is at most 8 for regular ingredients, reserve slot 9 for catalyst if present
+        if (inputs.size() > 8 && catalyst.isPresent()) {
+            throw new IllegalStateException("When a catalyst is set, at most 8 regular ingredients are allowed (slot 9 is reserved).");
+        }
+
+        // If catalyst specified, pad to index 8 and put it there
+        if (catalyst.isPresent()) {
+            while (inputs.size() < 8) {
+                inputs.add(Ingredient.EMPTY);
+            }
+            inputs.add(Ingredient.of(catalyst.get()));
+        }
+
         ItemStack result = new ItemStack(resultItem.orElseThrow(), this.count);
 
         DNAHybridizerRecipe recipe = new DNAHybridizerRecipe(inputs, result);

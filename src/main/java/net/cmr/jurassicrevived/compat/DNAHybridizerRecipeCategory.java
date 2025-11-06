@@ -115,12 +115,17 @@ public class DNAHybridizerRecipeCategory implements IRecipeCategory<DNAHybridize
                 {44, 43}, {62, 43}, {83, 35}
         };
 
-        for (int i = 0; i < Math.min(9, recipe.getIngredients().size()); i++) {
+        int count = Math.min(9, recipe.getIngredients().size());
+        for (int i = 0; i < Math.min(8, count); i++) {
             var ing = recipe.getIngredients().get(i);
             if (ing.isEmpty()) continue;
-            int x = coords[i][0];
-            int y = coords[i][1];
-            builder.addSlot(RecipeIngredientRole.INPUT, x, y).addIngredients(ing);
+            builder.addSlot(RecipeIngredientRole.INPUT, coords[i][0], coords[i][1]).addIngredients(ing);
+        }
+
+        // Catalyst slot: if present in recipe (index 8), show that; otherwise show nothing
+        if (count >= 9 && !recipe.getIngredients().get(8).isEmpty()) {
+            builder.addSlot(RecipeIngredientRole.INPUT, coords[8][0], coords[8][1])
+                       .addIngredients(recipe.getIngredients().get(8));
         }
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 134, 35).addItemStack(recipe.getResultItem(null));

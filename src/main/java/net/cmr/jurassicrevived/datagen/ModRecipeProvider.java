@@ -698,12 +698,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .addIngredient(ModItems.MAJUNGASAURUS_DNA.get())
                 .addIngredient(ModItems.RUGOPS_DNA.get())
                 .addIngredient(ModItems.GIGANOTOSAURUS_DNA.get())
+                .setCatalyst(ModItems.FROG_DNA.get())
                 .unlockedBy("has_dna", has(ModTags.Items.DNA)).save(pRecipeOutput);
 
         new DNAHybridizingRecipeBuilder(ModItems.DISTORTUS_REX_DNA.get(), 1)
                 .addIngredient(ModItems.TYRANNOSAURUS_REX_DNA.get())
                 .addIngredient(ModItems.BRACHIOSAURUS_DNA.get())
                 .addIngredient(ModItems.VELOCIRAPTOR_DNA.get())
+                .setCatalyst(ModItems.FROG_DNA.get())
                 .unlockedBy("has_dna", has(ModTags.Items.DNA)).save(pRecipeOutput);
 
         new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.APATOSAURUS_DNA, ModItems.FROG_DNA, ModItems.APATOSAURUS_SYRINGE, 1)

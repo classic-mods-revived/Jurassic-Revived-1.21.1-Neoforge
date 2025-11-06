@@ -49,42 +49,46 @@ public record DNAHybridizerRecipe(NonNullList<Ingredient> inputs, ItemStack outp
         if (recipeInput.size() != 9) return false;
         if (inputs.isEmpty() || inputs.size() > 9) return false;
 
-        // Build list of required ingredients (skip empty = "don't care")
+        // If a 9th ingredient exists, require slot 8 to match it; otherwise require slot 8 to be empty
+        boolean hasCatalyst = inputs.size() >= 9 && !inputs.get(8).isEmpty();
+        var slot9 = recipeInput.getItem(8);
+        if (hasCatalyst) {
+            if (slot9.isEmpty() || !inputs.get(8).test(slot9)) return false;
+        } else {
+            if (!slot9.isEmpty()) return false;
+        }
+
+        // Build list of required ingredients for slots 0..7 (skip empty)
         java.util.List<Ingredient> required = new java.util.ArrayList<>();
-        for (Ingredient ing : inputs) {
+        int max = Math.min(8, inputs.size());
+        for (int i = 0; i < max; i++) {
+            Ingredient ing = inputs.get(i);
             if (!ing.isEmpty()) required.add(ing);
         }
         if (required.isEmpty()) return false;
 
-        // Unordered matching with exactness check (no extras allowed)
+        // Unordered match across slots [0..7]
         boolean[] used = new boolean[9];
-        int matchedCount = 0;
-
-        // First, match all required ingredients
+        used[8] = true; // reserve catalyst slot
         for (Ingredient need : required) {
             boolean matched = false;
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < 8; i++) {
                 if (used[i]) continue;
                 var stack = recipeInput.getItem(i);
                 if (stack.isEmpty()) continue;
                 if (need.test(stack)) {
                     used[i] = true;
                     matched = true;
-                    matchedCount++;
                     break;
                 }
             }
-            if (!matched) return false; // missing a required ingredient
+            if (!matched) return false;
         }
 
-        // Then, ensure there are no leftover non-empty inputs that weren't matched
-        for (int i = 0; i < 9; i++) {
-            if (used[i]) continue;
-            if (!recipeInput.getItem(i).isEmpty()) {
-                return false; // extra/unexpected ingredient present
-            }
+        // Ensure no leftovers in 0..7
+        for (int i = 0; i < 8; i++) {
+            if (!used[i] && !recipeInput.getItem(i).isEmpty()) return false;
         }
-
         return true;
     }
 
