@@ -2,6 +2,7 @@ package net.cmr.jurassicrevived.worldgen;
 
 import net.cmr.jurassicrevived.JRMod;
 import net.cmr.jurassicrevived.entity.ModEntities;
+import net.cmr.jurassicrevived.Config;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -24,7 +25,7 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_DEEPSLATE_FOSSIL = registerKey("add_deepslate_fossil");
     public static final ResourceKey<BiomeModifier> ADD_AMBER_ORE = registerKey("add_amber_ore");
     public static final ResourceKey<BiomeModifier> ADD_DEEPSLATE_ICE_SHARD_ORE = registerKey("add_deepslate_ice_shard_ore");
-    //public static final ResourceKey<BiomeModifier> ADD_hq_ORE = registerKey("add_hq_ore");
+    // public static final ResourceKey<BiomeModifier> ADD_hq_ORE = registerKey("add_hq_ore");
 
     public static final ResourceKey<BiomeModifier> SPAWN_BRACHIOSAURUS = registerKey("spawn_brachiosaurus");
 
@@ -57,11 +58,12 @@ public class ModBiomeModifiers {
         //        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.hq_ORE_PLACED_KEY)),
         //        GenerationStep.Decoration.VEGETAL_DECORATION));
 
-        context.register(SPAWN_BRACHIOSAURUS, new BiomeModifiers.AddSpawnsBiomeModifier(
+        // Register spawn with conditional wrapper so runtime config controls application
+        context.register(SPAWN_BRACHIOSAURUS, new ConditionalAddSpawns(
                 biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntities.BRACHIOSAURUS.get(), 10, 1, 3))));
+                List.of(new MobSpawnSettings.SpawnerData(ModEntities.BRACHIOSAURUS.get(), 6, 1, 3))
+        ));
     }
-
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
         return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, name));

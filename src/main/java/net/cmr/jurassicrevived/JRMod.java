@@ -12,6 +12,7 @@ import net.cmr.jurassicrevived.recipe.ModRecipes;
 import net.cmr.jurassicrevived.screen.ModMenuTypes;
 import net.cmr.jurassicrevived.sound.ModSounds;
 import net.cmr.jurassicrevived.util.FenceClimbHandler;
+import net.cmr.jurassicrevived.worldgen.ConditionalAddSpawns;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -78,6 +79,7 @@ public class JRMod {
         NeoForge.EVENT_BUS.addListener(FenceDiagonalUpdateHandler::onBreak);
 
         ConfigCondition.register(modEventBus);
+        ConditionalAddSpawns.CODECS.register(modEventBus);
 
     }
 
