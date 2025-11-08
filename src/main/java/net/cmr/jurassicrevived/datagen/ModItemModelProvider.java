@@ -316,6 +316,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         flowerItem(ModBlocks.ROYAL_FERN);
         flowerItem(ModBlocks.HORSETAIL_FERN);
         flowerItem(ModBlocks.WESTERN_SWORD_FERN);
+        flowerItem(ModBlocks.ONYCHIOPSIS);
     }
 
     public void flowerItem(DeferredBlock<Block> block) {

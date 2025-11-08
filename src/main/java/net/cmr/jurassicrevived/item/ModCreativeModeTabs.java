@@ -107,6 +107,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.ROYAL_FERN.get().asItem());
                         pOutput.accept(ModBlocks.HORSETAIL_FERN.get().asItem());
                         pOutput.accept(ModBlocks.WESTERN_SWORD_FERN.get().asItem());
+                        pOutput.accept(ModBlocks.ONYCHIOPSIS.get().asItem());
                     }).build());
 
     public static final Supplier<CreativeModeTab> JR_DNA_TAB =
