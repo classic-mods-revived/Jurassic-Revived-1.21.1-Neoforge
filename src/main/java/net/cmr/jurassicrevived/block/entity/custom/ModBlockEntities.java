@@ -13,6 +13,10 @@ public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, JRMod.MOD_ID);
 
+    public static final Supplier<BlockEntityType<TankBlockEntity>> TANK_BE =
+            BLOCK_ENTITIES.register("tank_be", () -> BlockEntityType.Builder.of(
+                    TankBlockEntity::new, ModBlocks.TANK.get()).build(null));
+
     public static final Supplier<BlockEntityType<EggBlockEntity>> EGG_BE =
             BLOCK_ENTITIES.register("egg_be", () ->
                     BlockEntityType.Builder.of(EggBlockEntity::new,

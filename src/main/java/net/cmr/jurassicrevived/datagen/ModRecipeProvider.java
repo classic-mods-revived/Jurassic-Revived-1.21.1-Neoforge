@@ -220,7 +220,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("AAA")
                 .pattern(" B ")
                 .pattern("AAA")
-                .define('A', Items.IRON_NUGGET)
+                .define('A', Items.IRON_INGOT)
                 .define('B', Items.REDSTONE)
                 .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
                 .unlockedBy("has_redstone", has(Items.REDSTONE)).save(pRecipeOutput);
@@ -229,8 +229,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABA")
                 .pattern("ABA")
                 .pattern("ABA")
-                .define('A', Items.IRON_NUGGET)
-                .define('B', Items.IRON_INGOT)
+                .define('A', Items.IRON_INGOT)
+                .define('B', Items.IRON_NUGGET)
                 .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(pRecipeOutput);
 
@@ -238,10 +238,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("AAA")
                 .pattern("BBB")
                 .pattern("AAA")
-                .define('A', Items.IRON_NUGGET)
+                .define('A', Items.IRON_INGOT)
                 .define('B', Items.REDSTONE)
                 .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
                 .unlockedBy("has_redstone", has(Items.REDSTONE)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.TANK.get(), 1)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .define('A', Items.IRON_INGOT)
+                .define('B', Items.BUCKET)
+                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
+                .unlockedBy("has_bucket", has(Items.BUCKET)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CAT_PLUSHIE.get(), 1)
                 .pattern("ABA")

@@ -81,6 +81,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         horizontalFacingWithItem(ModBlocks.FENCE_LIGHT);
         horizontalFacingWithItem(ModBlocks.LIGHT_POST);
 
+        regularBlockWithItem(ModBlocks.TANK);
+
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.GENERATOR);
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.DNA_EXTRACTOR);
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.DNA_ANALYZER);
@@ -230,6 +232,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         private void horizontalFacingWithItem(DeferredBlock<Block> block) {
             ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + block.getId().getPath()));
             horizontalBlock(block.get(), model);
+            simpleBlockItem(block.get(), model);
+        }
+
+        private void regularBlockWithItem(DeferredBlock<Block> block) {
+            ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + block.getId().getPath()));
+            simpleBlock(block.get(), model);
             simpleBlockItem(block.get(), model);
         }
 

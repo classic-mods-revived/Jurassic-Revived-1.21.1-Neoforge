@@ -73,6 +73,8 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.FLUID_PIPE);
                         pOutput.accept(ModBlocks.POWER_PIPE);
 
+                        pOutput.accept(ModBlocks.TANK.get());
+
                         pOutput.accept(ModBlocks.GENERATOR);
                         pOutput.accept(ModBlocks.DNA_EXTRACTOR);
                         pOutput.accept(ModBlocks.DNA_ANALYZER);
