@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "jurassicrevived:chic",
+      "required": false
+    },
+    {
+      "id": "jurassicrevived:lonely_tree",
+      "required": false
+    },
+    {
+      "id": "jurassicrevived:meg",
+      "required": false
+    },
+    {
+      "id": "jurassicrevived:seeing_eye",
+      "required": false
+    }
+  ]
+}
