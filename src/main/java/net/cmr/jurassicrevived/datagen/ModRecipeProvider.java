@@ -249,8 +249,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("AAA")
                 .define('A', Items.IRON_INGOT)
                 .define('B', Items.BUCKET)
-                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
                 .unlockedBy("has_bucket", has(Items.BUCKET)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.POWER_CELL.get(), 1)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .define('A', Items.IRON_INGOT)
+                .define('B', ModBlocks.POWER_PIPE)
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .unlockedBy("has_power_pipe", has(ModBlocks.POWER_PIPE)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CAT_PLUSHIE.get(), 1)
                 .pattern("ABA")

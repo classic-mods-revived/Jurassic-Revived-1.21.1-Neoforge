@@ -1,16 +1,6 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_bucket": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:bucket"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_iron_ingot": {
       "conditions": {
         "items": [
@@ -21,9 +11,19 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_power_pipe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "jurassicrevived:power_pipe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "jurassicrevived:tank"
+        "recipe": "jurassicrevived:power_cell"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -32,12 +32,12 @@
     [
       "has_the_recipe",
       "has_iron_ingot",
-      "has_bucket"
+      "has_power_pipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "jurassicrevived:tank"
+      "jurassicrevived:power_cell"
     ]
   }
 }

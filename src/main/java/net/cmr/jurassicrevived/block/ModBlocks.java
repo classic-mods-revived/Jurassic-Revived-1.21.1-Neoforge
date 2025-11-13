@@ -45,6 +45,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> TANK = registerBlock("tank",
             () -> new TankBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().noOcclusion().noLootTable()));
 
+    public static final DeferredBlock<Block> POWER_CELL = registerBlock("power_cell",
+            () -> new PowerCellBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().noOcclusion().noLootTable()));
+
     public static final DeferredBlock<Block> GENERATOR = registerBlock("generator",
             () -> new GeneratorBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(4f).noLootTable()));
     public static final DeferredBlock<Block> DNA_EXTRACTOR = registerBlock("dna_extractor",

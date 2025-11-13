@@ -82,6 +82,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         horizontalFacingWithItem(ModBlocks.LIGHT_POST);
 
         regularBlockWithItem(ModBlocks.TANK);
+        regularBlockWithItem(ModBlocks.POWER_CELL);
 
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.GENERATOR);
         horizontalFacingLitNoBlockstateWithItem(ModBlocks.DNA_EXTRACTOR);

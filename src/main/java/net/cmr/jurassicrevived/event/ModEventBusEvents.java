@@ -21,6 +21,7 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.GENERATOR_BE.get(), GeneratorBlockEntity::getEnergyStorage);
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.POWER_CELL_BE.get(), PowerCellBlockEntity::getEnergyStorage);
         if (Config.REQUIRE_POWER) {
             event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.DNA_EXTRACTOR_BE.get(), DNAExtractorBlockEntity::getEnergyStorage);
             event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.DNA_ANALYZER_BE.get(), DNAAnalyzerBlockEntity::getEnergyStorage);

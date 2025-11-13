@@ -93,5 +93,6 @@ public class JRModClient {
         event.register(ModMenuTypes.EMBRYO_CALCIFICATION_MACHINE_MENU.get(), EmbryoCalcificationMachineScreen::new);
         event.register(ModMenuTypes.INCUBATOR_MENU.get(), IncubatorScreen::new);
         event.register(ModMenuTypes.TANK_MENU.get(), TankScreen::new);
+        event.register(ModMenuTypes.POWER_CELL_MENU.get(), PowerCellScreen::new);
     }
 }
