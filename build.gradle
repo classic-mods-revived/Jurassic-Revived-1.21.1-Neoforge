@@ -150,7 +150,7 @@ dependencies {
     implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
 
 
-    implementation "curse.maven:mekanism-268560:6018306"
+    implementation "curse.maven:mekanism-268560:7132168"
     implementation "curse.maven:jea-890755:6329637"
     implementation "curse.maven:jade-324717:6853386"
 }

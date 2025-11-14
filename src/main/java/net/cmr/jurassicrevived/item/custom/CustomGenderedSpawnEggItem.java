@@ -96,7 +96,13 @@ public class CustomGenderedSpawnEggItem extends DeferredSpawnEggItem {
             return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
         }
 
-        return super.use(level, player, hand);
+        // Normal use in air (including right-clicking water to spawn) should respect the selected variant
+        ensureEntityDataHasVariant(stack);
+        try {
+            return super.use(level, player, hand);
+        } finally {
+            clearEntityData(stack);
+        }
     }
 
     @Override

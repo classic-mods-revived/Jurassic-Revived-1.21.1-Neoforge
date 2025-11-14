@@ -162,54 +162,55 @@ public class PipeBlock extends Block implements EntityBlock, SimpleWaterloggedBl
         };
     }
 
-    private BlockState setConnectionForDirection(LevelAccessor level, BlockPos pos, BlockState state, Direction dir) {
-        EnumProperty<ConnectionType> prop = getProp(dir);
-        ConnectionType connection = determineConnection(level, pos, dir);
-        return state.setValue(prop, connection);
-    }
-
-    private ConnectionType determineConnection(LevelAccessor level, BlockPos pos, Direction dir) {
-        BlockPos neighborPos = pos.relative(dir);
-        BlockState neighborState = level.getBlockState(neighborPos);
-        Block neighbor = neighborState.getBlock();
-
-        if (neighbor instanceof PipeBlock otherPipe) {
-            if (otherPipe.transport == this.transport) {
-                return ConnectionType.PIPE;
-            }
+        private BlockState setConnectionForDirection(LevelAccessor level, BlockPos pos, BlockState state, Direction dir) {
+            EnumProperty<ConnectionType> prop = getProp(dir);
+            ConnectionType existing = state.getValue(prop);
+            ConnectionType connection = determineConnection(level, pos, dir, existing);
+            return state.setValue(prop, connection);
         }
 
-        if (level instanceof Level lvl) {
-            Direction opp = dir.getOpposite();
-            switch (this.transport) {
-                case ITEMS -> {
-                    var ih = lvl.getCapability(Capabilities.ItemHandler.BLOCK, neighborPos, opp);
-                    if (ih != null) return ConnectionType.CONNECTOR;
-                }
-                case FLUIDS -> {
-                    var fh = lvl.getCapability(Capabilities.FluidHandler.BLOCK, neighborPos, opp);
-                    if (fh != null) return ConnectionType.CONNECTOR;
-                }
-                case ENERGY -> {
-                    var eh = lvl.getCapability(Capabilities.EnergyStorage.BLOCK, neighborPos, opp);
-                    if (eh != null) return ConnectionType.CONNECTOR;
+        private ConnectionType determineConnection(LevelAccessor level, BlockPos pos, Direction dir, ConnectionType existing) {
+            BlockPos neighborPos = pos.relative(dir);
+            BlockState neighborState = level.getBlockState(neighborPos);
+            Block neighbor = neighborState.getBlock();
+
+            // Pipe-to-pipe connections always override
+            if (neighbor instanceof PipeBlock otherPipe) {
+                if (otherPipe.transport == this.transport) {
+                    return ConnectionType.PIPE;
                 }
             }
+
+            if (level instanceof Level lvl) {
+                Direction opp = dir.getOpposite();
+                boolean hasCap = switch (this.transport) {
+                    case ITEMS -> lvl.getCapability(Capabilities.ItemHandler.BLOCK, neighborPos, opp) != null;
+                    case FLUIDS -> lvl.getCapability(Capabilities.FluidHandler.BLOCK, neighborPos, opp) != null;
+                    case ENERGY -> lvl.getCapability(Capabilities.EnergyStorage.BLOCK, neighborPos, opp) != null;
+                };
+
+                if (hasCap) {
+                    // If player set this arm to PULL, keep it as PULL while the connection is valid
+                    if (existing == ConnectionType.CONNECTOR_PULL) {
+                        return ConnectionType.CONNECTOR_PULL;
+                    }
+                    return ConnectionType.CONNECTOR;
+                }
+            }
+
+            return ConnectionType.NONE;
         }
 
-        return ConnectionType.NONE;
-    }
-
-    public static EnumProperty<ConnectionType> getProp(Direction dir) {
-        return switch (dir) {
-            case DOWN -> DOWN;
-            case UP -> UP;
-            case NORTH -> NORTH;
-            case SOUTH -> SOUTH;
-            case WEST -> WEST;
-            case EAST -> EAST;
-        };
-    }
+        public static EnumProperty<ConnectionType> getProp(Direction dir) {
+            return switch (dir) {
+                case DOWN -> DOWN;
+                case UP -> UP;
+                case NORTH -> NORTH;
+                case SOUTH -> SOUTH;
+                case WEST -> WEST;
+                case EAST -> EAST;
+            };
+        }
     
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
