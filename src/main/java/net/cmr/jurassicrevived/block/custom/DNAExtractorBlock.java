@@ -2,8 +2,7 @@ package net.cmr.jurassicrevived.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.cmr.jurassicrevived.block.entity.custom.DNAExtractorBlockEntity;
-import net.cmr.jurassicrevived.block.entity.custom.ModBlockEntities;
-import net.cmr.jurassicrevived.sound.ModSounds;
+import net.cmr.jurassicrevived.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
@@ -13,8 +12,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;

@@ -1,7 +1,7 @@
 package net.cmr.jurassicrevived;
 
 import net.cmr.jurassicrevived.block.ModBlocks;
-import net.cmr.jurassicrevived.block.entity.custom.ModBlockEntities;
+import net.cmr.jurassicrevived.block.entity.ModBlockEntities;
 import net.cmr.jurassicrevived.datagen.custom.ConfigCondition;
 import net.cmr.jurassicrevived.entity.ModEntities;
 import net.cmr.jurassicrevived.event.FenceDiagonalUpdateHandler;

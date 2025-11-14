@@ -6,16 +6,16 @@
       "tag": "minecraft:planks"
     },
     "B": {
-      "item": "jurassicrevived:reinforced_stone_bricks"
+      "item": "minecraft:chest"
     }
   },
   "pattern": [
-    "A  ",
     "AAA",
-    "BBB"
+    "ABA",
+    "AAA"
   ],
   "result": {
     "count": 1,
-    "id": "jurassicrevived:bench"
+    "id": "jurassicrevived:wood_crate"
   }
 }

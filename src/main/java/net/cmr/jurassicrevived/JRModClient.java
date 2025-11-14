@@ -1,6 +1,6 @@
 package net.cmr.jurassicrevived;
 
-import net.cmr.jurassicrevived.block.entity.custom.ModBlockEntities;
+import net.cmr.jurassicrevived.block.entity.ModBlockEntities;
 import net.cmr.jurassicrevived.block.renderer.TankBlockEntityRenderer;
 import net.cmr.jurassicrevived.entity.ModEntities;
 import net.cmr.jurassicrevived.entity.client.*;
@@ -94,5 +94,7 @@ public class JRModClient {
         event.register(ModMenuTypes.INCUBATOR_MENU.get(), IncubatorScreen::new);
         event.register(ModMenuTypes.TANK_MENU.get(), TankScreen::new);
         event.register(ModMenuTypes.POWER_CELL_MENU.get(), PowerCellScreen::new);
+        event.register(ModMenuTypes.WOOD_CRATE_MENU.get(), CrateScreen::new);
+        event.register(ModMenuTypes.IRON_CRATE_MENU.get(), CrateScreen::new);
     }
 }

@@ -73,7 +73,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.WHITE_EMBRYO_CALCIFICATION_MACHINE.get())
                 .add(ModBlocks.WHITE_INCUBATOR.get())
                 .add(ModBlocks.TANK.get())
-                .add(ModBlocks.POWER_CELL.get());
+                .add(ModBlocks.POWER_CELL.get())
+                .add(ModBlocks.IRON_CRATE.get());
+
+        this.tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(ModBlocks.WOOD_CRATE.get());
 
 
         this.tag(ModTags.Blocks.INCUBATED_EGGS)

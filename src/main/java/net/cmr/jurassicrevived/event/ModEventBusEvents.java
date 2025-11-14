@@ -2,6 +2,7 @@ package net.cmr.jurassicrevived.event;
 
 import net.cmr.jurassicrevived.Config;
 import net.cmr.jurassicrevived.JRMod;
+import net.cmr.jurassicrevived.block.entity.ModBlockEntities;
 import net.cmr.jurassicrevived.block.entity.custom.*;
 import net.cmr.jurassicrevived.entity.ModEntities;
 import net.cmr.jurassicrevived.entity.custom.*;
@@ -41,6 +42,7 @@ public class ModEventBusEvents {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.EMBRYONIC_MACHINE_BE.get(), EmbryonicMachineBlockEntity::getItemHandler);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.EMBRYO_CALCIFICATION_MACHINE_BE.get(), EmbryoCalcificationMachineBlockEntity::getItemHandler);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.INCUBATOR_BE.get(), IncubatorBlockEntity::getItemHandler);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.CRATE_BE.get(), CrateBlockEntity::getItemHandler);
 
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.FOSSIL_CLEANER_BE.get(), FossilCleanerBlockEntity::getFluidTank);
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.TANK_BE.get(), TankBlockEntity::getTank);

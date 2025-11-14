@@ -75,6 +75,8 @@ public class ModCreativeModeTabs {
 
                         pOutput.accept(ModBlocks.TANK.get());
                         pOutput.accept(ModBlocks.POWER_CELL.get());
+                        pOutput.accept(ModBlocks.WOOD_CRATE.get());
+                        pOutput.accept(ModBlocks.IRON_CRATE.get());
 
                         pOutput.accept(ModBlocks.GENERATOR);
                         pOutput.accept(ModBlocks.DNA_EXTRACTOR);

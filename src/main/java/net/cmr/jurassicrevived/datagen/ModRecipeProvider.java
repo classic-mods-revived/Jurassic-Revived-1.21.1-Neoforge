@@ -9,6 +9,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
@@ -99,9 +100,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("A  ")
                 .pattern("AAA")
                 .pattern("BBB")
-                .define('A', Blocks.SPRUCE_PLANKS)
+                .define('A', ItemTags.PLANKS)
                 .define('B', ModBlocks.REINFORCED_STONE_BRICKS)
-                .unlockedBy("has_spruce_planks", has(Blocks.SPRUCE_PLANKS))
+                .unlockedBy("has_planks", has(ItemTags.PLANKS))
                 .unlockedBy("has_reinforced_stone_bricks", has(ModBlocks.REINFORCED_STONE_BRICKS)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FENCE_LIGHT.get(), 1)
@@ -260,6 +261,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('B', ModBlocks.POWER_PIPE)
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
                 .unlockedBy("has_power_pipe", has(ModBlocks.POWER_PIPE)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.WOOD_CRATE.get(), 1)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .define('A', ItemTags.PLANKS)
+                .define('B', Blocks.CHEST)
+                .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                .unlockedBy("has_chest", has(Blocks.CHEST)).save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.IRON_CRATE.get(), 1)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .define('A', Items.IRON_INGOT)
+                .define('B', Blocks.CHEST)
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .unlockedBy("has_chest", has(Blocks.CHEST)).save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CAT_PLUSHIE.get(), 1)
                 .pattern("ABA")

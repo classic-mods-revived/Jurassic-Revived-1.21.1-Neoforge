@@ -1,6 +1,16 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_chest": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:chest"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_planks": {
       "conditions": {
         "items": [
@@ -11,19 +21,9 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_reinforced_stone_bricks": {
-      "conditions": {
-        "items": [
-          {
-            "items": "jurassicrevived:reinforced_stone_bricks"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "jurassicrevived:bench"
+        "recipe": "jurassicrevived:wood_crate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -32,12 +32,12 @@
     [
       "has_the_recipe",
       "has_planks",
-      "has_reinforced_stone_bricks"
+      "has_chest"
     ]
   ],
   "rewards": {
     "recipes": [
-      "jurassicrevived:bench"
+      "jurassicrevived:wood_crate"
     ]
   }
 }

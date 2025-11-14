@@ -1,8 +1,8 @@
 package net.cmr.jurassicrevived.block.entity.custom;
 
 import net.cmr.jurassicrevived.Config;
-import net.cmr.jurassicrevived.block.custom.DNAHybridizerBlock;
 import net.cmr.jurassicrevived.block.custom.EmbryoCalcificationMachineBlock;
+import net.cmr.jurassicrevived.block.entity.ModBlockEntities;
 import net.cmr.jurassicrevived.block.entity.energy.ModEnergyStorage;
 import net.cmr.jurassicrevived.item.ModItems;
 import net.cmr.jurassicrevived.recipe.EmbryoCalcificationMachineRecipe;
@@ -15,7 +15,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;

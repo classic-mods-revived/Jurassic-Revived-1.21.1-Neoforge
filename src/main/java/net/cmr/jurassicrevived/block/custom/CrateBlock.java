@@ -1,19 +1,21 @@
 package net.cmr.jurassicrevived.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.cmr.jurassicrevived.block.entity.ModBlockEntities;
-import net.cmr.jurassicrevived.block.entity.custom.TankBlockEntity;
+import net.cmr.jurassicrevived.block.entity.custom.CrateBlockEntity;
+import net.cmr.jurassicrevived.block.entity.custom.DNAAnalyzerBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
@@ -23,22 +25,44 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.Nullable;
 
-public class TankBlock extends BaseEntityBlock {
-    public TankBlock(Properties properties) {
-        super(properties);
-    }
+import javax.annotation.Nullable;
+import net.minecraft.world.phys.BlockHitResult;
+
+public class CrateBlock extends BaseEntityBlock {
+    private final int slots;
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        return null;
+        return null; // no data-driven codec; constructor requires custom slot param
+    }
+
+    public CrateBlock(Properties properties, int slots) {
+        super(properties);
+        this.slots = slots;
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new CrateBlockEntity(pos, state, this.slots);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        return defaultBlockState();
     }
 
     @Override
@@ -52,7 +76,7 @@ public class TankBlock extends BaseEntityBlock {
             }
 
             BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof TankBlockEntity fbe) {
+            if (be instanceof CrateBlockEntity fbe) {
                 ItemStack stack = new ItemStack(this.asItem());
 
                 if (!fbe.isEmptyForDrop()) {
@@ -86,34 +110,35 @@ public class TankBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos,
-                                              Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
-        if (!pLevel.isClientSide()) {
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof TankBlockEntity tankBlockEntity) {
-                pPlayer.openMenu(new SimpleMenuProvider(tankBlockEntity, Component.literal("Tank")), pPos);
-            } else {
-                throw new IllegalStateException("Our Container provider is missing!");
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        BlockEntity be = level.getBlockEntity(pos);
+        if (be instanceof CrateBlockEntity crate) {
+            return crate.redstoneSignal();
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean triggerEvent(BlockState state, Level level, BlockPos pos, int id, int param) {
+        super.triggerEvent(state, level, pos, id, param);
+        BlockEntity be = level.getBlockEntity(pos);
+        return be != null && be.triggerEvent(id, param);
+    }
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
+                                              Player player, InteractionHand hand, BlockHitResult hit) {
+        if (!level.isClientSide()) {
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof CrateBlockEntity crate) {
+                player.openMenu(new SimpleMenuProvider(crate, Component.empty()), pos);
             }
         }
-
-        return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new TankBlockEntity(blockPos, blockState);
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        if(pLevel.isClientSide()) {
-            return null;
-        }
-
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.TANK_BE.get(),
-                ((level, blockPos, blockState, tankBlockEntity) -> tankBlockEntity.tick(level, blockPos, blockState)));
+        return ItemInteractionResult.sidedSuccess(level.isClientSide());
     }
 }

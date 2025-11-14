@@ -37,6 +37,11 @@ public class ModMenuTypes {
             registerMenuType("tank_menu", TankMenu::new);
     public static final DeferredHolder<MenuType<?>, MenuType<PowerCellMenu>> POWER_CELL_MENU =
             registerMenuType("power_cell_menu", PowerCellMenu::new);
+    public static final DeferredHolder<MenuType<?>, MenuType<CrateMenu>> WOOD_CRATE_MENU =
+            registerMenuType("wood_crate_menu", CrateMenu::new);
+    public static final DeferredHolder<MenuType<?>, MenuType<CrateMenu>> IRON_CRATE_MENU =
+            registerMenuType("iron_crate_menu", CrateMenu::new);
+
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));
