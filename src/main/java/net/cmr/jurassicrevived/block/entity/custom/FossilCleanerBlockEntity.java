@@ -190,7 +190,7 @@ public class FossilCleanerBlockEntity extends BlockEntity implements MenuProvide
 
     private final FluidTank FLUID_TANK = createFluidTank();
     private FluidTank createFluidTank() {
-        return new FluidTank(64000) {
+        return new FluidTank(16000) {
             @Override
             protected void onContentsChanged() {
                 setChanged();
