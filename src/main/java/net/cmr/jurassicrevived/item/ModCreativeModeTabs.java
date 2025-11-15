@@ -46,6 +46,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.CAT_PLUSHIE);
                         pOutput.accept(ModBlocks.TRASH_CAN);
                         pOutput.accept(ModBlocks.BENCH);
+                        pOutput.accept(ModBlocks.CHARRED_TERRACOTTA);
                         pOutput.accept(ModBlocks.FENCE_LIGHT);
                         pOutput.accept(ModBlocks.LIGHT_POST);
                         pOutput.accept(ModBlocks.GYPSUM_STONE);

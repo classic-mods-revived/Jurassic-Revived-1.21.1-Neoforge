@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "blocks",
+  "cookingtime": 100,
+  "experience": 0.25,
+  "group": "jr_charred_terracotta",
+  "ingredient": {
+    "tag": "minecraft:terracotta"
+  },
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:charred_terracotta"
+  }
+}

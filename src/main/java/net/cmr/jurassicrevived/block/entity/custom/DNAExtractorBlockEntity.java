@@ -9,9 +9,7 @@ import net.cmr.jurassicrevived.recipe.DNAExtractorRecipe;
 import net.cmr.jurassicrevived.recipe.DNAExtractorRecipeInput;
 import net.cmr.jurassicrevived.recipe.ModRecipes;
 import net.cmr.jurassicrevived.screen.custom.DNAExtractorMenu;
-import net.cmr.jurassicrevived.sound.MachineHumLoopSound;
 import net.cmr.jurassicrevived.util.ModTags;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -42,34 +40,17 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class DNAExtractorBlockEntity extends BlockEntity implements MenuProvider {
-    private @Nullable MachineHumLoopSound humSound;
 
     public static void clientTick(Level level, BlockPos pos, BlockState state, DNAExtractorBlockEntity be) {
         if (!level.isClientSide) return;
 
         boolean lit = state.hasProperty(DNAExtractorBlock.LIT)
                 && state.getValue(DNAExtractorBlock.LIT);
-
-        if (lit) {
-            if (be.humSound == null || be.humSound.isStopped()) {
-                be.humSound = new MachineHumLoopSound(level, pos);
-                Minecraft.getInstance().getSoundManager().play(be.humSound);
-            }
-        } else {
-            if (be.humSound != null && !be.humSound.isStopped()) {
-                be.humSound.stopPlaying();
-            }
-            be.humSound = null;
-        }
     }
 
     @Override
     public void setRemoved() {
         super.setRemoved();
-        if (level != null && level.isClientSide && humSound != null && !humSound.isStopped()) {
-            humSound.stopPlaying();
-        }
-        humSound = null;
     }
 
     public final ItemStackHandler itemHandler = new ItemStackHandler(5) {

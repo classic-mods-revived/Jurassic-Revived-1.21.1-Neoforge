@@ -9,7 +9,10 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
@@ -40,6 +43,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         oreSmelting(pRecipeOutput, GYPSUM_STONE_SMELTABLES, RecipeCategory.MISC, ModBlocks.SMOOTH_GYPSUM_STONE, 0.25f, 200, "jr_smooth_gypsum_stone");
         oreBlasting(pRecipeOutput, GYPSUM_STONE_SMELTABLES, RecipeCategory.MISC, ModBlocks.SMOOTH_GYPSUM_STONE, 0.25f, 100, "jr_smooth_gypsum_stone");
+
+        TagKey<Item> CHARRED_TERRACOTTA_SMELTABLES = ItemTags.TERRACOTTA;
+
+        oreSmelting(pRecipeOutput, CHARRED_TERRACOTTA_SMELTABLES, RecipeCategory.MISC, ModBlocks.CHARRED_TERRACOTTA.get(), 0.25f, 200, "jr_charred_terracotta");
+        oreBlasting(pRecipeOutput, CHARRED_TERRACOTTA_SMELTABLES, RecipeCategory.MISC, ModBlocks.CHARRED_TERRACOTTA.get(), 0.25f, 100, "jr_charred_terracotta");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GYPSUM_BRICK_STAIRS.get(), 4)
                 .pattern("A  ")
@@ -955,10 +963,54 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 pExperience, pCookingTIme, pGroup, "_from_smelting");
     }
 
+    protected static void oreSmelting(RecipeOutput output,
+                                      TagKey<Item> tag,
+                                      RecipeCategory category,
+                                      ItemLike result,
+                                      float experience,
+                                      int cookingTime,
+                                      String group) {
+
+        SimpleCookingRecipeBuilder.generic(
+                        Ingredient.of(tag),
+                        category,
+                        result,
+                        experience,
+                        cookingTime,
+                        RecipeSerializer.SMELTING_RECIPE,
+                        SmeltingRecipe::new
+                )
+                .group(group)
+                .unlockedBy("has_" + group, has(tag))
+                .save(output, JRMod.MOD_ID + ":" + getItemName(result) + "_from_smelting_" + group);
+    }
+
     protected static void oreBlasting(RecipeOutput pRecipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,
                                       float pExperience, int pCookingTime, String pGroup) {
         oreCooking(pRecipeOutput, RecipeSerializer.BLASTING_RECIPE, BlastingRecipe::new, pIngredients, pCategory, pResult,
                 pExperience, pCookingTime, pGroup, "_from_blasting");
+    }
+
+    protected static void oreBlasting(RecipeOutput output,
+                                      TagKey<Item> tag,
+                                      RecipeCategory category,
+                                      ItemLike result,
+                                      float experience,
+                                      int cookingTime,
+                                      String group) {
+
+        SimpleCookingRecipeBuilder.generic(
+                        Ingredient.of(tag),
+                        category,
+                        result,
+                        experience,
+                        cookingTime,
+                        RecipeSerializer.BLASTING_RECIPE,
+                        BlastingRecipe::new
+                )
+                .group(group)
+                .unlockedBy("has_" + group, has(tag))
+                .save(output, JRMod.MOD_ID + ":" + getItemName(result) + "_from_blasting_" + group);
     }
 
     protected static <T extends AbstractCookingRecipe> void oreCooking(RecipeOutput pRecipeOutput, RecipeSerializer<T> pCookingSerializer, AbstractCookingRecipe.Factory<T> factory,

@@ -30,6 +30,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BENCH = registerBlock("bench",
             () -> new BenchBlock(BlockBehaviour.Properties.of().noOcclusion()));
 
+    public static final DeferredBlock<Block> CHARRED_TERRACOTTA = registerBlock("charred_terracotta",
+            () -> new Block(BlockBehaviour.Properties.of().noOcclusion()));
+
     public static final DeferredBlock<Block> LIGHT_POST = registerBlock("light_post",
             () -> new LightPostBlock(BlockBehaviour.Properties.of().noOcclusion().lightLevel(state -> 15)));
 

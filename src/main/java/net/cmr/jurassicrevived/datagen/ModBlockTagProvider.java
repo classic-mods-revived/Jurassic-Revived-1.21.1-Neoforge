@@ -24,6 +24,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.CAT_PLUSHIE.get())
                 .add(ModBlocks.TRASH_CAN.get())
                 .add(ModBlocks.BENCH.get())
+                .add(ModBlocks.CHARRED_TERRACOTTA.get())
                 .add(ModBlocks.FENCE_LIGHT.get())
                 .add(ModBlocks.LIGHT_POST.get())
                 .add(ModBlocks.GYPSUM_STONE.get())
