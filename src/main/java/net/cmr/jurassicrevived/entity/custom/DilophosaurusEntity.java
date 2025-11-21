@@ -64,15 +64,7 @@ public class DilophosaurusEntity extends Animal implements GeoEntity {
         this.goalSelector.addGoal(7, new AvoidEntityGoal<>(this, CeratosaurusEntity.class, (float) 20, 1, 1));
         this.goalSelector.addGoal(8, new AvoidEntityGoal<>(this, TriceratopsEntity.class, (float) 20, 1, 1));
         this.goalSelector.addGoal(9, new AvoidEntityGoal<>(this, BrachiosaurusEntity.class, (float) 20, 1, 1));
-        this.goalSelector.addGoal(10, new SprintingMeleeAttackGoal(this, 1.1, false) {
-            @Override
-            public boolean canUse() {
-                return !DilophosaurusEntity.this.isBaby() && super.canUse();
-            }
-            private double getAttackReachSqr(LivingEntity entity) {
-                return 4;
-            }
-        });
+        this.goalSelector.addGoal(10, new SprintingMeleeAttackGoal(this, 1.1, false));
         this.goalSelector.addGoal(11, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(12, new FollowParentGoal(this, 1.25));
         this.goalSelector.addGoal(13, new WaterAvoidingRandomStrollGoal(this, 1.0));

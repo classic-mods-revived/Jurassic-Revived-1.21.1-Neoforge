@@ -55,15 +55,7 @@ public class ProcompsognathusEntity extends Animal implements GeoEntity {
     });
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
         this.goalSelector.addGoal(2, new FloatGoal(this));
-        this.goalSelector.addGoal(3, new SprintingMeleeAttackGoal(this, 1.1, false) {
-            @Override
-            public boolean canUse() {
-                return !ProcompsognathusEntity.this.isBaby() && super.canUse();
-            }
-            private double getAttackReachSqr(LivingEntity entity) {
-                return 4;
-            }
-        });
+        this.goalSelector.addGoal(3, new SprintingMeleeAttackGoal(this, 1.1, false));
         this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Animal.class, 10, false, false,
                 target -> target.getType() != this.getType()));
         this.goalSelector.addGoal(5, new BreedGoal(this, 1.0));

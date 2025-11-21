@@ -57,15 +57,7 @@ public class StegosaurusEntity extends Animal implements GeoEntity {
         this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, VelociraptorEntity.class, (float) 20, 0.8, 0.8));
         this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, CeratosaurusEntity.class, (float) 20, 0.8, 0.8));
         this.goalSelector.addGoal(5, new AvoidEntityGoal<>(this, DilophosaurusEntity.class, (float) 20, 0.8, 0.8));
-        this.goalSelector.addGoal(6, new SprintingMeleeAttackGoal(this, 1.1, false) {
-            @Override
-            public boolean canUse() {
-                return !StegosaurusEntity.this.isBaby() && super.canUse();
-            }
-            private double getAttackReachSqr(LivingEntity entity) {
-                return 16;
-            }
-        });
+        this.goalSelector.addGoal(6, new SprintingMeleeAttackGoal(this, 1.1, false));
         this.goalSelector.addGoal(7, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(8, new FollowParentGoal(this, 1.25));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));

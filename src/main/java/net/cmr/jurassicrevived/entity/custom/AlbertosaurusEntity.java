@@ -13,6 +13,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -59,15 +60,7 @@ public class AlbertosaurusEntity extends Animal implements GeoEntity {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
         this.goalSelector.addGoal(2, new FloatGoal(this));
         this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, BrachiosaurusEntity.class, (float) 20, 1.2, 1));
-        this.goalSelector.addGoal(4, new SprintingMeleeAttackGoal(this, 1.1, false) {
-            @Override
-            public boolean canUse() {
-                return !AlbertosaurusEntity.this.isBaby() && super.canUse();
-            }
-            private double getAttackReachSqr(LivingEntity entity) {
-                return 25;
-            }
-        });
+        this.goalSelector.addGoal(4, new SprintingMeleeAttackGoal(this, 1.1, false));
         this.goalSelector.addGoal(5, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(6, new FollowParentGoal(this, 1.25));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
@@ -86,8 +79,6 @@ public class AlbertosaurusEntity extends Animal implements GeoEntity {
         this.targetSelector.addGoal(19, new NearestAttackableTargetGoal(this, IndominusRexEntity.class, false, false));
         this.targetSelector.addGoal(20, new NearestAttackableTargetGoal(this, Player.class, false, false));
         this.goalSelector.addGoal(21, new RandomLookAroundGoal(this));
-
-
     }
 
     public static AttributeSupplier.Builder createAttributes() {

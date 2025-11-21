@@ -60,15 +60,7 @@ public class ConcavenatorEntity extends Animal implements GeoEntity {
         this.goalSelector.addGoal(5, new AvoidEntityGoal<>(this, TyrannosaurusRexEntity.class, (float) 20, 1.2, 1.2));
         this.goalSelector.addGoal(6, new AvoidEntityGoal<>(this, IndominusRexEntity.class, (float) 20, 1, 1));
         this.goalSelector.addGoal(7, new AvoidEntityGoal<>(this, BrachiosaurusEntity.class, (float) 20, 1, 1));
-        this.goalSelector.addGoal(8, new SprintingMeleeAttackGoal(this, 1.1, false) {
-            @Override
-            public boolean canUse() {
-                return !ConcavenatorEntity.this.isBaby() && super.canUse();
-            }
-            private double getAttackReachSqr(LivingEntity entity) {
-                return 4;
-            }
-        });
+        this.goalSelector.addGoal(8, new SprintingMeleeAttackGoal(this, 1.1, false));
         this.goalSelector.addGoal(9, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(10, new FollowParentGoal(this, 1.25));
         this.goalSelector.addGoal(11, new WaterAvoidingRandomStrollGoal(this, 1.0));
