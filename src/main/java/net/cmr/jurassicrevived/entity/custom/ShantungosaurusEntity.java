@@ -3,14 +3,17 @@ package net.cmr.jurassicrevived.entity.custom;
 import net.cmr.jurassicrevived.entity.ModEntities;
 import net.cmr.jurassicrevived.entity.ai.SprintingPanicGoal;
 import net.cmr.jurassicrevived.entity.client.ShantungosaurusVariant;
+import net.cmr.jurassicrevived.sound.ModSounds;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -31,6 +34,8 @@ public class ShantungosaurusEntity extends Animal implements GeoEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     private static final EntityDataAccessor<Integer> VARIANT =
+            SynchedEntityData.defineId(ShantungosaurusEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_SYNCED_AGE =
             SynchedEntityData.defineId(ShantungosaurusEntity.class, EntityDataSerializers.INT);
 
     // Procedural tail sway state (client-side use for rendering)
@@ -125,6 +130,7 @@ public class ShantungosaurusEntity extends Animal implements GeoEntity {
     public void tick() {
         super.tick();
         if (!level().isClientSide) {
+            this.entityData.set(DATA_SYNCED_AGE, this.getAge());
             var maxHealthAttr = getAttribute(Attributes.MAX_HEALTH);
             if (maxHealthAttr != null) {
                 double baseAdult = 60;
@@ -143,6 +149,7 @@ public class ShantungosaurusEntity extends Animal implements GeoEntity {
                 mouthAnimCooldown--;
             } else {
                 this.triggerAnim("mouthController", "mouth");
+                this.playSound(ModSounds.SHANTUNGOSAURUS_CALL.get(), 1.0F, 1.0F);
                 // 30s–60s in ticks
                 mouthAnimCooldown = this.random.nextInt(1200 - 600 + 1) + 600;
             }
@@ -200,6 +207,11 @@ public class ShantungosaurusEntity extends Animal implements GeoEntity {
     protected void defineSynchedData(SynchedEntityData.Builder pBuilder) {
         super.defineSynchedData(pBuilder);
         pBuilder.define(VARIANT, 0);
+        pBuilder.define(DATA_SYNCED_AGE, 0);
+    }
+
+    public int getSyncedAge() {
+        return this.entityData.get(DATA_SYNCED_AGE);
     }
     public int getTypeVariant() {
         return this.entityData.get(VARIANT);
@@ -241,5 +253,15 @@ public class ShantungosaurusEntity extends Animal implements GeoEntity {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+
+    @Override
+    protected @Nullable SoundEvent getHurtSound(DamageSource damageSource) {
+        return ModSounds.SHANTUNGOSAURUS_HURT.get();
+    }
+
+    @Override
+    protected @Nullable SoundEvent getDeathSound() {
+        return ModSounds.SHANTUNGOSAURUS_DEATH.get();
     }
 }

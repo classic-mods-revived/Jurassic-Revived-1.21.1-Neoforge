@@ -4,16 +4,20 @@ import net.cmr.jurassicrevived.entity.ModEntities;
 import net.cmr.jurassicrevived.entity.ai.SprintingMeleeAttackGoal;
 import net.cmr.jurassicrevived.entity.ai.SprintingPanicGoal;
 import net.cmr.jurassicrevived.entity.client.BrachiosaurusVariant;
+import net.cmr.jurassicrevived.sound.ModSounds;
 import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -25,6 +29,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoAnimatable;
@@ -38,6 +43,8 @@ public class BrachiosaurusEntity extends Animal implements GeoEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     private static final EntityDataAccessor<Integer> VARIANT =
+            SynchedEntityData.defineId(BrachiosaurusEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_SYNCED_AGE =
             SynchedEntityData.defineId(BrachiosaurusEntity.class, EntityDataSerializers.INT);
 
     // Procedural tail sway state (client-side use for rendering)
@@ -107,6 +114,7 @@ public class BrachiosaurusEntity extends Animal implements GeoEntity {
         if (!level().isClientSide && hit && target instanceof LivingEntity) {
             if (this.level() instanceof ServerLevel serverLevel) {
                 this.triggerAnim("attackController", "attack");
+                this.playSound(ModSounds.STOMP_ATTACK.get(), 1.0F, 1.0F);
             }
         }
         return hit;
@@ -138,10 +146,12 @@ public class BrachiosaurusEntity extends Animal implements GeoEntity {
     @Override
     public void tick() {
         super.tick();
+
         if (!level().isClientSide) {
+            this.entityData.set(DATA_SYNCED_AGE, this.getAge());
             var maxHealthAttr = getAttribute(Attributes.MAX_HEALTH);
             if (maxHealthAttr != null) {
-                double baseAdult = 200;
+                double baseAdult = 55;
                 double desired = this.isBaby() ? baseAdult * 0.10D : baseAdult;
                 if (maxHealthAttr.getBaseValue() != desired) {
                     double oldMax = maxHealthAttr.getBaseValue();
@@ -157,6 +167,7 @@ public class BrachiosaurusEntity extends Animal implements GeoEntity {
                 mouthAnimCooldown--;
             } else {
                 this.triggerAnim("mouthController", "mouth");
+                this.playSound(ModSounds.BRACHIOSAURUS_CALL.get(), 1.0F, 1.0F);
                 // 30s–60s in ticks
                 mouthAnimCooldown = this.random.nextInt(1200 - 600 + 1) + 600;
             }
@@ -214,6 +225,11 @@ public class BrachiosaurusEntity extends Animal implements GeoEntity {
     protected void defineSynchedData(SynchedEntityData.Builder pBuilder) {
         super.defineSynchedData(pBuilder);
         pBuilder.define(VARIANT, 0);
+        pBuilder.define(DATA_SYNCED_AGE, 0);
+    }
+
+    public int getSyncedAge() {
+        return this.entityData.get(DATA_SYNCED_AGE);
     }
     public int getTypeVariant() {
         return this.entityData.get(VARIANT);
@@ -255,5 +271,20 @@ public class BrachiosaurusEntity extends Animal implements GeoEntity {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+
+    @Override
+    protected @Nullable SoundEvent getHurtSound(DamageSource damageSource) {
+        return ModSounds.BRACHIOSAURUS_HURT.get();
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, BlockState blockIn) {
+        this.playSound(ModSounds.STOMP.get(), 0.5F, 1.0F);
+    }
+
+    @Override
+    protected @Nullable SoundEvent getDeathSound() {
+        return ModSounds.BRACHIOSAURUS_DEATH.get();
     }
 }

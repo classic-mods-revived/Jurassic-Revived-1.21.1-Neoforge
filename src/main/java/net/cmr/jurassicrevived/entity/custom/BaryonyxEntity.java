@@ -4,14 +4,17 @@ import net.cmr.jurassicrevived.entity.ModEntities;
 import net.cmr.jurassicrevived.entity.ai.SprintingMeleeAttackGoal;
 import net.cmr.jurassicrevived.entity.ai.SprintingPanicGoal;
 import net.cmr.jurassicrevived.entity.client.BaryonyxVariant;
+import net.cmr.jurassicrevived.sound.ModSounds;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -34,6 +37,8 @@ public class BaryonyxEntity extends Animal implements GeoEntity {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     private static final EntityDataAccessor<Integer> VARIANT =
+            SynchedEntityData.defineId(BaryonyxEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_SYNCED_AGE =
             SynchedEntityData.defineId(BaryonyxEntity.class, EntityDataSerializers.INT);
 
     // Procedural tail sway state (client-side use for rendering)
@@ -110,6 +115,7 @@ public class BaryonyxEntity extends Animal implements GeoEntity {
         if (!level().isClientSide && hit && target instanceof LivingEntity) {
             if (this.level() instanceof ServerLevel serverLevel) {
                 this.triggerAnim("attackController", "attack");
+                this.playSound(ModSounds.BARYONYX_ATTACK.get(), 1.0F, 1.0F);
             }
         }
         return hit;
@@ -143,10 +149,26 @@ public class BaryonyxEntity extends Animal implements GeoEntity {
         super.tick();
 
         if (!level().isClientSide) {
+            this.entityData.set(DATA_SYNCED_AGE, this.getAge());
+            var maxHealthAttr = getAttribute(Attributes.MAX_HEALTH);
+            if (maxHealthAttr != null) {
+                double baseAdult = 55;
+                double desired = this.isBaby() ? baseAdult * 0.10D : baseAdult;
+                if (maxHealthAttr.getBaseValue() != desired) {
+                    double oldMax = maxHealthAttr.getBaseValue();
+                    double healthRatio = this.getHealth() / (float) oldMax;
+                    maxHealthAttr.setBaseValue(desired);
+                    this.setHealth((float) (desired * Mth.clamp(healthRatio, 0.0F, 1.0F)));
+                }
+            }
+        }
+
+        if (!level().isClientSide) {
             if (mouthAnimCooldown > 0) {
                 mouthAnimCooldown--;
             } else {
                 this.triggerAnim("mouthController", "mouth");
+                this.playSound(ModSounds.BARYONYX_CALL.get(), 1.0F, 1.0F);
                 // 30s–60s in ticks
                 mouthAnimCooldown = this.random.nextInt(1200 - 600 + 1) + 600;
             }
@@ -204,6 +226,11 @@ public class BaryonyxEntity extends Animal implements GeoEntity {
     protected void defineSynchedData(SynchedEntityData.Builder pBuilder) {
         super.defineSynchedData(pBuilder);
         pBuilder.define(VARIANT, 0);
+        pBuilder.define(DATA_SYNCED_AGE, 0);
+    }
+
+    public int getSyncedAge() {
+        return this.entityData.get(DATA_SYNCED_AGE);
     }
     public int getTypeVariant() {
         return this.entityData.get(VARIANT);
@@ -245,5 +272,15 @@ public class BaryonyxEntity extends Animal implements GeoEntity {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+
+    @Override
+    protected @Nullable SoundEvent getHurtSound(DamageSource damageSource) {
+        return ModSounds.BARYONYX_HURT.get();
+    }
+
+    @Override
+    protected @Nullable SoundEvent getDeathSound() {
+        return ModSounds.BARYONYX_DEATH.get();
     }
 }

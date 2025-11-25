@@ -78,6 +78,36 @@ public class ModItems {
             () -> new CustomGenderedSpawnEggItem(ModEntities.PROCOMPSOGNATHUS, 0xe3c775, 0x362c18, new Item.Properties()));
     public static final DeferredItem<Item> PROTOCERATOPS_SPAWN_EGG = ITEMS.register("protoceratops_spawn_egg",
             () -> new CustomGenderedSpawnEggItem(ModEntities.PROTOCERATOPS, 0xfccdb4, 0xfdc079, new Item.Properties()));
+    public static final DeferredItem<Item> ARAMBOURGIANIA_SPAWN_EGG = ITEMS.register("arambourgiania_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.ARAMBOURGIANIA, 0xd2c294, 0x95b2c2, new Item.Properties()));
+    public static final DeferredItem<Item> CEARADACTYLUS_SPAWN_EGG = ITEMS.register("cearadactylus_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.CEARADACTYLUS, 0x68594e, 0x64a0b3, new Item.Properties()));
+    public static final DeferredItem<Item> DIMORPHODON_SPAWN_EGG = ITEMS.register("dimorphodon_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.DIMORPHODON, 0xb4aba0, 0x674a43, new Item.Properties()));
+    public static final DeferredItem<Item> GEOSTERNBERGIA_SPAWN_EGG = ITEMS.register("geosternbergia_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.GEOSTERNBERGIA, 0xd8cb8b, 0x3e677f, new Item.Properties()));
+    public static final DeferredItem<Item> GUIDRACO_SPAWN_EGG = ITEMS.register("guidraco_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.GUIDRACO, 0x19132e, 0x572749, new Item.Properties()));
+    public static final DeferredItem<Item> LUDODACTYLUS_SPAWN_EGG = ITEMS.register("ludodactylus_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.LUDODACTYLUS, 0x303133, 0x72502b, new Item.Properties()));
+    public static final DeferredItem<Item> MOGANOPTERUS_SPAWN_EGG = ITEMS.register("moganopterus_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.MOGANOPTERUS, 0xdeb7ab, 0x8d5a47, new Item.Properties()));
+    public static final DeferredItem<Item> NYCTOSAURUS_SPAWN_EGG = ITEMS.register("nyctosaurus_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.NYCTOSAURUS, 0xf3f1e9, 0x2087b3, new Item.Properties()));
+    public static final DeferredItem<Item> PTERANODON_SPAWN_EGG = ITEMS.register("pteranodon_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.PTERANODON, 0x4b4541, 0x173d4a, new Item.Properties()));
+    public static final DeferredItem<Item> PTERODAUSTRO_SPAWN_EGG = ITEMS.register("pterodaustro_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.PTERODAUSTRO, 0x2f2f36, 0xf5d33c, new Item.Properties()));
+    public static final DeferredItem<Item> QUETZALCOATLUS_SPAWN_EGG = ITEMS.register("quetzalcoatlus_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.QUETZALCOATLUS, 0x1c1b1a, 0xa6a69f, new Item.Properties()));
+    public static final DeferredItem<Item> TAPEJARA_SPAWN_EGG = ITEMS.register("tapejara_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.TAPEJARA, 0xd8dbe4, 0x710b0c, new Item.Properties()));
+    public static final DeferredItem<Item> TROPEOGNATHUS_SPAWN_EGG = ITEMS.register("tropeognathus_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.TROPEOGNATHUS, 0x4e6067, 0x483141, new Item.Properties()));
+    public static final DeferredItem<Item> TUPUXUARA_SPAWN_EGG = ITEMS.register("tupuxuara_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.TUPUXUARA, 0x6b4e40, 0x3a647e, new Item.Properties()));
+    public static final DeferredItem<Item> ZHENYUANOPTERUS_SPAWN_EGG = ITEMS.register("zhenyuanopterus_spawn_egg",
+            () -> new CustomGenderedSpawnEggItem(ModEntities.ZHENYUANOPTERUS, 0x485654, 0xd1cdb6, new Item.Properties()));
     public static final DeferredItem<Item> RUGOPS_SPAWN_EGG = ITEMS.register("rugops_spawn_egg",
             () -> new CustomGenderedSpawnEggItem(ModEntities.RUGOPS, 0xd3ecf0, 0xafef5a, new Item.Properties()));
     public static final DeferredItem<Item> SHANTUNGOSAURUS_SPAWN_EGG = ITEMS.register("shantungosaurus_spawn_egg",

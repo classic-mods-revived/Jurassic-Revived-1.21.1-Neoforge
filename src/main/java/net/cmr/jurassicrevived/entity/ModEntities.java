@@ -132,6 +132,66 @@ public class ModEntities {
             ENTITY_TYPES.register("protoceratops", () -> EntityType.Builder.of(ProtoceratopsEntity::new, MobCategory.CREATURE)
                     .sized(1.875f, 2.375f).build("protoceratops"));
 
+    public static final Supplier<EntityType<ArambourgianiaEntity>> ARAMBOURGIANIA =
+            ENTITY_TYPES.register("arambourgiania", () -> EntityType.Builder.of(ArambourgianiaEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("arambourgiania"));
+
+    public static final Supplier<EntityType<CearadactylusEntity>> CEARADACTYLUS =
+            ENTITY_TYPES.register("cearadactylus", () -> EntityType.Builder.of(CearadactylusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("cearadactylus"));
+
+    public static final Supplier<EntityType<DimorphodonEntity>> DIMORPHODON =
+            ENTITY_TYPES.register("dimorphodon", () -> EntityType.Builder.of(DimorphodonEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("dimorphodon"));
+
+    public static final Supplier<EntityType<GeosternbergiaEntity>> GEOSTERNBERGIA =
+            ENTITY_TYPES.register("geosternbergia", () -> EntityType.Builder.of(GeosternbergiaEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("geosternbergia"));
+
+    public static final Supplier<EntityType<GuidracoEntity>> GUIDRACO =
+            ENTITY_TYPES.register("guidraco", () -> EntityType.Builder.of(GuidracoEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("guidraco"));
+
+    public static final Supplier<EntityType<LudodactylusEntity>> LUDODACTYLUS =
+            ENTITY_TYPES.register("ludodactylus", () -> EntityType.Builder.of(LudodactylusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("ludodactylus"));
+
+    public static final Supplier<EntityType<MoganopterusEntity>> MOGANOPTERUS =
+            ENTITY_TYPES.register("moganopterus", () -> EntityType.Builder.of(MoganopterusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("moganopterus"));
+
+    public static final Supplier<EntityType<NyctosaurusEntity>> NYCTOSAURUS =
+            ENTITY_TYPES.register("nyctosaurus", () -> EntityType.Builder.of(NyctosaurusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("nyctosaurus"));
+
+    public static final Supplier<EntityType<PteranodonEntity>> PTERANODON =
+            ENTITY_TYPES.register("pteranodon", () -> EntityType.Builder.of(PteranodonEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("pteranodon"));
+
+    public static final Supplier<EntityType<PterodaustroEntity>> PTERODAUSTRO =
+            ENTITY_TYPES.register("pterodaustro", () -> EntityType.Builder.of(PterodaustroEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("pterodaustro"));
+
+    public static final Supplier<EntityType<QuetzalcoatlusEntity>> QUETZALCOATLUS =
+            ENTITY_TYPES.register("quetzalcoatlus", () -> EntityType.Builder.of(QuetzalcoatlusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("quetzalcoatlus"));
+
+    public static final Supplier<EntityType<TapejaraEntity>> TAPEJARA =
+            ENTITY_TYPES.register("tapejara", () -> EntityType.Builder.of(TapejaraEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("tapejara"));
+
+    public static final Supplier<EntityType<TropeognathusEntity>> TROPEOGNATHUS =
+            ENTITY_TYPES.register("tropeognathus", () -> EntityType.Builder.of(TropeognathusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("tropeognathus"));
+
+    public static final Supplier<EntityType<TupuxuaraEntity>> TUPUXUARA =
+            ENTITY_TYPES.register("tupuxuara", () -> EntityType.Builder.of(TupuxuaraEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("tupuxuara"));
+
+    public static final Supplier<EntityType<ZhenyuanopterusEntity>> ZHENYUANOPTERUS =
+            ENTITY_TYPES.register("zhenyuanopterus", () -> EntityType.Builder.of(ZhenyuanopterusEntity::new, MobCategory.CREATURE)
+                    .sized(1.875f, 2.375f).build("zhenyuanopterus"));
+
     public static final Supplier<EntityType<RugopsEntity>> RUGOPS =
             ENTITY_TYPES.register("rugops", () -> EntityType.Builder.of(RugopsEntity::new, MobCategory.CREATURE)
                     .sized(1.875f, 2.375f).build("rugops"));
