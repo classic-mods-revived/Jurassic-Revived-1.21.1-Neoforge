@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:conditional_add_spawns",
+  "biomes": [
+    "minecraft:taiga",
+    "minecraft:plains"
+  ],
+  "spawners": [
+    {
+      "type": "jurassicrevived:chasmosaurus",
+      "maxCount": 4,
+      "minCount": 2,
+      "weight": 9
+    }
+  ]
+}

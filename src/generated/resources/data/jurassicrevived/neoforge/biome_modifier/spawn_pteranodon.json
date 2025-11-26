@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:conditional_add_spawns",
+  "biomes": [
+    "minecraft:beach",
+    "minecraft:jagged_peaks"
+  ],
+  "spawners": [
+    {
+      "type": "jurassicrevived:pteranodon",
+      "maxCount": 5,
+      "minCount": 2,
+      "weight": 3
+    }
+  ]
+}

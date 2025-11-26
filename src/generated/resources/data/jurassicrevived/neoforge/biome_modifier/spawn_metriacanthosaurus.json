@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:conditional_add_spawns",
+  "biomes": [
+    "minecraft:jungle",
+    "minecraft:forest"
+  ],
+  "spawners": [
+    {
+      "type": "jurassicrevived:metriacanthosaurus",
+      "maxCount": 3,
+      "minCount": 2,
+      "weight": 7
+    }
+  ]
+}

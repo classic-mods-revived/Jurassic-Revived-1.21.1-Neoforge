@@ -1,0 +1,12 @@
+{
+  "type": "jurassicrevived:incubating",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:metriacanthosaurus_egg"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:incubated_metriacanthosaurus_egg"
+  }
+}

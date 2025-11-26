@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:conditional_add_spawns",
+  "biomes": [
+    "minecraft:jungle",
+    "minecraft:swamp"
+  ],
+  "spawners": [
+    {
+      "type": "jurassicrevived:majungasaurus",
+      "maxCount": 1,
+      "minCount": 1,
+      "weight": 6
+    }
+  ]
+}

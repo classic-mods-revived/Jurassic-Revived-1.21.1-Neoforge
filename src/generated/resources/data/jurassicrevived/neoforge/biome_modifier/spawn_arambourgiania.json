@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:conditional_add_spawns",
+  "biomes": [
+    "minecraft:jagged_peaks",
+    "minecraft:windswept_hills"
+  ],
+  "spawners": [
+    {
+      "type": "jurassicrevived:arambourgiania",
+      "maxCount": 3,
+      "minCount": 2,
+      "weight": 3
+    }
+  ]
+}

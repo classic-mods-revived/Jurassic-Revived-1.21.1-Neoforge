@@ -88,6 +88,32 @@ public class JRModClient {
         EntityRenderers.register(ModEntities.TYRANNOSAURUS_REX.get(), TyrannosaurusRexRenderer::new);
         EntityRenderers.register(ModEntities.VELOCIRAPTOR.get(), VelociraptorRenderer::new);
         EntityRenderers.register(ModEntities.CHICKENOSAURUS.get(), ChickenosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.ALLOSAURUS.get(), AllosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.ALVAREZSAURUS.get(), AlvarezsaurusRenderer::new);
+        EntityRenderers.register(ModEntities.ANKYLOSAURUS.get(), AnkylosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.CARCHARODONTOSAURUS.get(), CarcharodontosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.CHASMOSAURUS.get(), ChasmosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.COELOPHYSIS.get(), CoelophysisRenderer::new);
+        EntityRenderers.register(ModEntities.COELURUS.get(), CoelurusRenderer::new);
+        EntityRenderers.register(ModEntities.CORYTHOSAURUS.get(), CorythosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.DRYOSAURUS.get(), DryosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.HADROSAURUS.get(), HadrosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.HYPSILOPHODON.get(), HypsilophodonRenderer::new);
+        EntityRenderers.register(ModEntities.INDORAPTOR.get(), IndoraptorRenderer::new);
+        EntityRenderers.register(ModEntities.INOSTRANCEVIA.get(), InostranceviaRenderer::new);
+        EntityRenderers.register(ModEntities.LAMBEOSAURUS.get(), LambeosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.MAMENCHISAURUS.get(), MamenchisaurusRenderer::new);
+        EntityRenderers.register(ModEntities.METRIACANTHOSAURUS.get(), MetriacanthosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.ORNITHOLESTES.get(), OrnitholestesRenderer::new);
+        EntityRenderers.register(ModEntities.ORNITHOMIMUS.get(), OrnithomimusRenderer::new);
+        EntityRenderers.register(ModEntities.OVIRAPTOR.get(), OviraptorRenderer::new);
+        EntityRenderers.register(ModEntities.PACHYCEPHALOSAURUS.get(), PachycephalosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.PROCERATOSAURUS.get(), ProceratosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.RAJASAURUS.get(), RajasaurusRenderer::new);
+        EntityRenderers.register(ModEntities.SEGISAURUS.get(), SegisaurusRenderer::new);
+        EntityRenderers.register(ModEntities.TITANOSAURUS.get(), TitanosaurusRenderer::new);
+        EntityRenderers.register(ModEntities.TROODON.get(), TroodonRenderer::new);
+        EntityRenderers.register(ModEntities.UTAHRAPTOR.get(), UtahraptorRenderer::new);
         FenceClimbClientHandler.register();
     }
 

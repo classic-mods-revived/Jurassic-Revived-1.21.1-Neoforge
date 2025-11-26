@@ -311,7 +311,6 @@ public class ModSounds {
     public static final Supplier<SoundEvent> TAPEJARA_DEATH = registerSoundEvent("tapejara_death");
 
     public static final Supplier<SoundEvent> THERIZINOSAURUS_CALL = registerSoundEvent("therizinosaurus_call");
-    public static final Supplier<SoundEvent> THERIZINOSAURUS_ATTACK = registerSoundEvent("therizinosaurus_attack");
     public static final Supplier<SoundEvent> THERIZINOSAURUS_HURT = registerSoundEvent("therizinosaurus_hurt");
     public static final Supplier<SoundEvent> THERIZINOSAURUS_DEATH = registerSoundEvent("therizinosaurus_death");
 
@@ -335,10 +334,10 @@ public class ModSounds {
     public static final Supplier<SoundEvent> TUPUXUARA_HURT = registerSoundEvent("tupuxuara_hurt");
     public static final Supplier<SoundEvent> TUPUXUARA_DEATH = registerSoundEvent("tupuxuara_death");
 
-    public static final Supplier<SoundEvent> TYRANNOSAURUS_REX_CALL = registerSoundEvent("tyrannosaurus_call");
-    public static final Supplier<SoundEvent> TYRANNOSAURUS_REX_ATTACK = registerSoundEvent("tyrannosaurus_attack");
-    public static final Supplier<SoundEvent> TYRANNOSAURUS_REX_HURT = registerSoundEvent("tyrannosaurus_hurt");
-    public static final Supplier<SoundEvent> TYRANNOSAURUS_REX_DEATH = registerSoundEvent("tyrannosaurus_death");
+    public static final Supplier<SoundEvent> TYRANNOSAURUS_REX_CALL = registerSoundEvent("tyrannosaurus_rex_call");
+    public static final Supplier<SoundEvent> TYRANNOSAURUS_REX_ATTACK = registerSoundEvent("tyrannosaurus_rex_attack");
+    public static final Supplier<SoundEvent> TYRANNOSAURUS_REX_HURT = registerSoundEvent("tyrannosaurus_rex_hurt");
+    public static final Supplier<SoundEvent> TYRANNOSAURUS_REX_DEATH = registerSoundEvent("tyrannosaurus_rex_death");
 
     public static final Supplier<SoundEvent> UTAHRAPTOR_CALL = registerSoundEvent("utahraptor_call");
     public static final Supplier<SoundEvent> UTAHRAPTOR_HURT = registerSoundEvent("utahraptor_hurt");

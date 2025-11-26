@@ -1,0 +1,17 @@
+{
+  "type": "jurassicrevived:fossil_grinding",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:utahraptor_skull_fossil"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:utahraptor_tissue"
+  },
+  "weights": {
+    "jurassicrevived:crushed_fossil": 40,
+    "jurassicrevived:utahraptor_tissue": 20,
+    "minecraft:bone_meal": 40
+  }
+}

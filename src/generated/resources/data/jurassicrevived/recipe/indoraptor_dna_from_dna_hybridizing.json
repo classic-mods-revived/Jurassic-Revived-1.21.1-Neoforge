@@ -1,0 +1,24 @@
+{
+  "type": "jurassicrevived:dna_hybridizing",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:indominus_rex_dna"
+    },
+    {
+      "item": "jurassicrevived:velociraptor_dna"
+    },
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    {
+      "item": "jurassicrevived:frog_dna"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:indoraptor_dna"
+  }
+}

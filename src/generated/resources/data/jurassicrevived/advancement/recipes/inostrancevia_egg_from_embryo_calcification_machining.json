@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_syringes": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#jurassicrevived:syringes"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_syringes"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "jurassicrevived:inostrancevia_egg_from_embryo_calcification_machining"
+    ]
+  }
+}

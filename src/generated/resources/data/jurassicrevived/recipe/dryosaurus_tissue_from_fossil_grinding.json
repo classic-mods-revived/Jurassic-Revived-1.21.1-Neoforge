@@ -1,0 +1,17 @@
+{
+  "type": "jurassicrevived:fossil_grinding",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:dryosaurus_skull_fossil"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:dryosaurus_tissue"
+  },
+  "weights": {
+    "jurassicrevived:crushed_fossil": 40,
+    "jurassicrevived:dryosaurus_tissue": 20,
+    "minecraft:bone_meal": 40
+  }
+}

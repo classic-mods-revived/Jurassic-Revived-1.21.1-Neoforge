@@ -1,0 +1,12 @@
+{
+  "type": "jurassicrevived:incubating",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:ornitholestes_egg"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:incubated_ornitholestes_egg"
+  }
+}

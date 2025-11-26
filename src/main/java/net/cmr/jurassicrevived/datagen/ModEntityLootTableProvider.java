@@ -164,126 +164,6 @@ public class ModEntityLootTableProvider extends EntityLootSubProvider {
                         .setRolls(ConstantValue.exactly(1))
                         .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))));
 
-// Arambourgiania
-        this.add(ModEntities.ARAMBOURGIANIA.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Cearadactylus
-        this.add(ModEntities.CEARADACTYLUS.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Dimorphodon
-        this.add(ModEntities.DIMORPHODON.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Geosternbergia
-        this.add(ModEntities.GEOSTERNBERGIA.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Guidraco
-        this.add(ModEntities.GUIDRACO.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Ludodactylus
-        this.add(ModEntities.LUDODACTYLUS.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Moganopterus
-        this.add(ModEntities.MOGANOPTERUS.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Nyctosaurus
-        this.add(ModEntities.NYCTOSAURUS.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Pteranodon
-        this.add(ModEntities.PTERANODON.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Pterodaustro
-        this.add(ModEntities.PTERODAUSTRO.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Quetzalcoatlus
-        this.add(ModEntities.QUETZALCOATLUS.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Tapejara
-        this.add(ModEntities.TAPEJARA.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Tropeognathus
-        this.add(ModEntities.TROPEOGNATHUS.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Tupuxuara
-        this.add(ModEntities.TUPUXUARA.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
-// Zhenyuanopterus
-        this.add(ModEntities.ZHENYUANOPTERUS.get(), LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(ModItems.FRESH_PROTOCERATOPS_SKULL.get()))
-                )
-        );
-
 // Rugops
         this.add(ModEntities.RUGOPS.get(), LootTable.lootTable()
                 .withPool(LootPool.lootPool()
@@ -337,6 +217,293 @@ public class ModEntityLootTableProvider extends EntityLootSubProvider {
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1))
                         .add(LootItem.lootTableItem(ModItems.FRESH_VELOCIRAPTOR_SKULL.get()))));
+
+        this.add(ModEntities.ALLOSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_ALLOSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.ALVAREZSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_ALVAREZSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.ANKYLOSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_ANKYLOSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.ARAMBOURGIANIA.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_ARAMBOURGIANIA_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.CARCHARODONTOSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_CARCHARODONTOSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.CEARADACTYLUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_CEARADACTYLUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.CHASMOSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_CHASMOSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.COELOPHYSIS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_COELOPHYSIS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.COELURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_COELURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.CORYTHOSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_CORYTHOSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.DIMORPHODON.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_DIMORPHODON_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.DRYOSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_DRYOSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.GEOSTERNBERGIA.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_GEOSTERNBERGIA_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.GUIDRACO.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_GUIDRACO_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.HADROSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_HADROSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.HYPSILOPHODON.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_HYPSILOPHODON_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.INDORAPTOR.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_INDORAPTOR_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.INOSTRANCEVIA.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_INOSTRANCEVIA_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.LAMBEOSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_LAMBEOSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.LUDODACTYLUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_LUDODACTYLUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.MAMENCHISAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_MAMENCHISAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.METRIACANTHOSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_METRIACANTHOSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.MOGANOPTERUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_MOGANOPTERUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.NYCTOSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_NYCTOSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.ORNITHOLESTES.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_ORNITHOLESTES_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.ORNITHOMIMUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_ORNITHOMIMUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.OVIRAPTOR.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_OVIRAPTOR_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.PACHYCEPHALOSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_PACHYCEPHALOSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.PROCERATOSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_PROCERATOSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.PTERANODON.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_PTERANODON_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.PTERODAUSTRO.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_PTERODAUSTRO_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.QUETZALCOATLUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_QUETZALCOATLUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.RAJASAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_RAJASAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.SEGISAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_SEGISAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.TAPEJARA.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_TAPEJARA_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.TITANOSAURUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_TITANOSAURUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.TROODON.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_TROODON_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.TROPEOGNATHUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_TROPEOGNATHUS_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.TUPUXUARA.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_TUPUXUARA_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.UTAHRAPTOR.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_UTAHRAPTOR_SKULL.get()))
+                )
+        );
+
+        this.add(ModEntities.ZHENYUANOPTERUS.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ModItems.FRESH_ZHENYUANOPTERUS_SKULL.get()))
+                )
+        );
     }
 
     @Override

@@ -1,0 +1,12 @@
+{
+  "type": "jurassicrevived:incubating",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:indoraptor_egg"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:incubated_indoraptor_egg"
+  }
+}

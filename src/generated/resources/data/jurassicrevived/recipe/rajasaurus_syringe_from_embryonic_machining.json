@@ -1,0 +1,18 @@
+{
+  "type": "jurassicrevived:embryonic_machining",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:rajasaurus_dna"
+    },
+    {
+      "item": "jurassicrevived:syringe"
+    },
+    {
+      "item": "jurassicrevived:frog_dna"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:rajasaurus_syringe"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "jurassicrevived:fossil_grinding",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:carcharodontosaurus_skull_fossil"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:carcharodontosaurus_tissue"
+  },
+  "weights": {
+    "jurassicrevived:carcharodontosaurus_tissue": 20,
+    "jurassicrevived:crushed_fossil": 40,
+    "minecraft:bone_meal": 40
+  }
+}

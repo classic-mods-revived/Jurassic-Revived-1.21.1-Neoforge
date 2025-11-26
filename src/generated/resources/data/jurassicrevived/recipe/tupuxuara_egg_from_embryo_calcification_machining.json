@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:embryo_calcification_machining",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:tupuxuara_syringe"
+    },
+    {
+      "item": "minecraft:egg"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:tupuxuara_egg"
+  }
+}

@@ -2781,7 +2781,7 @@
 				}
 			}
 		},
-		"anim.fduck.waddle": {
+		"anim.fduck.waddled_away": {
 			"loop": true,
 			"animation_length": 12,
 			"bones": {

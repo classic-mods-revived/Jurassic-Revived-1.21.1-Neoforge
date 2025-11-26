@@ -1,0 +1,17 @@
+{
+  "type": "jurassicrevived:fossil_grinding",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:arambourgiania_skull_fossil"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:arambourgiania_tissue"
+  },
+  "weights": {
+    "jurassicrevived:arambourgiania_tissue": 20,
+    "jurassicrevived:crushed_fossil": 40,
+    "minecraft:bone_meal": 40
+  }
+}

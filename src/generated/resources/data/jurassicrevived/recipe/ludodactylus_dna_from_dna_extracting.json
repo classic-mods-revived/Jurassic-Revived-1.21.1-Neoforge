@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:dna_extracting",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:test_tube"
+    },
+    {
+      "item": "jurassicrevived:ludodactylus_tissue"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:ludodactylus_dna"
+  }
+}

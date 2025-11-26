@@ -20,6 +20,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -155,7 +156,7 @@ public class AlbertosaurusEntity extends Animal implements GeoEntity {
             this.entityData.set(DATA_SYNCED_AGE, this.getAge());
             var maxHealthAttr = getAttribute(Attributes.MAX_HEALTH);
             if (maxHealthAttr != null) {
-                double baseAdult = 55;
+                double baseAdult = DefaultAttributes.getSupplier((EntityType<? extends LivingEntity>) this.getType()).getValue(Attributes.MAX_HEALTH);
                 double desired = this.isBaby() ? baseAdult * 0.10D : baseAdult;
                 if (maxHealthAttr.getBaseValue() != desired) {
                     double oldMax = maxHealthAttr.getBaseValue();

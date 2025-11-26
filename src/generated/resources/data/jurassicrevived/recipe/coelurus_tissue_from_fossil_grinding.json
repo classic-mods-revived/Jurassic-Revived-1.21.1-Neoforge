@@ -1,0 +1,17 @@
+{
+  "type": "jurassicrevived:fossil_grinding",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:coelurus_skull_fossil"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:coelurus_tissue"
+  },
+  "weights": {
+    "jurassicrevived:coelurus_tissue": 20,
+    "jurassicrevived:crushed_fossil": 40,
+    "minecraft:bone_meal": 40
+  }
+}

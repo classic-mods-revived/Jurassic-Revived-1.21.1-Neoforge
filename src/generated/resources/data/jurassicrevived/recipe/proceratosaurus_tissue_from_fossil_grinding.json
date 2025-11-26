@@ -1,0 +1,17 @@
+{
+  "type": "jurassicrevived:fossil_grinding",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:proceratosaurus_skull_fossil"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:proceratosaurus_tissue"
+  },
+  "weights": {
+    "jurassicrevived:crushed_fossil": 40,
+    "jurassicrevived:proceratosaurus_tissue": 20,
+    "minecraft:bone_meal": 40
+  }
+}

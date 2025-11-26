@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:conditional_add_spawns",
+  "biomes": [
+    "minecraft:taiga",
+    "minecraft:forest"
+  ],
+  "spawners": [
+    {
+      "type": "jurassicrevived:deinonychus",
+      "maxCount": 4,
+      "minCount": 2,
+      "weight": 8
+    }
+  ]
+}

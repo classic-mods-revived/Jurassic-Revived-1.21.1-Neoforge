@@ -1,0 +1,12 @@
+{
+  "type": "jurassicrevived:incubating",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:cearadactylus_egg"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:incubated_cearadactylus_egg"
+  }
+}

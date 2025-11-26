@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:dna_extracting",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:test_tube"
+    },
+    {
+      "item": "jurassicrevived:nyctosaurus_tissue"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:nyctosaurus_dna"
+  }
+}

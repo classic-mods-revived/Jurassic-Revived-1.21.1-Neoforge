@@ -313,9 +313,8 @@
 				},
 				{
 					"name": "Rightthigh",
-					"parent": "Body1",
 					"pivot": [2.5, 23.3, 0],
-					"rotation": [-26.09, 0, 0],
+					"rotation": [-28.59, 0, 0],
 					"cubes": [
 						{"origin": [2.5, 14.3, -2], "size": [3, 10, 7], "uv": [0, 130]}
 					]
@@ -349,9 +348,8 @@
 				},
 				{
 					"name": "Leftthigh",
-					"parent": "Body1",
 					"pivot": [-2.5, 23.3, 0],
-					"rotation": [-26.09, 0, 0],
+					"rotation": [-28.59, 0, 0],
 					"cubes": [
 						{"origin": [-5.5, 14.3, -2], "size": [3, 10, 7], "uv": [25, 130]}
 					]

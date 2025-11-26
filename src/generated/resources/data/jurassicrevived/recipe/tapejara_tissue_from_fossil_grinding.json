@@ -1,0 +1,17 @@
+{
+  "type": "jurassicrevived:fossil_grinding",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:tapejara_skull_fossil"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:tapejara_tissue"
+  },
+  "weights": {
+    "jurassicrevived:crushed_fossil": 40,
+    "jurassicrevived:tapejara_tissue": 20,
+    "minecraft:bone_meal": 40
+  }
+}

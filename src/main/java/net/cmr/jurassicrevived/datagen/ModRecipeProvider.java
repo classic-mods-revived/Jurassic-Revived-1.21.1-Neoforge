@@ -591,10 +591,94 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE)).save(pRecipeOutput);
         new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE, ModItems.DISTORTUS_REX_TISSUE, ModItems.DISTORTUS_REX_DNA, 1)
                 .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE)).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.ALLOSAURUS_TISSUE.get(), ModItems.ALLOSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.ALVAREZSAURUS_TISSUE.get(), ModItems.ALVAREZSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.ANKYLOSAURUS_TISSUE.get(), ModItems.ANKYLOSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.ARAMBOURGIANIA_TISSUE.get(), ModItems.ARAMBOURGIANIA_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.CARCHARODONTOSAURUS_TISSUE.get(), ModItems.CARCHARODONTOSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.CEARADACTYLUS_TISSUE.get(), ModItems.CEARADACTYLUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.CHASMOSAURUS_TISSUE.get(), ModItems.CHASMOSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.COELOPHYSIS_TISSUE.get(), ModItems.COELOPHYSIS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.COELURUS_TISSUE.get(), ModItems.COELURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.CORYTHOSAURUS_TISSUE.get(), ModItems.CORYTHOSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.DIMORPHODON_TISSUE.get(), ModItems.DIMORPHODON_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.DRYOSAURUS_TISSUE.get(), ModItems.DRYOSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.GEOSTERNBERGIA_TISSUE.get(), ModItems.GEOSTERNBERGIA_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.GUIDRACO_TISSUE.get(), ModItems.GUIDRACO_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.HADROSAURUS_TISSUE.get(), ModItems.HADROSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.HYPSILOPHODON_TISSUE.get(), ModItems.HYPSILOPHODON_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.INDORAPTOR_TISSUE.get(), ModItems.INDORAPTOR_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.INOSTRANCEVIA_TISSUE.get(), ModItems.INOSTRANCEVIA_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.LAMBEOSAURUS_TISSUE.get(), ModItems.LAMBEOSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.LUDODACTYLUS_TISSUE.get(), ModItems.LUDODACTYLUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.MAMENCHISAURUS_TISSUE.get(), ModItems.MAMENCHISAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.METRIACANTHOSAURUS_TISSUE.get(), ModItems.METRIACANTHOSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.MOGANOPTERUS_TISSUE.get(), ModItems.MOGANOPTERUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.NYCTOSAURUS_TISSUE.get(), ModItems.NYCTOSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.ORNITHOLESTES_TISSUE.get(), ModItems.ORNITHOLESTES_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.ORNITHOMIMUS_TISSUE.get(), ModItems.ORNITHOMIMUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.OVIRAPTOR_TISSUE.get(), ModItems.OVIRAPTOR_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.PACHYCEPHALOSAURUS_TISSUE.get(), ModItems.PACHYCEPHALOSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.PROCERATOSAURUS_TISSUE.get(), ModItems.PROCERATOSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.PTERANODON_TISSUE.get(), ModItems.PTERANODON_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.PTERODAUSTRO_TISSUE.get(), ModItems.PTERODAUSTRO_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.QUETZALCOATLUS_TISSUE.get(), ModItems.QUETZALCOATLUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.RAJASAURUS_TISSUE.get(), ModItems.RAJASAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.SEGISAURUS_TISSUE.get(), ModItems.SEGISAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.TAPEJARA_TISSUE.get(), ModItems.TAPEJARA_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.TITANOSAURUS_TISSUE.get(), ModItems.TITANOSAURUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.TROODON_TISSUE.get(), ModItems.TROODON_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.TROPEOGNATHUS_TISSUE.get(), ModItems.TROPEOGNATHUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.TUPUXUARA_TISSUE.get(), ModItems.TUPUXUARA_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.UTAHRAPTOR_TISSUE.get(), ModItems.UTAHRAPTOR_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+        new DNAExtractingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.ZHENYUANOPTERUS_TISSUE.get(), ModItems.ZHENYUANOPTERUS_DNA.get(), 1)
+                .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
+
 
         new DNAAnalyzingRecipeBuilder(ModItems.TEST_TUBE.get(), ModItems.FROG_MATERIAL.get(), ModItems.FROG_DNA.get(), 1)
                 .unlockedBy("has_test_tube", has(ModItems.TEST_TUBE.get())).save(pRecipeOutput);
 
+        
         DNAExtractingRecipeBuilder
                 .amberRandomDNAUniform(ModItems.TEST_TUBE.get(), ModItems.MOSQUITO_IN_AMBER.get(), ModItems.VELOCIRAPTOR_DNA.get(), 1)
                 .addDNAWeight(ModItems.INDOMINUS_REX_DNA.get(), 0).addDNAWeight(ModItems.DISTORTUS_REX_DNA.get(), 0)
@@ -662,6 +746,87 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
         FossilGrindingRecipeBuilder.fossilWeighted(ModItems.THERIZINOSAURUS_SKULL_FOSSIL, ModItems.THERIZINOSAURUS_TISSUE, 1)
                 .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.ALLOSAURUS_SKULL_FOSSIL, ModItems.ALLOSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.ALVAREZSAURUS_SKULL_FOSSIL, ModItems.ALVAREZSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.ANKYLOSAURUS_SKULL_FOSSIL, ModItems.ANKYLOSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.ARAMBOURGIANIA_SKULL_FOSSIL, ModItems.ARAMBOURGIANIA_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.CARCHARODONTOSAURUS_SKULL_FOSSIL, ModItems.CARCHARODONTOSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.CEARADACTYLUS_SKULL_FOSSIL, ModItems.CEARADACTYLUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.CHASMOSAURUS_SKULL_FOSSIL, ModItems.CHASMOSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.COELOPHYSIS_SKULL_FOSSIL, ModItems.COELOPHYSIS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.COELURUS_SKULL_FOSSIL, ModItems.COELURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.CORYTHOSAURUS_SKULL_FOSSIL, ModItems.CORYTHOSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.DIMORPHODON_SKULL_FOSSIL, ModItems.DIMORPHODON_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.DRYOSAURUS_SKULL_FOSSIL, ModItems.DRYOSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.GEOSTERNBERGIA_SKULL_FOSSIL, ModItems.GEOSTERNBERGIA_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.GUIDRACO_SKULL_FOSSIL, ModItems.GUIDRACO_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.HADROSAURUS_SKULL_FOSSIL, ModItems.HADROSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.HYPSILOPHODON_SKULL_FOSSIL, ModItems.HYPSILOPHODON_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.INOSTRANCEVIA_SKULL_FOSSIL, ModItems.INOSTRANCEVIA_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.LAMBEOSAURUS_SKULL_FOSSIL, ModItems.LAMBEOSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.LUDODACTYLUS_SKULL_FOSSIL, ModItems.LUDODACTYLUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.MAMENCHISAURUS_SKULL_FOSSIL, ModItems.MAMENCHISAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.METRIACANTHOSAURUS_SKULL_FOSSIL, ModItems.METRIACANTHOSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.MOGANOPTERUS_SKULL_FOSSIL, ModItems.MOGANOPTERUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.NYCTOSAURUS_SKULL_FOSSIL, ModItems.NYCTOSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.ORNITHOLESTES_SKULL_FOSSIL, ModItems.ORNITHOLESTES_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.ORNITHOMIMUS_SKULL_FOSSIL, ModItems.ORNITHOMIMUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.OVIRAPTOR_SKULL_FOSSIL, ModItems.OVIRAPTOR_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.PACHYCEPHALOSAURUS_SKULL_FOSSIL, ModItems.PACHYCEPHALOSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.PROCERATOSAURUS_SKULL_FOSSIL, ModItems.PROCERATOSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.PTERANODON_SKULL_FOSSIL, ModItems.PTERANODON_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.PTERODAUSTRO_SKULL_FOSSIL, ModItems.PTERODAUSTRO_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.QUETZALCOATLUS_SKULL_FOSSIL, ModItems.QUETZALCOATLUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.RAJASAURUS_SKULL_FOSSIL, ModItems.RAJASAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.SEGISAURUS_SKULL_FOSSIL, ModItems.SEGISAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.TAPEJARA_SKULL_FOSSIL, ModItems.TAPEJARA_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.TITANOSAURUS_SKULL_FOSSIL, ModItems.TITANOSAURUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.TROODON_SKULL_FOSSIL, ModItems.TROODON_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.TROPEOGNATHUS_SKULL_FOSSIL, ModItems.TROPEOGNATHUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.TUPUXUARA_SKULL_FOSSIL, ModItems.TUPUXUARA_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.UTAHRAPTOR_SKULL_FOSSIL, ModItems.UTAHRAPTOR_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+        FossilGrindingRecipeBuilder.fossilWeighted(ModItems.ZHENYUANOPTERUS_SKULL_FOSSIL, ModItems.ZHENYUANOPTERUS_TISSUE,1)
+                .unlockedBy("has_fossil", has(ModTags.Items.FOSSILS)).saveFossil(pRecipeOutput);
+
 
         FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_APATOSAURUS_SKULL, ModItems.APATOSAURUS_TISSUE, 1)
                 .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
@@ -727,6 +892,88 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
         FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_DISTORTUS_REX_SKULL, ModItems.DISTORTUS_REX_TISSUE, 1)
                 .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_ALLOSAURUS_SKULL, ModItems.ALLOSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_ALVAREZSAURUS_SKULL, ModItems.ALVAREZSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_ANKYLOSAURUS_SKULL, ModItems.ANKYLOSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_ARAMBOURGIANIA_SKULL, ModItems.ARAMBOURGIANIA_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_CARCHARODONTOSAURUS_SKULL, ModItems.CARCHARODONTOSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_CEARADACTYLUS_SKULL, ModItems.CEARADACTYLUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_CHASMOSAURUS_SKULL, ModItems.CHASMOSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_COELOPHYSIS_SKULL, ModItems.COELOPHYSIS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_COELURUS_SKULL, ModItems.COELURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_CORYTHOSAURUS_SKULL, ModItems.CORYTHOSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_DIMORPHODON_SKULL, ModItems.DIMORPHODON_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_DRYOSAURUS_SKULL, ModItems.DRYOSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_GEOSTERNBERGIA_SKULL, ModItems.GEOSTERNBERGIA_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_GUIDRACO_SKULL, ModItems.GUIDRACO_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_HADROSAURUS_SKULL, ModItems.HADROSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_HYPSILOPHODON_SKULL, ModItems.HYPSILOPHODON_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_INDORAPTOR_SKULL, ModItems.INDORAPTOR_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_INOSTRANCEVIA_SKULL, ModItems.INOSTRANCEVIA_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_LAMBEOSAURUS_SKULL, ModItems.LAMBEOSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_LUDODACTYLUS_SKULL, ModItems.LUDODACTYLUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_MAMENCHISAURUS_SKULL, ModItems.MAMENCHISAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_METRIACANTHOSAURUS_SKULL, ModItems.METRIACANTHOSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_MOGANOPTERUS_SKULL, ModItems.MOGANOPTERUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_NYCTOSAURUS_SKULL, ModItems.NYCTOSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_ORNITHOLESTES_SKULL, ModItems.ORNITHOLESTES_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_ORNITHOMIMUS_SKULL, ModItems.ORNITHOMIMUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_OVIRAPTOR_SKULL, ModItems.OVIRAPTOR_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_PACHYCEPHALOSAURUS_SKULL, ModItems.PACHYCEPHALOSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_PROCERATOSAURUS_SKULL, ModItems.PROCERATOSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_PTERANODON_SKULL, ModItems.PTERANODON_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_PTERODAUSTRO_SKULL, ModItems.PTERODAUSTRO_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_QUETZALCOATLUS_SKULL, ModItems.QUETZALCOATLUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_RAJASAURUS_SKULL, ModItems.RAJASAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_SEGISAURUS_SKULL, ModItems.SEGISAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_TAPEJARA_SKULL, ModItems.TAPEJARA_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_TITANOSAURUS_SKULL, ModItems.TITANOSAURUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_TROODON_SKULL, ModItems.TROODON_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_TROPEOGNATHUS_SKULL, ModItems.TROPEOGNATHUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_TUPUXUARA_SKULL, ModItems.TUPUXUARA_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_UTAHRAPTOR_SKULL, ModItems.UTAHRAPTOR_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
+        FossilGrindingRecipeBuilder.skullToTissue(ModItems.FRESH_ZHENYUANOPTERUS_SKULL, ModItems.ZHENYUANOPTERUS_TISSUE,1)
+                .unlockedBy("has_skull", has(ModTags.Items.SKULLS)).saveSkull(pRecipeOutput);
 
 
         FossilCleaningRecipeBuilder.randomFossil(ModBlocks.STONE_FOSSIL, ModItems.VELOCIRAPTOR_SKULL_FOSSIL.get(), 1)
@@ -735,6 +982,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         FossilCleaningRecipeBuilder.randomFossil(ModBlocks.DEEPSLATE_FOSSIL, ModItems.VELOCIRAPTOR_SKULL_FOSSIL.get(), 1)
                 .unlockedBy("has_deepslate_fossil_block", has(ModBlocks.DEEPSLATE_FOSSIL)).save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(JRMod.MOD_ID, "random_fossil_from_deepslate_fossil_from_fossil_cleaning"));
 
+        
         new DNAHybridizingRecipeBuilder(ModItems.INDOMINUS_REX_DNA.get(), 1)
                 .addIngredient(ModItems.TYRANNOSAURUS_REX_DNA.get())
                 .addIngredient(ModItems.VELOCIRAPTOR_DNA.get())
@@ -749,6 +997,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         new DNAHybridizingRecipeBuilder(ModItems.DISTORTUS_REX_DNA.get(), 1)
                 .addIngredient(ModItems.TYRANNOSAURUS_REX_DNA.get())
                 .addIngredient(ModItems.BRACHIOSAURUS_DNA.get())
+                .addIngredient(ModItems.VELOCIRAPTOR_DNA.get())
+                .setCatalyst(ModItems.FROG_DNA.get())
+                .unlockedBy("has_dna", has(ModTags.Items.DNA)).save(pRecipeOutput);
+        
+        new DNAHybridizingRecipeBuilder(ModItems.INDORAPTOR_DNA.get(), 1)
+                .addIngredient(ModItems.INDOMINUS_REX_DNA.get())
                 .addIngredient(ModItems.VELOCIRAPTOR_DNA.get())
                 .setCatalyst(ModItems.FROG_DNA.get())
                 .unlockedBy("has_dna", has(ModTags.Items.DNA)).save(pRecipeOutput);
@@ -817,6 +1071,88 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
         new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE, ModItems.DISTORTUS_REX_DNA, ModItems.FROG_DNA, ModItems.DISTORTUS_REX_SYRINGE, 1)
                 .unlockedBy("has_syringe", has(ModItems.SYRINGE)).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE.get(), ModItems.ALLOSAURUS_DNA.get(), ModItems.FROG_DNA.get(), ModItems.ALLOSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE.get(), ModItems.ALVAREZSAURUS_DNA.get(), ModItems.FROG_DNA.get(), ModItems.ALVAREZSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE.get(), ModItems.ANKYLOSAURUS_DNA.get(), ModItems.FROG_DNA.get(), ModItems.ANKYLOSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE.get(), ModItems.ARAMBOURGIANIA_DNA.get(), ModItems.FROG_DNA.get(), ModItems.ARAMBOURGIANIA_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE.get(), ModItems.CARCHARODONTOSAURUS_DNA.get(), ModItems.FROG_DNA.get(), ModItems.CARCHARODONTOSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE.get(), ModItems.CEARADACTYLUS_DNA.get(), ModItems.FROG_DNA.get(), ModItems.CEARADACTYLUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE.get(), ModItems.CHASMOSAURUS_DNA.get(), ModItems.FROG_DNA.get(), ModItems.CHASMOSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE.get(), ModItems.COELOPHYSIS_DNA.get(), ModItems.FROG_DNA.get(), ModItems.COELOPHYSIS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE.get(), ModItems.COELURUS_DNA.get(), ModItems.FROG_DNA.get(), ModItems.COELURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.SYRINGE.get(), ModItems.CORYTHOSAURUS_DNA.get(), ModItems.FROG_DNA.get(), ModItems.CORYTHOSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.DIMORPHODON_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.DIMORPHODON_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.DRYOSAURUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.DRYOSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.GEOSTERNBERGIA_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.GEOSTERNBERGIA_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.GUIDRACO_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.GUIDRACO_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.HADROSAURUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.HADROSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.HYPSILOPHODON_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.HYPSILOPHODON_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.INDORAPTOR_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.INDORAPTOR_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.INOSTRANCEVIA_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.INOSTRANCEVIA_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.LAMBEOSAURUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.LAMBEOSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.LUDODACTYLUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.LUDODACTYLUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.MAMENCHISAURUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.MAMENCHISAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.METRIACANTHOSAURUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.METRIACANTHOSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.MOGANOPTERUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.MOGANOPTERUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.NYCTOSAURUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.NYCTOSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.ORNITHOLESTES_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.ORNITHOLESTES_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.ORNITHOMIMUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.ORNITHOMIMUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.OVIRAPTOR_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.OVIRAPTOR_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.PACHYCEPHALOSAURUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.PACHYCEPHALOSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.PROCERATOSAURUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.PROCERATOSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.PTERANODON_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.PTERANODON_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.PTERODAUSTRO_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.PTERODAUSTRO_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.QUETZALCOATLUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.QUETZALCOATLUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.RAJASAURUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.RAJASAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.SEGISAURUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.SEGISAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.TAPEJARA_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.TAPEJARA_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.TITANOSAURUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.TITANOSAURUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.TROODON_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.TROODON_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.TROPEOGNATHUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.TROPEOGNATHUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.TUPUXUARA_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.TUPUXUARA_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.UTAHRAPTOR_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.UTAHRAPTOR_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
+        new EmbryonicMachineRecipeBuilder(ModItems.ZHENYUANOPTERUS_DNA.get(), ModItems.SYRINGE.get(), ModItems.FROG_DNA.get(), ModItems.ZHENYUANOPTERUS_SYRINGE.get(), 1)
+                .unlockedBy("has_syringe", has(ModItems.SYRINGE.get())).save(pRecipeOutput);
 
 
 
@@ -884,6 +1220,89 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
         new EmbryoCalcificationMachiningRecipeBuilder(ModItems.DISTORTUS_REX_SYRINGE, Items.EGG, ModBlocks.DISTORTUS_REX_EGG, 1)
                 .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.ALLOSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.ALLOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.ALVAREZSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.ALVAREZSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.ANKYLOSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.ANKYLOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.ARAMBOURGIANIA_SYRINGE.get(), Items.EGG, ModBlocks.ARAMBOURGIANIA_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.CARCHARODONTOSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.CARCHARODONTOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.CEARADACTYLUS_SYRINGE.get(), Items.EGG, ModBlocks.CEARADACTYLUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.CHASMOSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.CHASMOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.COELOPHYSIS_SYRINGE.get(), Items.EGG, ModBlocks.COELOPHYSIS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.COELURUS_SYRINGE.get(), Items.EGG, ModBlocks.COELURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.CORYTHOSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.CORYTHOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.DIMORPHODON_SYRINGE.get(), Items.EGG, ModBlocks.DIMORPHODON_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.DRYOSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.DRYOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.GEOSTERNBERGIA_SYRINGE.get(), Items.EGG, ModBlocks.GEOSTERNBERGIA_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.GUIDRACO_SYRINGE.get(), Items.EGG, ModBlocks.GUIDRACO_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.HADROSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.HADROSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.HYPSILOPHODON_SYRINGE.get(), Items.EGG, ModBlocks.HYPSILOPHODON_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.INDORAPTOR_SYRINGE.get(), Items.EGG, ModBlocks.INDORAPTOR_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.INOSTRANCEVIA_SYRINGE.get(), Items.EGG, ModBlocks.INOSTRANCEVIA_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.LAMBEOSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.LAMBEOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.LUDODACTYLUS_SYRINGE.get(), Items.EGG, ModBlocks.LUDODACTYLUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.MAMENCHISAURUS_SYRINGE.get(), Items.EGG, ModBlocks.MAMENCHISAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.METRIACANTHOSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.METRIACANTHOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.MOGANOPTERUS_SYRINGE.get(), Items.EGG, ModBlocks.MOGANOPTERUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.NYCTOSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.NYCTOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.ORNITHOLESTES_SYRINGE.get(), Items.EGG, ModBlocks.ORNITHOLESTES_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.ORNITHOMIMUS_SYRINGE.get(), Items.EGG, ModBlocks.ORNITHOMIMUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.OVIRAPTOR_SYRINGE.get(), Items.EGG, ModBlocks.OVIRAPTOR_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.PACHYCEPHALOSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.PACHYCEPHALOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.PROCERATOSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.PROCERATOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.PTERANODON_SYRINGE.get(), Items.EGG, ModBlocks.PTERANODON_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.PTERODAUSTRO_SYRINGE.get(), Items.EGG, ModBlocks.PTERODAUSTRO_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.QUETZALCOATLUS_SYRINGE.get(), Items.EGG, ModBlocks.QUETZALCOATLUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.RAJASAURUS_SYRINGE.get(), Items.EGG, ModBlocks.RAJASAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.SEGISAURUS_SYRINGE.get(), Items.EGG, ModBlocks.SEGISAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.TAPEJARA_SYRINGE.get(), Items.EGG, ModBlocks.TAPEJARA_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.TITANOSAURUS_SYRINGE.get(), Items.EGG, ModBlocks.TITANOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.TROODON_SYRINGE.get(), Items.EGG, ModBlocks.TROODON_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.TROPEOGNATHUS_SYRINGE.get(), Items.EGG, ModBlocks.TROPEOGNATHUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.TUPUXUARA_SYRINGE.get(), Items.EGG, ModBlocks.TUPUXUARA_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.UTAHRAPTOR_SYRINGE.get(), Items.EGG, ModBlocks.UTAHRAPTOR_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+        new EmbryoCalcificationMachiningRecipeBuilder(ModItems.ZHENYUANOPTERUS_SYRINGE.get(), Items.EGG, ModBlocks.ZHENYUANOPTERUS_EGG.get(), 1)
+                .unlockedBy("has_syringes", has(ModTags.Items.SYRINGES)).save(pRecipeOutput);
+
 
 
         new IncubatingRecipeBuilder(ModBlocks.APATOSAURUS_EGG, ModBlocks.INCUBATED_APATOSAURUS_EGG, 1)
@@ -950,11 +1369,88 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
         new IncubatingRecipeBuilder(ModBlocks.DISTORTUS_REX_EGG, ModBlocks.INCUBATED_DISTORTUS_REX_EGG, 1)
                 .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
-
-
-
-
-
+        new IncubatingRecipeBuilder(ModBlocks.ALLOSAURUS_EGG.get(), ModBlocks.INCUBATED_ALLOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.ALVAREZSAURUS_EGG.get(), ModBlocks.INCUBATED_ALVAREZSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.ANKYLOSAURUS_EGG.get(), ModBlocks.INCUBATED_ANKYLOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.ARAMBOURGIANIA_EGG.get(), ModBlocks.INCUBATED_ARAMBOURGIANIA_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.CARCHARODONTOSAURUS_EGG.get(), ModBlocks.INCUBATED_CARCHARODONTOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.CEARADACTYLUS_EGG.get(), ModBlocks.INCUBATED_CEARADACTYLUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.CHASMOSAURUS_EGG.get(), ModBlocks.INCUBATED_CHASMOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.COELOPHYSIS_EGG.get(), ModBlocks.INCUBATED_COELOPHYSIS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.COELURUS_EGG.get(), ModBlocks.INCUBATED_COELURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.CORYTHOSAURUS_EGG.get(), ModBlocks.INCUBATED_CORYTHOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.DIMORPHODON_EGG.get(), ModBlocks.INCUBATED_DIMORPHODON_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.DRYOSAURUS_EGG.get(), ModBlocks.INCUBATED_DRYOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.GEOSTERNBERGIA_EGG.get(), ModBlocks.INCUBATED_GEOSTERNBERGIA_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.GUIDRACO_EGG.get(), ModBlocks.INCUBATED_GUIDRACO_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.HADROSAURUS_EGG.get(), ModBlocks.INCUBATED_HADROSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.HYPSILOPHODON_EGG.get(), ModBlocks.INCUBATED_HYPSILOPHODON_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.INDORAPTOR_EGG.get(), ModBlocks.INCUBATED_INDORAPTOR_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.INOSTRANCEVIA_EGG.get(), ModBlocks.INCUBATED_INOSTRANCEVIA_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.LAMBEOSAURUS_EGG.get(), ModBlocks.INCUBATED_LAMBEOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.LUDODACTYLUS_EGG.get(), ModBlocks.INCUBATED_LUDODACTYLUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.MAMENCHISAURUS_EGG.get(), ModBlocks.INCUBATED_MAMENCHISAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.METRIACANTHOSAURUS_EGG.get(), ModBlocks.INCUBATED_METRIACANTHOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.MOGANOPTERUS_EGG.get(), ModBlocks.INCUBATED_MOGANOPTERUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.NYCTOSAURUS_EGG.get(), ModBlocks.INCUBATED_NYCTOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.ORNITHOLESTES_EGG.get(), ModBlocks.INCUBATED_ORNITHOLESTES_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.ORNITHOMIMUS_EGG.get(), ModBlocks.INCUBATED_ORNITHOMIMUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.OVIRAPTOR_EGG.get(), ModBlocks.INCUBATED_OVIRAPTOR_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.PACHYCEPHALOSAURUS_EGG.get(), ModBlocks.INCUBATED_PACHYCEPHALOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.PROCERATOSAURUS_EGG.get(), ModBlocks.INCUBATED_PROCERATOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.PTERANODON_EGG.get(), ModBlocks.INCUBATED_PTERANODON_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.PTERODAUSTRO_EGG.get(), ModBlocks.INCUBATED_PTERODAUSTRO_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.QUETZALCOATLUS_EGG.get(), ModBlocks.INCUBATED_QUETZALCOATLUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.RAJASAURUS_EGG.get(), ModBlocks.INCUBATED_RAJASAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.SEGISAURUS_EGG.get(), ModBlocks.INCUBATED_SEGISAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.TAPEJARA_EGG.get(), ModBlocks.INCUBATED_TAPEJARA_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.TITANOSAURUS_EGG.get(), ModBlocks.INCUBATED_TITANOSAURUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.TROODON_EGG.get(), ModBlocks.INCUBATED_TROODON_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.TROPEOGNATHUS_EGG.get(), ModBlocks.INCUBATED_TROPEOGNATHUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.TUPUXUARA_EGG.get(), ModBlocks.INCUBATED_TUPUXUARA_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.UTAHRAPTOR_EGG.get(), ModBlocks.INCUBATED_UTAHRAPTOR_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
+        new IncubatingRecipeBuilder(ModBlocks.ZHENYUANOPTERUS_EGG.get(), ModBlocks.INCUBATED_ZHENYUANOPTERUS_EGG.get(), 1)
+                .unlockedBy("has_eggs", has(ModTags.Items.EGGS)).save(pRecipeOutput);
     }
 
     protected static void oreSmelting(RecipeOutput pRecipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,

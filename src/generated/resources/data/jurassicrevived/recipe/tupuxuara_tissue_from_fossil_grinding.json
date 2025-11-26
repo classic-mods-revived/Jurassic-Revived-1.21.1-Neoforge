@@ -1,0 +1,17 @@
+{
+  "type": "jurassicrevived:fossil_grinding",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:tupuxuara_skull_fossil"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:tupuxuara_tissue"
+  },
+  "weights": {
+    "jurassicrevived:crushed_fossil": 40,
+    "jurassicrevived:tupuxuara_tissue": 20,
+    "minecraft:bone_meal": 40
+  }
+}

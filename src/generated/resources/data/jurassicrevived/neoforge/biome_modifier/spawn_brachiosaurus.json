@@ -1,12 +1,16 @@
 {
   "type": "jurassicrevived:conditional_add_spawns",
-  "biomes": "#c:is_plains",
+  "biomes": [
+    "minecraft:forest",
+    "minecraft:plains",
+    "minecraft:taiga"
+  ],
   "spawners": [
     {
       "type": "jurassicrevived:brachiosaurus",
-      "maxCount": 3,
+      "maxCount": 2,
       "minCount": 1,
-      "weight": 6
+      "weight": 4
     }
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "type": "jurassicrevived:conditional_add_spawns",
+  "biomes": "minecraft:taiga",
+  "spawners": [
+    {
+      "type": "jurassicrevived:albertosaurus",
+      "maxCount": 2,
+      "minCount": 1,
+      "weight": 9
+    }
+  ]
+}

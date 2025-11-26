@@ -1,0 +1,12 @@
+{
+  "type": "jurassicrevived:fossil_grinding",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:fresh_tropeognathus_skull"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:tropeognathus_tissue"
+  }
+}

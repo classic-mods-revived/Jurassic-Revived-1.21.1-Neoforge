@@ -1,0 +1,18 @@
+{
+  "type": "jurassicrevived:embryonic_machining",
+  "ingredients": [
+    {
+      "item": "jurassicrevived:troodon_dna"
+    },
+    {
+      "item": "jurassicrevived:syringe"
+    },
+    {
+      "item": "jurassicrevived:frog_dna"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jurassicrevived:troodon_syringe"
+  }
+}

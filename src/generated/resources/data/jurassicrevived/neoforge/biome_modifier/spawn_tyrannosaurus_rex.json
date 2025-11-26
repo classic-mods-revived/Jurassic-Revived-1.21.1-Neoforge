@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:conditional_add_spawns",
+  "biomes": [
+    "minecraft:taiga",
+    "minecraft:plains"
+  ],
+  "spawners": [
+    {
+      "type": "jurassicrevived:tyrannosaurus_rex",
+      "maxCount": 2,
+      "minCount": 1,
+      "weight": 3
+    }
+  ]
+}

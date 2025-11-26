@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_syringe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "jurassicrevived:syringe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_syringe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "jurassicrevived:utahraptor_syringe_from_embryonic_machining"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "jurassicrevived:conditional_add_spawns",
+  "biomes": [
+    "minecraft:taiga",
+    "minecraft:forest"
+  ],
+  "spawners": [
+    {
+      "type": "jurassicrevived:troodon",
+      "maxCount": 6,
+      "minCount": 3,
+      "weight": 12
+    }
+  ]
+}
